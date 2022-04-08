@@ -1,0 +1,20 @@
+Parameter ID,Parameter Name,First Year,Last Year,Min Value,Peak Value,Max Value,Sum-to-One
+1,CCF to MgC conversion  factors,n/a,n/a,0.95,1,1.05,No
+2,End use product half lives,n/a,n/a,0.85,1,1.15,No
+3,End use product ratios,n/a,n/a,0.85,1,1.15,Yes
+4,Discarded disposition ratios (paper),n/a,n/a,0.85,1,1.15,Yes
+5,Discarded disposition ratios (wood),n/a,n/a,0.85,1,1.15,Yes
+6,Landfill decay limits (paper),n/a,n/a,0.85,1,1.15,No
+7,Landfill decay limits (wood),n/a,n/a,0.85,1,1.15,No
+8,Landfill half lives (paper),n/a,n/a,0.85,1,1.15,No
+9,Landfill half lives (wood),n/a,n/a,0.85,1,1.15,No
+10,Dump half lives (paper),n/a,n/a,0.85,1,1.15,No
+11,Dump half lives (wood),n/a,n/a,0.85,1,1.15,No
+12,Recovered half lives (paper),n/a,n/a,0.85,1,1.15,No
+13,Recovered half lives (wood),n/a,n/a,0.85,1,1.15,No
+14,Harvest,1952,1979,0.8,1,1.2,No
+15,Harvest,1980,2100,0.85,1,1.15,No
+16,Timber product ratios,1952,1979,0.8,1,1.2,Yes
+17,Timber product ratios,1980,2100,0.85,1,1.15,Yes
+18,Primary product ratios,1952,1979,0.8,1,1.2,Yes
+19,Primary product ratios,1980,2100,0.85,1,1.15,Yes

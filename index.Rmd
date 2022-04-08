@@ -1,6 +1,6 @@
 --- 
-title: "A Minimal Book Example"
-author: "John Doe"
+title: "Harvested Wood Products vR Documentation"
+author: "Jeremiah Groom"
 date: "`r Sys.Date()`"
 site: bookdown::bookdown_site
 documentclass: book
@@ -13,48 +13,64 @@ description: |
   set in the _output.yml file.
 link-citations: yes
 github-repo: jeremygroom/HWP-vR-Documentation
+
 ---
 
-# About
+```{r libraries, echo = FALSE, warning=FALSE}
+library(readr)
+library(kableExtra)
 
-This is a _sample_ book written in **Markdown**. You can use anything that Pandoc's Markdown supports; for example, a math equation $a^2 + b^2 = c^2$.
 
-## Usage 
-
-Each **bookdown** chapter is an .Rmd file, and each .Rmd file can contain one (and only one) chapter. A chapter *must* start with a first-level heading: `# A good chapter`, and can contain one (and only one) first-level heading.
-
-Use second-level and higher headings within chapters like: `## A short section` or `### An even shorter section`.
-
-The `index.Rmd` file is required, and is also your first book chapter. It will be the homepage when you render the book.
-
-## Render book
-
-You can render the HTML version of this example book without changing anything:
-
-1. Find the **Build** pane in the RStudio IDE, and
-
-1. Click on **Build Book**, then select your output format, or select "All formats" if you'd like to use multiple formats from the same book source files.
-
-Or build the book from the R console:
-
-```{r, eval=FALSE}
-bookdown::render_book()
-```
-
-To render this example to PDF as a `bookdown::pdf_book`, you'll need to install XeLaTeX. You are recommended to install TinyTeX (which includes XeLaTeX): <https://yihui.org/tinytex/>.
-
-## Preview book
-
-As you work, you may start a local server to live preview this HTML book. This preview will update as you edit the book when you save individual .Rmd files. You can start the server in a work session by using the RStudio add-in "Preview book", or from the R console:
-
-```{r eval=FALSE}
-bookdown::serve_book()
 ```
 
 
+
+# Summary
+
+The Harvested Wood Products (HWP) model is a deterministic model which relies on optional and required user-supplied information.  The model is described in (@stockmann2012).  There have been several builds of the model, on platforms including Microsoft Excel, C++, and now R [@R-base].  Another effort is currently underway to construct an interactive version of the model in Python.  This article describes a build of the model based on data from the U.S. west coast states of California, Oregon, and Washington.  This R-based platform allows for user interaction with California and Oregon data via a web application (<https://groomanalyticsllc.shinyapps.io/HWP_Shared_Test/>).   Users may also upload their own data onto the app, run their data through the HWP model and associated Monte Carlo simulation, interact with their data, and construct and save figures.  Alternatively, users may access the full Shiny app code as well as a stand-alone version of the HWP model implementation. The stand-alone version allows users the opportunity to step through the code more easily, save model arrays for hand-calculation of outcomes, and alter the code to meet their own data needs.  Both versions allow users to download or generate the tables necessary to recreate figures to their own specifications. 
+This document describes the model and structure of the code, explains how to generate input files, and provides instruction on accessing model code. 
+
+## Acknowledgements
+Many thanks to Nadia Tase and Andrew Yost for supporting the development of this work through feedback, discussion, and their own efforts to dive into the code and understand the model at its core.  Jimmy Kagan and Amanda Reynolds provided administrative support.  We received feedback and support for the earlier iteration of the R-version of the model from Todd Morgan, Dan Loffler, Keith Stockmann, [OTHERS].  
+This project was funded by the California Department of Forestry and Fire Protection Purchase Order 3540-0000277546.  Earlier work on the project was funded by the Oregon Department of Forestry and supported by the Institute for Natural Resources, Oregon State University.  
+
+## Abbreviations  
+
+The following description uses many acronyms for brevity.  Here is a list of the most common:
+
+BF: Board Feet   
+BBF: Billion Board Feet   
+BLM: Bureau of Land Management   
+BWEC: Burned with Energy Capture   
+EWEC: Emitted with Energy Capture   
+EWOEC: Emitted without Energy Capture   
+EUR: End-use Product Ratios   
+HWP: Harvested Wood Products   
+CCF: Hundred Cubic Feet   
+IPCC: Intergovernmental Panel on Climate Change  
+MBF: Thousand Board Feet), 
+MT: Metric Tons   
+MMT C: Million Metric Tons of Carbon   
+PPR: Primary Product Ratios   
+PIU; Products in Use   
+SWDS: Solid Waste Disposal Sites   
+Tg C: Teragrams of Carbon: Tg C   
+Tg CO2e: Teragrams of Carbon Dioxide Equivalent   
+TPO: Timber Product Output   
+TPR: Timber Product Ratios   
+USFS: United States Forest Service   
+
+
+A note about units for carbon:  
+Publications from the United States have frequently described carbon storage and emissions using the metric million metric tons carbon, or MMT C.  We are using the equivalent metric, teragrams of carbon (Tg C) in the HWP model and this manual to align with IPCC reporting requirements.  
+
+
+
+
+ 
 ```{r include=FALSE}
 # automatically create a bib database for R packages
 knitr::write_bib(c(
-  .packages(), 'bookdown', 'knitr', 'rmarkdown'
+  .packages(), 'bookdown', 'knitr', 'rmarkdown', 'lhs'
 ), 'packages.bib')
 ```

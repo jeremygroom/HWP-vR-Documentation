@@ -1,0 +1,1173 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>Chapter 3 HWP Model Operations | Harvested Wood Products vR Documentation</title>
+  <meta name="description" content="<p>This is a minimal example of using the bookdown package to write a book.
+The HTML output format for this example is bookdown::gitbook,
+set in the _output.yml file.</p>" />
+  <meta name="generator" content="bookdown 0.25 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="Chapter 3 HWP Model Operations | Harvested Wood Products vR Documentation" />
+  <meta property="og:type" content="book" />
+  
+  <meta property="og:description" content="<p>This is a minimal example of using the bookdown package to write a book.
+The HTML output format for this example is bookdown::gitbook,
+set in the _output.yml file.</p>" />
+  <meta name="github-repo" content="jeremygroom/HWP-vR-Documentation" />
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Chapter 3 HWP Model Operations | Harvested Wood Products vR Documentation" />
+  
+  <meta name="twitter:description" content="<p>This is a minimal example of using the bookdown package to write a book.
+The HTML output format for this example is bookdown::gitbook,
+set in the _output.yml file.</p>" />
+  
+
+<meta name="author" content="Jeremiah Groom" />
+
+
+<meta name="date" content="2022-04-08" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="introduction.html"/>
+<link rel="next" href="parts.html"/>
+<script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+<link href="libs/anchor-sections-1.1.0/anchor-sections.css" rel="stylesheet" />
+<link href="libs/anchor-sections-1.1.0/anchor-sections-hash.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.1.0/anchor-sections.js"></script>
+<script src="libs/kePrint-0.0.1/kePrint.js"></script>
+<link href="libs/lightable-0.0.1/lightable.css" rel="stylesheet" />
+
+
+<style type="text/css">
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+<style type="text/css">
+/* Used with Pandoc 2.11+ new --citeproc when CSL is used */
+div.csl-bib-body { }
+div.csl-entry {
+  clear: both;
+}
+.hanging div.csl-entry {
+  margin-left:2em;
+  text-indent:-2em;
+}
+div.csl-left-margin {
+  min-width:2em;
+  float:left;
+}
+div.csl-right-inline {
+  margin-left:2em;
+  padding-left:1em;
+}
+div.csl-indent {
+  margin-left: 2em;
+}
+</style>
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">A Minimal Book Example</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> Summary<span></span></a>
+<ul>
+<li class="chapter" data-level="1.1" data-path="index.html"><a href="index.html#acknowledgements"><i class="fa fa-check"></i><b>1.1</b> Acknowledgements<span></span></a></li>
+<li class="chapter" data-level="1.2" data-path="index.html"><a href="index.html#abbreviations"><i class="fa fa-check"></i><b>1.2</b> Abbreviations<span></span></a></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="introduction.html"><a href="introduction.html"><i class="fa fa-check"></i><b>2</b> Introduction<span></span></a>
+<ul>
+<li class="chapter" data-level="2.1" data-path="introduction.html"><a href="introduction.html#general-description-of-the-hwp-model"><i class="fa fa-check"></i><b>2.1</b> General description of the HWP model<span></span></a></li>
+<li class="chapter" data-level="2.2" data-path="introduction.html"><a href="introduction.html#model-history"><i class="fa fa-check"></i><b>2.2</b> Model history<span></span></a></li>
+<li class="chapter" data-level="2.3" data-path="introduction.html"><a href="introduction.html#model-utility"><i class="fa fa-check"></i><b>2.3</b> Model utility<span></span></a></li>
+<li class="chapter" data-level="2.4" data-path="introduction.html"><a href="introduction.html#hwp-model-assumptions-and-shortcomings"><i class="fa fa-check"></i><b>2.4</b> HWP model assumptions and shortcomings<span></span></a></li>
+<li class="chapter" data-level="2.5" data-path="introduction.html"><a href="introduction.html#future-work"><i class="fa fa-check"></i><b>2.5</b> Future work<span></span></a></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="hwp-model-operations.html"><a href="hwp-model-operations.html"><i class="fa fa-check"></i><b>3</b> HWP Model Operations<span></span></a>
+<ul>
+<li class="chapter" data-level="3.1" data-path="hwp-model-operations.html"><a href="hwp-model-operations.html#hwp-model-function"><i class="fa fa-check"></i><b>3.1</b> HWP model function<span></span></a>
+<ul>
+<li class="chapter" data-level="3.1.1" data-path="hwp-model-operations.html"><a href="hwp-model-operations.html#model-inputs"><i class="fa fa-check"></i><b>3.1.1</b> Model inputs<span></span></a></li>
+<li class="chapter" data-level="3.1.2" data-path="hwp-model-operations.html"><a href="hwp-model-operations.html#summary-of-model-operations"><i class="fa fa-check"></i><b>3.1.2</b> Summary of model operations<span></span></a></li>
+<li class="chapter" data-level="3.1.3" data-path="hwp-model-operations.html"><a href="hwp-model-operations.html#model-schematic-description"><i class="fa fa-check"></i><b>3.1.3</b> Model schematic description<span></span></a></li>
+<li class="chapter" data-level="3.1.4" data-path="hwp-model-operations.html"><a href="hwp-model-operations.html#model-schematic"><i class="fa fa-check"></i><b>3.1.4</b> Model Schematic<span></span></a></li>
+<li class="chapter" data-level="3.1.5" data-path="hwp-model-operations.html"><a href="hwp-model-operations.html#model-outputs"><i class="fa fa-check"></i><b>3.1.5</b> Model Outputs<span></span></a></li>
+</ul></li>
+<li class="chapter" data-level="3.2" data-path="hwp-model-operations.html"><a href="hwp-model-operations.html#monte-carlo-simulation"><i class="fa fa-check"></i><b>3.2</b> Monte Carlo simulation<span></span></a>
+<ul>
+<li class="chapter" data-level="3.2.1" data-path="hwp-model-operations.html"><a href="hwp-model-operations.html#simulation-specifications"><i class="fa fa-check"></i><b>3.2.1</b> Simulation specifications<span></span></a></li>
+<li class="chapter" data-level="3.2.2" data-path="hwp-model-operations.html"><a href="hwp-model-operations.html#simulation-sampling"><i class="fa fa-check"></i><b>3.2.2</b> Simulation Sampling<span></span></a></li>
+<li class="chapter" data-level="3.2.3" data-path="hwp-model-operations.html"><a href="hwp-model-operations.html#sampling-and-the-hwp-program"><i class="fa fa-check"></i><b>3.2.3</b> Sampling and the HWP program<span></span></a></li>
+<li class="chapter" data-level="3.2.4" data-path="hwp-model-operations.html"><a href="hwp-model-operations.html#monte-carlo-results-and-development"><i class="fa fa-check"></i><b>3.2.4</b> Monte Carlo results and development<span></span></a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="parts.html"><a href="parts.html"><i class="fa fa-check"></i><b>4</b> Parts<span></span></a></li>
+<li class="chapter" data-level="5" data-path="footnotes-and-citations.html"><a href="footnotes-and-citations.html"><i class="fa fa-check"></i><b>5</b> Footnotes and citations<span></span></a>
+<ul>
+<li class="chapter" data-level="5.1" data-path="footnotes-and-citations.html"><a href="footnotes-and-citations.html#footnotes"><i class="fa fa-check"></i><b>5.1</b> Footnotes<span></span></a></li>
+<li class="chapter" data-level="5.2" data-path="footnotes-and-citations.html"><a href="footnotes-and-citations.html#citations"><i class="fa fa-check"></i><b>5.2</b> Citations<span></span></a></li>
+</ul></li>
+<li class="chapter" data-level="6" data-path="blocks.html"><a href="blocks.html"><i class="fa fa-check"></i><b>6</b> Blocks<span></span></a>
+<ul>
+<li class="chapter" data-level="6.1" data-path="blocks.html"><a href="blocks.html#equations"><i class="fa fa-check"></i><b>6.1</b> Equations<span></span></a></li>
+<li class="chapter" data-level="6.2" data-path="blocks.html"><a href="blocks.html#theorems-and-proofs"><i class="fa fa-check"></i><b>6.2</b> Theorems and proofs<span></span></a></li>
+<li class="chapter" data-level="6.3" data-path="blocks.html"><a href="blocks.html#callout-blocks"><i class="fa fa-check"></i><b>6.3</b> Callout blocks<span></span></a></li>
+</ul></li>
+<li class="chapter" data-level="7" data-path="sharing-your-book.html"><a href="sharing-your-book.html"><i class="fa fa-check"></i><b>7</b> Sharing your book<span></span></a>
+<ul>
+<li class="chapter" data-level="7.1" data-path="sharing-your-book.html"><a href="sharing-your-book.html#publishing"><i class="fa fa-check"></i><b>7.1</b> Publishing<span></span></a></li>
+<li class="chapter" data-level="7.2" data-path="sharing-your-book.html"><a href="sharing-your-book.html#pages"><i class="fa fa-check"></i><b>7.2</b> 404 pages<span></span></a></li>
+<li class="chapter" data-level="7.3" data-path="sharing-your-book.html"><a href="sharing-your-book.html#metadata-for-sharing"><i class="fa fa-check"></i><b>7.3</b> Metadata for sharing<span></span></a></li>
+</ul></li>
+<li><a href="references.html#references">References<span></span></a></li>
+<li class="divider"></li>
+<li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Harvested Wood Products vR Documentation</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="hwp-model-operations" class="section level1 hasAnchor" number="3">
+<h1><span class="header-section-number">Chapter 3</span> HWP Model Operations<a href="hwp-model-operations.html#hwp-model-operations" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<div id="hwp-model-function" class="section level2 hasAnchor" number="3.1">
+<h2><span class="header-section-number">3.1</span> HWP model function<a href="hwp-model-operations.html#hwp-model-function" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div id="model-inputs" class="section level3 hasAnchor" number="3.1.1">
+<h3><span class="header-section-number">3.1.1</span> Model inputs<a href="hwp-model-operations.html#model-inputs" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>The HWP model is a deterministic model which relies on optional and required user-supplied information. The user must supply annual timber harvest volumes in board feet (BF) by ownership, annual timber product ratios (TPR) that allocate harvest to different timber product classes, annual primary product ratios (PPR) that allocate timber products to different primary products and residue uses, and annual end-use product ratios (EUR) which are subcategories of PPR that represent the final products produced.</p>
+<p>The user may, at a minimum, provide timber harvest volumes and then rely on default California and Oregon values. These include a board foot to cubic foot conversion factors for sets of years and conversion factors between hundred cubic feet (CCF) and metric tons of carbon (MT C) or teragrams of carbon (Tg C) for the primary products. The model uses end-use half-life values to determine how long carbon resides in Products in Use (PIU) before becoming discarded.</p>
+<p>The user may also provide ratios for discard fates. These ratios determine, by year, what fraction of discarded paper and wood are channeled into one of six discard categories: burned (Emitted without Energy Capture, EWOEC), burned with energy capture (BWEC), composted, sent to a dump, enter the non-decaying portion of a landfill, or become landfill subject to decay. Users may also adjust half-life values for paper and wood discards in landfills and dumps and the fraction of material entering landfills that is subject to decay or remains permanently.</p>
+</div>
+<div id="summary-of-model-operations" class="section level3 hasAnchor" number="3.1.2">
+<h3><span class="header-section-number">3.1.2</span> Summary of model operations<a href="hwp-model-operations.html#summary-of-model-operations" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>In the next section I provide a detailed schematic of how the HWP model code operates. A more general schematic of the process, very similar to Figure 7 in <span class="citation"><a href="#ref-stockmann2012" role="doc-biblioref">Stockmann et al.</a> (<a href="#ref-stockmann2012" role="doc-biblioref">2012</a>)</span>, is presented in the Introduction (Figure 1). Here I provide a written description of the code’s actions. We start out with data sets and variable information that are arranged by different combinations of year, ownership, and ratio types. First the model combines (i.e., performs a database join function) harvest data (units = BBF) with board feet to cubic feet conversion factors. The model combines Primary Product Ratios (PPR) with Timber Product Ratios (TPR) and then joins those with the timber harvest volume in cubic feet by year. These are then joined with conversion values for cubic feet to metric tons of carbon, and the End Use Ratios (EUR). The result is a data set called eu_ratios, and values for EUR, TPR, PPR, the harvest amount, and the cubic foot to metric tons of carbon conversion factor are multiplied together to produce a variable called MTC for Metric Tons of Carbon. This variable serves as the carbon input into the model and has the correct units of carbon input per year for each EUR category.</p>
+<p>For each year, some of the carbon, fuel wood, is immediately burned and is Emitted with Energy Capture (EEC). A certain percentage (8% for California and Oregon data) of the carbon allocated to each of the remaining EUR categories is discarded and enters the Discarded Products process and the remaining 92% become the annual carbon addition to the Products in Use (PIU) process. The model currently assumes that 100% of pulp wood becomes paper with no loss.</p>
+<p>The Products in Use process calculates, for every year, the amount of carbon remaining from the year prior and the amount of carbon entering the process as new PIU. A decay function considers the previous year’s carbon amounts in each EUR/ownership category, applies a decay calculation, adds the result to the amount of incoming PIU carbon, and saves the value as the amount of PIU carbon for that year. It also records the amount of carbon that was discarded from the process and sends that carbon to the Discarded Products process.</p>
+<p>The Discarded Products process uses proportions to divide incoming discarded products among six fates: burn, burn with energy capture, compost, dump, landfill, and recover (recycle). Burned and composted proportions are treated as EWOEC. The proportion that is burned with energy capture will be treated as EEC (for California and Oregon all carbon is currently modeled as BWOEC). Discarded Products that are recovered or sent to dumps are processed with the same decay function used for Products in Use, but with different half-life values. The outputs that do not decay in a given year are treated either as Products in Use (recovered) or Solid Waste Disposal Site (SWDS) material (dumps). Discarded Products that are sent to Landfill are treated like Dumps, except that a proportion of the landfill is not subject to decay. That amount will become one of the carbon pools that comprise SWDS. The remainder of carbon in the landfill decays and is treated as EWOEC or remains in the landfill and is counted as another SWDS carbon pool: landfill material subject to decay.</p>
+<p>The HWP code’s outputs are EEC and combined versions of EWOEC, PIU, and SWDS. The final EEC values are the original EEC values for fuel wood plus the fraction of the discarded materials that are burned with energy capture. The final EWOEC amounts are combinations of emissions from dumps, recovered materials, landfill decay, burnt refuse, and compost materials. PIU is the combination of the original PIU values plus recovered carbon that has not decayed. SWDS is the non-decaying and decaying carbon in landfills plus remaining carbon in dumps.</p>
+</div>
+<div id="model-schematic-description" class="section level3 hasAnchor" number="3.1.3">
+<h3><span class="header-section-number">3.1.3</span> Model schematic description<a href="hwp-model-operations.html#model-schematic-description" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Below I provide a schematic of how the HWP model operates. The schematic color codes items and flows from the top to bottom of each page. Inputs, such as worksheets from the Excel data file, are yellow. Calculated matrices or arrays are blue. Final output, which may be manipulated to produce tables and figures, are purple. Calculations or data transformations are peach colored.</p>
+<p>The file and object names listed in the schematic may be found in the provided model code. My intent is to provide a written description (above) that assists readers with understanding the schematic, which in turn can be used to interpret how the R code (HWP_Model_Function.R) works. The R code itself is annotated. Readers may alter the code to incorporate their own files or improve upon the model (see Operating and Changing the Model).</p>
+<p>Transformations include database functions such as pivots and joins. A pivot in this case usually involves lengthening a matrix by taking several columns of data and stacking them into one column, with a second column identifying which of the original columns they came from. This format is useful for combining data with different levels of information. For instance, we might have data with rows = different ownerships and columns = years. We can pivot those data such that there is a column of ownership, a column for the years (years will be repeated for each block of ownerships), and a column for the values. Say we have another pivoted data set that has data for ownership, years, and Timber Product Ratios. We can join the two data sets by matching years and ownership values and duplicating the data values from the first data set across all of the Timber Product Ratios for each year/ownership combination. A somewhat more complicated version of this example is described in the Model Start page of the schematic.</p>
+<p>Ultimately, the code may produce a final pivot length of well over 100,000 rows. This is equal to the number of End Use Ratio values * number of ownerships (including a Total column) * number of years. For instance, the eu_ratio matrix has this many rows and several useful variables that are used to calculate metric tons of carbon from harvest as distributed across EURs, years, and ownerships. This value is then placed in a three-dimensional array with row number = number of EUR rows, depth = ownership number, and column number = number of years of data. The HWP code frequently uses arrays of these dimensions for storing values from many types of calculated data.</p>
+<p>Each page of the following schematic has a title. These titles may be referred to within the schematic, as certain program products are used in later pages. If a calculated data set’s boarders have thick black dashes, the data set is from a previous page. If a calculated data set lies within some white space with a thick black dashed boarder, the white space includes information on which page that product is destined for.</p>
+<p>The HWP program has a decay function that is used repeatedly. The same function operates on Products in Use and the decaying portion of landfill, dumps, and recovered (recycled) products. As an example, for PIU, the function iterates through years for a given ownership/EUR combination. It calculates the amount of PIU carbon carried over from a previous year by subjecting that carbon to its appropriate half-life value. Then it adds that carbon to the incoming PIU carbon for that year. Then it moves forward one year and repeats.</p>
+<div style="page-break-after: always;"></div>
+</div>
+<div id="model-schematic" class="section level3 hasAnchor" number="3.1.4">
+<h3><span class="header-section-number">3.1.4</span> Model Schematic<a href="hwp-model-operations.html#model-schematic" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Model Dimensions Key:<br />
+Y = number of years (California = 68, from 1952 to 2019)<br />
+y = particular year<br />
+I = ownerships including Total (California = 6)<br />
+i = particular ownership<br />
+T = Timber product ratio number (California = 40)<br />
+P = Primary product ratio number (California = 64)<br />
+E = End use ratio number (California = 224)<br />
+e = particular EUR<br />
+loss.piu = Loss percentage for products entering PIU (California = 8%)</p>
+<p><img src="images/schematic-0.png" width="100%" /></p>
+<div style="page-break-after: always;"></div>
+<p><img src="images/schematic-1.png" width="100%" /></p>
+<div style="page-break-after: always;"></div>
+<p><img src="images/schematic-2.png" width="100%" /></p>
+<div style="page-break-after: always;"></div>
+<p><img src="images/schematic-3.png" width="100%" /></p>
+<div style="page-break-after: always;"></div>
+<p><img src="images/schematic-4.png" width="100%" /></p>
+<div style="page-break-after: always;"></div>
+<p><img src="images/schematic-5.png" width="100%" /></p>
+<div style="page-break-after: always;"></div>
+<p><img src="images/schematic-6.png" width="100%" /></p>
+<div style="page-break-after: always;"></div>
+<p><img src="images/schematic-7.png" width="100%" /></p>
+</div>
+<div id="model-outputs" class="section level3 hasAnchor" number="3.1.5">
+<h3><span class="header-section-number">3.1.5</span> Model Outputs<a href="hwp-model-operations.html#model-outputs" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>The model described above treats timber harvest, product manufacture, and disposal as processes that occur within the same year. To match other reports, outputs are altered (SHIFTYEAR = TRUE; see Providing Your Own Data / Creation of the input file). All trees harvested in a given year are treated as processed within that year and the carbon is distributed according to the end use product ratios of that same year. Most of the carbon is immediately burned or turned into Products in Use. A fraction (the default 8%) is immediately discarded and distributed to the different discard fates using the discarded disposition ratios for the same year. The carbon fate for a given year is reported for the following year. Carbon that enters the model in a given year does not undergo a half-life decay until the following year. For example, the model uses the Timber Production Output for 1906 and all product and discard ratios for 1906 to distribute the carbon in Products in Use, Burned with Energy Capture, and the discard fates. The sum of those fates for 1906 is recorded in tables as occurring by January 1, 1907. Any carbon from 1906 that was distributed to Products in Use, Landfill, or Dumps was subject to a half-life decay or disposal in 1907.</p>
+<p>When users upload their data to the Shiny application or run the stand-alone model, they have the opportunity to download or generate summary tables of the model output. The provided tables should allow, with effort, the user to reproduce all Shiny application figures except for those associated with the Sankey diagram.</p>
+<p>The stand-alone code can optionally save the arrays used to generate the tables in the folder “Arrays.” Unlike the table outputs for stocks and emissions the arrays are not year-shifted. The arrays are provided for results-checking and data exploration. The arrays are three dimensional but are saved as Excel workbooks. Excel worksheet rows represent the end use ratios, columns represent years, and each worksheet tab is an ownership with the final tab representing the “Total” carbon value. Some arrays are combinations of other arrays, described below. File “eu_array.xslx” is the distribution of carbon (metric tons) to end uses. Values are used to convey how harvested wood in each ownership category translates to Tg C for each of the end use products. This array is effectively the starting point for all C fates.</p>
+<p>Users are encouraged to generate the arrays (OUTPUT_ARRAYS = TRUE) in the stand-alone model and verify calculations. The above flow diagram provides array names and a general description of how they are used. The code file HWP_Model_Function.r provides more detail about how they are used.</p>
+</div>
+</div>
+<div id="monte-carlo-simulation" class="section level2 hasAnchor" number="3.2">
+<h2><span class="header-section-number">3.2</span> Monte Carlo simulation<a href="hwp-model-operations.html#monte-carlo-simulation" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div id="simulation-specifications" class="section level3 hasAnchor" number="3.2.1">
+<h3><span class="header-section-number">3.2.1</span> Simulation specifications<a href="hwp-model-operations.html#simulation-specifications" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>The Monte Carlo (MC) simulation alters the values of at least 16 different parameters, listed in Table <a href="hwp-model-operations.html#tab:mc-table">3.1</a>. The columns Min Value, Peak Value, and Max Value describe the desired 90% confidence interval for the range of random proportions against which the parameters of interest will be adjusted. In Table <a href="hwp-model-operations.html#tab:mc-table">3.1</a> harvest, timber product ratios and primary product ratios each have two parameters with confidence intervals. These parameters represent different year sets. The Oregon data have three year sets for harvest, timber production, and primary product ratios. Each parameter requires a separate MC random variable. Finally, parameters for timber product ratios and end use product ratios have a sum-to-one characteristic. For instance, timber product ratios (TPRs) represent the proportion of total harvest for a given year that is allocated to each of the timber product ratio values. While the proportions change during the time series the full set of TPR proportions will always sum to one.</p>
+<table class="table" style="margin-left: auto; margin-right: auto;">
+<caption>
+<span id="tab:mc-table">Table 3.1: </span>Monte Carlo simulation target parameters and ranges for provided California data.
+</caption>
+<thead>
+<tr>
+<th style="text-align:right;">
+Parameter ID
+</th>
+<th style="text-align:left;">
+Parameter Name
+</th>
+<th style="text-align:left;">
+First Year
+</th>
+<th style="text-align:left;">
+Last Year
+</th>
+<th style="text-align:right;">
+Min Value
+</th>
+<th style="text-align:right;">
+Peak Value
+</th>
+<th style="text-align:right;">
+Max Value
+</th>
+<th style="text-align:left;">
+Sum to One
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:left;">
+CCF to MgC conversion factors
+</td>
+<td style="text-align:left;">
+n/a
+</td>
+<td style="text-align:left;">
+n/a
+</td>
+<td style="text-align:right;">
+0.95
+</td>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:right;">
+1.05
+</td>
+<td style="text-align:left;">
+No
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+2
+</td>
+<td style="text-align:left;">
+End use product half lives
+</td>
+<td style="text-align:left;">
+n/a
+</td>
+<td style="text-align:left;">
+n/a
+</td>
+<td style="text-align:right;">
+0.85
+</td>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:right;">
+1.15
+</td>
+<td style="text-align:left;">
+No
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+3
+</td>
+<td style="text-align:left;">
+End use product ratios
+</td>
+<td style="text-align:left;">
+n/a
+</td>
+<td style="text-align:left;">
+n/a
+</td>
+<td style="text-align:right;">
+0.85
+</td>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:right;">
+1.15
+</td>
+<td style="text-align:left;">
+Yes
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+4
+</td>
+<td style="text-align:left;">
+Discarded disposition ratios (paper)
+</td>
+<td style="text-align:left;">
+n/a
+</td>
+<td style="text-align:left;">
+n/a
+</td>
+<td style="text-align:right;">
+0.85
+</td>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:right;">
+1.15
+</td>
+<td style="text-align:left;">
+Yes
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+5
+</td>
+<td style="text-align:left;">
+Discarded disposition ratios (wood)
+</td>
+<td style="text-align:left;">
+n/a
+</td>
+<td style="text-align:left;">
+n/a
+</td>
+<td style="text-align:right;">
+0.85
+</td>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:right;">
+1.15
+</td>
+<td style="text-align:left;">
+Yes
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+6
+</td>
+<td style="text-align:left;">
+Landfill decay limits (paper)
+</td>
+<td style="text-align:left;">
+n/a
+</td>
+<td style="text-align:left;">
+n/a
+</td>
+<td style="text-align:right;">
+0.85
+</td>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:right;">
+1.15
+</td>
+<td style="text-align:left;">
+No
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+7
+</td>
+<td style="text-align:left;">
+Landfill decay limits (wood)
+</td>
+<td style="text-align:left;">
+n/a
+</td>
+<td style="text-align:left;">
+n/a
+</td>
+<td style="text-align:right;">
+0.85
+</td>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:right;">
+1.15
+</td>
+<td style="text-align:left;">
+No
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+8
+</td>
+<td style="text-align:left;">
+Landfill half lives (paper)
+</td>
+<td style="text-align:left;">
+n/a
+</td>
+<td style="text-align:left;">
+n/a
+</td>
+<td style="text-align:right;">
+0.85
+</td>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:right;">
+1.15
+</td>
+<td style="text-align:left;">
+No
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+9
+</td>
+<td style="text-align:left;">
+Landfill half lives (wood)
+</td>
+<td style="text-align:left;">
+n/a
+</td>
+<td style="text-align:left;">
+n/a
+</td>
+<td style="text-align:right;">
+0.85
+</td>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:right;">
+1.15
+</td>
+<td style="text-align:left;">
+No
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+10
+</td>
+<td style="text-align:left;">
+Dump half lives (paper)
+</td>
+<td style="text-align:left;">
+n/a
+</td>
+<td style="text-align:left;">
+n/a
+</td>
+<td style="text-align:right;">
+0.85
+</td>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:right;">
+1.15
+</td>
+<td style="text-align:left;">
+No
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+11
+</td>
+<td style="text-align:left;">
+Dump half lives (wood)
+</td>
+<td style="text-align:left;">
+n/a
+</td>
+<td style="text-align:left;">
+n/a
+</td>
+<td style="text-align:right;">
+0.85
+</td>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:right;">
+1.15
+</td>
+<td style="text-align:left;">
+No
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+12
+</td>
+<td style="text-align:left;">
+Recovered half lives (paper)
+</td>
+<td style="text-align:left;">
+n/a
+</td>
+<td style="text-align:left;">
+n/a
+</td>
+<td style="text-align:right;">
+0.85
+</td>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:right;">
+1.15
+</td>
+<td style="text-align:left;">
+No
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+13
+</td>
+<td style="text-align:left;">
+Recovered half lives (wood)
+</td>
+<td style="text-align:left;">
+n/a
+</td>
+<td style="text-align:left;">
+n/a
+</td>
+<td style="text-align:right;">
+0.85
+</td>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:right;">
+1.15
+</td>
+<td style="text-align:left;">
+No
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+14
+</td>
+<td style="text-align:left;">
+Harvest
+</td>
+<td style="text-align:left;">
+1952
+</td>
+<td style="text-align:left;">
+1979
+</td>
+<td style="text-align:right;">
+0.80
+</td>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:right;">
+1.20
+</td>
+<td style="text-align:left;">
+No
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+15
+</td>
+<td style="text-align:left;">
+Harvest
+</td>
+<td style="text-align:left;">
+1980
+</td>
+<td style="text-align:left;">
+2100
+</td>
+<td style="text-align:right;">
+0.85
+</td>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:right;">
+1.15
+</td>
+<td style="text-align:left;">
+No
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+16
+</td>
+<td style="text-align:left;">
+Timber product ratios
+</td>
+<td style="text-align:left;">
+1952
+</td>
+<td style="text-align:left;">
+1979
+</td>
+<td style="text-align:right;">
+0.80
+</td>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:right;">
+1.20
+</td>
+<td style="text-align:left;">
+Yes
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+17
+</td>
+<td style="text-align:left;">
+Timber product ratios
+</td>
+<td style="text-align:left;">
+1980
+</td>
+<td style="text-align:left;">
+2100
+</td>
+<td style="text-align:right;">
+0.85
+</td>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:right;">
+1.15
+</td>
+<td style="text-align:left;">
+Yes
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+18
+</td>
+<td style="text-align:left;">
+Primary product ratios
+</td>
+<td style="text-align:left;">
+1952
+</td>
+<td style="text-align:left;">
+1979
+</td>
+<td style="text-align:right;">
+0.80
+</td>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:right;">
+1.20
+</td>
+<td style="text-align:left;">
+Yes
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+19
+</td>
+<td style="text-align:left;">
+Primary product ratios
+</td>
+<td style="text-align:left;">
+1980
+</td>
+<td style="text-align:left;">
+2100
+</td>
+<td style="text-align:right;">
+0.85
+</td>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:right;">
+1.15
+</td>
+<td style="text-align:left;">
+Yes
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div id="simulation-sampling" class="section level3 hasAnchor" number="3.2.2">
+<h3><span class="header-section-number">3.2.2</span> Simulation Sampling<a href="hwp-model-operations.html#simulation-sampling" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>As in other HWP publications such as <span class="citation"><a href="#ref-stockmann2012" role="doc-biblioref">Stockmann et al.</a> (<a href="#ref-stockmann2012" role="doc-biblioref">2012</a>)</span> and <span class="citation"><a href="#ref-anderson2013" role="doc-biblioref">Anderson et al.</a> (<a href="#ref-anderson2013" role="doc-biblioref">2013</a>)</span>, the random variables in the Monte Carlo simulations are drawn from triangular distributions. The distributions all have a peak value of 1.0 (Table <a href="hwp-model-operations.html#tab:mc-table">3.1</a>) and symmetrically taper to given 90% confidence interval bounds. The values from the triangular distribution are used as proportions for adjusting parameter values.</p>
+<p>Drawing random variables from triangular distributions is a multi-step process. The first step involves drawing random variables from a standard uniform (0, 1) distribution using a Latin Hypercube Sampling (LHS) process. The standard uniform distribution is an excellent starting place for randomly selecting points along other distributions. The random uniform points can be translated as locations along some other distribution’s Cumulative Distribution Function (CDF). However, with unorganized, truly random draws of random uniform variables for more than one distribution (we are using at least 16 separate distributions, with one to three distributions per parameter) there is a strong probability that samples will by chance generally fall in the same local region for several of the distributions. In other words, a purely random sample may be inefficient. Many iterations are needed to obtain a full suite of the possible MC values across distributions. LHS offers a method for partitioning the uniform distributions and forcing the random selections across distributions to avoid clumping. As a result, many fewer iterations are needed to achieve stable estimates from the MC simulation.</p>
+<p>For this analysis I used the function “randomLHS” in the package “lhs” <span class="citation">(<a href="#ref-R-lhs" role="doc-biblioref">Carnell 2021</a>)</span> to conduct a random LHS sample. When we obtain random draws for a given distribution, the package divides the uniform distribution into as many partitions as there are iterations and then randomly selects a value from within that range. The partitions themselves are randomly ordered.</p>
+<p>Once we have a matrix from the LHS (rows = number of iterations, columns = desired number of distributions) we can transform the cell values into draws from triangular distributions <a href="https://en.wikipedia.org/wiki/Triangular_distribution">Wikipedia: Triangular Distribution</a>.</p>
+<p><span class="math display">\[   \text{Triangular Random Variable} =
+  \begin{cases}
+    if 0 &lt; U &lt; F(c)       &amp; a + \sqrt{U(b-a)(c-a)}\\
+    else  &amp; b - \sqrt{(1-U)(b-a)(c-a)}
+  \end{cases} \]</span></p>
+<p>In this equation <span class="math inline">\(U\)</span> is the random uniform variable (the LHS draw), <span class="math inline">\(F(c)=(c-a)/(b-a), a\)</span> is the minimum value for the triangle, <span class="math inline">\(b\)</span> is the maximum value, and <span class="math inline">\(c\)</span> is the midpoint. Note that the specifications require 90% confidence intervals and do not state what the endpoints for the triangular distributions should be. I derived the endpoints that corresponded with the desired 90% confidence intervals (Table <a href="hwp-model-operations.html#tab:triang-tab">3.2</a>) using an optimization algorithm.</p>
+<table>
+<caption>
+<span id="tab:triang-tab">Table 3.2: </span>Translation of 90% Confidence Intervals to endpoints for triangular distributions.
+</caption>
+<thead>
+<tr>
+<th style="text-align:center;">
+90% Confidence Interval Range
+</th>
+<th style="text-align:center;">
+Endpoints Used
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center;">
+0.7, 1.3
+</td>
+<td style="text-align:center;">
+0.57, 1.43
+</td>
+</tr>
+<tr>
+<td style="text-align:center;">
+0.8, 1.2
+</td>
+<td style="text-align:center;">
+0.71, 1.29
+</td>
+</tr>
+<tr>
+<td style="text-align:center;">
+0.85, 1.15
+</td>
+<td style="text-align:center;">
+0.78, 1.22
+</td>
+</tr>
+<tr>
+<td style="text-align:center;">
+0.95, 1.05
+</td>
+<td style="text-align:center;">
+0.93, 1.07
+</td>
+</tr>
+</tbody>
+</table>
+<p>Each random draw from a triangular distribution was used to adjust an MC parameter (Table <a href="hwp-model-operations.html#tab:mc-table">3.1</a>) for all years in a single iteration. The next iteration would use the subsequent random draw. The only exception occurs when the 90% confidence intervals changed within the year set for an iteration. In those instances (i.e., for Harvest, Timber Production Ratios, and Primary Production Ratios) we simulate random draws for three random variables if there were three sets of years identified for each parameter. For each iteration we use the appropriate random triangular variable draw for the given year set (e.g., 1906 to 1945).</p>
+<p>There is a final complication: we would like some random variables to be correlated with one another (e.g., <span class="citation"><a href="#ref-stockmann2012" role="doc-biblioref">Stockmann et al.</a> (<a href="#ref-stockmann2012" role="doc-biblioref">2012</a>)</span>). For instance, Harvest has diminishing confidence intervals for annual timber production over time. We have a separate random variable for each of those three sets of years. In a given iteration we can imagine that, had a practitioner developed those values, the intervals would likely have been constructed in similar ways and therefore would have been correlated (biased). Therefore, we force a correlation among the three Harvest variables. Timber Product Ratios and End Use Product Ratios can each have sets of correlated variables and I created pairs of correlated random triangular variables for all paper/wood discard disposition ratios.</p>
+<p>I used a Pearson’s correlation of 0.5 for all correlations. This was also done by <span class="citation"><a href="#ref-anderson2013" role="doc-biblioref">Anderson et al.</a> (<a href="#ref-anderson2013" role="doc-biblioref">2013</a>)</span> and <span class="citation"><a href="#ref-stockmann2012" role="doc-biblioref">Stockmann et al.</a> (<a href="#ref-stockmann2012" role="doc-biblioref">2012</a>)</span>. I used the Pearson’s correlation to create a Pearson’s correlation matrix, with the number of columns and rows corresponding to the number of random variables to correlate. For a three-variable correlation I would use the following matrix and create a Choleski decomposition from it:</p>
+<p><span class="math display">\[ \text{Pearson&#39;s Correlation Matrix} = \begin{bmatrix}
+       1 &amp; 0.5 &amp; 0.5           \\
+       0.5 &amp; 1  &amp; 0.5 \\
+       0.5 &amp; 0.5 &amp; 1
+     \end{bmatrix}
+\]</span></p>
+<p><span class="math display">\[ \text{Choleski Decomposition} = \begin{bmatrix}
+       1 &amp; 0.5 &amp; 0.5           \\
+       0 &amp; 0.866  &amp; 0.289 \\
+       0 &amp; 0 &amp; 0.816
+     \end{bmatrix}
+\]</span></p>
+<p>Linear multiplication of the three variables against the Choleski decomposition alters the second and third variables such that they are correlated to the first. I create the correlated triangular random variables by first transforming an iteration’s three LHS random uniform variables into values from a standard normal distribution by treating the random uniform variables as probability quantiles from a standard normal distribution. The three standard normal values are then altered and become correlated by linearly multiplying them by the Choleski decomposition. The values are transformed back to a standard uniform distribution by finding the normal cumulative distribution function values of the three normally distributed and correlated random variables. These random variables are then ready to be processed as described above into draws from a triangular distribution.</p>
+</div>
+<div id="sampling-and-the-hwp-program" class="section level3 hasAnchor" number="3.2.3">
+<h3><span class="header-section-number">3.2.3</span> Sampling and the HWP program<a href="hwp-model-operations.html#sampling-and-the-hwp-program" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>The MC code operates by first running the original HWP program. This creates many values and arrays that the MC simulation relies upon and which we do not want to duplicate with each simulation iteration. I simplified the MC simulation code by moving several functions outside of the code and removing specific outputs and their precursors that were no longer needed. The goal of the MC simulation was to produce estimates and confidence intervals for overall values for SWDS, PIU, EWOEC, EEC, and their combinations.</p>
+<p>Before entering the MC loop, the program performs all LHS draws, forces correlations among specific variables, and transforms the random draws into draws from triangular distributions. Many of the parameter values are then manipulated so that they may be combined into the MC loop’s creation of the eu_ratio matrix. Several of the parameters adjusted for each MC iteration affect calculations of the values for the matrix eu_ratios. Specifically, the eu_ratios value for MTC is calculated as follows:</p>
+<p>MTC = Harvest * CCF to MTC conversion * TPR * PPR * EUR</p>
+<p>This matrix, in the original version of the HWP program, is used to create the eu_array, which distributes all HWP inputs for a given year into PIU, discarded products (EWOEC, SWDS), and EEC. The eu_array object has a dimension for the ownership categories. Since the MC loop only focuses on total values across ownerships (the final category), the eu_array item becomes a two-dimensional matrix with EUR categories for rows and years for the columns.</p>
+<p>Below I describe how each parameter is altered.</p>
+<p><span class="math inline">\(\textit{CCF to MgC Conversion Factors}\)</span><br />
+This is a simple alteration. Within a single iteration, one random triangular variable value is multiplied across the conversion factor CCFtoMTconv values for all years.</p>
+<p><span class="math inline">\(\textit{Harvest}\)</span><br />
+For Harvest we use one or more correlated random variables for every MC iteration. Each random variable is used to adjust its corresponding range of years. Subsequent iterations use a different draw of correlated random variables. The matrix of random triangular variables, with years = rows, iterations = columns, is multiplied by a vector of the harvest volume per year. For each iteration in the MC loop a different vector of these altered values is used.</p>
+<p><span class="math inline">\(\textit{Timber Product Ratios}\)</span><br />
+This parameter is more complicated than Harvest because the values within a year must sum to one. It relies on three correlated random variables which are processed as described above. California and Oregon have 40 TPR categories. For each iteration, the code examines all 40 proportion values and determines which one, for a given year, is the maximum value. It finds the product of the random triangular variable value and the maximum proportion. If the resulting value is ≥ 1 then the maximum proportion is set to 1.0 and all of the other 39 values are set to 0.0. If it is &lt; 1 then the code calculates the ratio of (1 – new maximum proportion) / (1 – old maximum proportion) and multiplies this proportion against all of the remaining proportions. All 40 altered values should sum to 1.0.</p>
+<p>The result is that for each year there are 40 altered TPR values. When the MTC variable is calculated for each iteration, the altered values are effectively propagated across all PPR and EUR categories per year. This MC sum-to-one approach does have some substantial drawbacks. For instance, Timber Product Ratio 2 is Softwood Sawtimber. It accounts for 77% to 97% of harvest in a given year. Multiplying the triangular distribution value by Timber Product Ratio 2 frequently results in values that are ≥ 1.0. Therefore, the alteration of this variable frequently results in the same value, and the distribution of Timber Product Ratio 2 is triangular until the distribution crosses the 1.0 boundary, at which point the remainder of the distribution is stacked at 1.0.</p>
+<p><span class="math inline">\(\textit{Primary Product Ratios}\)</span><br />
+Three correlated random variables were used to alter PPR for each MC iteration, as was done for TPR. California and Oregon have 64 Primary Product Ratios (PPRs). The 64 PPRs differ from the TPR values in that they sum by year to 40, not 1. Sets of PPR ratios sum to 1; most sets include only one ratio. The PPRs were altered in the same fashion as TPR values with one difference. The code found, for each PPR set with more than one value, the maximum proportion and then adjusted that proportion with the random triangular parameter value. It adjusted the remainder of the values in the PPR set as described for TPR. If there was only one value in the set, it was always equal to 1.0 and the code never adjusted it. These 1.0 values allowed the TPR value to be carried through PPR. Similarly, if the maximum ratio in a set was already 1.0, no alteration occurred.</p>
+<p>These values are propagated across all EUR categories per year so that they may be multiplied against other values in the eu_ratio matrix to create the altered MTC values.</p>
+<p><span class="math inline">\(\textit{End Use Product Ratios}\)</span><br />
+End Use Product ratios were altered as described for PPRs. One difference is that the EUR alterations only used one random triangular variable value for all years in an iteration (i.e., not three correlated variables) because the triangular distribution confidence intervals were held constant across years (Table <a href="hwp-model-operations.html#tab:mc-table">3.1</a>). California and Oregon EUR values for a given year summed to 64. The code therefore examined sets of EUR values for each PPR category. The values were combined with other values in the eu_ratio matrix to assist in altering the MTC variable.</p>
+<p><span class="math inline">\(\textit{Product Half Lives}\)</span><br />
+This was a straightforward alteration. California and Oregon have 224 half-life values, one per EUR. The same random triangular random variable value was multiplied by all 224 values per iteration. Each iteration of the MC loop used a different vector of those 224 values in the decay function that is used to determine PIU over time.</p>
+<p><span class="math inline">\(\textit{Decay and Half-Life Limits for Landfills, Dumps, and Recovered Pools}\)</span><br />
+Description of these parameters is combined because they relied on the same process. Each one has two correlated random triangular variables, for paper and wood. A function inputs the original 224 ratios for each, where most of the 224 ratios are for wood and a few are for paper. The function also obtains the two vectors of correlated random variables. Each iteration has a single random variable value multiplied by the paper ratio and another for the wood ratio. The altered vectors are then combined into a matrix. When the MC loop runs, each iteration obtains a differently altered vector of 224 values to enter into the decay function.</p>
+<p><span class="math inline">\(\textit{Discarded Disposition Ratios for Wood and Paper}\)</span><br />
+These ratios control what fraction of waste ends up as burned, burned with energy capture, recycled, composted, placed in a landfill, or sent to a dump (the six fates). The values can differ by year. I wrote a function that operated on the ratios for wood and paper separately. The function performed the sum-to-one approach on the six ratios for either wood or paper. The original HWP analysis process relied on a function for each of these six fates that was time consuming. This function was removed for the MC simulation. Prior to the MC loop I created a matrix that contained altered values for wood and paper across all years and for each iteration for the six fates. The MC loop calls, for each iteration, a different subset of the matrix to use for calculations involving the six fates.</p>
+</div>
+<div id="monte-carlo-results-and-development" class="section level3 hasAnchor" number="3.2.4">
+<h3><span class="header-section-number">3.2.4</span> Monte Carlo results and development<a href="hwp-model-operations.html#monte-carlo-results-and-development" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>It appears that the full version of the MC simulation reaches convergence with 2000 iterations (Figure <a href="hwp-model-operations.html#fig:mc-conv-fig">3.1</a>). Convergence was assessed visually by examining, over the iterations, the estimated values for the mean, standard error (SE), and the lower and upper empirical 90% confidence interval limits. All four values appear to have reached their stable values by 1500 iterations, as verified with iterations 1501 - 2000. (Note: the calculated SE values are not used beyond this figure.)</p>
+<div class="figure"><span style="display:block;" id="fig:mc-conv-fig"></span>
+<img src="images/MC_conv.png" alt="Monte Carlo convergence assessment for the upper and lower bounds of the empirical 90\% confidence interval, the mean, and the standard error for the full model." width="100%" />
+<p class="caption">
+Figure 3.1: Monte Carlo convergence assessment for the upper and lower bounds of the empirical 90% confidence interval, the mean, and the standard error for the full model.
+</p>
+</div>
+<p>The Monte Carlo outputs are summarized in Figures <a href="hwp-model-operations.html#fig:mc-all4-fig">3.2</a> and <a href="hwp-model-operations.html#fig:mc-piu-swds-fig">3.3</a>. In Figure <a href="hwp-model-operations.html#fig:mc-all4-fig">3.2</a> we see the mean Tg C value for emissions (Emitted with Energy Capture, Emitted Without Energy Capture) and pools (Products in Use, SWDS) along with the empirical 90% confidence intervals. Figure <a href="hwp-model-operations.html#fig:mc-piu-swds-fig">3.3</a> combines Products in Use and SWDS into a single carbon pool. The four carbon fates in Figure <a href="hwp-model-operations.html#fig:mc-all4-fig">3.2</a> were obtained by calculating, for each iteration, the cumulative sum of carbon for each fate across all years. Each fate has 2000 MC iterations for each year. In Figure <a href="hwp-model-operations.html#fig:mc-piu-swds-fig">3.3</a>, it is difficult to tell, but the confidence interval range between 1906 and 1920 are between -37% and + 42% of the mean. In 2017 the range is between -17% and +17% of the mean.</p>
+<p>The correlation procedure described above appeared to work. Table <a href="hwp-model-operations.html#tab:ppr-cor-tab">3.3</a> contains the estimated correlation coefficients for the three triangular distribution random variables used for Primary Products Ratios. The target correlation coefficient was 0.5.</p>
+<table>
+<caption>
+<span id="tab:ppr-cor-tab">Table 3.3: </span>Correlation matrix for Primary Products Ratios random variables, 2000 draws.
+</caption>
+<thead>
+<tr>
+<th style="text-align:left;">
+</th>
+<th style="text-align:center;">
+Variable 1
+</th>
+<th style="text-align:center;">
+Variable 2
+</th>
+<th style="text-align:center;">
+Variable 3
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left;">
+Variable 1
+</td>
+<td style="text-align:center;">
+1.000
+</td>
+<td style="text-align:center;">
+0.505
+</td>
+<td style="text-align:center;">
+0.508
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Variable 2
+</td>
+<td style="text-align:center;">
+0.505
+</td>
+<td style="text-align:center;">
+1.000
+</td>
+<td style="text-align:center;">
+0.521
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Variable 3
+</td>
+<td style="text-align:center;">
+0.508
+</td>
+<td style="text-align:center;">
+0.521
+</td>
+<td style="text-align:center;">
+1.000
+</td>
+</tr>
+</tbody>
+</table>
+<div class="figure"><span style="display:block;" id="fig:mc-all4-fig"></span>
+<img src="images/MC_all4.png" alt="Monte Carlo simulation mean (yellow) and 90\% confidence interval ranges for four HWP carbon fates across years." width="100%" />
+<p class="caption">
+Figure 3.2: Monte Carlo simulation mean (yellow) and 90% confidence interval ranges for four HWP carbon fates across years.
+</p>
+</div>
+<div class="figure"><span style="display:block;" id="fig:mc-piu-swds-fig"></span>
+<img src="images/MC_piu_swds.png" alt="Monte Carlo simulation mean (yellow) and 90\% confidence interval ranges for the total Tg C value for SWDS and Products in Use." width="100%" />
+<p class="caption">
+Figure 3.3: Monte Carlo simulation mean (yellow) and 90% confidence interval ranges for the total Tg C value for SWDS and Products in Use.
+</p>
+</div>
+<p>Histograms of the three vectors of Primary Products Ratios triangular random variables are presented in Figure <a href="hwp-model-operations.html#fig:mc-tri1-fig">3.4</a>. The values are correlated (Table <a href="hwp-model-operations.html#tab:ppr-cor-tab">3.3</a>) and the histogram distributions correspond to 90% confidence intervals and endpoints (see Table <a href="hwp-model-operations.html#tab:triang-tab">3.2</a> for triangular distribution endpoints for 0.7-1.3, 0.8-1.2, and 0.85-1.15 90% confidence intervals). Although Variables 2 and 3 do not evidence as tight a triangular distribution as Variable 1, their distributions appear approximately triangular and do not appear skewed.</p>
+<p>Figures <a href="hwp-model-operations.html#fig:mc-tri2-fig">3.5</a> and <a href="hwp-model-operations.html#fig:mc-tri3-fig">3.6</a> examine triangular distribution changes on sum-to-one ratio sets. In Figure <a href="hwp-model-operations.html#fig:mc-tri2-fig">3.5</a>, PPR.21 is the largest proportion in its sum-to-one group of proportions and was directly adjusted by the random triangular variable draws. PPR.17 was adjusted to ensure that it and the other variables in the group still summed to one. Note that although PPR.21 was the only one directly altered, PPR.17 evidences a triangular distribution as well. The percentage range of PPR.17 values was broader, however, than the percentage range of values for PPR.21.</p>
+<p>Figure <a href="hwp-model-operations.html#fig:mc-tri3-fig">3.6</a> shows the consequences of altering a sum-to-one ratio beyond 1.0, in this case using TPR.2 during the year 2002. The code truncates the value at 1.0, forcing TPR.1 to become zero. The two ratio sets appear to otherwise conform to triangular distributions.</p>
+<div class="figure"><span style="display:block;" id="fig:mc-tri1-fig"></span>
+<img src="images/triang1.png" alt="Histograms of correlated triangular distribution random variables for Primary Product Ratios." width="100%" />
+<p class="caption">
+Figure 3.4: Histograms of correlated triangular distribution random variables for Primary Product Ratios.
+</p>
+</div>
+<div class="figure"><span style="display:block;" id="fig:mc-tri2-fig"></span>
+<img src="images/triang2.png" alt="Histograms of sum-to-one Primary Product Ratios variables PPR.17 and PPR.21 that do not overlap with 0.0 or 1.0.  Both variables are for the year 1994." width="100%" />
+<p class="caption">
+Figure 3.5: Histograms of sum-to-one Primary Product Ratios variables PPR.17 and PPR.21 that do not overlap with 0.0 or 1.0. Both variables are for the year 1994.
+</p>
+</div>
+<div class="figure"><span style="display:block;" id="fig:mc-tri3-fig"></span>
+<img src="images/triang3.png" alt="Histograms of sum-to-one Timber Product Ratios variables TPR.1 and TPR2; the values for TPR.2 were truncated at 1.0.  Both variables are for the year 2002." width="100%" />
+<p class="caption">
+Figure 3.6: Histograms of sum-to-one Timber Product Ratios variables TPR.1 and TPR2; the values for TPR.2 were truncated at 1.0. Both variables are for the year 2002.
+</p>
+</div>
+<p>The MC simulation was developed in pieces. I first altered the values for the non-sum-to-one variables: CCF to MgC conversion factors, annual harvest amounts, product half-lives, landfill decay limits, and the half-lives of decaying paper and wood in landfill, dumps, and recovered products. These alterations should affect all categories, since harvest amounts and the conversion factors control all carbon input into the model, product half-lives affect PIU residence and SWDS input, and the SWDS decay limits and half lives affect residency in SWDS.</p>
+<p>I next introduced Timber Production Ratios as the first sum-to-one MC alterations, then Primary Production Ratios, then End Use Ratios. Finally, I added the Discarded Disposition Ratios (DDR). These additions did not affect MC results for all carbon fates (Emitted with Energy Capture, Emitted without Energy Capture, Solid Waste Disposal Sites, and Products in Use) equally.</p>
+<p>Figure <a href="hwp-model-operations.html#fig:mc-tests-fig">3.7</a> provides results for Emitted with Energy Capture. We can see that the MC 90% confidence intervals increase between the first (No Sum-to-One MC Variables) and second (TPR) versions of the model. When I introduced variation into the Timber Production Ratios and then Primary Product Ratios the ratios for fuel wood were altered. Those fuel wood ratios are not altered by changes to EUR, as EUR in this case effectively serves as a “pass-through” category for fuel wood where the ratios remain 1.0 and are not altered by the simulation.</p>
+<div class="figure"><span style="display:block;" id="fig:mc-tests-fig"></span>
+<img src="images/MC_tests.png" alt="Monte Carlo simulation outputs for Emitted with Energy Captured for different Monte Carlo construction stages.  See text for acronym definitions." width="100%" />
+<p class="caption">
+Figure 3.7: Monte Carlo simulation outputs for Emitted with Energy Captured for different Monte Carlo construction stages. See text for acronym definitions.
+</p>
+</div>
+<p>Figure <a href="hwp-model-operations.html#fig:mc-tests2-fig">3.8</a>, Emitted without Energy Capture, is interesting because graphically there does not appear to be a large change between MC construction iterations. However, the confidence interval ranges do increase across all versions. Each version differs by between 1 and 4% of the previous version. Therefore, most of the gain in variability was achieved by altering the first set of variables. All other variable alterations did affect the amount of carbon emitted without energy capture, be it affecting the discard dispositions or the End Use Product Ratios (which would in turn be affected by EUR product half-lives and all other variables affecting the next steps of disposal and decay). The effect was not large, however.</p>
+<p>Figure <a href="hwp-model-operations.html#fig:mc-tests3-fig">3.9</a>, depicting the MC results for carbon stored in Solid Waste Disposal Sites, really does not evidence an increase in the MC confidence interval until the final iteration when Discarded Disposition Ratios are changed. Changing the DDR affects where disposed carbon winds up. The initial version of the model is already altering carbon entering the system and product half-lives. These are likely the two major drivers of variation for SWDS. Altering the ratios of which products carbon goes to affects things relatively slightly.</p>
+<div class="figure"><span style="display:block;" id="fig:mc-tests2-fig"></span>
+<img src="images/MC_tests2.png" alt="Monte Carlo simulation outputs for Emitted without Energy Captured for different Monte Carlo construction stages.  See text for acronym definitions." width="100%" />
+<p class="caption">
+Figure 3.8: Monte Carlo simulation outputs for Emitted without Energy Captured for different Monte Carlo construction stages. See text for acronym definitions.
+</p>
+</div>
+<p>Products in Use (Figure <a href="hwp-model-operations.html#fig:mc-tests4-fig">3.10</a>) outcomes for the different MC model versions has similar results as EWOEC. Subsequent additions of sum-to-one variables do increase the confidence intervals, by about 1 to 2%. Therefore, adding the sum-to-one variables did not affect the model much. As we might expect, including the DDR variable changes did not affect PIU confidence intervals at all since those changes only interact with discarded carbon.</p>
+<div class="figure"><span style="display:block;" id="fig:mc-tests3-fig"></span>
+<img src="images/MC_tests3.png" alt="Monte Carlo simulation outputs for Solid Waste Disposal Sites for different Monte Carlo construction stages.  See text for acronym definitions." width="100%" />
+<p class="caption">
+Figure 3.9: Monte Carlo simulation outputs for Solid Waste Disposal Sites for different Monte Carlo construction stages. See text for acronym definitions.
+</p>
+</div>
+<p>The simulation also did not use different random triangular variable values within a parameter for a given iteration. For instance, the California and Oregon have 224 product decay ratios. In a single iteration they were all multiplied by the same draw value from a triangular distribution. Conceivably, there could be a separate random draw for every product decay ratio, and every other sort of parameter subset. This could result in creating a LHS procedure with hundreds of separate random variables instead of the number used here.</p>
+<div class="figure"><span style="display:block;" id="fig:mc-tests4-fig"></span>
+<img src="images/MC_tests4.png" alt="Monte Carlo simulation outputs for Products in Use for different Monte Carlo construction stages.  See text for acronym definitions." width="100%" />
+<p class="caption">
+Figure 3.10: Monte Carlo simulation outputs for Products in Use for different Monte Carlo construction stages. See text for acronym definitions.
+</p>
+</div>
+
+</div>
+</div>
+</div>
+<h3>References<a href="references.html#references" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<div id="refs" class="references csl-bib-body hanging-indent">
+<div id="ref-anderson2013" class="csl-entry">
+Anderson, Nathaniel, Jesse Young, Keith Stockmann, Kenneth Skog, Sean Healey, Daniel Loeffler, J Greg Jones, and James Morrison. 2013. <span>“Regional and Forest-Level Estimates of Carbon Stored in Harvested Wood Products from the United States Forest Service Northern Region, 1906-2010.”</span> <em>Gen. Tech. Rep. RMRS-GTR-311. Fort Collins, CO: US Department of Agriculture, Forest Service, Rocky Mountain Research Station. 114 p.</em> 311.
+</div>
+<div id="ref-R-lhs" class="csl-entry">
+Carnell, Rob. 2021. <em>Lhs: Latin Hypercube Samples</em>. <a href="https://github.com/bertcarnell/lhs">https://github.com/bertcarnell/lhs</a>.
+</div>
+<div id="ref-stockmann2012" class="csl-entry">
+Stockmann, Keith D, Nathaniel M Anderson, Kenneth E Skog, Sean P Healey, Dan R Loeffler, Greg Jones, and James F Morrison. 2012. <span>“Estimates of Carbon Stored in Harvested Wood Products from the United States Forest Service Northern Region, 1906-2010.”</span> <em>Carbon Balance and Management</em> 7 (1): 1–16.
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="introduction.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="parts.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"whatsapp": false,
+"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": "https://github.com/USERNAME/REPO/edit/BRANCH/02-model-operation.Rmd",
+"text": "Edit"
+},
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": null,
+"text": null
+},
+"download": ["_main.pdf", "_main.epub"],
+"search": {
+"engine": "fuse",
+"options": null
+},
+"toc": {
+"collapse": "subsection"
+}
+});
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+
+</html>

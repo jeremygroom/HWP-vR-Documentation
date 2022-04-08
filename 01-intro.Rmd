@@ -1,11 +1,49 @@
-# Hello bookdown 
+# Introduction 
 
-All chapters start with a first-level heading followed by your chapter title, like the line above. There should be only one first-level heading (`#`) per .Rmd file.
+## General description of the HWP model
 
-## A section
+An overview schematic of the HWP model is provided in Figure \@ref(fig:overview-fig). For every year of consideration, timber harvest results in board-feet of timber arriving at mills.  These harvest values may be subdivided by the land ownership that produced the timber.  Timber values are multiplied by the timber product classes, then the primary product ratios for each timber products class, and finally the end-use ratios for each primary products class.  These resulting values are transformed to Tg C.  Some end-use ratios involve material that is burned for energy capture.  Other end-use products become products in use, although the process of creating those results in a percentage of the material ending up as discarded products.  Material entering discarded products is proportionally allocated to dumps, landfill, compost, or are recovered (recycled) or burned without energy capture.  
 
-All chapter sections start with a second-level (`##`) or higher heading followed by your section title, like the sections above and below here. You can have as many as you want within a chapter.
+In the subsequent year more timber enters the cycle. However, the previous year’s carbon in products in use, dumps, recovered products, and the decaying portion of landfills are subjected to a half-life decay.  The outputs either end up in the discard category or are emitted to the atmosphere as CO$_2$. 
 
-### An unnumbered section {-}
+ 
 
-Chapters and sections are numbered by default. To un-number a heading, add a `{.unnumbered}` or the shorter `{-}` at the end of the heading, like in this section.
+
+```{r overview-fig, echo = FALSE, fig.cap = "General schematic for calculations to quantify HWP storage and emissions, based on @stockmann2012 Figure 7.  Note that in this version Compost is not connected to SWDS, an arrow to SWDS has been added for emissions from Recovered, and that the code calculates end-use C distribution in one step after organizing TPO, PPR, EUR, and conversion factors.", fig.asp = 0.7, fig.width= 6, out.width = '100%'}
+knitr::include_graphics("images/OverviewModelSchematic.png")
+```
+
+
+## Model history 
+
+The HWP model began as an Excel macro for the USFS, as described by @stockmann2012.  A newer version of the tool (v1) was made available in 2012 [@loeffler2014].  The states of Oregon, California and Washington are signatories to a Memorandum of Understanding for Pacific Coast Temperate Forests (MOU). The MOU partners have a common requirement to generate reliable estimates of the stock and flux of carbon in harvested wood products.  A west-coast specific state-level variant of the model was developed in C++; however, it did not fully account for the carbon mass entering the cycle from timber harvest, nor did it generate reliable error estimates using a Monte Carlo simulation approach.  Perhaps most importantly, the software was not in a form that could be readily viewed, understood, or changed by others. Representatives from each west-coast state  and the USFS agreed that the software needed to be re-written in order to correct these errors.  
+
+Groom Analytics LLC undertook programming the @stockmann2012 model in R for Oregon, and subsequently deployed the R version to a web application (<https://groomanalyticsllc.shinyapps.io/HWP_Shared_Test/>).  This document and the available code are publicly released to enable model transparency and assist in further model development.  
+
+The USFS is currently developing a Python-based version of the model to be released soon. A schematic of this history is presented in Figure \@ref(fig:hist-fig).  
+
+
+```{r hist-fig, echo = FALSE, fig.cap = "Schematic of the HWP model development pathway.  The version described here is the State HWP-C variant.", fig.asp = 0.7, fig.width= 6, out.width = '100%'}
+knitr::include_graphics("images/ModelHistory.png")
+```
+
+
+## Model utility  
+
+The HWP model (and associated visualizations) is a long-term accounting tool for carbon emissions and storage from harvested wood products.  Users can easily understand how harvest levels have changed over time, by ownership and in total.  Given changes in disposal methods and the assumed lifetime use of wood products, users can examine what proportion of harvested wood products remain in use, in disposal sites, or as CO$_2$ emitted to the atmosphere.  The model may be useful for planners and decision-makers to understand the emissions consequences of promoting wood products with different use lifespans.    
+
+## HWP model assumptions and shortcomings  
+
+The HWP model is a closed model, and tracks only carbon harvested within a specified area.  Therefore, at a state level, emissions from HWP may be greater than expected from timber harvested within the state if the state imports timber or timber products.  Similarly, exported timber or timber products may experience different utilization or decay processes.    
+
+The model assumes that harvested timber volume and ratios such as TPR, PPR, and EUR are valid.  The model can be expected to perform poorly if the ratios or other values are not based on solid evidence. The Monte Carlo attempts to explore the range of possible outcomes given different levels of certainty in the data.  The model does, ultimately, rely on many different data types.  Some of these, such as landfill decay rates, may be difficult to enumerate and thus we are unsure of their true values.    
+
+The model does not (currently) differentiate between carbon in landfills that is emitted as methane vs. CO$_2$.  Methane is a much more potent greenhouse gas than CO$_2$, albeit with a shorter residence time.   
+
+The Monte Carlo takes a specific approach towards varying the ratios, constraining all ratios to sum to one.  Given the selected range of possible values for each variable, the resulting randomly selected values may not be independent from one another and may be unintentionally biased.  That is, within a ratio type that must sum to one and for a particular model iteration, if one value is randomly selected to equal 1.0, the remaining values for that ratio set must equal 0.    
+
+Finally, we are not aware of any method for overall model validation.  Estimates for individual pieces of the model, such as product or decay half-lives, can be improved.  But, like all models, the HWP model simplifies reality greatly and hopefully provides users with useful insight by tracking and summarizing complicated calculation outputs in a reasonable way.    
+
+## Future work  
+
+Users can improve the model’s utility by researching and altering model input tables with their own regional information.  There is interest in incorporating a means for tracking the production of CO$_2$ separately from methane as methane is a much more powerful greenhouse gas that results from anoxic decomposition such as occurs in landfills.  In the short term we plan to update the model so that users can control the discard ratios for paper and wood products.  Finally, work is currently being done at the University of Massachusetts  to explore the consequences of errors in estimating the capability of landfills to retain carbon without decay.    
