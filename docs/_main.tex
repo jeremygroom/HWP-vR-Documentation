@@ -6,7 +6,7 @@
 ]{book}
 \title{Harvested Wood Products vR Documentation}
 \author{Jeremiah Groom}
-\date{2022-04-08}
+\date{2022-04-12}
 
 \usepackage{amsmath,amssymb}
 \usepackage{lmodern}
@@ -158,20 +158,20 @@
 \setcounter{tocdepth}{1}
 \tableofcontents
 }
-\hypertarget{summary}{%
-\chapter{Summary}\label{summary}}
+\hypertarget{sum}{%
+\chapter{Summary}\label{sum}}
 
-The Harvested Wood Products (HWP) model is a deterministic model which relies on optional and required user-supplied information. The model is described in (\citet{stockmann2012}). There have been several builds of the model, on platforms including Microsoft Excel, C++, and now R \citep{R-base}. Another effort is currently underway to construct an interactive version of the model in Python. This article describes a build of the model based on data from the U.S. west coast states of California, Oregon, and Washington. This R-based platform allows for user interaction with California and Oregon data via a web application (\url{https://groomanalyticsllc.shinyapps.io/HWP_Shared_Test/}). Users may also upload their own data onto the app, run their data through the HWP model and associated Monte Carlo simulation, interact with their data, and construct and save figures. Alternatively, users may access the full Shiny app code as well as a stand-alone version of the HWP model implementation. The stand-alone version allows users the opportunity to step through the code more easily, save model arrays for hand-calculation of outcomes, and alter the code to meet their own data needs. Both versions allow users to download or generate the tables necessary to recreate figures to their own specifications.
+The Harvested Wood Products (HWP) model is a deterministic model which relies on optional and required user-supplied information. The model is described in \citet{stockmann2012}. There have been several builds of the model, on platforms including Microsoft Excel, C++, and now R \citep{R-base}. Another effort is currently underway to construct an interactive version of the model in Python. This article describes a build of the model based on data from the U.S. west coast states of California, Oregon, and Washington. This R-based platform allows for user interaction with California and Oregon data via a web application (\url{https://groomanalyticsllc.shinyapps.io/HWP_Shared_Test/}). Users may also upload their own data onto the app, run their data through the HWP model and associated Monte Carlo simulation, interact with their data, and construct and save figures. Alternatively, users may access the full Shiny app code as well as a stand-alone version of the HWP model implementation. The stand-alone version allows users the opportunity to step through the code more easily, save model arrays for hand-calculation of outcomes, and alter the code to meet their own data needs. Both versions allow users to download or generate the tables necessary to recreate figures to their own specifications.
 This document describes the model and structure of the code, explains how to generate input files, and provides instruction on accessing model code.
 
-\hypertarget{acknowledgements}{%
-\section{Acknowledgements}\label{acknowledgements}}
+\hypertarget{sum-ack}{%
+\section{Acknowledgements}\label{sum-ack}}
 
 Many thanks to Nadia Tase and Andrew Yost for supporting the development of this work through feedback, discussion, and their own efforts to dive into the code and understand the model at its core. Jimmy Kagan and Amanda Reynolds provided administrative support. We received feedback and support for the earlier iteration of the R-version of the model from Todd Morgan, Dan Loffler, Keith Stockmann, {[}OTHERS{]}.\\
 This project was funded by the California Department of Forestry and Fire Protection Purchase Order 3540-0000277546. Earlier work on the project was funded by the Oregon Department of Forestry and supported by the Institute for Natural Resources, Oregon State University.
 
-\hypertarget{abbreviations}{%
-\section{Abbreviations}\label{abbreviations}}
+\hypertarget{sum-abb}{%
+\section{Abbreviations}\label{sum-abb}}
 
 The following description uses many acronyms for brevity. Here is a list of the most common:
 
@@ -200,11 +200,11 @@ USFS: United States Forest Service
 A note about units for carbon:\\
 Publications from the United States have frequently described carbon storage and emissions using the metric million metric tons carbon, or MMT C. We are using the equivalent metric, teragrams of carbon (Tg C) in the HWP model and this manual to align with IPCC reporting requirements.
 
-\hypertarget{introduction}{%
-\chapter{Introduction}\label{introduction}}
+\hypertarget{int}{%
+\chapter{Introduction}\label{int}}
 
-\hypertarget{general-description-of-the-hwp-model}{%
-\section{General description of the HWP model}\label{general-description-of-the-hwp-model}}
+\hypertarget{int-gen}{%
+\section{General description of the HWP model}\label{int-gen}}
 
 An overview schematic of the HWP model is provided in Figure \ref{fig:overview-fig}. For every year of consideration, timber harvest results in board-feet of timber arriving at mills. These harvest values may be subdivided by the land ownership that produced the timber. Timber values are multiplied by the timber product classes, then the primary product ratios for each timber products class, and finally the end-use ratios for each primary products class. These resulting values are transformed to Tg C. Some end-use ratios involve material that is burned for energy capture. Other end-use products become products in use, although the process of creating those results in a percentage of the material ending up as discarded products. Material entering discarded products is proportionally allocated to dumps, landfill, compost, or are recovered (recycled) or burned without energy capture.
 
@@ -214,8 +214,8 @@ In the subsequent year more timber enters the cycle. However, the previous year'
 \includegraphics[width=1\linewidth]{images/OverviewModelSchematic} \caption{General schematic for calculations to quantify HWP storage and emissions, based on @stockmann2012 Figure 7.  Note that in this version Compost is not connected to SWDS, an arrow to SWDS has been added for emissions from Recovered, and that the code calculates end-use C distribution in one step after organizing TPO, PPR, EUR, and conversion factors.}\label{fig:overview-fig}
 \end{figure}
 
-\hypertarget{model-history}{%
-\section{Model history}\label{model-history}}
+\hypertarget{int-hist}{%
+\section{Model history}\label{int-hist}}
 
 The HWP model began as an Excel macro for the USFS, as described by \citet{stockmann2012}. A newer version of the tool (v1) was made available in 2012 \citep{loeffler2014}. The states of Oregon, California and Washington are signatories to a Memorandum of Understanding for Pacific Coast Temperate Forests (MOU). The MOU partners have a common requirement to generate reliable estimates of the stock and flux of carbon in harvested wood products. A west-coast specific state-level variant of the model was developed in C++; however, it did not fully account for the carbon mass entering the cycle from timber harvest, nor did it generate reliable error estimates using a Monte Carlo simulation approach. Perhaps most importantly, the software was not in a form that could be readily viewed, understood, or changed by others. Representatives from each west-coast state and the USFS agreed that the software needed to be re-written in order to correct these errors.
 
@@ -227,13 +227,13 @@ The USFS is currently developing a Python-based version of the model to be relea
 \includegraphics[width=1\linewidth]{images/ModelHistory} \caption{Schematic of the HWP model development pathway.  The version described here is the State HWP-C variant.}\label{fig:hist-fig}
 \end{figure}
 
-\hypertarget{model-utility}{%
-\section{Model utility}\label{model-utility}}
+\hypertarget{int-util}{%
+\section{Model utility}\label{int-util}}
 
 The HWP model (and associated visualizations) is a long-term accounting tool for carbon emissions and storage from harvested wood products. Users can easily understand how harvest levels have changed over time, by ownership and in total. Given changes in disposal methods and the assumed lifetime use of wood products, users can examine what proportion of harvested wood products remain in use, in disposal sites, or as CO\(_2\) emitted to the atmosphere. The model may be useful for planners and decision-makers to understand the emissions consequences of promoting wood products with different use lifespans.
 
-\hypertarget{hwp-model-assumptions-and-shortcomings}{%
-\section{HWP model assumptions and shortcomings}\label{hwp-model-assumptions-and-shortcomings}}
+\hypertarget{int-assump}{%
+\section{HWP model assumptions and shortcomings}\label{int-assump}}
 
 The HWP model is a closed model, and tracks only carbon harvested within a specified area. Therefore, at a state level, emissions from HWP may be greater than expected from timber harvested within the state if the state imports timber or timber products. Similarly, exported timber or timber products may experience different utilization or decay processes.
 
@@ -245,19 +245,19 @@ The Monte Carlo takes a specific approach towards varying the ratios, constraini
 
 Finally, we are not aware of any method for overall model validation. Estimates for individual pieces of the model, such as product or decay half-lives, can be improved. But, like all models, the HWP model simplifies reality greatly and hopefully provides users with useful insight by tracking and summarizing complicated calculation outputs in a reasonable way.
 
-\hypertarget{future-work}{%
-\section{Future work}\label{future-work}}
+\hypertarget{int-future}{%
+\section{Future work}\label{int-future}}
 
 Users can improve the model's utility by researching and altering model input tables with their own regional information. There is interest in incorporating a means for tracking the production of CO\(_2\) separately from methane as methane is a much more powerful greenhouse gas that results from anoxic decomposition such as occurs in landfills. In the short term we plan to update the model so that users can control the discard ratios for paper and wood products. Finally, work is currently being done at the University of Massachusetts to explore the consequences of errors in estimating the capability of landfills to retain carbon without decay.
 
-\hypertarget{hwp-model-operations}{%
-\chapter{HWP Model Operations}\label{hwp-model-operations}}
+\hypertarget{model}{%
+\chapter{HWP Model Operations}\label{model}}
 
-\hypertarget{hwp-model-function}{%
-\section{HWP model function}\label{hwp-model-function}}
+\hypertarget{model-func}{%
+\section{HWP model function}\label{model-func}}
 
-\hypertarget{model-inputs}{%
-\subsection{Model inputs}\label{model-inputs}}
+\hypertarget{model-func-inp}{%
+\subsection{Model inputs}\label{model-func-inp}}
 
 The HWP model is a deterministic model which relies on optional and required user-supplied information. The user must supply annual timber harvest volumes in board feet (BF) by ownership, annual timber product ratios (TPR) that allocate harvest to different timber product classes, annual primary product ratios (PPR) that allocate timber products to different primary products and residue uses, and annual end-use product ratios (EUR) which are subcategories of PPR that represent the final products produced.
 
@@ -265,8 +265,8 @@ The user may, at a minimum, provide timber harvest volumes and then rely on defa
 
 The user may also provide ratios for discard fates. These ratios determine, by year, what fraction of discarded paper and wood are channeled into one of six discard categories: burned (Emitted without Energy Capture, EWOEC), burned with energy capture (BWEC), composted, sent to a dump, enter the non-decaying portion of a landfill, or become landfill subject to decay. Users may also adjust half-life values for paper and wood discards in landfills and dumps and the fraction of material entering landfills that is subject to decay or remains permanently.
 
-\hypertarget{summary-of-model-operations}{%
-\subsection{Summary of model operations}\label{summary-of-model-operations}}
+\hypertarget{model-func-opp}{%
+\subsection{Summary of model operations}\label{model-func-opp}}
 
 In the next section I provide a detailed schematic of how the HWP model code operates. A more general schematic of the process, very similar to Figure 7 in \citet{stockmann2012}, is presented in the Introduction (Figure 1). Here I provide a written description of the code's actions. We start out with data sets and variable information that are arranged by different combinations of year, ownership, and ratio types. First the model combines (i.e., performs a database join function) harvest data (units = BBF) with board feet to cubic feet conversion factors. The model combines Primary Product Ratios (PPR) with Timber Product Ratios (TPR) and then joins those with the timber harvest volume in cubic feet by year. These are then joined with conversion values for cubic feet to metric tons of carbon, and the End Use Ratios (EUR). The result is a data set called eu\_ratios, and values for EUR, TPR, PPR, the harvest amount, and the cubic foot to metric tons of carbon conversion factor are multiplied together to produce a variable called MTC for Metric Tons of Carbon. This variable serves as the carbon input into the model and has the correct units of carbon input per year for each EUR category.
 
@@ -278,8 +278,8 @@ The Discarded Products process uses proportions to divide incoming discarded pro
 
 The HWP code's outputs are EEC and combined versions of EWOEC, PIU, and SWDS. The final EEC values are the original EEC values for fuel wood plus the fraction of the discarded materials that are burned with energy capture. The final EWOEC amounts are combinations of emissions from dumps, recovered materials, landfill decay, burnt refuse, and compost materials. PIU is the combination of the original PIU values plus recovered carbon that has not decayed. SWDS is the non-decaying and decaying carbon in landfills plus remaining carbon in dumps.
 
-\hypertarget{model-schematic-description}{%
-\subsection{Model schematic description}\label{model-schematic-description}}
+\hypertarget{model-func-schdesc}{%
+\subsection{Model schematic description}\label{model-func-schdesc}}
 
 Below I provide a schematic of how the HWP model operates. The schematic color codes items and flows from the top to bottom of each page. Inputs, such as worksheets from the Excel data file, are yellow. Calculated matrices or arrays are blue. Final output, which may be manipulated to produce tables and figures, are purple. Calculations or data transformations are peach colored.
 
@@ -295,8 +295,8 @@ The HWP program has a decay function that is used repeatedly. The same function 
 
 \newpage
 
-\hypertarget{model-schematic}{%
-\subsection{Model Schematic}\label{model-schematic}}
+\hypertarget{model-func-schem}{%
+\subsection{Model Schematic}\label{model-func-schem}}
 
 Model Dimensions Key:\\
 Y = number of years (California = 68, from 1952 to 2019)\\
@@ -339,8 +339,8 @@ loss.piu = Loss percentage for products entering PIU (California = 8\%)
 
 \includegraphics[width=1\linewidth]{images/schematic-7}
 
-\hypertarget{model-outputs}{%
-\subsection{Model Outputs}\label{model-outputs}}
+\hypertarget{model-func-out}{%
+\subsection{Model Outputs}\label{model-func-out}}
 
 The model described above treats timber harvest, product manufacture, and disposal as processes that occur within the same year. To match other reports, outputs are altered (SHIFTYEAR = TRUE; see Providing Your Own Data / Creation of the input file). All trees harvested in a given year are treated as processed within that year and the carbon is distributed according to the end use product ratios of that same year. Most of the carbon is immediately burned or turned into Products in Use. A fraction (the default 8\%) is immediately discarded and distributed to the different discard fates using the discarded disposition ratios for the same year. The carbon fate for a given year is reported for the following year. Carbon that enters the model in a given year does not undergo a half-life decay until the following year. For example, the model uses the Timber Production Output for 1906 and all product and discard ratios for 1906 to distribute the carbon in Products in Use, Burned with Energy Capture, and the discard fates. The sum of those fates for 1906 is recorded in tables as occurring by January 1, 1907. Any carbon from 1906 that was distributed to Products in Use, Landfill, or Dumps was subject to a half-life decay or disposal in 1907.
 
@@ -350,11 +350,11 @@ The stand-alone code can optionally save the arrays used to generate the tables 
 
 Users are encouraged to generate the arrays (OUTPUT\_ARRAYS = TRUE) in the stand-alone model and verify calculations. The above flow diagram provides array names and a general description of how they are used. The code file HWP\_Model\_Function.r provides more detail about how they are used.
 
-\hypertarget{monte-carlo-simulation}{%
-\section{Monte Carlo simulation}\label{monte-carlo-simulation}}
+\hypertarget{model-mc}{%
+\section{Monte Carlo simulation}\label{model-mc}}
 
-\hypertarget{simulation-specifications}{%
-\subsection{Simulation specifications}\label{simulation-specifications}}
+\hypertarget{model-mc-spec}{%
+\subsection{Simulation specifications}\label{model-mc-spec}}
 
 The Monte Carlo (MC) simulation alters the values of at least 16 different parameters, listed in Table \ref{tab:mc-table}. The columns Min Value, Peak Value, and Max Value describe the desired 90\% confidence interval for the range of random proportions against which the parameters of interest will be adjusted. In Table \ref{tab:mc-table} harvest, timber product ratios and primary product ratios each have two parameters with confidence intervals. These parameters represent different year sets. The Oregon data have three year sets for harvest, timber production, and primary product ratios. Each parameter requires a separate MC random variable. Finally, parameters for timber product ratios and end use product ratios have a sum-to-one characteristic. For instance, timber product ratios (TPRs) represent the proportion of total harvest for a given year that is allocated to each of the timber product ratio values. While the proportions change during the time series the full set of TPR proportions will always sum to one.
 
@@ -393,8 +393,8 @@ Parameter ID & Parameter Name & First Year & Last Year & Min Value & Peak Value 
 \end{tabular}}
 \end{table}
 
-\hypertarget{simulation-sampling}{%
-\subsection{Simulation Sampling}\label{simulation-sampling}}
+\hypertarget{model-mc-samp}{%
+\subsection{Simulation Sampling}\label{model-mc-samp}}
 
 As in other HWP publications such as \citet{stockmann2012} and \citet{anderson2013}, the random variables in the Monte Carlo simulations are drawn from triangular distributions. The distributions all have a peak value of 1.0 (Table \ref{tab:mc-table}) and symmetrically taper to given 90\% confidence interval bounds. The values from the triangular distribution are used as proportions for adjusting parameter values.
 
@@ -450,8 +450,8 @@ I used a Pearson's correlation of 0.5 for all correlations. This was also done b
 
 Linear multiplication of the three variables against the Choleski decomposition alters the second and third variables such that they are correlated to the first. I create the correlated triangular random variables by first transforming an iteration's three LHS random uniform variables into values from a standard normal distribution by treating the random uniform variables as probability quantiles from a standard normal distribution. The three standard normal values are then altered and become correlated by linearly multiplying them by the Choleski decomposition. The values are transformed back to a standard uniform distribution by finding the normal cumulative distribution function values of the three normally distributed and correlated random variables. These random variables are then ready to be processed as described above into draws from a triangular distribution.
 
-\hypertarget{sampling-and-the-hwp-program}{%
-\subsection{Sampling and the HWP program}\label{sampling-and-the-hwp-program}}
+\hypertarget{model-mc-samphwp}{%
+\subsection{Sampling and the HWP program}\label{model-mc-samphwp}}
 
 The MC code operates by first running the original HWP program. This creates many values and arrays that the MC simulation relies upon and which we do not want to duplicate with each simulation iteration. I simplified the MC simulation code by moving several functions outside of the code and removing specific outputs and their precursors that were no longer needed. The goal of the MC simulation was to produce estimates and confidence intervals for overall values for SWDS, PIU, EWOEC, EEC, and their combinations.
 
@@ -491,8 +491,8 @@ Description of these parameters is combined because they relied on the same proc
 \(\textit{Discarded Disposition Ratios for Wood and Paper}\)\\
 These ratios control what fraction of waste ends up as burned, burned with energy capture, recycled, composted, placed in a landfill, or sent to a dump (the six fates). The values can differ by year. I wrote a function that operated on the ratios for wood and paper separately. The function performed the sum-to-one approach on the six ratios for either wood or paper. The original HWP analysis process relied on a function for each of these six fates that was time consuming. This function was removed for the MC simulation. Prior to the MC loop I created a matrix that contained altered values for wood and paper across all years and for each iteration for the six fates. The MC loop calls, for each iteration, a different subset of the matrix to use for calculations involving the six fates.
 
-\hypertarget{monte-carlo-results-and-development}{%
-\subsection{Monte Carlo results and development}\label{monte-carlo-results-and-development}}
+\hypertarget{model-mc-res}{%
+\subsection{Monte Carlo results and development}\label{model-mc-res}}
 
 It appears that the full version of the MC simulation reaches convergence with 2000 iterations (Figure \ref{fig:mc-conv-fig}). Convergence was assessed visually by examining, over the iterations, the estimated values for the mean, standard error (SE), and the lower and upper empirical 90\% confidence interval limits. All four values appear to have reached their stable values by 1500 iterations, as verified with iterations 1501 - 2000. (Note: the calculated SE values are not used beyond this figure.)
 
@@ -575,34 +575,587 @@ The simulation also did not use different random triangular variable values with
 \includegraphics[width=1\linewidth]{images/MC_tests4} \caption{Monte Carlo simulation outputs for Products in Use for different Monte Carlo construction stages.  See text for acronym definitions.}\label{fig:mc-tests4-fig}
 \end{figure}
 
-\hypertarget{parts}{%
-\chapter{Parts}\label{parts}}
+\hypertarget{run}{%
+\chapter{Operating and changing the model}\label{run}}
 
-You can add parts to organize one or more book chapters together. Parts can be inserted at the top of an .Rmd file, before the first-level chapter heading in that same file.
+\hypertarget{run-sum}{%
+\section{User interaction with the HWP model}\label{run-sum}}
 
-Add a numbered part: \texttt{\#\ (PART)\ Act\ one\ \{-\}} (followed by \texttt{\#\ A\ chapter})
+There are two approaches available to users for interacting with the HWP model. The first way is to use the web application. Users can view a variety of graphical outputs from the California and Oregon data sets and manipulate the figures to a degree. Users can also upload their own data (see the next section, Providing your own data) and view the same sorts of figures, reflecting their own data. Users can also download the model to their computer. This option allows them to run the web app locally on their own machine. It also lets them operate the stand-alone version of the model, which is a code-based environment that does not produce the web app.
 
-Add an unnumbered part: \texttt{\#\ (PART\textbackslash{}*)\ Act\ one\ \{-\}} (followed by \texttt{\#\ A\ chapter})
+\hypertarget{run-shiny}{%
+\section{Basic web interactivity -- Shiny app}\label{run-shiny}}
 
-Add an appendix as a special kind of un-numbered part: \texttt{\#\ (APPENDIX)\ Other\ stuff\ \{-\}} (followed by \texttt{\#\ A\ chapter}). Chapters in an appendix are prepended with letters instead of numbers.
+The \href{https://groomanalyticsllc.shinyapps.io/HWP_Shared_Test/}{web site} allows users to switch between two default data sets, California and Oregon state-wide timber harvest. The menu bar on the left has some drop-down plotting and data upload options.
 
-\hypertarget{footnotes-and-citations}{%
-\chapter{Footnotes and citations}\label{footnotes-and-citations}}
+The app was designed to aid users by providing figures that could usefully be incorporated into reports. To that end, all figures can be saved (with one exception) and the title for each figure can be customized.
 
-\hypertarget{footnotes}{%
-\section{Footnotes}\label{footnotes}}
+\hypertarget{run-shiny-timber}{%
+\subsection{Timber Harvest Summaries}\label{run-shiny-timber}}
 
-Footnotes are put inside the square brackets after a caret \texttt{\^{}{[}{]}}. Like this one \footnote{This is a footnote.}.
+The three figure options are Annual Timber Harvest (the starting default), Fate of Harvest Carbon, and Utilized Timber Harvest.
 
-\hypertarget{citations}{%
-\section{Citations}\label{citations}}
+\begin{itemize}
+\item
+  The first option, Annual Timber Harvest, shows the volume of harvest by year and ownership. Users can toggle between seeing just total harvest volumes, ownership volumes, or both simultaneously. As in all figures, users can select seeing results by Tg C or Tg CO\(_2\)e. This figure additional allows users to see results by BBF. Results can be displayed by the year or cumulatively over time.
+\item
+  Fate of Harvest Carbon. This tab has two figures, a Sankey diagram and a more static figure to the lower right. Users can, by mouse, manipulate the location of the vertical bars. Mouse-overs of the figure will also reveal the amount of carbon (Tg C / Tg CO\(_2\)e) in pools or transitioning to pools. The figure depicts the fate, over time, of harvested carbon from a single year. The user selects the harvest date of interest and the years post-harvest to track the fate of carbon in the system. The same data are displayed in the lower-right figure, with the figure displaying over time the residence of carbon in different pools and emissions categories. The vertical line depicts the data slice displayed in the Sankey diagram. The Sankey diagram's html code can be downloaded but cannot be saved as a pdf (the stand-alone version of the model can provide a PNG-savable version). The lower-right figure may be saved as a PNG file.
+\item
+  Utilized Timber Halflives. The HWP model has different half-lives for products in use. This figure bins the annual volume of harvest sent to different end use products by their associated half-lives. The figure displays values by either the harvest volume or proportion of total harvest.
+\end{itemize}
 
-Reference items in your bibliography file(s) using \texttt{@key}.
+\hypertarget{run-shiny-cse}{%
+\subsection{Carbon Storage and Emissions}\label{run-shiny-cse}}
 
-For example, we are using the \textbf{bookdown} package \citep{R-bookdown} (check out the last code chunk in index.Rmd to see how this citation key was added) in this sample book, which was built on top of R Markdown and \textbf{knitr} \citep{xie2015} (this citation was added manually in an external file book.bib).
-Note that the \texttt{.bib} files need to be listed in the index.Rmd with the YAML \texttt{bibliography} key.
+These four figures track the size of pools and emissions categories over time.
 
-The RStudio Visual Markdown Editor can also make it easier to insert citations: \url{https://rstudio.github.io/visual-markdown-editing/\#/citations}
+\begin{itemize}
+\item
+  Carbon Storage by Ownership. If harvest data by ownership are available, the figure plots the amount of carbon stored in products in use and SWDS. Users can select which ownership values are displayed along with whether to display products in use data, SWDS data, or both.\\
+\item
+  Carbon Storage and Emissions. This selection allows viewers to access three similar figures of cumulative carbon states over time. All three allow users to view any combination of products in use, SWDS, and emissions categories.
+
+  \begin{itemize}
+  \tightlist
+  \item
+    Summary Pool and Emission Categories: This figure displays general storage (products in use, SWDS) and emissions (emissions with energy capture, emission without energy capture).
+  \item
+    Pool and emission category components: This figure allows users to visualize emissions and storage pool components.
+  \item
+    Pools and emissions by halflife category: Storage and emissions categories are displayed by halflife category.\\
+  \end{itemize}
+\item
+  Annual Net Change in Carbon Storage. These figures display annual change in stocks (products in use, SWDS; IPCC simple decay approach -- stock change) or net balance (previous year's harvest, emissions with and without energy capture; IPCC simple decay approach - net balance). The option to add a line with ``net'' displays the annual change in products in use plus SWDS. For the ``IPCC simple decay approach - net balance'' figure, the previous year's harvest value minus the change in emissions values equal the change in products in use plus SWDS.
+\item
+  Monte Carlo Estimates. Two of these three figures display mean cumulative values from the Monte Carlo simulations with 90\% confidence intervals.
+
+  \begin{itemize}
+  \tightlist
+  \item
+    Cumulative carbon in individual storage and emission pools: There are separate results for Emitted with Energy Capture, Emitted without Energy Capture, Products in Use, and Solid Waste Disposal Sites.\\
+  \item
+    Cumulative carbon in storage pools combined (Products in use + SWDS): This figure summed the products in use + SWDS values within each iteration of the Monte Carlo and provides the mean plus 90\% confidence interval.\\
+  \item
+    Monte Carlo convergence evaluation: This figure displays sequential iteration results for the final year of the Monte Carlo simulation. It shows values for the 5th and 95th percentiles of values (i.e., the boundaries of the 90\% confidence intervals), the value for the mean and standard error (se) over time. The Monte Carlo estimation process allows for a burn-in period, for which iteration values prior to that period are discarded from the estimation (pink vertical line). If values after the burn-in period appear unstable, more iterations may be needed to arrive at reasonable values. If they appeared to stabilize long before the burn-in period, then the Monte Carlo may provide reliable results with fewer iterations.
+  \end{itemize}
+\end{itemize}
+
+\hypertarget{run-doc}{%
+\subsection{Documentation and Data Upload}\label{run-doc}}
+
+These items provide users with links to this documentation, which in turn describes aspects of the web application, the workings of the HWP model, and how users can upload their own data and download the source code.
+
+\begin{itemize}
+\item
+  Documentation: The link to this document.
+\item
+  Data templates: Regional templates that users can alter when preparing their own data for entry into the HWP model.
+\item
+  Upload Data: This selection allows users to load their own Excel file of data, verify that the file is formatted completely, and run the model. Once the model is run, the upper left ``Select a data set'' option will have a third option; namely, the new data set. All of the Shiny figures (except for the Monte Carlo Estimates selection) will plot the new data accordingly. The user must run the Monte Carlo separately from the page to populate the Monte Carlo figures with their data. The Monte Carlo simulation is run separately because it may take a few minutes to run. For details on preparing and uploading your own data, see the section Providing your own data.
+\end{itemize}
+
+\hypertarget{run-opp}{%
+\section{Operating the model from your own machine}\label{run-opp}}
+
+The Shiny \citep{R-shiny} application and stand-alone implementation of the HWP model are available on \href{https://github.com/}{GitHub}. You will need to have Git installed on your computer, connect Git to RStudio, and finally tell RStudio where the GitHub files are to download (pull). Once you have these files you will have the most up-to-date version of the deployed code.
+
+\hypertarget{run-opp-git}{%
+\subsection{R, RStudio, GitHub, and downloading the files}\label{run-opp-git}}
+
+You will need to have \href{https://www.r-project.org/}{R} and \href{https://www.rstudio.com/products/rstudio/}{RStudio} installed on your computer. Both are free. R is the base program that executes the code; RStudio is an IDE, or Integrated Development Environment, that brings ease and power to using R. You will operate R through RStudio.
+
+You will need to have a program called Git installed on your computer. It may already be installed. There is a bit of a learning curve to getting Git up and going, as well as connecting to GitHub through RStudio. However, there is a great website that can smooth the way: \href{https://happygitwithr.com/index.html}{Happy Git and GitHub for the useR}. Another excellent website is \href{https://cfss.uchicago.edu/setup/git-with-rstudio/}{here}. If you are not already using GitHub or similar, getting Git/GitHub/RProject set up may take an hour or two. I recommend reading through the website carefully and following its instructions. Going slowly is going quickly.
+
+Based on Chapter 16 in Happy Git and Github (specifically 16.2), and assuming your RStudio connects to GitHub, perform the following:\\
+1. Select a location on your computer where you would like a folder containing the code to be placed.\\
+2. Start R studio.\\
+3. Select the following menu options: File \textgreater{} New Project \textgreater{} Version Control \textgreater{} Git\\
+4. In the ``repository URL'' paste the URL of the HWP model's GitHub repository: \url{https://github.com/jeremygroom/HWP_Shared_Test.git}\\
+This will automatically populate the blank below the URL with the project name (HWP\_Shared\_Test).\\
+5. Click ``Create Project''
+
+RStudio will now open the HWP\_Shared\_Test.Rproj file for you. Within RStudio select from the menu File \textgreater{} Open File\ldots{} . Select the file app.r and click on the Open button. The next step is to run all of the code in the app.r file. There are several ways to do this. One way is to click on the code itself, select all of the code (ctrl+A on a PC, apple+A on a Mac), and then ctrl+Enter (or apple+Enter) will run everything. Or, go to the menu item and select Code \textgreater{} Source. From within this project, open the R files ``app.r'' to access and run the Shiny app (Open the ``HWP\_Stand\_Alone\_Code.R'' to run the model outside of the app.
+
+Users can run one or more lines of code by highlighting them and pressing ctrl-Enter or apple-Enter, or from the RStudio menu selecting Code \textgreater{} Run Selected Line(s).
+
+The first line of the app.r or HWP\_Stand\_Alone\_Code.R is: \texttt{renv::restore()}. The first time you run this line the project file will (with your permission) download all versions of all libraries and the R instance used to run the app \citep{R-renv}. It takes a little while, but you'll only need to do it once. This version control step hopefully helps prevent conflicts between your newer or older versions of previously-installed R libraries and the code.
+
+The stand-alone relies heavily upon functions and code chunks in the Shiny app file (HWP\_Shiny\_app \textgreater{} R\_code\_data). Updates to model code affect both the app and stand-alone code. The guts of the HWP model are in the file HWP\_Model\_Function.r . The file HWP\_Model\_Prep.R is used in several places for preparing data for entry into the model or versions of the model (HWP, Monte Carlo HWP, Sankey HWP).
+
+\hypertarget{run-opp-files}{%
+\subsection{File structure}\label{run-opp-files}}
+
+\emph{/HWP\_Shared\_Test/}\\
+This folder contains all files associated with the model, including template data, the Shiny application, the stand-alone code and folders, R environment controls, and the RStudio project that runs it all.
+
+HWP\_Shared\_Test.Rproj: Open this to operate the Shiny app or stand-alone from your computer.
+
+app.r: This is the main code file that runs the Shiny application.
+
+HWP\_Stand\_Alone\_Code.R: This is the main code file for running the stand-alone HWP model.
+
+Append\_Harvest\_Data.R: This code will append new harvest data to your existing data file.
+
+README.md: This file may contain some information about the GitHub version.
+
+renv.loc: R environment information.
+
+\emph{/HWP\_Shared\_Test/HWP Data/}\\
+This folder contains Oregon, California, and Washington data that may be uploaded into the app.
+
+\emph{/HWP\_Shared\_Test/HWP Data/Templates/}\\
+This folder contains sub-folders that direct users to Excel templates that they can use when building their input file.
+
+\emph{HWP\_Shiny\_App/www/}\\
+This file only contains the Groom Analytics LLC logo for the application.
+
+\emph{HWP\_Shiny\_App/R\_code\_data/}\\
+Most of the code that the Shiny application and stand-alone HWP model depend upon is in this folder:
+
+\begin{itemize}
+\item
+  dl\_module.R: Shiny module that allows figures to be downloaded.
+\item
+  global.r: Initial code for reading in data for the Shiny application.
+\item
+  HWP.CA.output.rds, HWP.OR.output.rds: prepared data files that the Shiny application automatically imports to populate its figures.
+\item
+  HWP\_Model\_Function.r: This is the raw code for the HWP model, as is run by the stand-alone and the Shiny application. Note that simplified versions of this code are used for the Sankey diagram (located in PlotFunctions1.r) and the Monte Carlo simulation (see MC\_Code.R).
+\item
+  HWP\_Model\_Prep.R: Code that extracts values from imported data and prepares them for entry into the HWP model functions.
+\item
+  HWP\_Output\_Prep.R: Code that simplifies variable names from HWP model function output.
+\item
+  HWP\_Tables\_Code.R: Generates output tables (CSV files) that the user can use to recreate plots. The Shiny application has a button that will appear on the Upload Data selection that allows users to download the tables. The stand-alone code also uses this code to populate its own folder for tables (see below).
+\item
+  LakePic\_MC2.png, ShrubPic3.png: Pretty pictures for populating figure space when user data are not available.
+\item
+  MC\_Code.R: This code runs the Monte Carlo simulation using user data. It is used by the Shiny application and the stand-alone model.
+\item
+  ModelRunPage.R: This module produces the Upload Data page for the Shiny application.
+\item
+  Plot modules. Each of these provides the code to run individual Shiny figure tabs:
+
+  \begin{itemize}
+  \tightlist
+  \item
+    Plot\_AnNetChCStor\_Module.R: Produces the Annual Net Change in Carbon Storage tab underneath the header Carbon Storage and Emissions.\\
+  \item
+    Plot\_AnnTimHarvest\_Module.R: Produces the Annual Timber Harvest tab underneath the header Timber Harvest Summaries.\\
+  \item
+    Plot\_CStorEm\_Module.R: Produces the Carbon Storage and Emissions tab underneath the header Carbon Storage and Emissions.\\
+  \item
+    Plot\_CStorOwn\_Module.R: Produces the Carbon Storage by Ownership tab underneath the header Carbon Storage and Emissions.\\
+  \item
+    Plot\_FateHarvC\_Module.R: Produces the Fate of Harvest Carbon tab underneath the header Timber Harvest Summaries.\\
+  \item
+    Plot\_MCest\_Module.R: Produces the Monte Carlo Estimates tab underneath the header Carbon Storage and Emissions.\\
+  \item
+    Plot\_UtTimbHL\_Module.R: Produces the Utilized Timber Halflives tab underneath the header Timber Harvest Summaries.
+  \end{itemize}
+\item
+  PlotFunctions1.r: This code contains many of the functions used repeatedly by figures and the HWP model variants (standard HWP, Monte Carlo, and Sankey). It also contains the Sankey HWP model function. This code is source by the Shiny application and the stand-alone model.
+\item
+  QA\_Code\_Shiny.r: This code runs a Quality Assurance procedure on imported data. It verifies that the data are formatted correctly for entry into the HWP and Monte Carlo models. See ``The QA Step'' under ``Providing Your Own Data''.
+\end{itemize}
+
+\emph{/HWP\_Stand\_Alone\_Files/Arrays/}\\
+This folder serves as a destination for the arrays generated by the stand-alone code, given that the user's data file indicates that arrays should be generated. The .gitignore file prevents the source code from uploading the arrays to GitHub.
+
+\emph{/HWP\_Stand\_Alone\_Files/QAQC\_Reports/}\\
+This folder contains the error report (Error\_Report.csv) generated by the stand-alone code's call to QA\_Code\_Shiny.r. The .gitignore file prevents the source code from uploading any error reports in this folder to GitHub.
+
+\emph{/HWP\_Stand\_Alone\_Files/Standalone\_R\_files/}\\
+This folder contains two code files, MC\_Tables.R and Sankey\_Code.r. If the user indicates that the stand-alone code should generate tables of the Monte Carlo outcome, the MC\_Tables.R file generates the tables. If the user indicates that the stand-alone code should generate a Sankey figure the Sankey\_Code.r file will do so.
+
+\emph{/HWP\_Stand\_Alone\_Files/Tables/}\\
+This folder serves as a destination for tables generated by the stand-alone code, given that the user's data file indicates that arrays should be generated. The tables are the same as those generated by the Shiny application after the user has run the HWP model on their own data and then selected the button that generates the tables. The .gitignore file prevents the source code from uploading any tables in the folder to GitHub.
+
+\emph{/renv/}\\
+This folder contains R environment variables that the Shiny application (app.r) and stand-alone model (HWP\_Stand\_Alone\_Code.R) rely upon. The environmental variables include version information for R and the libraries used. The user can ignore this folder.
+
+\emph{/rsconnect/}\\
+This folder contains shinyapps.io deployment information. The user can ignore this folder.
+
+\hypertarget{run-opp-shiny}{%
+\subsection{Running the Shiny app from your computer}\label{run-opp-shiny}}
+
+As stated above, if this is the first time you are running this code, it may take a little while as renv will need to load appropriate program and package versions. Once you have run the Shiny application code, RStudio will display the application in its own window. A button at the top of the window will allow you to open the application in your own browser, but this isn't necessary. The application should function as it does online when run from the Shinyapps.io server.
+
+The user can alter the Shiny code to produce different figures or to extract intermediary or final data frames used for figure generation. As a warning, if the user alterations cause an error, the Shiny application can break. Troubleshooting in a Shiny application is not as straightforward as it is in standard R code (In the online book \href{https://mastering-shiny.org/index.html}{Mastering Shiny} by \citet{wickham2021}, see \href{https://mastering-shiny.org/action-workflow.html}{Chapter 5 Section 2, Debugging}). I will not discuss the workings of Shiny to any extent here (if interested, see the previous link for more information), but if the user inserts the code \texttt{browser()} immediately after an item of interest, saves the change to the code, re-runs the Shiny app from their computer, and selects the figure or item of interest from the application, the code will halt at the \texttt{browser()} call and the user can inspect all elements created to that point.
+
+\hypertarget{run-opp-sa}{%
+\subsection{The Stand-alone model: benefits, utility, and how to operate}\label{run-opp-sa}}
+
+The stand-alone model provides the user with little additional utility over the web-based Shiny application. It will produce arrays used by the model, and these can be useful for reconstructing analysis results and understanding how the model operates. It can also produce the Sankey diagram, but within RStudio. The RStudio Plots window has an Export option that will save the HTML code as a PNG file, an option that the Shiny application cannot provide. However, the PNG resolution is not much greater than a screen shot of the Sankey from the web application. The PNG version also does not reflect any manipulation of the figure by the user after the figure was produced (e.g., if the user slides the categories around to better separate them, the PNG will show the figure as initially produced).
+
+The main advantage of the stand-alone model is that the user can step through it line by line to better understand what the code is doing. The code is arranged in a much more readable way than it is for the Shiny application. If the user wishes to alter the model code, be aware that changes to the HWP function or MC function may ``break'' the downloaded Shiny app was well (this is easily remedied via a quick pull request from the GitHub repository -- select the ``Git'' tab in one of the RStudio windows and click the ``Pull'' button).
+
+The user can step through the code piecewise or run all of the code at once after placing their data file in the HWP Data folder and entering their file name into the code as described below.
+
+To run the stand-alone code, open the file ``HWP\_Shared\_Test.Rproj''. This will open the R Project using the program R Studio. Open the file ``HWP\_Stand\_Alone\_Code.R''. Then, run the \texttt{renv::restore()} line plus the library load code. If this is the first time you are running the \texttt{renv::restore()} call, the process may take a few minutes to complete.
+
+The next few lines select whether you wish to generate the Sankey diagram, which year you would like to generate it for, and for how many years the decay process should be run. Change \texttt{GENERATE.SANKEY\ =\ TRUE} to \texttt{GENERATE.SANKEY\ =\ FALSE} if you do not wish to generate the Sankey diagram. Change the year in \texttt{SANKEY.HARVEST.YEAR} and \texttt{SANKEY.YEARS.OF.HARVEST} to your year of interest and the number of years of decay, respectively. It would probably be most efficient to figure out these years/decay times beforehand using the Shiny application.
+
+The \texttt{\#\#\#\ Folder\ locations} lines should mostly remain unchanged unless you would like to move files about for some reason. The \texttt{IMPORT.DATA.FILE} value should be changed to the file name that you would like to import. Be sure your file is in the HWP Data folder (unless you've redefined the \texttt{IMPORT.DATA.FOLDER} location accordingly). Run these lines.
+
+Run the lines for loading the data, including those for the QA test (approximately lines 50 through 85). The code, given your file name, will open your file and extract worksheets. If the user data prescribes the QA test to be run, this code will source the QA\_Code\_Shiny.r file. Otherwise, it will skip the QA test and load the files automatically. The QA test takes little computation time, so omitting this step does not speed up the code greatly.
+
+Run lines 90 -- 111. These lines source code that prepares the data for entry into the model and extracts certain options from the user data, like whether to save tables and arrays, and the locations where they should be saved. The code also sources the PlotFunctions1.r code to obtain some functions used by the HWP model, and the HWP model function itself.
+
+Running lines 112 -- 128 causes the code to run the HWP model and extract the model function's outputs.
+
+Running lines 130 -- 148 enact a year-shift in the data if the user wishes. The year-shift causes all fates from harvest (waste from processing, placement of carbon in products in use, etc.) to occur the year after harvest.
+
+Running lines 150 -- 164 will generate table CSV files in the Tables folder if the user's data defines \texttt{OUTPUT\_TABLES} to be \texttt{TRUE}. Otherwise the code is skipped.
+
+Lines 165 -- 200 will generate array Excel files in the Arrays folder if the user's data defines \texttt{OUTPUT\_ARRAYS} to be \texttt{TRUE}. Otherwise the code is skipped. Note that array generation does take some noticeable time; it may be useful to set this option in the data to FALSE when running the overall code set frequently.
+
+Lines 200 -- 210 cause the Monte Carlo to run. The Monte Carlo can be very time-consuming to run. Consider setting the data option to \texttt{FALSE} if only outputs from the regular HWP model are needed.
+
+Lines 211 -- 220 run the Sankey code if the user selected for the generation of the Sankey diagram to take place (\texttt{TRUE}).
+
+\hypertarget{run-opp-add}{%
+\subsection{How to add new data years to your data set}\label{run-opp-add}}
+
+Users may wish to generate model outputs annually or every few years with new harvest values. However, they may not want to alter all of the worksheets in their data file by hand to account for the newly added harvest years. The file Append\_Harvest\_Data.R takes, as input, an Excel file with a single worksheet of harvest by board feet, formatted in the same way as their earlier Harvest\_BF worksheet. The user points the code toward their original data file, the new Harvest\_BF Excel file, and provides a name for the output Excel file. The code will make all necessary changes to the original file and append the new years. Importantly, where needed, the code will read values used for the year prior and duplicate them for the new data. Therefore, if the user wishes to update Timber Product Ratios or End Use Ratios, they will need to do so by hand, possibly after this procedure is run.
+
+As an example, say we wish to add 2018 and 2019 harvest levels to Oregon's data. We open the Append\_Harvest\_Data.R file in the \texttt{HWP\_Shared\_Test.Rproj} RStudio project, run the first few lines that load the needed libraries, and then alter the following lines to read:\\
+\texttt{ORIG.DATA.FILE\ \textless{}-\ "Oregon\_Inputs\_HWP\_Model.xlsx"}\strut \\
+\texttt{NEW.DATA\ \textless{}-\ "Oregon\_BF\_2019.xlsx"}\strut \\
+\texttt{DATA.FOLDER\ \textless{}-\ "HWP\ Data/"}\strut \\
+\texttt{OUT.DATA\ \textless{}-\ "Oregon\_Inputs\_HWP\_Modelv2.xlsx"}
+
+The first of those lines refers to the original data, the second the name of the file with the Harvest\_BF data for the new years, the third line identifies the location of the input data files, and the last line is the name the user wishes to use for the updated data set.
+
+The new data can provide all of the original data for harvest board feet in addition to the more recent harvest data. Or, the user can provide just the new data. Once those four lines are correct the user can select and run all of the code from the file. The code will attempt to generate a new Excel file with the desired updates. The code also performs some QA checks:
+
+\begin{itemize}
+\item
+  Verifies that data are numeric
+\item
+  Verifies that the original and new data do not duplicate or skip years
+\item
+  If ownership data are present in the original data, the code verifies that ownership data exist in the new data too, and that the Total column equals the sum of other ownership columns.
+\end{itemize}
+
+The code will print error messages if any of those tests are not passed.
+
+If errors are encountered and the files are altered to correct those errors, be sure to close the newly generated file before running the code again. Otherwise, R will generate an error message.
+
+\hypertarget{own}{%
+\chapter{Providing Your Own Data}\label{own}}
+
+\hypertarget{own-over}{%
+\section{Overview}\label{own-over}}
+
+Users may import their own data into the Shiny application and have the application run the HWP model and Monte Carlo simulation. The following documentation is intended to assist with the construction and explanation of the input file. Once the user has built their own input file, the file can be uploaded to the Shiny application or read by the stand-alone model. In either scenario a QA check verifies that the data are correctly compiled. Once this is done, the application can display the user's data and the user can download tables of the output. The stand-alone model can provide arrays and tables of the output.
+
+The data reside in a single workbook formatted as a MS Excel file with the .xlsx extension. The Excel file has many tabs, described below. Provided examples and templates may be modified by the user when they construct their own import file. The examples and templates are located in the GitHub folder ``HWP Data''.
+
+There are many values that the user should consider altering based on regional available and historic mill data, dump and landfill decomposition information, etc. At a minimum users can provide yearly values of total harvested billion board feet from their region, alter the rest of the worksheets to reflect their year values, and make use of all other available values from one of the examples or templates.
+
+\hypertarget{own-input}{%
+\section{Creation of the input file}\label{own-input}}
+
+This explanation may work best if the user opens example files, such as CA\_Inputs\_HWP\_Model.xlsx or Oregon\_Inputs\_HWP\_Model.xlsx, and examines the files while reading the description of each worksheet.
+
+The worksheet HWP\_MODEL\_OPTIONS allows the user to customize the operation and output of the HWP model. The values in this worksheet affect the operation of the stand-alone model and/or the Shiny application. Below are options that the user may adjust:
+
+\begin{itemize}
+\item
+  DATASET.NAME (string): This value only affects the Shiny application. This name will appear as an option in the upper-left pulldown menu in the application. Avoid using the names ``California'' or ``Oregon''.
+\item
+  QA\_TEST (TRUE, FALSE) -- This value only affects the stand-alone model. The default is TRUE. If TRUE, the stand-alone code will examine all worksheets except HWP\_MODEL\_OPTIONS. See Quality Assurance Step below. If FALSE, the code will skip the quality assurance step and attempt to load the worksheets without examining them. There is little system time needed to conduct the QA test.
+\item
+  OUTPUT\_ARRAYS (TRUE, FALSE) -- This value only affects the stand-alone model. If users would like the code to produce the analysis arrays so that they can trouble-shoot model issues or verify calculations, cell B2 should be TRUE (default). Otherwise, FALSE. There is a noticeable time savings in code execution to set to FALSE.
+\item
+  OUTPUT\_TABLES (TRUE, FALSE) -- This value only affects the stand-alone model. This option allows users to select whether the code produces output tables for the base HWP analysis. Default = TRUE.
+\item
+  SHIFTYEAR (TRUE, FALSE) -- Affects both the Shiny application and stand-alone model. If the user wants tabular and figure outputs of emissions and pools reported as occurring the year after harvest, cell E2 should be TRUE. If the user wants those outputs reported as occurring during the same year as harvest, select FALSE.
+\item
+  PIU.LOSS (Double, 0.00 to 1.00) -- Affects both the Shiny application and stand-alone model. The current estimated loss of carbon entering PIU through manufacturing is 0.08, or 8\%. Enter the default value of 0.08 unless you wish to alter the amount. Cannot exceed 1.0 or fall below 0.
+\item
+  ARRAYLOC (Text) -- This value only affects the stand-alone model. The default value is ``HWP\_Stand\_Alone\_Files/Arrays/''. If you wish to save arrays to a different folder, change the folder location value. If you are using Windows, be sure to use the forward slash ``/'' between folder levels and not the back slash.
+\item
+  TABLELOC (Text) -- This value only affects the stand-alone model. The default value is ``HWP\_Stand\_Alone\_Files/Tables/''. If you wish to save tables to a different folder, change the folder location value. If you are using Windows, be sure to use the forward slash ``/'' between folder levels and not the back slash.
+\item
+  RUN.MC (TRUE, FALSE) -- This value only affects the Shiny application. If you would like to run the Monte Carlo simulation on your data set, ensure that this value is TRUE. The main model code will run and then verify that this value is TRUE, at which time it will source the Monte Carlo R code and run it. Note: running the Monte Carlo simulation is very time consuming. Set this option to FALSE if you are running the stand-alone model and are not currently interested in the Monte Carlo output.
+\item
+  R (Numeric, between 0 to 1) -- Affects both the Shiny application and stand-alone model. This value is the target Pearson's correlation coefficient that will be used to correlate triangular distribution values in the Monte Carlo. For instance, if the worksheet MonteCarloDistrParameters has three accuracy values for Harvest, depending on the year of harvest, the value for R will determine how correlated the three random draws are that are used to adjust the Harvest values for each iteration. The default is 0.5, as was used in \citet{stockmann2012}.
+\item
+  OPT.START.VALUE (Numeric, between 0 and 1) -- Affects both the Shiny application and stand-alone model. The MonteCarloDistrParameters states minimum and maximum 90\% Confidence Intervals from which the Monte Carlo random variables are to be drawn. However, when we transform random uniform values into values from a triangular distribution, we need to know the triangular distribution endpoints. In the Monte Carlo code, the function ``ab.boundaries.fcn'' performs a search algorithm to find the triangular distribution end points given the confidence intervals provided in the MonteCarloDistrParameters worksheet. The default start value for the algorithm is 0.5 and likely does not need to be altered for the Monte Carlo code to function adequately.
+\item
+  N.ITER (Integer, 1 or greater) -- Affects both the Shiny application and stand-alone model. This value determines the number of iterations the Monte Carlo performs. In the Shiny application, the Monte Carlo Estimates selection ``Monte Carlo convergence estimation'' produces convergence plots that track estimates for the last year examined in the model. The plot shows the values for the mean, standard error, and 95\% and 5\% Confidence Intervals given the iterations performed. Of the four, the Mean is most informative. If the line is stable for many iterations (we seem to obtain fairly stable results with 2000 iterations) then you likely have a sufficient number of iterations. The more iterations, the slower the code will run. Too few iterations will provide unreliable results. The default value is currently 100 runs which is likely too few but is sufficient to verify that the process works. 1000 to 2000 might be a recommended number for obtaining reliable estimates and determining what the length of the burn-in period should be.
+\item
+  BURN.IN (Integer, 0 or greater) - This value only affects the Shiny application. In the same figure mentioned in the previous N.ITER description, there is a vertical magenta line that signifies the burn-in period. Everything to the left of the line is discarded when results are plotted in the Shiny application. The user should set the BURN.IN value to the number of iterations after which the Monte Carlo appears fairly stable, e.g., the estimate for the mean approximates a horizontal line.
+\item
+  MC.ARRAY.OUT (TRUE, FALSE) -- This value only affects the stand-alone model. If TRUE, the Monte Carlo code will generate the (large) Microsoft Excel workbook MC\_All.xlsx that contains all MMTC values for each year and each iteration of the Monte Carlo code. There is a separate tab for Emitted with Energy Capture (eec), Emitted Without Energy Capture (ewoec), Solid Waste Disposal Sites carbon (swdsC), and Products in Use (pu). The default is TRUE; if it is FALSE the code will run a bit faster and the large (\textasciitilde10 MB?) file will not be produced. The file is provided for model assessment purposes.
+\end{itemize}
+
+The worksheet Harvest\_BF contains annual harvest values in billion board feet (BBF). The left column must contain the heading ``Year'' and have years listed in sequential order from least to greatest. Ownership columns may follow, with a final column entitled ``Total'' that must equal the ownership values. Users may omit all but the Year and Total columns. Users may have ownership values appear at some point after the first year of total harvest values; however, leave the ownership cells prior to the first year of ownership values blank and not filled with zeros. The QA check sums the values to determine if they equal the total value, so a series of zeros obviously will cause the QA check to fail.
+
+The worksheet BFCF contains the BBF to hundred Cubic Feet (CCF) conversion factors based on time periods. There are only three columns, Conversion, StartYear, and EndYear. Ensure that the first Start Year begins with the minimum Harvest\_BF Year and that conversion time periods do not overlap. The Conversion column values are formatted as doubles and StartYear and EndYear values are integers.
+
+The worksheet TimberProdRatios contain the timber product ratios, or TPR. The first column must be TimberProductID. The remainder of the columns are named after the sequential years of harvest data, from the earliest year to the final year. All year-column values must sum to one. Row values may change over time.
+
+The worksheet PrimaryProdRatios contain the primary product ratios, or PPR. The first column must be PrimaryProductID. The remainder of the columns are named after the sequential years of harvest data, from the earliest year to the final year. All year-column values must sum to the number of TPR rows. Row values may change over time.
+
+The worksheet EndUseRatios contains the end use ratios, or EUR. The first column must be EndUseID. The remainder of the columns are named after the sequential years of harvest data, from the earliest year to the final year. All year-column values must sum to the number of PPR rows. Row values may change over time.
+
+The worksheet RatioCategories acts as a link between TPR, PPR, and EUR categories. The first three column labels, TimberProductID, PrimaryProductID, and EndUseID, must have the same names as the respective first columns of the previous three worksheets described. The fourth through sixth column names are TimberProduct, PrimaryProduct, and EndUseProduct, and contain text describing what the categories contain. Note that EndUseProduct is a subcategory of PrimaryProduct, and PrimaryProduct is a subcategory of TimberProduct. The R code ignores columns 4 through 6; they are there for assisting users in identifying row values.
+
+The worksheet CCF\_MT\_Conversion contains carbon CCF to metric tons (MT) conversion factors for individual primary products. The first column title must be PrimaryProductID, and the second column CCFtoMTconv. The first column values must be integers and include all primary product ratio categories.
+
+The worksheet EU\_HalfLives contains half-life values (in years) for each of the end use categories. The first column must be titled EndUseID, the second EU\_HalfLife. The values for EndUseID must be integers and include all end use ratio categories.
+
+The worksheet DiscardFates contains values that apportions discarded carbon to different discard categories: BWEC = Burned with Energy Capture, BWoEC = Burned Without Energy Capture, Recovered, Composted, Landfills, and Dumps. Paper (defined by the code as primary products where the column EndUseProduct in the worksheet RatioCategories contains the word ``pulp'') and wood products are allowed to have different discard ratio values. The first two columns must be named DiscardType and DiscardDestination. The remainder of the column titles are the years, in order, from longest ago to most recent. The sum of each year-column should be two (all wood and all paper values within a column should sum to one).
+
+The worksheet Discard\_HalfLives provides half-life values in years for paper and wood in dumps (Dumps), recovered products (Recovered), and the decaying portion of landfills (Landfills\_decay). It also, possibly confusingly, includes values for the proportion of wood and paper that end up in the non-decaying portion of landfills (Landfills\_fixed). The columns must be labeled Type, Dumps, Landfills\_fixed, Landfills\_decay, and Recovered.
+
+The worksheet MonteCarloValues allows users to define how much ``noise'' to introduce into the HWP model for the Monte Carlo simulation and to specify aspects of the Monte Carlo that they would like to control. The worksheet needs to be altered to conform to the user's data structure for the Monte Carlo to run. That is, if users have data from 1970 -- 2018, they will need to change First\_Year and Last\_Year values for some of the rows. Users can change First\_Year, Last\_Year, MinCI, MaxCI, and CI values. They may add or delete rows for Harvest, TimberProdRatios, and PrimaryProdRatios. Each row of the worksheet represents a vector of random draws, with one random draw per iteration. If our model had 100 iterations and this worksheet had 20 rows, the R script will obtain 2000 random uniform draws between zero and one, 100 random values per row. (Please use more than 100 iterations for your final runs.) The R script will change these values to triangular distributions with a peak at 1.0 (column Peak Value) and lower and upper confidence intervals as defined by the columns MinCI and MaxCI. The resulting random numbers for a given parameter (row) will have values that are above or below 1.0. In general, the parameter values associated with each of the parameters are multiplied by the random number for a single iteration. If the random number is 0.86, the parameter value will be reduced to 86\% of its original size. Below we describe each of the columns and column values in this worksheet.
+
+\begin{itemize}
+\item
+  Parameter\_ID: This column is included for the user's information; the R script does not rely upon it. Each of the parameters to be altered is listed here. Some parameters (namely, those after Parameter ID number 13) may have more than one set of random numbers generated for it. For instance, if we wish for Harvest values to be modeled as becoming more accurate through time, reflecting improvements in reporting and data collection, we may wish to indicate three periods of years with increasing estimate precision. A series of random numbers will be drawn for each of the time periods, and then correlated (see above). Within an iteration, this example would have three correlated random numbers that would be used for the three periods of years. The parameter ID for Harvest would be the same number repeated three times (14, 14, 14).\\
+\item
+  Parameter\_Name: The column name, ``Parameter Name'', is not used by the code. However, the column values are names for specific parameters that are used by the code. These must remain unchanged. The names can be repeated as necessary (following on the example for Parameter ID, Parameter ID 14, 14, 14 would be associated with Parameter Name ``Harvest'', ``Harvest'', ``Harvest''). Below are descriptions of which parameters and worksheets each relates to:
+
+  \begin{itemize}
+  \item
+    CCFtoMTC: This name translates as ``hundred cubic feet converted to metric tons carbon''. Each Monte Carlo iteration will alter the conversion values associated with the worksheet CCF\_MT\_Conversion.
+  \item
+    EndUse\_HalfLives: Each Monte Carlo iteration's random number for this parameter will adjust the end use half life values found in EU\_halflives.
+  \item
+    EndUseRatios: This variable refers to the end use ratio values found in the worksheet EndUseRatios. Each iteration of the Monte Carlo will use one random value to change the end use ratio values. See the section ``Sum-To-One Constraint'' to understand how the values are altered.\\
+  \item
+    DiscardedDispositionRatios, Paper: There are two rows in the Parameter Name column with the name DiscardedDispositionsRatios. The adjacent column, ``Paper'', indicates whether these disposition ratios are for paper (1) or wood (0). The disposition ratios are from the worksheet DiscardFates. They determine what fraction of paper or wood enter the categories of Burned with Energy Capture, Burned Without Energy Capture, Recovered, Composted, Landfills, or Dumps. Like End Use Ratios, these ratios are subject to the sum-to-one constraint.
+  \item
+    LandfillDecayLimits: The wood and paper values represent the landfill decay limits, or the proportion of landfill material that is subject to decay. The values are obtained from the worksheet Discard\_HalfLives.
+  \item
+    Landfill\_HalfLives, Dump\_HalfLives, Recovered\_HalfLives: the six rows with these parameter names are associated with wood and paper decomposition half-lives for materials subject to decay in landfills, dumps, and in recovered products. The values are obtained from the worksheet Discard\_HalfLives.
+  \item
+    Harvest: This parameter references the cubic-foot volume amounts harvested each year. The values are originally provided as board feet from the worksheet Harvest\_BF, but they are transformed in the original (non-Monte Carlo) portion of the analysis and the transformed values are used in the Monte Carlo. There may be more than one row labeled as Harvest, reflecting different accuracies to be used for different year-ranges.\\
+  \item
+    TimberProdRatios: Like Harvest, there may be more than one entry for TimberProdRatios. The original worksheet is TimberProdRatios. Like EndUseRatios, a random value associated with a range of years will alter some, but not all, Timber Product Ratio values. See the section ``Sum-To-One Constraint''.
+  \item
+    PrimaryProdRatios. This type of parameter is altered much the same as TimberProdRatios and the original values may be found in the worksheet PrimaryProdRatios. It too is subject to the ``Sum-To-One Constraint''.
+  \end{itemize}
+\item
+  Paper: As described above for DiscardedDispositionRatios and other parameters, some parameters represent paper (1) or wood (0) for their associated parameters.
+\item
+  First Year, Last Year: These are values that users must change. The values in this column represent the first year of a given year period. For instance, if our data set included harvest from 1906 to 2017 but we wanted to increase the precision of the Monte Carlo values in steps leading to the final year, then we need to indicate what years each level of precision refers to. If only one level of precision is used, provide the first year of harvest (e.g., 1906) under the First Year column and the last year of harvest (2017) to the Last Year column. If there are three Harvest rows, we want the First Year to capture all beginning years for given year periods and Last Year to capture the terminal year. For the first Harvest we might have First and Last Year values of 1906 and 1945, then in the second row the values 1946 and 1979, and finally the third row would contain a First Year of 1980 to 2017. Crucially: the very first First Year must be the first year of your harvest values, whether for Harvest, TimberProdRatios, or PrimaryProdRatios. There must not be overlap in years (e.g., if the first row had 1906 to 1945 and the next row had 1941 to 1955, the sets would overlap). There must not be gaps (e.g., 1906 to 1945, then 1947 to 1955, leaving out 1946). You do not have to have the same sets of years used among parameter types (e.g., Harvest year sets do not need to match TimberProdRatios year sets). You do not need parameter types to have the same number of sets (Harvest could have two rows, PrimaryProdRatios could have three). You may have more or fewer than three year-sets per parameter type.
+\item
+  MinCI, Peak Value, MaxCI: As described above, these values are used to define the triangular distributions from which the random Monte Carlo values will be generated. For these three columns, Peak Values should all be 1.0, with the MinCI and MaxCI symmetric around this value (the Monte Carlo code assumes symmetric triangular distributions). That is, the MinCI and MaxCI must differ from the Peak Value by the same amount (e.g., MinCI = 0.85, Max CI = 1.15. Both are 0.15 distant from 1.0). The MinCI and MaxCI are the user-specified confidence intervals; e.g., the user states what they wish the confidence intervals should be around 1.0.
+\item
+  CI: This value allows the user to change what sort of a confidence interval is used. The default value is a 90\% confidence interval, as was used in \citet{stockmann2012}. The user could change this value to 0.95, or a 95\% confidence interval. This sort of adjustment will affect the spread of the triangular distribution, with a 90\% confidence interval having a wider spread.
+\end{itemize}
+
+\hypertarget{own-qa}{%
+\section{The quality assurance step}\label{own-qa}}
+
+The Quality Assurance (QA) step is mandatory for data brought into the Shiny application and optional for the stand-alone program (see above: QA\_TEST = TRUE/FALSE). The QA code, QA\_Code\_Shiny.r, assesses the imported Excel file data. The QA step has over 55 checks it performs on the incoming data to help ensure that the program will run correctly. As it runs through its checks, it populates the file Error\_Report.csv in the QA folder with results. It first verifies that it can load a worksheet and then conducts subsequent tests on it. The code performs tasks such as verifying that column labels are correct and that years and TPR/PPR/EUR categories match among files. If it finds an error, it will record a ``1'' in the Terminate column that matches the issue at hand and describe the problem in the Comments column. If no problem is found the Comments column will indicate which checks it made and found correct. A zero in the Comments column may be ignored. If an error is found, the R session will terminate (stand-alone model) or an error message will be produced preventing further analysis (Shiny application). This is on purpose! It prevents the code from attempting to proceed. If termination occurs, check the error report to find out which worksheet was triggering the error and why. Below we describe the attributes that are checked for each worksheet:
+
+All 10 worksheets: The QA code verifies that each worksheet correctly loaded. A misspelling of the worksheet name will trigger a terminal error.\\
+Havest\_BF:
+
+\begin{itemize}
+\tightlist
+\item
+  The first and last column names must be "Year" and "Total".\\
+\item
+  Values are numeric.\\
+\item
+  The sum of ownership amounts must equal the sum of the total amounts. These values can deviate from one another if a user saves the CSV file from an Excel file. The decimal places may be lost with numbers rounded. This rounding may cause ownership values to no longer sum to the Total amount. Slight adjustments to the Total amount or an ownership category amount will be necessary to correct.
+\end{itemize}
+
+BFCF:
+
+\begin{itemize}
+\tightlist
+\item
+  The first three column names must be "Conversion", "StartYear", and "EndYear".\\
+\item
+  The final year value under Years must equal the last year value of Harvest\_BF.\\
+\item
+  Values are numeric.
+\end{itemize}
+
+TimberProdRatios:
+
+\begin{itemize}
+\tightlist
+\item
+  The number of TPR years equals the number of harvest years in Harvest\_BF.\\
+\item
+  The year columns must be transformable to numeric values. E.g., a text value of "1952" can become the integer 1952. A year column name such as "X1952" cannot be transformed into an integer, at least not with the code provided.\\
+\item
+  The first column name must be "TimberProductID".\\
+\item
+  The year columns must sum to 1.0.\\
+\item
+  Table values are numeric.
+\end{itemize}
+
+PrimaryProdRatios:
+
+\begin{itemize}
+\tightlist
+\item
+  The number of PPR years equals the number of harvest years in Harvest\_BF.\\
+\item
+  The year columns must be transformable to numeric values.\\
+\item
+  The first column name must be "PrimaryProductID".\\
+\item
+  The year columns must sum to the number of Timber Product Ratios, the number of rows in TimberProductRatios.\\
+\item
+  Table values are numeric.
+\end{itemize}
+
+CCF\_MT\_Conversion:
+
+\begin{itemize}
+\tightlist
+\item
+  The two columns must be named "PrimaryProductID" and "CCFtoMTconv".\\
+\item
+  The listed number of Primary Products matches the number in the file PrimaryProdRatios.\\
+\item
+  Table values are numeric.
+\end{itemize}
+
+EndUseRatios:
+
+\begin{itemize}
+\tightlist
+\item
+  The number of years for which there are End Use Ratios must match the number of harvest years.\\
+\item
+  The year columns must be transformable to numeric values.\\
+\item
+  The first column name must be "EndUseID".\\
+\item
+  The year columns must sum to the number of Primary Product Ratios, the number of rows in PrimaryProdRatios.\\
+\item
+  Table values are numeric.
+\end{itemize}
+
+RatioCategories:
+
+\begin{itemize}
+\tightlist
+\item
+  The column names must be, in order, "TimberProductID", "PrimaryProductID", "EndUseID", "TimberProduct", "PrimaryProduct", "EndUseProduct".\\
+\item
+  The word "fuel" must appear in some rows of column "EndUseProduct".\\
+\item
+  The word "pulp" must appear in some rows of column "EndUseProduct".\\
+\item
+  The number of Timber Product IDs must match the number in TimberProdRatios.\\
+\item
+  The number of Primary Product IDs must match the number in PrimaryProdRatios.\\
+\item
+  The number of End Use IDs must match the number in EndUseRatios.
+\end{itemize}
+
+EU\_halflives:
+
+\begin{itemize}
+\tightlist
+\item
+  The column names must be, in order, "EndUseID" and "EU\_HalfLife".\\
+\item
+  The number of EndUseID row numbers equals the number of rows in EndUseRatios.\\
+\item
+  Table values are numeric.
+\end{itemize}
+
+DiscardFates:
+
+\begin{itemize}
+\tightlist
+\item
+  The first two columns must be named "DiscardType" and "DiscardDestination".\\
+\item
+  There must be the same number of years as in Harvest\_BF.\\
+\item
+  The year column labels must be transformable to numeric values.\\
+\item
+  Year column values must be numeric and sum to 2.0.
+\end{itemize}
+
+MonteCarloDistrParameters:
+
+\begin{itemize}
+\tightlist
+\item
+  The column names must be, in order, "Parameter\_ID", "Parameter\_Name", "Paper", "First\_Year", "Last\_Year", "MinCI", "Peak\_Value", "MaxCI", and "CI".\\
+\item
+  The parameter names need to be labeled "CCFtoMTC", "EndUse\_HalfLives", "EndUseRatios", "DiscardedDispositionRatios", "LandfillDecayLimits", "Landfill\_HalfLives", "Dump\_HalfLives", "Recovered\_HalfLives", "Harvest", "TimberProdRatios", and "PrimaryProdRatios". Note that some row names can (and should) be duplicated as needed (see above).\\
+\item
+  The values for the MinCI and MaxCI must be symmetric around 1.0.\\
+\item
+  The parameters with multiple rows and First\_Year/Last\_Year values must have the years be in order and without overlap or gaps.\\
+\item
+  The time series begins on the first year and the last year is within the final time series set.\\
+\item
+  Table values aside from column Parameter\_Name are numeric.
+\end{itemize}
+
+\hypertarget{own-shiny}{%
+\section{Uploading your data and running the model from the Shiny app}\label{own-shiny}}
+
+Once the user has created their data file, they can open the Shiny app, either online or locally (see Running the Shiny App From Your Computer under section Operating and Changing the Model), and navigate to the tab Upload Data, under the navigation bar item Documentation and Data Upload. The user selects their Excel file by clicking the Browse button and navigating to their file and opening it. The Shiny app will display the name chosen to represent the data set (DATASET.NAME, see above). The user then runs the QA procedure by clicking on the button "Run data file quality control". A button appears that allows the user to "Download the QA output table". The user then clicks on the button "Run HWP Model". If the QA test failed, an error message will appear to that effect. We recommend that the user download the QA output table to determine where the error occurred. If the QA test was passed, the button should instead take a moment to process the data through the model, announce in Model Status that the model run was a success, and change the selected data set under the "Select a data set" option in the sidebar to the user's uploaded data name. At this point the user can visit all figures in the Shiny application and view their data displayed in the figures. They can also download tables summarizing the model run outputs by clicking on the now-appearing button "Download HWP Tables" on the right of the window.
+
+If the user only has Total harvest data (no ownership information) then certain figures will either not attempt to display ownership information or will provide pretty pictures instead. Other figures will be unaffected.
+
+If the user wishes to run the Monte Carlo simulation, then once the HWP model has been run they click the "Run Monte Carlo" button. A busy icon appears, letting the user know that the simulation is in progress. The user is also informed of how long the simulation may take. The Model Status box then has a message appear, "Monte Carlo is complete!". At that point the user may download summary tables for the Monte Carlo. The Monte Carlo Estimates tab under Carbon Storage and Emissions can now display the new simulation results.
+
+Note: If the user tried to view Monte Carlo simulation results after running the HWP model but before actually running the Monte Carlo simulation, they are presented with an image that explains that the Monte Carlo simulation data are not available. If the user then runs the Monte Carlo simulation and returns to the Monte Carlo Estimates, the no-data image will remain until they switch to a previous data set (California or Oregon) and then back to their own data set. At that time their Monte Carlo results should appear. This feature may be improved in the future.
+
+\hypertarget{own-sa}{%
+\section{Using the Stand-alone to run the HWP model and Monte Carlo simulation on your data}\label{own-sa}}
+
+See the section "The Stand-alone model: benefits, utility, and how to operate" (Section \ref{run-opp-sa}).
+
+\hypertarget{own-tables}{%
+\section{Generated Tables}\label{own-tables}}
+
+Whether using the web version of the Shiny application, the downloaded version, or the downloaded stand-alone model, the user can obtain the same sets of output tables from the HWP model and the Monte Carlo simulation. Previous sections describe how to download or save the tables. This section describes the tables and their contents.
+
+T1.0.Annual\_Harvest.csv: This table provides harvest amounts by ownership + Total if ownership data are available, and just Total if not. The data are provided as annual input amounts or as cumulative sums. Finally, the harvest volume is provided in the following metrics: BBF, TgC, and TgCO\(_2\)e. These data should allow users to generate the Annual Timber Harvest figure from the application.
+
+T2.0.Harvest\_Halflives.csv: This table should allow the user to create the Shiny application figure Utilized Timber Halflives. For all years it provides the amount or proportion (pct) of harvested timber destined for fates with different half-lives. Results are given in TgC, TgCO\(_2\)e, and as a proportion (pct) of the total. Fuel has no half-life as it is burned immediately. Short, Medium, and Long have half-lives of 1-6 years, 7 -- 30 years, and 31 or more years, respectively.
+
+T3.0.Cumulative.Ownership.Storage.Emissions.csv: If the user data does not contain ownership information then this table is empty. Otherwise, this table can be used to generate the figure Carbon Storage by Ownership from the Shiny application. The table provides cumulative values for each ownership in TgC. Columns are generated for EEC ("\emph{eec}"), EWOEC ("\emph{ewoec}"), PIU ("\emph{pu}"), and SWDS ("\emph{swds}"). The figure does not use the emissions categories, but they are provided for the user's interest.
+
+T3.5.Cumulative.Ownership.Storage.Emissions.csv: If the user data does not contain ownership information then this table is empty. This table provides the same information as T3.0 but in TgCO\(_2\)e instead of TgC.
+
+T4.0.CumulativeStorageEmissions\_summary.csv: This table provides the cumulative amount of carbon stored in PIU and SWDS pools as well as the cumulative amount of carbon emitted as EEC or EWOEC. The units are TgC and TgCO\(_2\)e. These data can be used to reconstruct the Shiny application figure Carbon Storage and Emissions: Summary pool and emissions categories.
+
+T4.5.CumulativeStorageEmissions\_summary.csv: This table provides a detailed version of T4.0, again with cumulative values in TgC and TgCO\(_2\)e. It breaks out the overall PIU into PIU and Recovered, SWDS into a non-decaying portion of the landfill (Landfill\_fixed), a decaying portion of the landfill (Landfill\_available), and dumps. For emissions we have burned without energy capture (Fuelwood), emissions from dumps, landfills, and recovered products (DumpsEmit, LandfillEmit, RecoveredEmit), compost, and burned waste with and without energy capture (BurnEnergyCapture, BurnNoCapture). These data can be used to reconstruct the Shiny application figure Carbon Storage and Emissions: Pool and emission category components.
+
+T4.8.CumulativeStorageEmissions\_halflives.csv: These data can be used to reconstruct the Shiny application figure Carbon Storage and Emissions: Pools and emissions by halflife category. Aside from the year column, columns in this table depict the amount of carbon (TgC, TgCO\(_2\)e) that resides in pools or has been cumulatively emitted from sources with different halflives. SWDS (swds), PIU (pu), and EWOEC (E) are broken into their halflife category components, short, medium, and long (st, md, lng). Since EEC (eec) represents fuel wood that was burned immediately, it has no halflife components.
+
+T5.0.AnnualStorageEmissionsChange.csv: These data can be used to reconstruct the Shiny application figure Annual Net Change in Carbon Storage. Values are in TgC and TgCO\(_2\)e. We subtracted the value of one year's SWDS, PIU, EWOEC, and EEC values from the previous to determine what the annual change was. NetStockChange is the sum of the stock, or pool, values of SWDS and PIU. The figure for "IPCC production approach -- stock change" relies on SWDSchange, PIUchange, and NetStockChange values. The figure "IPCC simple decay approach = net balance" relies on the columns Harvest/Harvest\_CO2, EECchange, EWOECchange, and NetStockChange. NetStockChange is the same line as appeared in the "IPCC production approach -- stock change" figure. The column Harvest is in TgC and Harvest\_CO2 is in TgCO\$\_2e. The value given for harvest is the amount of harvest the year prior to the one listed under column Year. The harvest column also equals the sum of the changes in SWDS, PIU, EWOEC, and EEC.
+
+MC\_ComponentsSummary.csv: This table provides the information necessary to produce the figure Monte Carlo Estimates: Cumulative carbon in individual storage and emissions pools. There are values for each year and pool/emission type (Column: Type.M) such as eec (Emitted with Energy Capture), ewoec (Emitted Without Energy Capture), swdsC (Solid Waste Disposal Sites) and pu (Products in Use). The figure is constructed using Means (yellow line), lci, and uci (lower and upper 90\% confidence intervals). The Means are calculated by finding the mean value for an emission or pool type among iteration values for a given year. The columns lci and uci represent lower and upper 90\% confidence intervals, derived directly from the distribution of iteration values for the pool or emissions type from a given years. The two columns pct\_lci and pct\_uci represent a percentage of the mean for the lower and upper confidence intervals. Pct\_lci = lci / Means; pct\_uci = uci / Means. The values in this table are cumulative MTC; the Shiny application transforms them to TgC and TgCO\(_2\)e.
+
+MC\_PIU\_Plus\_SWDS.csv: This table provides the information necessary to produce the figure Monte Carlo Estimates: Cumulative carbon in storage pools combined (Products in Use + SWDS). The values units are cumulative MTC which the Shiny application transforms to TgC and TgCO\(_2\)e. The column Mean represents the mean value of SWDS plus PIU values for a given year across iterations. The columns lci and uci represent lower and upper 90\% confidence intervals, derived directly from the distribution of iteration values for given years.
+
+MC\_All.xlsx: This file is only produced by the stand-alone code if the user sets Run.MC = TRUE and MC.ARRAY.OUT = TRUE. The file has four worksheets: eec, ewoec, swdsC, and pu, representing EEC, EWOEC, SWDS, and PIU. Each column is an iteration while each row is a year. The data are in MTC. The figure "Monte Carlo Estimates: Monte Carlo convergence evaluation" is created using the last year (last row) of the swdsC and pu worksheets. The "mean" value is the successive means of the SWDS + PIU iteration values summed, starting with only the first column and adding columns to consideration (represented by the Iterations axis at the bottom of the figure). The se, ci05, and ci95 columns are the estimated standard error and empirical 5\% and 95\% confidence intervals based on the number of iterations being considered. If the user specifies 2000 iterations over 100 years of harvest data the resulting Excel file can be tens of megabytes in size.
+
+\hypertarget{own-mc}{%
+\section{What to know about running the Monte Carlo simulation}\label{own-mc}}
+
+As described above, there are several controls in the worksheet HWP\_MODEL\_OPTIONS. The user can set the number of iterations they would like the Monte Carlo simulation to run, and set the burn-in period length. The burn-in period is the number of initial iterations that are not considered when calculating means and confidence intervals. You can also set the parameters R and OPT.START if you wish.
+
+If you would like to see the Monte Carlo array, which includes all estimates from all iterations, you will need to run the stand-alone version of the model and set MC.ARRAY.OUT to TRUE.
+
+If you are trying to get the model to run or are playing around with data loading and execution on the Shiny App or stand-alone, I recommend setting the number of iterations to something small like 100. You may find that the Monte Carlo estimates really aren't that far off of from the standard deterministic HWP model run. A small number of iterations will prevent you from waiting for several minutes while the simulation runs. Running the simulations for 1000 iterations may demonstrate a reasonable burn-in number to enter into the input Excel file. When you are ready to obtain a "final" estimate you can increase the number of iterations to 1500, 2000, or more.
+
+If you have ratio values that are close to boundaries (e.g., 0.03 and 0.98), you may notice that confidence intervals do not appear symmetrical around your mean estimate. Please see the Results and Development section under Model Function. The Monte Carlo simulation is encountering a "sum-to-one" boundary constraint that is frequently forcing one ratio value to its boundary (e.g., 1.0) and subsequently setting all related ratios to their opposite boundaries (e.g., 0.0). This can result in a less continuous range of outputs, affecting the distribution of results.
 
 \hypertarget{blocks}{%
 \chapter{Blocks}\label{blocks}}

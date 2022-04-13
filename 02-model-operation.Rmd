@@ -1,8 +1,8 @@
-# HWP Model Operations
+# HWP Model Operations   {#model}
 
-## HWP model function
+## HWP model function   {#model-func}
 
-### Model inputs
+### Model inputs  {#model-func-inp}
 
 The HWP model is a deterministic model which relies on optional and required user-supplied information.  The user must supply annual timber harvest volumes in board feet (BF) by ownership, annual timber product ratios (TPR) that allocate harvest to different timber product classes, annual primary product ratios (PPR) that allocate timber products to different primary products and residue uses, and annual end-use product ratios (EUR) which are subcategories of PPR that represent the final products produced.    
 
@@ -10,9 +10,9 @@ The user may, at a minimum, provide timber harvest volumes and then rely on defa
 
 The user may also provide ratios for discard fates.  These ratios determine, by year, what fraction of discarded paper and wood are channeled into one of six discard categories: burned (Emitted without Energy Capture, EWOEC), burned with energy capture (BWEC), composted, sent to a dump, enter the non-decaying portion of a landfill, or become landfill subject to decay.  Users may also adjust half-life values for paper and wood discards in landfills and dumps and the fraction of material entering landfills that is subject to decay or remains permanently. 
 
-### Summary of model operations
+### Summary of model operations    {#model-func-opp}
 
-In the next section I provide a detailed schematic of how the HWP model code operates.  A more general schematic of the process, very similar to Figure 7 in @stockmann2012, is presented in the Introduction (Figure 1).  Here I provide a written description of the code’s actions.  We start out with data sets and variable information that are arranged by different combinations of year, ownership, and ratio types.  First the model combines (i.e., performs a database join function) harvest data (units = BBF) with board feet to cubic feet conversion factors. The model combines Primary Product Ratios (PPR) with Timber Product Ratios (TPR) and then joins those with the timber harvest volume in cubic feet by year.  These are then joined with conversion values for cubic feet to metric tons of carbon, and the End Use Ratios (EUR).  The result is a data set called eu_ratios, and values for EUR, TPR, PPR, the harvest amount, and the cubic foot to metric tons of carbon conversion factor are multiplied together to produce a variable called MTC for Metric Tons of Carbon.  This variable serves as the carbon input into the model and has the correct units of carbon input per year for each EUR category.    
+In the next section I provide a detailed schematic of how the HWP model code operates.  A more general schematic of the process, very similar to Figure 7 in @stockmann2012, is presented in Figure \@ref(fig:overview-fig).  Here I provide a written description of the code’s actions.  We start out with data sets and variable information that are arranged by different combinations of year, ownership, and ratio types.  First the model combines (i.e., performs a database join function) harvest data (units = BBF) with board feet to cubic feet conversion factors. The model combines Primary Product Ratios (PPR) with Timber Product Ratios (TPR) and then joins those with the timber harvest volume in cubic feet by year.  These are then joined with conversion values for cubic feet to metric tons of carbon, and the End Use Ratios (EUR).  The result is a data set called eu_ratios, and values for EUR, TPR, PPR, the harvest amount, and the cubic foot to metric tons of carbon conversion factor are multiplied together to produce a variable called MTC for Metric Tons of Carbon.  This variable serves as the carbon input into the model and has the correct units of carbon input per year for each EUR category.    
 
 For each year, some of the carbon, fuel wood, is immediately burned and is Emitted with Energy Capture (EEC).  A certain percentage (8% for California and Oregon data) of the carbon allocated to each of the remaining EUR categories is discarded and enters the Discarded Products process and the remaining 92% become the annual carbon addition to the Products in Use (PIU) process.  The model currently assumes that 100% of pulp wood becomes paper with no loss.    
 
@@ -22,11 +22,11 @@ The Discarded Products process uses proportions to divide incoming discarded pro
 
 The HWP code’s outputs are EEC and combined versions of EWOEC, PIU, and SWDS.  The final EEC values are the original EEC values for fuel wood plus the fraction of the discarded materials that are burned with energy capture.  The final EWOEC amounts are combinations of emissions from dumps, recovered materials, landfill decay, burnt refuse, and compost materials.  PIU is the combination of the original PIU values plus recovered carbon that has not decayed.  SWDS is the non-decaying and decaying carbon in landfills plus remaining carbon in dumps.
 
-### Model schematic description
+### Model schematic description  {#model-func-schdesc}
 
 Below I provide a schematic of how the HWP model operates.  The schematic color codes items and flows from the top to bottom of each page.  Inputs, such as worksheets from the Excel data file, are yellow.  Calculated matrices or arrays are blue.  Final output, which may be manipulated to produce tables and figures, are purple.  Calculations or data transformations are peach colored.   
 
-The file and object names listed in the schematic may be found in the provided model code.  My intent is to provide a written description (above) that assists readers with understanding the schematic, which in turn can be used to interpret how the R code (HWP_Model_Function.R) works.  The R code itself is annotated.  Readers may alter the code to incorporate their own files or improve upon the model (see Operating and Changing the Model).    
+The file and object names listed in the schematic may be found in the provided model code.  My intent is to provide a written description (above) that assists readers with understanding the schematic, which in turn can be used to interpret how the R code (HWP_Model_Function.R) works.  The R code itself is annotated.  Readers may alter the code to incorporate their own files or improve upon the model (see Section \@ref(run) Operating and Changing the Model).    
 
 Transformations include database functions such as pivots and joins.  A pivot in this case usually involves lengthening a matrix by taking several columns of data and stacking them into one column, with a second column identifying which of the original columns they came from.  This format is useful for combining data with different levels of information.  For instance, we might have data with rows = different ownerships and columns = years.  We can pivot those data such that there is a column of ownership, a column for the years (years will be repeated for each block of ownerships), and a column for the values.  Say we have another pivoted data set that has data for ownership, years, and Timber Product Ratios.  We can join the two data sets by matching years and ownership values and duplicating the data values from the first data set across all of the Timber Product Ratios for each year/ownership combination.  A somewhat more complicated version of this example is described in the Model Start page of the schematic.    
 
@@ -38,7 +38,7 @@ The HWP program has a decay function that is used repeatedly.  The same function
 
 \newpage
 
-### Model Schematic  
+### Model Schematic    {#model-func-schem}
 
 Model Dimensions Key:   
 Y = number of years (California = 68, from 1952 to 2019)  
@@ -101,9 +101,9 @@ knitr::include_graphics("images/schematic-6.png")
 knitr::include_graphics("images/schematic-7.png")
 ```
 
-### Model Outputs
+### Model Outputs    {#model-func-out}
 
-The model described above treats timber harvest, product manufacture, and disposal as processes that occur within the same year.  To match other reports, outputs are altered (SHIFTYEAR = TRUE; see Providing Your Own Data / Creation of the input file).  All trees harvested in a given year are treated as processed within that year and the carbon is distributed according to the end use product ratios of that same year. Most of the carbon is immediately burned or turned into Products in Use. A fraction (the default 8%) is immediately discarded and distributed to the different discard fates using the discarded disposition ratios for the same year. The carbon fate for a given year is reported for the following year. Carbon that enters the model in a given year does not undergo a half-life decay until the following year. For example, the model uses the Timber Production Output for 1906 and all product and discard ratios for 1906 to distribute the carbon in Products in Use, Burned with Energy Capture, and the discard fates. The sum of those fates for 1906 is recorded in tables as occurring by January 1, 1907. Any carbon from 1906 that was distributed to Products in Use, Landfill, or Dumps was subject to a half-life decay or disposal in 1907.  
+The model described above treats timber harvest, product manufacture, and disposal as processes that occur within the same year.  To match other reports, outputs are altered (SHIFTYEAR = TRUE; see Section \@ref(own-input)).  All trees harvested in a given year are treated as processed within that year and the carbon is distributed according to the end use product ratios of that same year. Most of the carbon is immediately burned or turned into Products in Use. A fraction (the default 8%) is immediately discarded and distributed to the different discard fates using the discarded disposition ratios for the same year. The carbon fate for a given year is reported for the following year. Carbon that enters the model in a given year does not undergo a half-life decay until the following year. For example, the model uses the Timber Production Output for 1906 and all product and discard ratios for 1906 to distribute the carbon in Products in Use, Burned with Energy Capture, and the discard fates. The sum of those fates for 1906 is recorded in tables as occurring by January 1, 1907. Any carbon from 1906 that was distributed to Products in Use, Landfill, or Dumps was subject to a half-life decay or disposal in 1907.  
 
 When users upload their data to the Shiny application or run the stand-alone model, they have the opportunity to download or generate summary tables of the model output.  The provided tables should allow, with effort, the user to reproduce all Shiny application figures except for those associated with the Sankey diagram.    
 
@@ -111,9 +111,9 @@ The stand-alone code can optionally save the arrays used to generate the tables 
 
 Users are encouraged to generate the arrays (OUTPUT_ARRAYS = TRUE) in the stand-alone model and verify calculations.  The above flow diagram provides array names and a general description of how they are used.  The code file HWP_Model_Function.r provides more detail about how they are used.  
 
-## Monte Carlo simulation
+## Monte Carlo simulation  {#model-mc}
 
-### Simulation specifications
+### Simulation specifications    {#model-mc-spec}
 
 The Monte Carlo (MC) simulation alters the values of at least 16 different parameters, listed in Table \@ref(tab:mc-table).  The columns Min Value, Peak Value, and Max Value describe the desired 90% confidence interval for the range of random proportions against which the parameters of interest will be adjusted.  In Table \@ref(tab:mc-table) harvest, timber product ratios and primary product ratios each have two parameters with confidence intervals.  These parameters represent different year sets.  The Oregon data have three year sets for harvest, timber production, and primary product ratios.  Each parameter requires a separate MC random variable.  Finally, parameters for timber product ratios and end use product ratios have a sum-to-one characteristic.  For instance, timber product ratios (TPRs) represent the proportion of total harvest for a given year that is allocated to each of the timber product ratio values. While the proportions change during the time series the full set of TPR proportions will always sum to one.   
 
@@ -129,7 +129,7 @@ knitr::kable(c1,
   kable_styling(latex_options = "scale_down")
 ```
 
-### Simulation Sampling  
+### Simulation Sampling     {#model-mc-samp}
 
 As in other HWP publications such as @stockmann2012 and @anderson2013, the random variables in the Monte Carlo simulations are drawn from triangular distributions.  The distributions all have a peak value of 1.0 (Table \@ref(tab:mc-table)) and symmetrically taper to given 90% confidence interval bounds.  The values from the triangular distribution are used as proportions for adjusting parameter values.  
 
@@ -188,7 +188,7 @@ $$
 
 Linear multiplication of the three variables against the Choleski decomposition alters the second and third variables such that they are correlated to the first.  I create the correlated triangular random variables by first transforming an iteration’s three LHS random uniform variables into values from a standard normal distribution by treating the random uniform variables as probability quantiles from a standard normal distribution.  The three standard normal values are then altered and become correlated by linearly multiplying them by the Choleski decomposition.  The values are transformed back to a standard uniform distribution by finding the normal cumulative distribution function values of the three normally distributed and correlated random variables.   These random variables are then ready to be processed as described above into draws from a triangular distribution.  
 
-### Sampling and the HWP program
+### Sampling and the HWP program   {#model-mc-samphwp}
 
 The MC code operates by first running the original HWP program. This creates many values and arrays that the MC simulation relies upon and which we do not want to duplicate with each simulation iteration.  I simplified the MC simulation code by moving several functions outside of the code and removing specific outputs and their precursors that were no longer needed.  The goal of the MC simulation was to produce estimates and confidence intervals for overall values for SWDS, PIU, EWOEC, EEC, and their combinations. 
 
@@ -228,7 +228,7 @@ Description of these parameters is combined because they relied on the same proc
 $\textit{Discarded Disposition Ratios for Wood and Paper}$  
 These ratios control what fraction of waste ends up as burned, burned with energy capture, recycled, composted, placed in a landfill, or sent to a dump (the six fates).  The values can differ by year.  I wrote a function that operated on the ratios for wood and paper separately.  The function performed the sum-to-one approach on the six ratios for either wood or paper.  The original HWP analysis process relied on a function for each of these six fates that was time consuming.  This function was removed for the MC simulation.  Prior to the MC loop I created a matrix that contained altered values for wood and paper across all years and for each iteration for the six fates.  The MC loop calls, for each iteration, a different subset of the matrix to use for calculations involving the six fates.   
 
-### Monte Carlo results and development 
+### Monte Carlo results and development    {#model-mc-res}
 It appears that the full version of the MC simulation reaches convergence with 2000 iterations (Figure \@ref(fig:mc-conv-fig)).  Convergence was assessed visually by examining, over the iterations, the estimated values for the mean, standard error (SE), and the lower and upper empirical 90% confidence interval limits.  All four values appear to have reached their stable values by 1500 iterations, as verified with iterations 1501 - 2000.  (Note: the calculated SE values are not used beyond this figure.)
 
 ```{r mc-conv-fig, echo = FALSE, fig.cap = "Monte Carlo convergence assessment for the upper and lower bounds of the empirical 90\\% confidence interval, the mean, and the standard error for the full model.", fig.asp = 0.7, fig.width= 6, out.width = '100%'}

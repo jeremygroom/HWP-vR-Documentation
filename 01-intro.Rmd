@@ -1,6 +1,6 @@
-# Introduction 
+# Introduction  {#int}
 
-## General description of the HWP model
+## General description of the HWP model    {#int-gen}
 
 An overview schematic of the HWP model is provided in Figure \@ref(fig:overview-fig). For every year of consideration, timber harvest results in board-feet of timber arriving at mills.  These harvest values may be subdivided by the land ownership that produced the timber.  Timber values are multiplied by the timber product classes, then the primary product ratios for each timber products class, and finally the end-use ratios for each primary products class.  These resulting values are transformed to Tg C.  Some end-use ratios involve material that is burned for energy capture.  Other end-use products become products in use, although the process of creating those results in a percentage of the material ending up as discarded products.  Material entering discarded products is proportionally allocated to dumps, landfill, compost, or are recovered (recycled) or burned without energy capture.  
 
@@ -14,7 +14,7 @@ knitr::include_graphics("images/OverviewModelSchematic.png")
 ```
 
 
-## Model history 
+## Model history   {#int-hist}
 
 The HWP model began as an Excel macro for the USFS, as described by @stockmann2012.  A newer version of the tool (v1) was made available in 2012 [@loeffler2014].  The states of Oregon, California and Washington are signatories to a Memorandum of Understanding for Pacific Coast Temperate Forests (MOU). The MOU partners have a common requirement to generate reliable estimates of the stock and flux of carbon in harvested wood products.  A west-coast specific state-level variant of the model was developed in C++; however, it did not fully account for the carbon mass entering the cycle from timber harvest, nor did it generate reliable error estimates using a Monte Carlo simulation approach.  Perhaps most importantly, the software was not in a form that could be readily viewed, understood, or changed by others. Representatives from each west-coast state  and the USFS agreed that the software needed to be re-written in order to correct these errors.  
 
@@ -28,11 +28,11 @@ knitr::include_graphics("images/ModelHistory.png")
 ```
 
 
-## Model utility  
+## Model utility    {#int-util}
 
 The HWP model (and associated visualizations) is a long-term accounting tool for carbon emissions and storage from harvested wood products.  Users can easily understand how harvest levels have changed over time, by ownership and in total.  Given changes in disposal methods and the assumed lifetime use of wood products, users can examine what proportion of harvested wood products remain in use, in disposal sites, or as CO$_2$ emitted to the atmosphere.  The model may be useful for planners and decision-makers to understand the emissions consequences of promoting wood products with different use lifespans.    
 
-## HWP model assumptions and shortcomings  
+## HWP model assumptions and shortcomings    {#int-assump}
 
 The HWP model is a closed model, and tracks only carbon harvested within a specified area.  Therefore, at a state level, emissions from HWP may be greater than expected from timber harvested within the state if the state imports timber or timber products.  Similarly, exported timber or timber products may experience different utilization or decay processes.    
 
@@ -44,6 +44,6 @@ The Monte Carlo takes a specific approach towards varying the ratios, constraini
 
 Finally, we are not aware of any method for overall model validation.  Estimates for individual pieces of the model, such as product or decay half-lives, can be improved.  But, like all models, the HWP model simplifies reality greatly and hopefully provides users with useful insight by tracking and summarizing complicated calculation outputs in a reasonable way.    
 
-## Future work  
+## Future work    {#int-future}
 
 Users can improve the model’s utility by researching and altering model input tables with their own regional information.  There is interest in incorporating a means for tracking the production of CO$_2$ separately from methane as methane is a much more powerful greenhouse gas that results from anoxic decomposition such as occurs in landfills.  In the short term we plan to update the model so that users can control the discard ratios for paper and wood products.  Finally, work is currently being done at the University of Massachusetts  to explore the consequences of errors in estimating the capability of landfills to retain carbon without decay.    

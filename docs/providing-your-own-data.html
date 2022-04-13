@@ -1,0 +1,447 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>Chapter 5 Providing Your Own Data | Harvested Wood Products vR Documentation</title>
+  <meta name="description" content="<p>This is a minimal example of using the bookdown package to write a book.
+The HTML output format for this example is bookdown::gitbook,
+set in the _output.yml file.</p>" />
+  <meta name="generator" content="bookdown 0.25 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="Chapter 5 Providing Your Own Data | Harvested Wood Products vR Documentation" />
+  <meta property="og:type" content="book" />
+  
+  <meta property="og:description" content="<p>This is a minimal example of using the bookdown package to write a book.
+The HTML output format for this example is bookdown::gitbook,
+set in the _output.yml file.</p>" />
+  <meta name="github-repo" content="jeremygroom/HWP-vR-Documentation" />
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Chapter 5 Providing Your Own Data | Harvested Wood Products vR Documentation" />
+  
+  <meta name="twitter:description" content="<p>This is a minimal example of using the bookdown package to write a book.
+The HTML output format for this example is bookdown::gitbook,
+set in the _output.yml file.</p>" />
+  
+
+<meta name="author" content="Jeremiah Groom" />
+
+
+<meta name="date" content="2022-04-12" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="run.html"/>
+<link rel="next" href="blocks.html"/>
+<script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+<link href="libs/anchor-sections-1.1.0/anchor-sections.css" rel="stylesheet" />
+<link href="libs/anchor-sections-1.1.0/anchor-sections-hash.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.1.0/anchor-sections.js"></script>
+
+
+
+<style type="text/css">
+/* Used with Pandoc 2.11+ new --citeproc when CSL is used */
+div.csl-bib-body { }
+div.csl-entry {
+  clear: both;
+}
+.hanging div.csl-entry {
+  margin-left:2em;
+  text-indent:-2em;
+}
+div.csl-left-margin {
+  min-width:2em;
+  float:left;
+}
+div.csl-right-inline {
+  margin-left:2em;
+  padding-left:1em;
+}
+div.csl-indent {
+  margin-left: 2em;
+}
+</style>
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">A Minimal Book Example</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> url: your book url like <span>https://bookdown.org/yihui/bookdown</span><span></span></a>
+<ul>
+<li class="chapter" data-level="1.1" data-path="index.html"><a href="index.html#acknowledgements"><i class="fa fa-check"></i><b>1.1</b> Acknowledgements<span></span></a></li>
+<li class="chapter" data-level="1.2" data-path="index.html"><a href="index.html#abbreviations"><i class="fa fa-check"></i><b>1.2</b> Abbreviations<span></span></a></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="introduction.html"><a href="introduction.html"><i class="fa fa-check"></i><b>2</b> Introduction<span></span></a>
+<ul>
+<li class="chapter" data-level="2.1" data-path="introduction.html"><a href="introduction.html#general-description-of-the-hwp-model"><i class="fa fa-check"></i><b>2.1</b> General description of the HWP model<span></span></a></li>
+<li class="chapter" data-level="2.2" data-path="introduction.html"><a href="introduction.html#model-history"><i class="fa fa-check"></i><b>2.2</b> Model history<span></span></a></li>
+<li class="chapter" data-level="2.3" data-path="introduction.html"><a href="introduction.html#model-utility"><i class="fa fa-check"></i><b>2.3</b> Model utility<span></span></a></li>
+<li class="chapter" data-level="2.4" data-path="introduction.html"><a href="introduction.html#hwp-model-assumptions-and-shortcomings"><i class="fa fa-check"></i><b>2.4</b> HWP model assumptions and shortcomings<span></span></a></li>
+<li class="chapter" data-level="2.5" data-path="introduction.html"><a href="introduction.html#future-work"><i class="fa fa-check"></i><b>2.5</b> Future work<span></span></a></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="hwp-model-operations.html"><a href="hwp-model-operations.html"><i class="fa fa-check"></i><b>3</b> HWP Model Operations<span></span></a>
+<ul>
+<li class="chapter" data-level="3.1" data-path="hwp-model-operations.html"><a href="hwp-model-operations.html#hwp-model-function"><i class="fa fa-check"></i><b>3.1</b> HWP model function<span></span></a>
+<ul>
+<li class="chapter" data-level="3.1.1" data-path="hwp-model-operations.html"><a href="hwp-model-operations.html#model-inputs"><i class="fa fa-check"></i><b>3.1.1</b> Model inputs<span></span></a></li>
+<li class="chapter" data-level="3.1.2" data-path="hwp-model-operations.html"><a href="hwp-model-operations.html#summary-of-model-operations"><i class="fa fa-check"></i><b>3.1.2</b> Summary of model operations<span></span></a></li>
+<li class="chapter" data-level="3.1.3" data-path="hwp-model-operations.html"><a href="hwp-model-operations.html#model-schematic-description"><i class="fa fa-check"></i><b>3.1.3</b> Model schematic description<span></span></a></li>
+<li class="chapter" data-level="3.1.4" data-path="hwp-model-operations.html"><a href="hwp-model-operations.html#model-schematic"><i class="fa fa-check"></i><b>3.1.4</b> Model Schematic<span></span></a></li>
+<li class="chapter" data-level="3.1.5" data-path="hwp-model-operations.html"><a href="hwp-model-operations.html#model-outputs"><i class="fa fa-check"></i><b>3.1.5</b> Model Outputs<span></span></a></li>
+</ul></li>
+<li class="chapter" data-level="3.2" data-path="hwp-model-operations.html"><a href="hwp-model-operations.html#monte-carlo-simulation"><i class="fa fa-check"></i><b>3.2</b> Monte Carlo simulation<span></span></a>
+<ul>
+<li class="chapter" data-level="3.2.1" data-path="hwp-model-operations.html"><a href="hwp-model-operations.html#simulation-specifications"><i class="fa fa-check"></i><b>3.2.1</b> Simulation specifications<span></span></a></li>
+<li class="chapter" data-level="3.2.2" data-path="hwp-model-operations.html"><a href="hwp-model-operations.html#simulation-sampling"><i class="fa fa-check"></i><b>3.2.2</b> Simulation Sampling<span></span></a></li>
+<li class="chapter" data-level="3.2.3" data-path="hwp-model-operations.html"><a href="hwp-model-operations.html#sampling-and-the-hwp-program"><i class="fa fa-check"></i><b>3.2.3</b> Sampling and the HWP program<span></span></a></li>
+<li class="chapter" data-level="3.2.4" data-path="hwp-model-operations.html"><a href="hwp-model-operations.html#monte-carlo-results-and-development"><i class="fa fa-check"></i><b>3.2.4</b> Monte Carlo results and development<span></span></a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="run.html"><a href="run.html"><i class="fa fa-check"></i><b>4</b> Operating and changing the model<span></span></a>
+<ul>
+<li class="chapter" data-level="4.1" data-path="run.html"><a href="run.html#run-sum"><i class="fa fa-check"></i><b>4.1</b> User interaction with the HWP model<span></span></a></li>
+<li class="chapter" data-level="4.2" data-path="run.html"><a href="run.html#run-shiny"><i class="fa fa-check"></i><b>4.2</b> Basic web interactivity – Shiny app<span></span></a>
+<ul>
+<li class="chapter" data-level="4.2.1" data-path="run.html"><a href="run.html#run-shiny-timber"><i class="fa fa-check"></i><b>4.2.1</b> Timber Harvest Summaries<span></span></a></li>
+<li class="chapter" data-level="4.2.2" data-path="run.html"><a href="run.html#run-shiny-cse"><i class="fa fa-check"></i><b>4.2.2</b> Carbon Storage and Emissions<span></span></a></li>
+<li class="chapter" data-level="4.2.3" data-path="run.html"><a href="run.html#run-doc"><i class="fa fa-check"></i><b>4.2.3</b> Documentation and Data Upload<span></span></a></li>
+</ul></li>
+<li class="chapter" data-level="4.3" data-path="run.html"><a href="run.html#run-opp"><i class="fa fa-check"></i><b>4.3</b> Operating the model from your own machine<span></span></a>
+<ul>
+<li class="chapter" data-level="4.3.1" data-path="run.html"><a href="run.html#run-opp-git"><i class="fa fa-check"></i><b>4.3.1</b> R, RStudio, GitHub, and downloading the files<span></span></a></li>
+<li class="chapter" data-level="4.3.2" data-path="run.html"><a href="run.html#run-opp-files"><i class="fa fa-check"></i><b>4.3.2</b> File structure<span></span></a></li>
+<li class="chapter" data-level="4.3.3" data-path="run.html"><a href="run.html#run-opp-shiny"><i class="fa fa-check"></i><b>4.3.3</b> Running the Shiny app from your computer<span></span></a></li>
+<li class="chapter" data-level="4.3.4" data-path="run.html"><a href="run.html#run-opp-sa"><i class="fa fa-check"></i><b>4.3.4</b> The Stand-alone model: benefits, utility, and how to operate<span></span></a></li>
+<li class="chapter" data-level="4.3.5" data-path="run.html"><a href="run.html#run-opp-add"><i class="fa fa-check"></i><b>4.3.5</b> How to add new data years to your data set<span></span></a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="providing-your-own-data.html"><a href="providing-your-own-data.html"><i class="fa fa-check"></i><b>5</b> Providing Your Own Data<span></span></a>
+<ul>
+<li class="chapter" data-level="5.1" data-path="providing-your-own-data.html"><a href="providing-your-own-data.html#overview"><i class="fa fa-check"></i><b>5.1</b> Overview<span></span></a></li>
+<li class="chapter" data-level="5.2" data-path="providing-your-own-data.html"><a href="providing-your-own-data.html#creation-of-the-input-file"><i class="fa fa-check"></i><b>5.2</b> Creation of the input file<span></span></a></li>
+<li class="chapter" data-level="5.3" data-path="providing-your-own-data.html"><a href="providing-your-own-data.html#the-quality-assurance-step"><i class="fa fa-check"></i><b>5.3</b> The quality assurance step<span></span></a></li>
+<li class="chapter" data-level="5.4" data-path="providing-your-own-data.html"><a href="providing-your-own-data.html#uploading-your-data-and-running-the-model-from-the-shiny-app"><i class="fa fa-check"></i><b>5.4</b> Uploading your data and running the model from the Shiny app<span></span></a></li>
+<li class="chapter" data-level="5.5" data-path="providing-your-own-data.html"><a href="providing-your-own-data.html#using-the-stand-alone-to-run-the-hwp-model-and-monte-carlo-simulation-on-your-data"><i class="fa fa-check"></i><b>5.5</b> Using the Stand-alone to run the HWP model and Monte Carlo simulation on your data<span></span></a></li>
+</ul></li>
+<li class="chapter" data-level="6" data-path="blocks.html"><a href="blocks.html"><i class="fa fa-check"></i><b>6</b> Blocks<span></span></a>
+<ul>
+<li class="chapter" data-level="6.1" data-path="blocks.html"><a href="blocks.html#equations"><i class="fa fa-check"></i><b>6.1</b> Equations<span></span></a></li>
+<li class="chapter" data-level="6.2" data-path="blocks.html"><a href="blocks.html#theorems-and-proofs"><i class="fa fa-check"></i><b>6.2</b> Theorems and proofs<span></span></a></li>
+<li class="chapter" data-level="6.3" data-path="blocks.html"><a href="blocks.html#callout-blocks"><i class="fa fa-check"></i><b>6.3</b> Callout blocks<span></span></a></li>
+</ul></li>
+<li class="chapter" data-level="7" data-path="sharing-your-book.html"><a href="sharing-your-book.html"><i class="fa fa-check"></i><b>7</b> Sharing your book<span></span></a>
+<ul>
+<li class="chapter" data-level="7.1" data-path="sharing-your-book.html"><a href="sharing-your-book.html#publishing"><i class="fa fa-check"></i><b>7.1</b> Publishing<span></span></a></li>
+<li class="chapter" data-level="7.2" data-path="sharing-your-book.html"><a href="sharing-your-book.html#pages"><i class="fa fa-check"></i><b>7.2</b> 404 pages<span></span></a></li>
+<li class="chapter" data-level="7.3" data-path="sharing-your-book.html"><a href="sharing-your-book.html#metadata-for-sharing"><i class="fa fa-check"></i><b>7.3</b> Metadata for sharing<span></span></a></li>
+</ul></li>
+<li><a href="references.html#references">References<span></span></a></li>
+<li class="divider"></li>
+<li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Harvested Wood Products vR Documentation</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="providing-your-own-data" class="section level1 hasAnchor" number="5">
+<h1><span class="header-section-number">Chapter 5</span> Providing Your Own Data<a href="providing-your-own-data.html#providing-your-own-data" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<div id="overview" class="section level2 hasAnchor" number="5.1">
+<h2><span class="header-section-number">5.1</span> Overview<a href="providing-your-own-data.html#overview" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Users may import their own data into the Shiny application and have the application run the HWP model and Monte Carlo simulation. The following documentation is intended to assist with the construction and explanation of the input file. Once the user has built their own input file, the file can be uploaded to the Shiny application or read by the stand-alone model. In either scenario a QA check verifies that the data are correctly compiled. Once this is done, the application can display the user’s data and the user can download tables of the output. The stand-alone model can provide arrays and tables of the output.</p>
+<p>The data reside in a single workbook formatted as a MS Excel file with the .xlsx extension. The Excel file has many tabs, described below. Provided examples and templates may be modified by the user when they construct their own import file. The examples and templates are located in the GitHub folder “HWP Data.”</p>
+<p>There are many values that the user should consider altering based on regional available and historic mill data, dump and landfill decomposition information, etc. At a minimum users can provide yearly values of total harvested billion board feet from their region, alter the rest of the worksheets to reflect their year values, and make use of all other available values from one of the examples or templates.</p>
+</div>
+<div id="creation-of-the-input-file" class="section level2 hasAnchor" number="5.2">
+<h2><span class="header-section-number">5.2</span> Creation of the input file<a href="providing-your-own-data.html#creation-of-the-input-file" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>This explanation may work best if the user opens example files, such as CA_Inputs_HWP_Model.xlsx or Oregon_Inputs_HWP_Model.xlsx, and examines the files while reading the description of each worksheet.</p>
+<p>The worksheet HWP_MODEL_OPTIONS allows the user to customize the operation and output of the HWP model. The values in this worksheet affect the operation of the stand-alone model and/or the Shiny application. Below are options that the user may adjust:</p>
+<ul>
+<li><p>DATASET.NAME (string): This value only affects the Shiny application. This name will appear as an option in the upper-left pulldown menu in the application. Avoid using the names “California” or “Oregon.”</p></li>
+<li><p>QA_TEST (TRUE, FALSE) – This value only affects the stand-alone model. The default is TRUE. If TRUE, the stand-alone code will examine all worksheets except HWP_MODEL_OPTIONS. See Quality Assurance Step below. If FALSE, the code will skip the quality assurance step and attempt to load the worksheets without examining them. There is little system time needed to conduct the QA test.</p></li>
+<li><p>OUTPUT_ARRAYS (TRUE, FALSE) – This value only affects the stand-alone model. If users would like the code to produce the analysis arrays so that they can trouble-shoot model issues or verify calculations, cell B2 should be TRUE (default). Otherwise, FALSE. There is a noticeable time savings in code execution to set to FALSE.</p></li>
+<li><p>OUTPUT_TABLES (TRUE, FALSE) – This value only affects the stand-alone model. This option allows users to select whether the code produces output tables for the base HWP analysis. Default = TRUE.</p></li>
+<li><p>SHIFTYEAR (TRUE, FALSE) – Affects both the Shiny application and stand-alone model. If the user wants tabular and figure outputs of emissions and pools reported as occurring the year after harvest, cell E2 should be TRUE. If the user wants those outputs reported as occurring during the same year as harvest, select FALSE.</p></li>
+<li><p>PIU.LOSS (Double, 0.00 to 1.00) – Affects both the Shiny application and stand-alone model. The current estimated loss of carbon entering PIU through manufacturing is 0.08, or 8%. Enter the default value of 0.08 unless you wish to alter the amount. Cannot exceed 1.0 or fall below 0.</p></li>
+<li><p>ARRAYLOC (Text) – This value only affects the stand-alone model. The default value is “HWP_Stand_Alone_Files/Arrays/.” If you wish to save arrays to a different folder, change the folder location value. If you are using Windows, be sure to use the forward slash “/” between folder levels and not the back slash.</p></li>
+<li><p>TABLELOC (Text) – This value only affects the stand-alone model. The default value is “HWP_Stand_Alone_Files/Tables/.” If you wish to save tables to a different folder, change the folder location value. If you are using Windows, be sure to use the forward slash “/” between folder levels and not the back slash.</p></li>
+<li><p>RUN.MC (TRUE, FALSE) – This value only affects the Shiny application. If you would like to run the Monte Carlo simulation on your data set, ensure that this value is TRUE. The main model code will run and then verify that this value is TRUE, at which time it will source the Monte Carlo R code and run it. Note: running the Monte Carlo simulation is very time consuming. Set this option to FALSE if you are running the stand-alone model and are not currently interested in the Monte Carlo output.</p></li>
+<li><p>R (Numeric, between 0 to 1) – Affects both the Shiny application and stand-alone model. This value is the target Pearson’s correlation coefficient that will be used to correlate triangular distribution values in the Monte Carlo. For instance, if the worksheet MonteCarloDistrParameters has three accuracy values for Harvest, depending on the year of harvest, the value for R will determine how correlated the three random draws are that are used to adjust the Harvest values for each iteration. The default is 0.5, as was used in <span class="citation"><a href="#ref-stockmann2012" role="doc-biblioref">Stockmann et al.</a> (<a href="#ref-stockmann2012" role="doc-biblioref">2012</a>)</span>.</p></li>
+<li><p>OPT.START.VALUE (Numeric, between 0 and 1) – Affects both the Shiny application and stand-alone model. The MonteCarloDistrParameters states minimum and maximum 90% Confidence Intervals from which the Monte Carlo random variables are to be drawn. However, when we transform random uniform values into values from a triangular distribution, we need to know the triangular distribution endpoints. In the Monte Carlo code, the function “ab.boundaries.fcn” performs a search algorithm to find the triangular distribution end points given the confidence intervals provided in the MonteCarloDistrParameters worksheet. The default start value for the algorithm is 0.5 and likely does not need to be altered for the Monte Carlo code to function adequately.</p></li>
+<li><p>N.ITER (Integer, 1 or greater) – Affects both the Shiny application and stand-alone model. This value determines the number of iterations the Monte Carlo performs. In the Shiny application, the Monte Carlo Estimates selection “Monte Carlo convergence estimation” produces convergence plots that track estimates for the last year examined in the model. The plot shows the values for the mean, standard error, and 95% and 5% Confidence Intervals given the iterations performed. Of the four, the Mean is most informative. If the line is stable for many iterations (we seem to obtain fairly stable results with 2000 iterations) then you likely have a sufficient number of iterations. The more iterations, the slower the code will run. Too few iterations will provide unreliable results. The default value is currently 100 runs which is likely too few but is sufficient to verify that the process works. 1000 to 2000 might be a recommended number for obtaining reliable estimates and determining what the length of the burn-in period should be.</p></li>
+<li><p>BURN.IN (Integer, 0 or greater) - This value only affects the Shiny application. In the same figure mentioned in the previous N.ITER description, there is a vertical magenta line that signifies the burn-in period. Everything to the left of the line is discarded when results are plotted in the Shiny application. The user should set the BURN.IN value to the number of iterations after which the Monte Carlo appears fairly stable, e.g., the estimate for the mean approximates a horizontal line.</p></li>
+<li><p>MC.ARRAY.OUT (TRUE, FALSE) – This value only affects the stand-alone model. If TRUE, the Monte Carlo code will generate the (large) Microsoft Excel workbook MC_All.xlsx that contains all MMTC values for each year and each iteration of the Monte Carlo code. There is a separate tab for Emitted with Energy Capture (eec), Emitted Without Energy Capture (ewoec), Solid Waste Disposal Sites carbon (swdsC), and Products in Use (pu). The default is TRUE; if it is FALSE the code will run a bit faster and the large (~10 MB?) file will not be produced. The file is provided for model assessment purposes.</p></li>
+</ul>
+<p>The worksheet Harvest_BF contains annual harvest values in billion board feet (BBF). The left column must contain the heading “Year” and have years listed in sequential order from least to greatest. Ownership columns may follow, with a final column entitled “Total” that must equal the ownership values. Users may omit all but the Year and Total columns. Users may have ownership values appear at some point after the first year of total harvest values; however, leave the ownership cells prior to the first year of ownership values blank and not filled with zeros. The QA check sums the values to determine if they equal the total value, so a series of zeros obviously will cause the QA check to fail.</p>
+<p>The worksheet BFCF contains the BBF to hundred Cubic Feet (CCF) conversion factors based on time periods. There are only three columns, Conversion, StartYear, and EndYear. Ensure that the first Start Year begins with the minimum Harvest_BF Year and that conversion time periods do not overlap. The Conversion column values are formatted as doubles and StartYear and EndYear values are integers.</p>
+<p>The worksheet TimberProdRatios contain the timber product ratios, or TPR. The first column must be TimberProductID. The remainder of the columns are named after the sequential years of harvest data, from the earliest year to the final year. All year-column values must sum to one. Row values may change over time.</p>
+<p>The worksheet PrimaryProdRatios contain the primary product ratios, or PPR. The first column must be PrimaryProductID. The remainder of the columns are named after the sequential years of harvest data, from the earliest year to the final year. All year-column values must sum to the number of TPR rows. Row values may change over time.</p>
+<p>The worksheet EndUseRatios contains the end use ratios, or EUR. The first column must be EndUseID. The remainder of the columns are named after the sequential years of harvest data, from the earliest year to the final year. All year-column values must sum to the number of PPR rows. Row values may change over time.</p>
+<p>The worksheet RatioCategories acts as a link between TPR, PPR, and EUR categories. The first three column labels, TimberProductID, PrimaryProductID, and EndUseID, must have the same names as the respective first columns of the previous three worksheets described. The fourth through sixth column names are TimberProduct, PrimaryProduct, and EndUseProduct, and contain text describing what the categories contain. Note that EndUseProduct is a subcategory of PrimaryProduct, and PrimaryProduct is a subcategory of TimberProduct. The R code ignores columns 4 through 6; they are there for assisting users in identifying row values.</p>
+<p>The worksheet CCF_MT_Conversion contains carbon CCF to metric tons (MT) conversion factors for individual primary products. The first column title must be PrimaryProductID, and the second column CCFtoMTconv. The first column values must be integers and include all primary product ratio categories.</p>
+<p>The worksheet EU_HalfLives contains half-life values (in years) for each of the end use categories. The first column must be titled EndUseID, the second EU_HalfLife. The values for EndUseID must be integers and include all end use ratio categories.</p>
+<p>The worksheet DiscardFates contains values that apportions discarded carbon to different discard categories: BWEC = Burned with Energy Capture, BWoEC = Burned Without Energy Capture, Recovered, Composted, Landfills, and Dumps. Paper (defined by the code as primary products where the column EndUseProduct in the worksheet RatioCategories contains the word “pulp”) and wood products are allowed to have different discard ratio values. The first two columns must be named DiscardType and DiscardDestination. The remainder of the column titles are the years, in order, from longest ago to most recent. The sum of each year-column should be two (all wood and all paper values within a column should sum to one).</p>
+<p>The worksheet Discard_HalfLives provides half-life values in years for paper and wood in dumps (Dumps), recovered products (Recovered), and the decaying portion of landfills (Landfills_decay). It also, possibly confusingly, includes values for the proportion of wood and paper that end up in the non-decaying portion of landfills (Landfills_fixed). The columns must be labeled Type, Dumps, Landfills_fixed, Landfills_decay, and Recovered.</p>
+<p>The worksheet MonteCarloValues allows users to define how much “noise” to introduce into the HWP model for the Monte Carlo simulation and to specify aspects of the Monte Carlo that they would like to control. The worksheet needs to be altered to conform to the user’s data structure for the Monte Carlo to run. That is, if users have data from 1970 – 2018, they will need to change First_Year and Last_Year values for some of the rows. Users can change First_Year, Last_Year, MinCI, MaxCI, and CI values. They may add or delete rows for Harvest, TimberProdRatios, and PrimaryProdRatios. Each row of the worksheet represents a vector of random draws, with one random draw per iteration. If our model had 100 iterations and this worksheet had 20 rows, the R script will obtain 2000 random uniform draws between zero and one, 100 random values per row. (Please use more than 100 iterations for your final runs.) The R script will change these values to triangular distributions with a peak at 1.0 (column Peak Value) and lower and upper confidence intervals as defined by the columns MinCI and MaxCI. The resulting random numbers for a given parameter (row) will have values that are above or below 1.0. In general, the parameter values associated with each of the parameters are multiplied by the random number for a single iteration. If the random number is 0.86, the parameter value will be reduced to 86% of its original size. Below we describe each of the columns and column values in this worksheet.</p>
+<ul>
+<li><p>Parameter_ID: This column is included for the user’s information; the R script does not rely upon it. Each of the parameters to be altered is listed here. Some parameters (namely, those after Parameter ID number 13) may have more than one set of random numbers generated for it. For instance, if we wish for Harvest values to be modeled as becoming more accurate through time, reflecting improvements in reporting and data collection, we may wish to indicate three periods of years with increasing estimate precision. A series of random numbers will be drawn for each of the time periods, and then correlated (see above). Within an iteration, this example would have three correlated random numbers that would be used for the three periods of years. The parameter ID for Harvest would be the same number repeated three times (14, 14, 14).<br />
+</p></li>
+<li><p>Parameter_Name: The column name, “Parameter Name,” is not used by the code. However, the column values are names for specific parameters that are used by the code. These must remain unchanged. The names can be repeated as necessary (following on the example for Parameter ID, Parameter ID 14, 14, 14 would be associated with Parameter Name “Harvest,” “Harvest,” “Harvest”). Below are descriptions of which parameters and worksheets each relates to:</p>
+<ul>
+<li><p>CCFtoMTC: This name translates as “hundred cubic feet converted to metric tons carbon.” Each Monte Carlo iteration will alter the conversion values associated with the worksheet CCF_MT_Conversion.</p></li>
+<li><p>EndUse_HalfLives: Each Monte Carlo iteration’s random number for this parameter will adjust the end use half life values found in EU_halflives.</p></li>
+<li><p>EndUseRatios: This variable refers to the end use ratio values found in the worksheet EndUseRatios. Each iteration of the Monte Carlo will use one random value to change the end use ratio values. See the section “Sum-To-One Constraint” to understand how the values are altered.<br />
+</p></li>
+<li><p>DiscardedDispositionRatios, Paper: There are two rows in the Parameter Name column with the name DiscardedDispositionsRatios. The adjacent column, “Paper,” indicates whether these disposition ratios are for paper (1) or wood (0). The disposition ratios are from the worksheet DiscardFates. They determine what fraction of paper or wood enter the categories of Burned with Energy Capture, Burned Without Energy Capture, Recovered, Composted, Landfills, or Dumps. Like End Use Ratios, these ratios are subject to the sum-to-one constraint.</p></li>
+<li><p>LandfillDecayLimits: The wood and paper values represent the landfill decay limits, or the proportion of landfill material that is subject to decay. The values are obtained from the worksheet Discard_HalfLives.</p></li>
+<li><p>Landfill_HalfLives, Dump_HalfLives, Recovered_HalfLives: the six rows with these parameter names are associated with wood and paper decomposition half-lives for materials subject to decay in landfills, dumps, and in recovered products. The values are obtained from the worksheet Discard_HalfLives.</p></li>
+<li><p>Harvest: This parameter references the cubic-foot volume amounts harvested each year. The values are originally provided as board feet from the worksheet Harvest_BF, but they are transformed in the original (non-Monte Carlo) portion of the analysis and the transformed values are used in the Monte Carlo. There may be more than one row labeled as Harvest, reflecting different accuracies to be used for different year-ranges.<br />
+</p></li>
+<li><p>TimberProdRatios: Like Harvest, there may be more than one entry for TimberProdRatios. The original worksheet is TimberProdRatios. Like EndUseRatios, a random value associated with a range of years will alter some, but not all, Timber Product Ratio values. See the section “Sum-To-One Constraint.”</p></li>
+<li><p>PrimaryProdRatios. This type of parameter is altered much the same as TimberProdRatios and the original values may be found in the worksheet PrimaryProdRatios. It too is subject to the “Sum-To-One Constraint.”</p></li>
+</ul></li>
+<li><p>Paper: As described above for DiscardedDispositionRatios and other parameters, some parameters represent paper (1) or wood (0) for their associated parameters.</p></li>
+<li><p>First Year, Last Year: These are values that users must change. The values in this column represent the first year of a given year period. For instance, if our data set included harvest from 1906 to 2017 but we wanted to increase the precision of the Monte Carlo values in steps leading to the final year, then we need to indicate what years each level of precision refers to. If only one level of precision is used, provide the first year of harvest (e.g., 1906) under the First Year column and the last year of harvest (2017) to the Last Year column. If there are three Harvest rows, we want the First Year to capture all beginning years for given year periods and Last Year to capture the terminal year. For the first Harvest we might have First and Last Year values of 1906 and 1945, then in the second row the values 1946 and 1979, and finally the third row would contain a First Year of 1980 to 2017. Crucially: the very first First Year must be the first year of your harvest values, whether for Harvest, TimberProdRatios, or PrimaryProdRatios. There must not be overlap in years (e.g., if the first row had 1906 to 1945 and the next row had 1941 to 1955, the sets would overlap). There must not be gaps (e.g., 1906 to 1945, then 1947 to 1955, leaving out 1946). You do not have to have the same sets of years used among parameter types (e.g., Harvest year sets do not need to match TimberProdRatios year sets). You do not need parameter types to have the same number of sets (Harvest could have two rows, PrimaryProdRatios could have three). You may have more or fewer than three year-sets per parameter type.</p></li>
+<li><p>MinCI, Peak Value, MaxCI: As described above, these values are used to define the triangular distributions from which the random Monte Carlo values will be generated. For these three columns, Peak Values should all be 1.0, with the MinCI and MaxCI symmetric around this value (the Monte Carlo code assumes symmetric triangular distributions). That is, the MinCI and MaxCI must differ from the Peak Value by the same amount (e.g., MinCI = 0.85, Max CI = 1.15. Both are 0.15 distant from 1.0). The MinCI and MaxCI are the user-specified confidence intervals; e.g., the user states what they wish the confidence intervals should be around 1.0.</p></li>
+<li><p>CI: This value allows the user to change what sort of a confidence interval is used. The default value is a 90% confidence interval, as was used in <span class="citation"><a href="#ref-stockmann2012" role="doc-biblioref">Stockmann et al.</a> (<a href="#ref-stockmann2012" role="doc-biblioref">2012</a>)</span>. The user could change this value to 0.95, or a 95% confidence interval. This sort of adjustment will affect the spread of the triangular distribution, with a 90% confidence interval having a wider spread.</p></li>
+</ul>
+</div>
+<div id="the-quality-assurance-step" class="section level2 hasAnchor" number="5.3">
+<h2><span class="header-section-number">5.3</span> The quality assurance step<a href="providing-your-own-data.html#the-quality-assurance-step" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>The Quality Assurance (QA) step is mandatory for data brought into the Shiny application and optional for the stand-alone program (see above: QA_TEST = TRUE/FALSE). The QA code, QA_Code_Shiny.r, assesses the imported Excel file data. The QA step has over 55 checks it performs on the incoming data to help ensure that the program will run correctly. As it runs through its checks, it populates the file Error_Report.csv in the QA folder with results. It first verifies that it can load a worksheet and then conducts subsequent tests on it. The code performs tasks such as verifying that column labels are correct and that years and TPR/PPR/EUR categories match among files. If it finds an error, it will record a “1” in the Terminate column that matches the issue at hand and describe the problem in the Comments column. If no problem is found the Comments column will indicate which checks it made and found correct. A zero in the Comments column may be ignored. If an error is found, the R session will terminate (stand-alone model) or an error message will be produced preventing further analysis (Shiny application). This is on purpose! It prevents the code from attempting to proceed. If termination occurs, check the error report to find out which worksheet was triggering the error and why. Below we describe the attributes that are checked for each worksheet:</p>
+<p>All 10 worksheets: The QA code verifies that each worksheet correctly loaded. A misspelling of the worksheet name will trigger a terminal error.<br />
+Havest_BF:</p>
+<ul>
+<li>The first and last column names must be "Year" and "Total".<br />
+</li>
+<li>Values are numeric.<br />
+</li>
+<li>The sum of ownership amounts must equal the sum of the total amounts. These values can deviate from one another if a user saves the CSV file from an Excel file. The decimal places may be lost with numbers rounded. This rounding may cause ownership values to no longer sum to the Total amount. Slight adjustments to the Total amount or an ownership category amount will be necessary to correct.</li>
+</ul>
+<p>BFCF:</p>
+<ul>
+<li>The first three column names must be "Conversion", "StartYear", and "EndYear".<br />
+</li>
+<li>The final year value under Years must equal the last year value of Harvest_BF.<br />
+</li>
+<li>Values are numeric.</li>
+</ul>
+<p>TimberProdRatios:</p>
+<ul>
+<li>The number of TPR years equals the number of harvest years in Harvest_BF.<br />
+</li>
+<li>The year columns must be transformable to numeric values. E.g., a text value of "1952" can become the integer 1952. A year column name such as "X1952" cannot be transformed into an integer, at least not with the code provided.<br />
+</li>
+<li>The first column name must be "TimberProductID".<br />
+</li>
+<li>The year columns must sum to 1.0.<br />
+</li>
+<li>Table values are numeric.</li>
+</ul>
+<p>PrimaryProdRatios:</p>
+<ul>
+<li>The number of PPR years equals the number of harvest years in Harvest_BF.<br />
+</li>
+<li>The year columns must be transformable to numeric values.<br />
+</li>
+<li>The first column name must be "PrimaryProductID".<br />
+</li>
+<li>The year columns must sum to the number of Timber Product Ratios, the number of rows in TimberProductRatios.<br />
+</li>
+<li>Table values are numeric.</li>
+</ul>
+<p>CCF_MT_Conversion:</p>
+<ul>
+<li>The two columns must be named "PrimaryProductID" and "CCFtoMTconv".<br />
+</li>
+<li>The listed number of Primary Products matches the number in the file PrimaryProdRatios.<br />
+</li>
+<li>Table values are numeric.</li>
+</ul>
+<p>EndUseRatios:</p>
+<ul>
+<li>The number of years for which there are End Use Ratios must match the number of harvest years.<br />
+</li>
+<li>The year columns must be transformable to numeric values.<br />
+</li>
+<li>The first column name must be "EndUseID".<br />
+</li>
+<li>The year columns must sum to the number of Primary Product Ratios, the number of rows in PrimaryProdRatios.<br />
+</li>
+<li>Table values are numeric.</li>
+</ul>
+<p>RatioCategories:</p>
+<ul>
+<li>The column names must be, in order, "TimberProductID", "PrimaryProductID", "EndUseID", "TimberProduct", "PrimaryProduct", "EndUseProduct".<br />
+</li>
+<li>The word "fuel" must appear in some rows of column "EndUseProduct".<br />
+</li>
+<li>The word "pulp" must appear in some rows of column "EndUseProduct".<br />
+</li>
+<li>The number of Timber Product IDs must match the number in TimberProdRatios.<br />
+</li>
+<li>The number of Primary Product IDs must match the number in PrimaryProdRatios.<br />
+</li>
+<li>The number of End Use IDs must match the number in EndUseRatios.</li>
+</ul>
+<p>EU_halflives:</p>
+<ul>
+<li>The column names must be, in order, "EndUseID" and "EU_HalfLife".<br />
+</li>
+<li>The number of EndUseID row numbers equals the number of rows in EndUseRatios.<br />
+</li>
+<li>Table values are numeric.</li>
+</ul>
+<p>DiscardFates:</p>
+<ul>
+<li>The first two columns must be named "DiscardType" and "DiscardDestination".<br />
+</li>
+<li>There must be the same number of years as in Harvest_BF.<br />
+</li>
+<li>The year column labels must be transformable to numeric values.<br />
+</li>
+<li>Year column values must be numeric and sum to 2.0.</li>
+</ul>
+<p>MonteCarloDistrParameters:</p>
+<ul>
+<li>The column names must be, in order, "Parameter_ID", "Parameter_Name", "Paper", "First_Year", "Last_Year", "MinCI", "Peak_Value", "MaxCI", and "CI".<br />
+</li>
+<li>The parameter names need to be labeled "CCFtoMTC", "EndUse_HalfLives", "EndUseRatios", "DiscardedDispositionRatios", "LandfillDecayLimits", "Landfill_HalfLives", "Dump_HalfLives", "Recovered_HalfLives", "Harvest", "TimberProdRatios", and "PrimaryProdRatios". Note that some row names can (and should) be duplicated as needed (see above).<br />
+</li>
+<li>The values for the MinCI and MaxCI must be symmetric around 1.0.<br />
+</li>
+<li>The parameters with multiple rows and First_Year/Last_Year values must have the years be in order and without overlap or gaps.<br />
+</li>
+<li>The time series begins on the first year and the last year is within the final time series set.<br />
+</li>
+<li>Table values aside from column Parameter_Name are numeric.</li>
+</ul>
+</div>
+<div id="uploading-your-data-and-running-the-model-from-the-shiny-app" class="section level2 hasAnchor" number="5.4">
+<h2><span class="header-section-number">5.4</span> Uploading your data and running the model from the Shiny app<a href="providing-your-own-data.html#uploading-your-data-and-running-the-model-from-the-shiny-app" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Once the user has created their data file, they can open the Shiny app, either online or locally (see Running the Shiny App From Your Computer under section Operating and Changing the Model), and navigate to the tab Upload Data, under the navigation bar item Documentation and Data Upload. The user selects their Excel file by clicking the Browse button and navigating to their file and opening it. The Shiny app will display the name chosen to represent the data set (DATASET.NAME, see above). The user then runs the QA procedure by clicking on the button “Run data file quality control.” A button appears that allows the user to “Download the QA output table.” The user then clicks on the button “Run HWP Model.” If the QA test failed, an error message will appear to that effect. We recommend that the user download the QA output table to determine where the error occurred. If the QA test was passed, the button should instead take a moment to process the data through the model, announce in Model Status that the model run was a success, and change the selected data set under the “Select a data set” option in the sidebar to the user’s uploaded data name. At this point the user can visit all figures in the Shiny application and view their data displayed in the figures. They can also download tables summarizing the model run outputs by clicking on the now-appearing button “Download HWP Tables” on the right of the window.</p>
+<p>If the user only has Total harvest data (no ownership information) then certain figures will either not attempt to display ownership information or will provide pretty pictures instead. Other figures will be unaffected.</p>
+<p>If the user wishes to run the Monte Carlo simulation, then once the HWP model has been run they click the “Run Monte Carlo” button. A busy icon appears, letting the user know that the simulation is in progress. The user is also informed of how long the simulation may take. The Model Status box then has a message appear, “Monte Carlo is complete!” At that point the user may download summary tables for the Monte Carlo. The Monte Carlo Estimates tab under Carbon Storage and Emissions can now display the new simulation results.</p>
+<p>Note: If the user tried to view Monte Carlo simulation results after running the HWP model but before actually running the Monte Carlo simulation, they are presented with an image that explains that the Monte Carlo simulation data are not available. If the user then runs the Monte Carlo simulation and returns to the Monte Carlo Estimates, the no-data image will remain until they switch to a previous data set (California or Oregon) and then back to their own data set. At that time their Monte Carlo results should appear. This feature may be improved in the future.</p>
+</div>
+<div id="using-the-stand-alone-to-run-the-hwp-model-and-monte-carlo-simulation-on-your-data" class="section level2 hasAnchor" number="5.5">
+<h2><span class="header-section-number">5.5</span> Using the Stand-alone to run the HWP model and Monte Carlo simulation on your data<a href="providing-your-own-data.html#using-the-stand-alone-to-run-the-hwp-model-and-monte-carlo-simulation-on-your-data" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>See the section “The Stand-alone model: benefits, utility, and how to operate” (Section <a href="run.html#run-opp-sa">4.3.4</a>).</p>
+
+</div>
+</div>
+<h3>References<a href="references.html#references" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<div id="refs" class="references csl-bib-body hanging-indent">
+<div id="ref-stockmann2012" class="csl-entry">
+Stockmann, Keith D, Nathaniel M Anderson, Kenneth E Skog, Sean P Healey, Dan R Loeffler, Greg Jones, and James F Morrison. 2012. <span>“Estimates of Carbon Stored in Harvested Wood Products from the United States Forest Service Northern Region, 1906-2010.”</span> <em>Carbon Balance and Management</em> 7 (1): 1–16.
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="run.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="blocks.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"whatsapp": false,
+"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": "https://github.com/USERNAME/REPO/edit/BRANCH/04-own-data.Rmd",
+"text": "Edit"
+},
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": null,
+"text": null
+},
+"download": ["_main.pdf", "_main.epub"],
+"search": {
+"engine": "fuse",
+"options": null
+},
+"toc": {
+"collapse": "subsection"
+}
+});
+});
+</script>
+
+</body>
+
+</html>

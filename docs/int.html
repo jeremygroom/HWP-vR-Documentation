@@ -4,13 +4,13 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>References | Harvested Wood Products vR Documentation</title>
+  <title>Chapter 2 Introduction | Harvested Wood Products vR Documentation</title>
   <meta name="description" content="<p>This is a minimal example of using the bookdown package to write a book.
 The HTML output format for this example is bookdown::gitbook,
 set in the _output.yml file.</p>" />
   <meta name="generator" content="bookdown 0.25 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="References | Harvested Wood Products vR Documentation" />
+  <meta property="og:title" content="Chapter 2 Introduction | Harvested Wood Products vR Documentation" />
   <meta property="og:type" content="book" />
   
   <meta property="og:description" content="<p>This is a minimal example of using the bookdown package to write a book.
@@ -19,7 +19,7 @@ set in the _output.yml file.</p>" />
   <meta name="github-repo" content="jeremygroom/HWP-vR-Documentation" />
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="References | Harvested Wood Products vR Documentation" />
+  <meta name="twitter:title" content="Chapter 2 Introduction | Harvested Wood Products vR Documentation" />
   
   <meta name="twitter:description" content="<p>This is a minimal example of using the bookdown package to write a book.
 The HTML output format for this example is bookdown::gitbook,
@@ -36,8 +36,8 @@ set in the _output.yml file.</p>" />
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   
-<link rel="prev" href="sharing-your-book.html"/>
-
+<link rel="prev" href="index.html"/>
+<link rel="next" href="model.html"/>
 <script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
@@ -258,34 +258,56 @@ div.csl-indent {
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="references" class="section level1 unnumbered hasAnchor">
-<h1>References<a href="references.html#references" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<div id="int" class="section level1 hasAnchor" number="2">
+<h1><span class="header-section-number">Chapter 2</span> Introduction<a href="int.html#int" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<div id="int-gen" class="section level2 hasAnchor" number="2.1">
+<h2><span class="header-section-number">2.1</span> General description of the HWP model<a href="int.html#int-gen" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>An overview schematic of the HWP model is provided in Figure <a href="int.html#fig:overview-fig">2.1</a>. For every year of consideration, timber harvest results in board-feet of timber arriving at mills. These harvest values may be subdivided by the land ownership that produced the timber. Timber values are multiplied by the timber product classes, then the primary product ratios for each timber products class, and finally the end-use ratios for each primary products class. These resulting values are transformed to Tg C. Some end-use ratios involve material that is burned for energy capture. Other end-use products become products in use, although the process of creating those results in a percentage of the material ending up as discarded products. Material entering discarded products is proportionally allocated to dumps, landfill, compost, or are recovered (recycled) or burned without energy capture.</p>
+<p>In the subsequent year more timber enters the cycle. However, the previous year’s carbon in products in use, dumps, recovered products, and the decaying portion of landfills are subjected to a half-life decay. The outputs either end up in the discard category or are emitted to the atmosphere as CO<span class="math inline">\(_2\)</span>.</p>
+<div class="figure"><span style="display:block;" id="fig:overview-fig"></span>
+<img src="images/OverviewModelSchematic.png" alt="General schematic for calculations to quantify HWP storage and emissions, based on @stockmann2012 Figure 7.  Note that in this version Compost is not connected to SWDS, an arrow to SWDS has been added for emissions from Recovered, and that the code calculates end-use C distribution in one step after organizing TPO, PPR, EUR, and conversion factors." width="100%" />
+<p class="caption">
+Figure 2.1: General schematic for calculations to quantify HWP storage and emissions, based on <span class="citation"><a href="#ref-stockmann2012" role="doc-biblioref">Stockmann et al.</a> (<a href="#ref-stockmann2012" role="doc-biblioref">2012</a>)</span> Figure 7. Note that in this version Compost is not connected to SWDS, an arrow to SWDS has been added for emissions from Recovered, and that the code calculates end-use C distribution in one step after organizing TPO, PPR, EUR, and conversion factors.
+</p>
+</div>
+</div>
+<div id="int-hist" class="section level2 hasAnchor" number="2.2">
+<h2><span class="header-section-number">2.2</span> Model history<a href="int.html#int-hist" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>The HWP model began as an Excel macro for the USFS, as described by <span class="citation"><a href="#ref-stockmann2012" role="doc-biblioref">Stockmann et al.</a> (<a href="#ref-stockmann2012" role="doc-biblioref">2012</a>)</span>. A newer version of the tool (v1) was made available in 2012 <span class="citation">(<a href="#ref-loeffler2014" role="doc-biblioref">Loeffler et al. 2014</a>)</span>. The states of Oregon, California and Washington are signatories to a Memorandum of Understanding for Pacific Coast Temperate Forests (MOU). The MOU partners have a common requirement to generate reliable estimates of the stock and flux of carbon in harvested wood products. A west-coast specific state-level variant of the model was developed in C++; however, it did not fully account for the carbon mass entering the cycle from timber harvest, nor did it generate reliable error estimates using a Monte Carlo simulation approach. Perhaps most importantly, the software was not in a form that could be readily viewed, understood, or changed by others. Representatives from each west-coast state and the USFS agreed that the software needed to be re-written in order to correct these errors.</p>
+<p>Groom Analytics LLC undertook programming the <span class="citation"><a href="#ref-stockmann2012" role="doc-biblioref">Stockmann et al.</a> (<a href="#ref-stockmann2012" role="doc-biblioref">2012</a>)</span> model in R for Oregon, and subsequently deployed the R version to a web application (<a href="https://groomanalyticsllc.shinyapps.io/HWP_Shared_Test/" class="uri">https://groomanalyticsllc.shinyapps.io/HWP_Shared_Test/</a>). This document and the available code are publicly released to enable model transparency and assist in further model development.</p>
+<p>The USFS is currently developing a Python-based version of the model to be released soon. A schematic of this history is presented in Figure <a href="int.html#fig:hist-fig">2.2</a>.</p>
+<div class="figure"><span style="display:block;" id="fig:hist-fig"></span>
+<img src="images/ModelHistory.png" alt="Schematic of the HWP model development pathway.  The version described here is the State HWP-C variant." width="100%" />
+<p class="caption">
+Figure 2.2: Schematic of the HWP model development pathway. The version described here is the State HWP-C variant.
+</p>
+</div>
+</div>
+<div id="int-util" class="section level2 hasAnchor" number="2.3">
+<h2><span class="header-section-number">2.3</span> Model utility<a href="int.html#int-util" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>The HWP model (and associated visualizations) is a long-term accounting tool for carbon emissions and storage from harvested wood products. Users can easily understand how harvest levels have changed over time, by ownership and in total. Given changes in disposal methods and the assumed lifetime use of wood products, users can examine what proportion of harvested wood products remain in use, in disposal sites, or as CO<span class="math inline">\(_2\)</span> emitted to the atmosphere. The model may be useful for planners and decision-makers to understand the emissions consequences of promoting wood products with different use lifespans.</p>
+</div>
+<div id="int-assump" class="section level2 hasAnchor" number="2.4">
+<h2><span class="header-section-number">2.4</span> HWP model assumptions and shortcomings<a href="int.html#int-assump" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>The HWP model is a closed model, and tracks only carbon harvested within a specified area. Therefore, at a state level, emissions from HWP may be greater than expected from timber harvested within the state if the state imports timber or timber products. Similarly, exported timber or timber products may experience different utilization or decay processes.</p>
+<p>The model assumes that harvested timber volume and ratios such as TPR, PPR, and EUR are valid. The model can be expected to perform poorly if the ratios or other values are not based on solid evidence. The Monte Carlo attempts to explore the range of possible outcomes given different levels of certainty in the data. The model does, ultimately, rely on many different data types. Some of these, such as landfill decay rates, may be difficult to enumerate and thus we are unsure of their true values.</p>
+<p>The model does not (currently) differentiate between carbon in landfills that is emitted as methane vs. CO<span class="math inline">\(_2\)</span>. Methane is a much more potent greenhouse gas than CO<span class="math inline">\(_2\)</span>, albeit with a shorter residence time.</p>
+<p>The Monte Carlo takes a specific approach towards varying the ratios, constraining all ratios to sum to one. Given the selected range of possible values for each variable, the resulting randomly selected values may not be independent from one another and may be unintentionally biased. That is, within a ratio type that must sum to one and for a particular model iteration, if one value is randomly selected to equal 1.0, the remaining values for that ratio set must equal 0.</p>
+<p>Finally, we are not aware of any method for overall model validation. Estimates for individual pieces of the model, such as product or decay half-lives, can be improved. But, like all models, the HWP model simplifies reality greatly and hopefully provides users with useful insight by tracking and summarizing complicated calculation outputs in a reasonable way.</p>
+</div>
+<div id="int-future" class="section level2 hasAnchor" number="2.5">
+<h2><span class="header-section-number">2.5</span> Future work<a href="int.html#int-future" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Users can improve the model’s utility by researching and altering model input tables with their own regional information. There is interest in incorporating a means for tracking the production of CO<span class="math inline">\(_2\)</span> separately from methane as methane is a much more powerful greenhouse gas that results from anoxic decomposition such as occurs in landfills. In the short term we plan to update the model so that users can control the discard ratios for paper and wood products. Finally, work is currently being done at the University of Massachusetts to explore the consequences of errors in estimating the capability of landfills to retain carbon without decay.</p>
 
+</div>
+</div>
+<h3>References<a href="references.html#references" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <div id="refs" class="references csl-bib-body hanging-indent">
-<div class="csl-entry">
-Anderson, Nathaniel, Jesse Young, Keith Stockmann, Kenneth Skog, Sean Healey, Daniel Loeffler, J Greg Jones, and James Morrison. 2013. <span>“Regional and Forest-Level Estimates of Carbon Stored in Harvested Wood Products from the United States Forest Service Northern Region, 1906-2010.”</span> <em>Gen. Tech. Rep. RMRS-GTR-311. Fort Collins, CO: US Department of Agriculture, Forest Service, Rocky Mountain Research Station. 114 p.</em> 311.
-</div>
-<div class="csl-entry">
-Carnell, Rob. 2021. <em>Lhs: Latin Hypercube Samples</em>. <a href="https://github.com/bertcarnell/lhs">https://github.com/bertcarnell/lhs</a>.
-</div>
-<div class="csl-entry">
-Chang, Winston, Joe Cheng, JJ Allaire, Carson Sievert, Barret Schloerke, Yihui Xie, Jeff Allen, Jonathan McPherson, Alan Dipert, and Barbara Borges. 2021. <em>Shiny: Web Application Framework for r</em>. <a href="https://shiny.rstudio.com/">https://shiny.rstudio.com/</a>.
-</div>
-<div class="csl-entry">
+<div id="ref-loeffler2014" class="csl-entry">
 Loeffler, Dan, Nathaniel Anderson, Keith Stockmann, Ken Skog, Sean Healey, J Greg Jones, James Morrison, and Jesse Young. 2014. <span>“Estimates of Carbon Stored in Harvested Wood Products from United States Forest Service Southern Region, 1911-2012.”</span> <em>Unpublished Report. Missoula, MT: US Department of Agriculture, Forest Service, Rocky Mountain Research Station, Forestry Sciences Laboratory. 27 p.</em>
 </div>
-<div class="csl-entry">
-R Core Team. 2021. <em>R: A Language and Environment for Statistical Computing</em>. Vienna, Austria: R Foundation for Statistical Computing. <a href="https://www.R-project.org/">https://www.R-project.org/</a>.
-</div>
-<div class="csl-entry">
+<div id="ref-stockmann2012" class="csl-entry">
 Stockmann, Keith D, Nathaniel M Anderson, Kenneth E Skog, Sean P Healey, Dan R Loeffler, Greg Jones, and James F Morrison. 2012. <span>“Estimates of Carbon Stored in Harvested Wood Products from the United States Forest Service Northern Region, 1906-2010.”</span> <em>Carbon Balance and Management</em> 7 (1): 1–16.
-</div>
-<div class="csl-entry">
-Ushey, Kevin. 2022. <em>Renv: Project Environments</em>. <a href="https://rstudio.github.io/renv/">https://rstudio.github.io/renv/</a>.
-</div>
-<div class="csl-entry">
-Wickham, Hadley. 2021. <em>Mastering Shiny</em>. " O’Reilly Media, Inc.".
-</div>
 </div>
 </div>
             </section>
@@ -293,8 +315,8 @@ Wickham, Hadley. 2021. <em>Mastering Shiny</em>. " O’Reilly Media, Inc.".
           </div>
         </div>
       </div>
-<a href="sharing-your-book.html" class="navigation navigation-prev navigation-unique" aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-
+<a href="index.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="model.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
@@ -325,7 +347,7 @@ gitbook.start({
 "size": 2
 },
 "edit": {
-"link": "https://github.com/USERNAME/REPO/edit/BRANCH/07-references.Rmd",
+"link": "https://github.com/USERNAME/REPO/edit/BRANCH/01-intro.Rmd",
 "text": "Edit"
 },
 "history": {
