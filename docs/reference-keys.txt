@@ -13,7 +13,6 @@ fig:mc-tests-fig
 fig:mc-tests2-fig
 fig:mc-tests3-fig
 fig:mc-tests4-fig
-eq:binom
 sum
 sum-ack
 sum-abb
@@ -55,12 +54,6 @@ own-shiny
 own-sa
 own-tables
 own-mc
-blocks
-equations
-theorems-and-proofs
-callout-blocks
-sharing-your-book
-publishing
-pages
-metadata-for-sharing
-url-your-book-url-like-httpsbookdown.orgyihuibookdown
+ft
+ft-faqs
+ft-trbl

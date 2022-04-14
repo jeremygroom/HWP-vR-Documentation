@@ -29,7 +29,7 @@ set in the _output.yml file.</p>" />
 <meta name="author" content="Jeremiah Groom" />
 
 
-<meta name="date" content="2022-04-12" />
+<meta name="date" content="2022-04-14" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -37,7 +37,7 @@ set in the _output.yml file.</p>" />
   
   
 <link rel="prev" href="run.html"/>
-<link rel="next" href="blocks.html"/>
+<link rel="next" href="ft.html"/>
 <script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
@@ -58,6 +58,8 @@ set in the _output.yml file.</p>" />
 <link href="libs/anchor-sections-1.1.0/anchor-sections.css" rel="stylesheet" />
 <link href="libs/anchor-sections-1.1.0/anchor-sections-hash.css" rel="stylesheet" />
 <script src="libs/anchor-sections-1.1.0/anchor-sections.js"></script>
+<script src="libs/kePrint-0.0.1/kePrint.js"></script>
+<link href="libs/lightable-0.0.1/lightable.css" rel="stylesheet" />
 
 
 
@@ -100,7 +102,7 @@ div.csl-indent {
 <li><a href="./">A Minimal Book Example</a></li>
 
 <li class="divider"></li>
-<li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> url: your book url like <span>https://bookdown.org/yihui/bookdown</span><span></span></a>
+<li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> Summary<span></span></a>
 <ul>
 <li class="chapter" data-level="1.1" data-path="index.html"><a href="index.html#sum-ack"><i class="fa fa-check"></i><b>1.1</b> Acknowledgements<span></span></a></li>
 <li class="chapter" data-level="1.2" data-path="index.html"><a href="index.html#sum-abb"><i class="fa fa-check"></i><b>1.2</b> Abbreviations<span></span></a></li>
@@ -159,17 +161,10 @@ div.csl-indent {
 <li class="chapter" data-level="5.6" data-path="own.html"><a href="own.html#own-tables"><i class="fa fa-check"></i><b>5.6</b> Generated Tables<span></span></a></li>
 <li class="chapter" data-level="5.7" data-path="own.html"><a href="own.html#own-mc"><i class="fa fa-check"></i><b>5.7</b> What to know about running the Monte Carlo simulation<span></span></a></li>
 </ul></li>
-<li class="chapter" data-level="6" data-path="blocks.html"><a href="blocks.html"><i class="fa fa-check"></i><b>6</b> Blocks<span></span></a>
+<li class="chapter" data-level="6" data-path="ft.html"><a href="ft.html"><i class="fa fa-check"></i><b>6</b> Frequently Asked Questions and Troubleshooting<span></span></a>
 <ul>
-<li class="chapter" data-level="6.1" data-path="blocks.html"><a href="blocks.html#equations"><i class="fa fa-check"></i><b>6.1</b> Equations<span></span></a></li>
-<li class="chapter" data-level="6.2" data-path="blocks.html"><a href="blocks.html#theorems-and-proofs"><i class="fa fa-check"></i><b>6.2</b> Theorems and proofs<span></span></a></li>
-<li class="chapter" data-level="6.3" data-path="blocks.html"><a href="blocks.html#callout-blocks"><i class="fa fa-check"></i><b>6.3</b> Callout blocks<span></span></a></li>
-</ul></li>
-<li class="chapter" data-level="7" data-path="sharing-your-book.html"><a href="sharing-your-book.html"><i class="fa fa-check"></i><b>7</b> Sharing your book<span></span></a>
-<ul>
-<li class="chapter" data-level="7.1" data-path="sharing-your-book.html"><a href="sharing-your-book.html#publishing"><i class="fa fa-check"></i><b>7.1</b> Publishing<span></span></a></li>
-<li class="chapter" data-level="7.2" data-path="sharing-your-book.html"><a href="sharing-your-book.html#pages"><i class="fa fa-check"></i><b>7.2</b> 404 pages<span></span></a></li>
-<li class="chapter" data-level="7.3" data-path="sharing-your-book.html"><a href="sharing-your-book.html#metadata-for-sharing"><i class="fa fa-check"></i><b>7.3</b> Metadata for sharing<span></span></a></li>
+<li class="chapter" data-level="6.1" data-path="ft.html"><a href="ft.html#ft-faqs"><i class="fa fa-check"></i><b>6.1</b> Frequently Asked Questions<span></span></a></li>
+<li class="chapter" data-level="6.2" data-path="ft.html"><a href="ft.html#ft-trbl"><i class="fa fa-check"></i><b>6.2</b> Troubleshooting<span></span></a></li>
 </ul></li>
 <li><a href="references.html#references">References<span></span></a></li>
 <li class="divider"></li>
@@ -206,7 +201,7 @@ div.csl-indent {
 <p>The worksheet HWP_MODEL_OPTIONS allows the user to customize the operation and output of the HWP model. The values in this worksheet affect the operation of the stand-alone model and/or the Shiny application. Below are options that the user may adjust:</p>
 <ul>
 <li><p>DATASET.NAME (string): This value only affects the Shiny application. This name will appear as an option in the upper-left pulldown menu in the application. Avoid using the names “California” or “Oregon.”</p></li>
-<li><p>QA_TEST (TRUE, FALSE) – This value only affects the stand-alone model. The default is TRUE. If TRUE, the stand-alone code will examine all worksheets except HWP_MODEL_OPTIONS. See Quality Assurance Step below. If FALSE, the code will skip the quality assurance step and attempt to load the worksheets without examining them. There is little system time needed to conduct the QA test.</p></li>
+<li><p>QA_TEST (TRUE, FALSE) – This value only affects the stand-alone model. The default is TRUE. If TRUE, the stand-alone code will examine all worksheets except HWP_MODEL_OPTIONS. See Section <a href="own.html#own-qa">5.3</a> below. If FALSE, the code will skip the quality assurance step and attempt to load the worksheets without examining them. There is little system time needed to conduct the QA test.</p></li>
 <li><p>OUTPUT_ARRAYS (TRUE, FALSE) – This value only affects the stand-alone model. If users would like the code to produce the analysis arrays so that they can trouble-shoot model issues or verify calculations, cell B2 should be TRUE (default). Otherwise, FALSE. There is a noticeable time savings in code execution to set to FALSE.</p></li>
 <li><p>OUTPUT_TABLES (TRUE, FALSE) – This value only affects the stand-alone model. This option allows users to select whether the code produces output tables for the base HWP analysis. Default = TRUE.</p></li>
 <li><p>SHIFTYEAR (TRUE, FALSE) – Affects both the Shiny application and stand-alone model. If the user wants tabular and figure outputs of emissions and pools reported as occurring the year after harvest, cell E2 should be TRUE. If the user wants those outputs reported as occurring during the same year as harvest, select FALSE.</p></li>
@@ -238,14 +233,14 @@ div.csl-indent {
 <ul>
 <li><p>CCFtoMTC: This name translates as “hundred cubic feet converted to metric tons carbon.” Each Monte Carlo iteration will alter the conversion values associated with the worksheet CCF_MT_Conversion.</p></li>
 <li><p>EndUse_HalfLives: Each Monte Carlo iteration’s random number for this parameter will adjust the end use half life values found in EU_halflives.</p></li>
-<li><p>EndUseRatios: This variable refers to the end use ratio values found in the worksheet EndUseRatios. Each iteration of the Monte Carlo will use one random value to change the end use ratio values. See the section “Sum-To-One Constraint” to understand how the values are altered.<br />
+<li><p>EndUseRatios: This variable refers to the end use ratio values found in the worksheet EndUseRatios. Each iteration of the Monte Carlo will use one random value to change the end use ratio values. See the discussion of the “Sum-To-One Constraint” in Section <a href="model.html#model-mc-samphwp">3.2.3</a> to understand how the values are altered.<br />
 </p></li>
 <li><p>DiscardedDispositionRatios, Paper: There are two rows in the Parameter Name column with the name DiscardedDispositionsRatios. The adjacent column, “Paper,” indicates whether these disposition ratios are for paper (1) or wood (0). The disposition ratios are from the worksheet DiscardFates. They determine what fraction of paper or wood enter the categories of Burned with Energy Capture, Burned Without Energy Capture, Recovered, Composted, Landfills, or Dumps. Like End Use Ratios, these ratios are subject to the sum-to-one constraint.</p></li>
 <li><p>LandfillDecayLimits: The wood and paper values represent the landfill decay limits, or the proportion of landfill material that is subject to decay. The values are obtained from the worksheet Discard_HalfLives.</p></li>
 <li><p>Landfill_HalfLives, Dump_HalfLives, Recovered_HalfLives: the six rows with these parameter names are associated with wood and paper decomposition half-lives for materials subject to decay in landfills, dumps, and in recovered products. The values are obtained from the worksheet Discard_HalfLives.</p></li>
 <li><p>Harvest: This parameter references the cubic-foot volume amounts harvested each year. The values are originally provided as board feet from the worksheet Harvest_BF, but they are transformed in the original (non-Monte Carlo) portion of the analysis and the transformed values are used in the Monte Carlo. There may be more than one row labeled as Harvest, reflecting different accuracies to be used for different year-ranges.<br />
 </p></li>
-<li><p>TimberProdRatios: Like Harvest, there may be more than one entry for TimberProdRatios. The original worksheet is TimberProdRatios. Like EndUseRatios, a random value associated with a range of years will alter some, but not all, Timber Product Ratio values. See the section “Sum-To-One Constraint.”</p></li>
+<li><p>TimberProdRatios: Like Harvest, there may be more than one entry for TimberProdRatios. The original worksheet is TimberProdRatios. Like EndUseRatios, a random value associated with a range of years will alter some, but not all, Timber Product Ratio values. See the discussion of the “Sum-To-One Constraint” in Section <a href="model.html#model-mc-samphwp">3.2.3</a>.</p></li>
 <li><p>PrimaryProdRatios. This type of parameter is altered much the same as TimberProdRatios and the original values may be found in the worksheet PrimaryProdRatios. It too is subject to the “Sum-To-One Constraint.”</p></li>
 </ul></li>
 <li><p>Paper: As described above for DiscardedDispositionRatios and other parameters, some parameters represent paper (1) or wood (0) for their associated parameters.</p></li>
@@ -367,7 +362,7 @@ Havest_BF:</p>
 </div>
 <div id="own-shiny" class="section level2 hasAnchor" number="5.4">
 <h2><span class="header-section-number">5.4</span> Uploading your data and running the model from the Shiny app<a href="own.html#own-shiny" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p>Once the user has created their data file, they can open the Shiny app, either online or locally (see Running the Shiny App From Your Computer under section Operating and Changing the Model), and navigate to the tab Upload Data, under the navigation bar item Documentation and Data Upload. The user selects their Excel file by clicking the Browse button and navigating to their file and opening it. The Shiny app will display the name chosen to represent the data set (DATASET.NAME, see above). The user then runs the QA procedure by clicking on the button "Run data file quality control". A button appears that allows the user to "Download the QA output table". The user then clicks on the button "Run HWP Model". If the QA test failed, an error message will appear to that effect. We recommend that the user download the QA output table to determine where the error occurred. If the QA test was passed, the button should instead take a moment to process the data through the model, announce in Model Status that the model run was a success, and change the selected data set under the "Select a data set" option in the sidebar to the user’s uploaded data name. At this point the user can visit all figures in the Shiny application and view their data displayed in the figures. They can also download tables summarizing the model run outputs by clicking on the now-appearing button "Download HWP Tables" on the right of the window.</p>
+<p>Once the user has created their data file, they can open the Shiny app, either online or locally (see Running the Shiny App From Your Computer, Section <a href="run.html#run-opp-shiny">4.3.3</a>), and navigate to the tab Upload Data, under the navigation bar item Documentation and Data Upload. The user selects their Excel file by clicking the Browse button and navigating to their file and opening it. The Shiny app will display the name chosen to represent the data set (DATASET.NAME, see above). The user then runs the QA procedure by clicking on the button "Run data file quality control". A button appears that allows the user to "Download the QA output table". The user then clicks on the button "Run HWP Model". If the QA test failed, an error message will appear to that effect. We recommend that the user download the QA output table to determine where the error occurred. If the QA test was passed, the button should instead take a moment to process the data through the model, announce in Model Status that the model run was a success, and change the selected data set under the "Select a data set" option in the sidebar to the user’s uploaded data name. At this point the user can visit all figures in the Shiny application and view their data displayed in the figures. They can also download tables summarizing the model run outputs by clicking on the now-appearing button "Download HWP Tables" on the right of the window.</p>
 <p>If the user only has Total harvest data (no ownership information) then certain figures will either not attempt to display ownership information or will provide pretty pictures instead. Other figures will be unaffected.</p>
 <p>If the user wishes to run the Monte Carlo simulation, then once the HWP model has been run they click the "Run Monte Carlo" button. A busy icon appears, letting the user know that the simulation is in progress. The user is also informed of how long the simulation may take. The Model Status box then has a message appear, "Monte Carlo is complete!". At that point the user may download summary tables for the Monte Carlo. The Monte Carlo Estimates tab under Carbon Storage and Emissions can now display the new simulation results.</p>
 <p>Note: If the user tried to view Monte Carlo simulation results after running the HWP model but before actually running the Monte Carlo simulation, they are presented with an image that explains that the Monte Carlo simulation data are not available. If the user then runs the Monte Carlo simulation and returns to the Monte Carlo Estimates, the no-data image will remain until they switch to a previous data set (California or Oregon) and then back to their own data set. At that time their Monte Carlo results should appear. This feature may be improved in the future.</p>
@@ -396,7 +391,7 @@ Havest_BF:</p>
 <p>As described above, there are several controls in the worksheet HWP_MODEL_OPTIONS. The user can set the number of iterations they would like the Monte Carlo simulation to run, and set the burn-in period length. The burn-in period is the number of initial iterations that are not considered when calculating means and confidence intervals. You can also set the parameters R and OPT.START if you wish.</p>
 <p>If you would like to see the Monte Carlo array, which includes all estimates from all iterations, you will need to run the stand-alone version of the model and set MC.ARRAY.OUT to TRUE.</p>
 <p>If you are trying to get the model to run or are playing around with data loading and execution on the Shiny App or stand-alone, I recommend setting the number of iterations to something small like 100. You may find that the Monte Carlo estimates really aren’t that far off of from the standard deterministic HWP model run. A small number of iterations will prevent you from waiting for several minutes while the simulation runs. Running the simulations for 1000 iterations may demonstrate a reasonable burn-in number to enter into the input Excel file. When you are ready to obtain a "final" estimate you can increase the number of iterations to 1500, 2000, or more.</p>
-<p>If you have ratio values that are close to boundaries (e.g., 0.03 and 0.98), you may notice that confidence intervals do not appear symmetrical around your mean estimate. Please see the Results and Development section under Model Function. The Monte Carlo simulation is encountering a "sum-to-one" boundary constraint that is frequently forcing one ratio value to its boundary (e.g., 1.0) and subsequently setting all related ratios to their opposite boundaries (e.g., 0.0). This can result in a less continuous range of outputs, affecting the distribution of results.</p>
+<p>If you have ratio values that are close to boundaries (e.g., 0.03 and 0.98), you may notice that confidence intervals do not appear symmetrical around your mean estimate. Please see the Section <a href="model.html#model-mc-res">3.2.4</a>. The Monte Carlo simulation is encountering a "sum-to-one" boundary constraint that is frequently forcing one ratio value to its boundary (e.g., 1.0) and subsequently setting all related ratios to their opposite boundaries (e.g., 0.0). This can result in a less continuous range of outputs, affecting the distribution of results.</p>
 
 </div>
 </div>
@@ -412,7 +407,7 @@ Stockmann, Keith D, Nathaniel M Anderson, Kenneth E Skog, Sean P Healey, Dan R L
         </div>
       </div>
 <a href="run.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="blocks.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="ft.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
