@@ -1,13 +1,7 @@
-Welcome! 
+This document contains the instructions for using the Harvested Wood Products R-based model plus descriptions of how the model and code work.  The document was written in R Markdown and **bookdown** (https://github.com/rstudio/bookdown).   
 
-This is a minimal example of a book based on R Markdown and **bookdown** (https://github.com/rstudio/bookdown). 
+If you have questions or comments, please contact:  
 
-This template provides a skeleton file structure that you can edit to create your book. 
-
-The contents inside the .Rmd files provide some pointers to help you get started, but feel free to also delete the content in each file and start fresh.
-
-Additional resources:
-
-The **bookdown** book: https://bookdown.org/yihui/bookdown/
-
-The **bookdown** package reference site: https://pkgs.rstudio.com/bookdown
+Jeremy Groom  
+Groom Analytics, LLC  
+jeremy@groomanalytics.com

@@ -14,6 +14,7 @@ fig:mc-tests2-fig
 fig:mc-tests3-fig
 fig:mc-tests4-fig
 sum
+sum-about
 sum-ack
 sum-abb
 int

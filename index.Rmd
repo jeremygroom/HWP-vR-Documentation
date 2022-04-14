@@ -8,8 +8,8 @@ bibliography: [book.bib, packages.bib]
 # url: your book url like https://bookdown.org/yihui/bookdown
 # cover-image: path to the social sharing image like images/cover.jpg
 description: |
-  This is a minimal example of using the bookdown package to write a book.
-  The HTML output format for this example is bookdown::gitbook,
+  This HWP vR documentation was written in bookdown.  
+  The HTML output format for this document is bookdown::gitbook,
   set in the _output.yml file.
 link-citations: yes
 github-repo: jeremygroom/HWP-vR-Documentation
@@ -29,6 +29,17 @@ library(kableExtra)
 
 The Harvested Wood Products (HWP) model is a deterministic model which relies on optional and required user-supplied information.  The model is described in @stockmann2012.  There have been several builds of the model, on platforms including Microsoft Excel, C++, and now R [@R-base].  Another effort is currently underway to construct an interactive version of the model in Python.  This article describes a build of the model based on data from the U.S. west coast states of California, Oregon, and Washington.  This R-based platform allows for user interaction with California and Oregon data via a web application (<https://groomanalyticsllc.shinyapps.io/HWP_Shared_Test/>).   Users may also upload their own data onto the app, run their data through the HWP model and associated Monte Carlo simulation, interact with their data, and construct and save figures.  Alternatively, users may access the full Shiny app code as well as a stand-alone version of the HWP model implementation. The stand-alone version allows users the opportunity to step through the code more easily, save model arrays for hand-calculation of outcomes, and alter the code to meet their own data needs.  Both versions allow users to download or generate the tables necessary to recreate figures to their own specifications. 
 This document describes the model and structure of the code, explains how to generate input files, and provides instruction on accessing model code. 
+
+## About this website - HWP C vR    {#sum-about}
+
+This web-based tool, HWP C vR, calculates cumulative carbon stocks and emissions through time for harvested wood products (HWP) using the Tier 3 Production Approach carbon estimation guidelines developed by the Intergovernmental Panel on Climate Change. This tool was created through a partnership between the California Department of Forestry and Fire Protection (CAL FIRE), the Oregon Department of Forestry and Fire Protection (ODF), Oregon State University and Groom Analytics, LLC. This tool expands upon one originally created by the U.S. Forest Service (USFS) for National Forest System regional HWP carbon inventories (e.g., Stockmann et al. 2014) and later modified by the USFS for use in the California Forest Ecosystem and Harvested Wood Product Carbon Inventory (Loeffler et al. 2018). Figure 1 below depicts the evolution of this tool. Though methods largely remained the same between the original USFS web-based tool and this current version, a few changes exist and are described more fully in (Christensen et al. 2020, 2021). These changes include:  
+*	Modification of lag times built in the original tool, in order to allow for better quality assurance of calculations.  
+*	The original tool resulted in narrower confidences intervals than expected based on the parameters set for the Monte Carlo Uncertainty Analysis.  This tool has established a new Monte Carlo simulation that has succeeded in introducing variability into the HWP C estimates.  
+
+The USFS is currently updating their original tool, with public availability expected in 2022/2023. This version is not intended to compete with or contradict the original USFS work, but rather complement the original work by being available in a different platform and coding language. Additional data visualizations have also been added to include other parameters in data outputs that did not have visualizations included by the original tool. 
+
+
+
 
 ## Acknowledgements    {#sum-ack}
 Many thanks to Nadia Tase and Andrew Yost for supporting the development of this work through feedback, discussion, and their own efforts to dive into the code and understand the model at its core.  Jimmy Kagan and Amanda Reynolds provided administrative support.  We received feedback and support for the earlier iteration of the R-version of the model from Todd Morgan, Dan Loffler, Keith Stockmann, [OTHERS].  
