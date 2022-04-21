@@ -4,13 +4,13 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>Chapter 2 Introduction | Harvested Wood Products vR Documentation</title>
+  <title>Chapter 2 Introduction | Harvested Wood Products C vR Documentation</title>
   <meta name="description" content="This HWP vR documentation was written in bookdown.<br />
 The HTML output format for this document is bookdown::gitbook,
 set in the _output.yml file.</p>" />
   <meta name="generator" content="bookdown 0.25 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="Chapter 2 Introduction | Harvested Wood Products vR Documentation" />
+  <meta property="og:title" content="Chapter 2 Introduction | Harvested Wood Products C vR Documentation" />
   <meta property="og:type" content="book" />
   
   <meta property="og:description" content="This HWP vR documentation was written in bookdown.<br />
@@ -19,17 +19,15 @@ set in the _output.yml file.</p>" />
   <meta name="github-repo" content="jeremygroom/HWP-vR-Documentation" />
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="Chapter 2 Introduction | Harvested Wood Products vR Documentation" />
+  <meta name="twitter:title" content="Chapter 2 Introduction | Harvested Wood Products C vR Documentation" />
   
   <meta name="twitter:description" content="This HWP vR documentation was written in bookdown.<br />
 The HTML output format for this document is bookdown::gitbook,
 set in the _output.yml file.</p>" />
   
 
-<meta name="author" content="Jeremiah Groom" />
 
 
-<meta name="date" content="2022-04-20" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -58,6 +56,8 @@ set in the _output.yml file.</p>" />
 <link href="libs/anchor-sections-1.1.0/anchor-sections.css" rel="stylesheet" />
 <link href="libs/anchor-sections-1.1.0/anchor-sections-hash.css" rel="stylesheet" />
 <script src="libs/anchor-sections-1.1.0/anchor-sections.js"></script>
+<script src="libs/kePrint-0.0.1/kePrint.js"></script>
+<link href="libs/lightable-0.0.1/lightable.css" rel="stylesheet" />
 
 
 
@@ -100,7 +100,7 @@ div.csl-indent {
 <li><a href="./">HWP vR Documentation</a></li>
 
 <li class="divider"></li>
-<li><a href="index.html#url-your-book-url-like-httpsbookdown.orgyihuibookdown" id="toc-url-your-book-url-like-httpsbookdown.orgyihuibookdown"><span class="toc-section-number">1</span> url: your book url like <span>https://bookdown.org/yihui/bookdown</span><span></span></a>
+<li><a href="index.html#sum" id="toc-sum"><span class="toc-section-number">1</span> Summary<span></span></a>
 <ul>
 <li><a href="index.html#sum-ack" id="toc-sum-ack"><span class="toc-section-number">1.1</span> Acknowledgements<span></span></a></li>
 <li><a href="index.html#sum-abb" id="toc-sum-abb"><span class="toc-section-number">1.2</span> Abbreviations<span></span></a></li>
@@ -192,7 +192,7 @@ div.csl-indent {
       <div class="body-inner">
         <div class="book-header" role="navigation">
           <h1>
-            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Harvested Wood Products vR Documentation</a>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Harvested Wood Products C vR Documentation</a>
           </h1>
         </div>
 
@@ -216,9 +216,12 @@ Figure 2.1: General schematic for calculations to quantify HWP storage and emiss
 <div id="int-hist" class="section level2 hasAnchor" number="2.2">
 <h2><span class="header-section-number">2.2</span> Model history<a href="int.html#int-hist" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>The HWP model began as an Excel macro originally created by the U.S. Forest Service (USFS) for National Forest System regional HWP carbon inventories <span class="citation">(<a href="#ref-stockmann2012" role="doc-biblioref">Stockmann et al. 2012</a>)</span>. The Excel tool was updated to one programmed in C++ (v1; <span class="citation">Stockmann et al. (<a href="#ref-stockmann2014" role="doc-biblioref">2014</a>)</span>). The tool was then and modified in 2012 by the USFS for use in the California Forest Ecosystem and Harvested Wood Product Carbon Inventory <span class="citation">(<a href="#ref-christensen2019" role="doc-biblioref">Christensen et al. 2019</a>)</span>, and is given the label here as the CA USFS HWPC-C variant. This history is described in Figure <a href="int.html#fig:hist-fig">2.2</a>.</p>
-<p>Groom Analytics LLC undertook programming the <span class="citation">Stockmann et al. (<a href="#ref-stockmann2012" role="doc-biblioref">2012</a>)</span> model in R for Oregon, and subsequently deployed the R version to a <a href="https://groomanalyticsllc.shinyapps.io/HWP_Shared_Test/">web application</a>. This version of the model (HWP-C vR) described in this document largely functions the same as the original USFS Excel-based tool and the v1 tool. A few changes exist and are described more fully in Christiansen et al. <span class="citation">(<a href="#ref-christensen2020" role="doc-biblioref">2020</a>, <a href="#ref-christensen2021" role="doc-biblioref">2021</a>)</span>. These changes include:
-* Modification of lag times built in the original tool, in order to allow for better quality assurance of calculations.<br />
-* The original tool resulted in narrower confidences intervals than expected based on the parameters set for the Monte Carlo Uncertainty Analysis. This tool has established a new Monte Carlo simulation that has succeeded in introducing variability into the HWP C estimates.</p>
+<p>Groom Analytics LLC undertook programming the <span class="citation">Stockmann et al. (<a href="#ref-stockmann2012" role="doc-biblioref">2012</a>)</span> model in R for Oregon, and subsequently deployed the R version to a <a href="https://groomanalyticsllc.shinyapps.io/HWP_Shared_Test/">web application</a>. This version of the model (HWP-C vR) described in this document largely functions the same as the original USFS Excel-based tool and the v1 tool. A few changes exist and are described more fully in Christiansen et al. <span class="citation">(<a href="#ref-christensen2020" role="doc-biblioref">2020</a>, <a href="#ref-christensen2021" role="doc-biblioref">2021</a>)</span>. These changes include:</p>
+<ul>
+<li>Modification of lag times built in the original tool, in order to allow for better quality assurance of calculations.<br />
+</li>
+<li>The original tool resulted in narrower confidences intervals than expected based on the parameters set for the Monte Carlo Uncertainty Analysis. This tool has established a new Monte Carlo simulation that has succeeded in introducing variability into the HWP C estimates.</li>
+</ul>
 <p>The USFS is currently updating their original tool, with public availability expected in 2022/2023. This version (HWP-C vR) is not intended to compete with or contradict the original USFS work, but rather complement the original work by being available in a different platform and coding language. This version includes new data visualizations.</p>
 <div class="figure"><span style="display:block;" id="fig:hist-fig"></span>
 <img src="images/ModelHistory.png" alt="Schematic of the HWP model development pathway.  The version described here is the State HWP-C variant." width="100%" />

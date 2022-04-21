@@ -18,7 +18,8 @@ knitr::include_graphics("images/OverviewModelSchematic.png")
 
 The HWP model began as an Excel macro originally created by the U.S. Forest Service (USFS) for National Forest System regional HWP carbon inventories [@stockmann2012].  The Excel tool was updated to one programmed in C++ (v1; @stockmann2014).  The tool was then and modified in 2012 by the USFS for use in the California Forest Ecosystem and Harvested Wood Product Carbon Inventory [@christensen2019], and is given the label here as the CA USFS HWPC-C variant.  This history is described in Figure \@ref(fig:hist-fig).   
 
-Groom Analytics LLC undertook programming the @stockmann2012 model in R for Oregon, and subsequently deployed the R version to a [web application](https://groomanalyticsllc.shinyapps.io/HWP_Shared_Test/).  This version of the model (HWP-C vR) described in this document largely functions the same as the original USFS Excel-based tool and the v1 tool.   A few changes exist and are described more fully in Christiansen et al. [-@christensen2020; -@christensen2021]. These  changes include:
+Groom Analytics LLC undertook programming the @stockmann2012 model in R for Oregon, and subsequently deployed the R version to a [web application](https://groomanalyticsllc.shinyapps.io/HWP_Shared_Test/).  This version of the model (HWP-C vR) described in this document largely functions the same as the original USFS Excel-based tool and the v1 tool.   A few changes exist and are described more fully in Christiansen et al. [-@christensen2020; -@christensen2021]. These  changes include:  
+
 * Modification of lag times built in the original tool, in order to allow for better quality assurance of calculations.  
 *	The original tool resulted in narrower confidences intervals than expected based on the parameters set for the Monte Carlo Uncertainty Analysis. This tool has established a new Monte Carlo simulation that has succeeded in introducing variability into the HWP C estimates.  
 

@@ -65,7 +65,6 @@
 \usepackage{color}
 \usepackage{framed}
 \usepackage{tcolorbox}
-\PassOptionsToPackage{uniquename=false}{biblatex}
 \setlength{\fboxsep}{.8em}
 
 
@@ -75,6 +74,13 @@
   coltext=black,
   boxsep=5pt,
   arc=4pt}
+\usepackage[fontsize=12pt]{scrextend}
+\usepackage{titling}
+\pretitle{\begin{center}\vspace{3cm}\LARGE}
+\posttitle{\end{center}}
+\preauthor{\begin{center}\vspace{1.5cm}\Large\textit}
+\postauthor{\end{center}}
+\predate{\begin{center}\vspace{1cm}\Large\textit}
 \usepackage{booktabs}
 \usepackage{longtable}
 \usepackage{array}
@@ -99,14 +105,17 @@
 \IfFileExists{xurl.sty}{\usepackage{xurl}}{} % add URL line breaks if available
 \urlstyle{same} % disable monospaced font for URLs
 \hypersetup{
-  pdftitle={Harvested Wood Products vR Documentation},
-  pdfauthor={Jeremiah Groom},
+  pdftitle={Harvested Wood Products C vR Documentation},
   hidelinks,
   pdfcreator={LaTeX via pandoc}}
 
-\title{Harvested Wood Products vR Documentation}
-\author{Jeremiah Groom}
-\date{2022-04-20}
+\title{Harvested Wood Products C vR Documentation}
+\author{Jeremy Groom, Ph.D.\\
+Groom Analytics, LLC\\
+\strut \\
+Nadia Tase\\
+California Department of Forestry and Fire Protection}
+\date{Date: April 21, 2022}
 
 \begin{document}
 \maketitle
@@ -118,7 +127,7 @@
 \hypertarget{sum}{%
 \chapter{Summary}\label{sum}}
 
-The Harvested Wood Products (HWP) model is a deterministic model which relies on optional and required user-supplied information. The model is described in \textcite{stockmann2012}. There have been several builds of the model, on platforms including Microsoft Excel, C++, and now R \autocite{R-base}. Another effort is currently underway to construct an interactive version of the model in Python. This article describes a build of the model based on data from the U.S. west coast states of California, Oregon, and Washington. This R-based platform allows for user interaction with California and Oregon data via a web application (\url{https://groomanalyticsllc.shinyapps.io/HWP_Shared_Test/}). Users may also upload their own data onto the app, run their data through the HWP model and associated Monte Carlo simulation, interact with their data, and construct and save figures. Alternatively, users may access the full Shiny app code as well as a stand-alone version of the HWP model implementation. The stand-alone version allows users the opportunity to step through the code more easily, save model arrays for hand-calculation of outcomes, and alter the code to meet their own data needs. Both versions allow users to download or generate the tables necessary to recreate figures to their own specifications.
+The Harvested Wood Products (HWP) model is a deterministic model which relies on optional and required user-supplied information. The model is described in \textcite{stockmann2012}. There have been several builds of the model, on platforms including Microsoft Excel, C++, and now R \autocite{R-base}. Another effort is currently underway to construct an interactive version of the model in Python. This article describes a build of the model based on data from the U.S. west coast states of California, Oregon, and Washington. This R-based platform allows for user interaction with California and Oregon data via a \href{https://groomanalyticsllc.shinyapps.io/HWP_Shared_Test/}{web application}. Users may also upload their own data onto the app, run their data through the HWP model and associated Monte Carlo simulation, interact with their data, and construct and save figures. Alternatively, users may access the full Shiny app code as well as a stand-alone version of the HWP model implementation. The stand-alone version allows users the opportunity to step through the code more easily, save model arrays for hand-calculation of outcomes, and alter the code to meet their own data needs. Both versions allow users to download or generate the tables necessary to recreate figures to their own specifications.
 This document describes the model and structure of the code, explains how to generate input files, and provides instruction on accessing model code.
 
 \hypertarget{sum-ack}{%
@@ -177,8 +186,14 @@ In the subsequent year more timber enters the cycle. However, the previous year'
 The HWP model began as an Excel macro originally created by the U.S. Forest Service (USFS) for National Forest System regional HWP carbon inventories \autocite{stockmann2012}. The Excel tool was updated to one programmed in C++ (v1; \textcite{stockmann2014}). The tool was then and modified in 2012 by the USFS for use in the California Forest Ecosystem and Harvested Wood Product Carbon Inventory \autocite{christensen2019}, and is given the label here as the CA USFS HWPC-C variant. This history is described in Figure \ref{fig:hist-fig}.
 
 Groom Analytics LLC undertook programming the \textcite{stockmann2012} model in R for Oregon, and subsequently deployed the R version to a \href{https://groomanalyticsllc.shinyapps.io/HWP_Shared_Test/}{web application}. This version of the model (HWP-C vR) described in this document largely functions the same as the original USFS Excel-based tool and the v1 tool. A few changes exist and are described more fully in Christiansen et al. \autocite*{christensen2020,christensen2021}. These changes include:
-* Modification of lag times built in the original tool, in order to allow for better quality assurance of calculations.\\
-* The original tool resulted in narrower confidences intervals than expected based on the parameters set for the Monte Carlo Uncertainty Analysis. This tool has established a new Monte Carlo simulation that has succeeded in introducing variability into the HWP C estimates.
+
+\begin{itemize}
+\tightlist
+\item
+  Modification of lag times built in the original tool, in order to allow for better quality assurance of calculations.\\
+\item
+  The original tool resulted in narrower confidences intervals than expected based on the parameters set for the Monte Carlo Uncertainty Analysis. This tool has established a new Monte Carlo simulation that has succeeded in introducing variability into the HWP C estimates.
+\end{itemize}
 
 The USFS is currently updating their original tool, with public availability expected in 2022/2023. This version (HWP-C vR) is not intended to compete with or contradict the original USFS work, but rather complement the original work by being available in a different platform and coding language. This version includes new data visualizations.
 

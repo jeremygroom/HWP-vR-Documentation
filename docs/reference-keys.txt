@@ -71,4 +71,3 @@ own-mc
 ft
 ft-faqs
 ft-trbl
-url-your-book-url-like-httpsbookdown.orgyihuibookdown

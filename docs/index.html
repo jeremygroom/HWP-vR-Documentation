@@ -4,13 +4,13 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>Harvested Wood Products vR Documentation</title>
+  <title>Harvested Wood Products C vR Documentation</title>
   <meta name="description" content="This HWP vR documentation was written in bookdown.<br />
 The HTML output format for this document is bookdown::gitbook,
 set in the _output.yml file.</p>" />
   <meta name="generator" content="bookdown 0.25 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="Harvested Wood Products vR Documentation" />
+  <meta property="og:title" content="Harvested Wood Products C vR Documentation" />
   <meta property="og:type" content="book" />
   
   <meta property="og:description" content="This HWP vR documentation was written in bookdown.<br />
@@ -19,17 +19,15 @@ set in the _output.yml file.</p>" />
   <meta name="github-repo" content="jeremygroom/HWP-vR-Documentation" />
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="Harvested Wood Products vR Documentation" />
+  <meta name="twitter:title" content="Harvested Wood Products C vR Documentation" />
   
   <meta name="twitter:description" content="This HWP vR documentation was written in bookdown.<br />
 The HTML output format for this document is bookdown::gitbook,
 set in the _output.yml file.</p>" />
   
 
-<meta name="author" content="Jeremiah Groom" />
 
 
-<meta name="date" content="2022-04-20" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -194,7 +192,7 @@ div.csl-indent {
       <div class="body-inner">
         <div class="book-header" role="navigation">
           <h1>
-            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Harvested Wood Products vR Documentation</a>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Harvested Wood Products C vR Documentation</a>
           </h1>
         </div>
 
@@ -203,13 +201,17 @@ div.csl-indent {
 
             <section class="normal" id="section-">
 <div id="header">
-<h1 class="title">Harvested Wood Products vR Documentation</h1>
-<p class="author"><em>Jeremiah Groom</em></p>
-<p class="date"><em>2022-04-20</em></p>
+<h1 class="title">Harvested Wood Products C vR Documentation</h1>
+<p class="author"><em><div class="line-block">Jeremy Groom, Ph.D.<br />
+Groom Analytics, LLC<br />
+<br />
+Nadia Tase<br />
+California Department of Forestry and Fire Protection</div></em></p>
+<p class="date"><em>Date: April 21, 2022</em></p>
 </div>
 <div id="sum" class="section level1 hasAnchor" number="1">
 <h1><span class="header-section-number">Chapter 1</span> Summary<a href="index.html#sum" class="anchor-section" aria-label="Anchor link to header"></a></h1>
-<p>The Harvested Wood Products (HWP) model is a deterministic model which relies on optional and required user-supplied information. The model is described in <span class="citation">K. D. Stockmann et al. (<a href="#ref-stockmann2012" role="doc-biblioref">2012</a>)</span>. There have been several builds of the model, on platforms including Microsoft Excel, C++, and now R <span class="citation">(<a href="#ref-R-base" role="doc-biblioref">R Core Team 2021</a>)</span>. Another effort is currently underway to construct an interactive version of the model in Python. This article describes a build of the model based on data from the U.S. west coast states of California, Oregon, and Washington. This R-based platform allows for user interaction with California and Oregon data via a web application (<a href="https://groomanalyticsllc.shinyapps.io/HWP_Shared_Test/" class="uri">https://groomanalyticsllc.shinyapps.io/HWP_Shared_Test/</a>). Users may also upload their own data onto the app, run their data through the HWP model and associated Monte Carlo simulation, interact with their data, and construct and save figures. Alternatively, users may access the full Shiny app code as well as a stand-alone version of the HWP model implementation. The stand-alone version allows users the opportunity to step through the code more easily, save model arrays for hand-calculation of outcomes, and alter the code to meet their own data needs. Both versions allow users to download or generate the tables necessary to recreate figures to their own specifications.
+<p>The Harvested Wood Products (HWP) model is a deterministic model which relies on optional and required user-supplied information. The model is described in <span class="citation">Stockmann et al. (<a href="#ref-stockmann2012" role="doc-biblioref">2012</a>)</span>. There have been several builds of the model, on platforms including Microsoft Excel, C++, and now R <span class="citation">(<a href="#ref-R-base" role="doc-biblioref">R Core Team 2021</a>)</span>. Another effort is currently underway to construct an interactive version of the model in Python. This article describes a build of the model based on data from the U.S. west coast states of California, Oregon, and Washington. This R-based platform allows for user interaction with California and Oregon data via a <a href="https://groomanalyticsllc.shinyapps.io/HWP_Shared_Test/">web application</a>. Users may also upload their own data onto the app, run their data through the HWP model and associated Monte Carlo simulation, interact with their data, and construct and save figures. Alternatively, users may access the full Shiny app code as well as a stand-alone version of the HWP model implementation. The stand-alone version allows users the opportunity to step through the code more easily, save model arrays for hand-calculation of outcomes, and alter the code to meet their own data needs. Both versions allow users to download or generate the tables necessary to recreate figures to their own specifications.
 This document describes the model and structure of the code, explains how to generate input files, and provides instruction on accessing model code.</p>
 <div id="sum-ack" class="section level2 hasAnchor" number="1.1">
 <h2><span class="header-section-number">1.1</span> Acknowledgements<a href="index.html#sum-ack" class="anchor-section" aria-label="Anchor link to header"></a></h2>

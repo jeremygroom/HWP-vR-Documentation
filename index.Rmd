@@ -1,7 +1,20 @@
 --- 
-title: "Harvested Wood Products vR Documentation"
-author: "Jeremiah Groom"
-date: "`r Sys.Date()`"
+title: "Harvested Wood Products C vR Documentation"
+author: |
+  | Jeremy Groom, Ph.D.
+  | Groom Analytics, LLC
+  | 
+  | Nadia Tase
+  | California Department of Forestry and Fire Protection
+date: '`r paste("Date:",format(Sys.Date(), "%B %d, %Y"))`'
+header-includes:
+- \usepackage[fontsize=12pt]{scrextend}
+- \usepackage{titling}
+- \pretitle{\begin{center}\vspace{3cm}\LARGE}
+- \posttitle{\end{center}}
+- \preauthor{\begin{center}\vspace{1.5cm}\Large\textit}
+- \postauthor{\end{center}}
+- \predate{\begin{center}\vspace{1cm}\Large\textit}
 site: bookdown::bookdown_site
 documentclass: book
 bibliography: [book.bib, packages.bib]
@@ -27,7 +40,7 @@ library(kableExtra)
 
 # Summary       {#sum}
 
-The Harvested Wood Products (HWP) model is a deterministic model which relies on optional and required user-supplied information.  The model is described in @stockmann2012.  There have been several builds of the model, on platforms including Microsoft Excel, C++, and now R [@R-base].  Another effort is currently underway to construct an interactive version of the model in Python.  This article describes a build of the model based on data from the U.S. west coast states of California, Oregon, and Washington.  This R-based platform allows for user interaction with California and Oregon data via a web application (<https://groomanalyticsllc.shinyapps.io/HWP_Shared_Test/>).   Users may also upload their own data onto the app, run their data through the HWP model and associated Monte Carlo simulation, interact with their data, and construct and save figures.  Alternatively, users may access the full Shiny app code as well as a stand-alone version of the HWP model implementation. The stand-alone version allows users the opportunity to step through the code more easily, save model arrays for hand-calculation of outcomes, and alter the code to meet their own data needs.  Both versions allow users to download or generate the tables necessary to recreate figures to their own specifications. 
+The Harvested Wood Products (HWP) model is a deterministic model which relies on optional and required user-supplied information.  The model is described in @stockmann2012.  There have been several builds of the model, on platforms including Microsoft Excel, C++, and now R [@R-base].  Another effort is currently underway to construct an interactive version of the model in Python.  This article describes a build of the model based on data from the U.S. west coast states of California, Oregon, and Washington.  This R-based platform allows for user interaction with California and Oregon data via a [web application](https://groomanalyticsllc.shinyapps.io/HWP_Shared_Test/).   Users may also upload their own data onto the app, run their data through the HWP model and associated Monte Carlo simulation, interact with their data, and construct and save figures.  Alternatively, users may access the full Shiny app code as well as a stand-alone version of the HWP model implementation. The stand-alone version allows users the opportunity to step through the code more easily, save model arrays for hand-calculation of outcomes, and alter the code to meet their own data needs.  Both versions allow users to download or generate the tables necessary to recreate figures to their own specifications. 
 This document describes the model and structure of the code, explains how to generate input files, and provides instruction on accessing model code. 
 
 
