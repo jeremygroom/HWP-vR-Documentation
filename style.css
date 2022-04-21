@@ -12,3 +12,14 @@ pre {
 pre code {
   white-space: inherit;
 }
+
+.greybox {
+  padding: 1em;
+  background: lightgrey;
+  color: black;
+  border: 2px solid black;
+  border-radius: 10px;
+}
+.center {
+  text-align: center;
+}

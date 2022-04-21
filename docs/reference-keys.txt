@@ -13,8 +13,8 @@ fig:mc-tests-fig
 fig:mc-tests2-fig
 fig:mc-tests3-fig
 fig:mc-tests4-fig
+fig:template-map-fig
 sum
-sum-about
 sum-ack
 sum-abb
 int
@@ -50,6 +50,19 @@ run-opp-add
 own
 own-over
 own-input
+own-input-options
+own-input-harvest
+own-input-bfcf
+own-input-tpr
+own-input-ppr
+own-input-eur
+own-input-rc
+own-input-ccfMTC
+own-input-euhl
+own-input-discFates
+own-input-discHL
+own-input-mc
+own-temp
 own-qa
 own-shiny
 own-sa
@@ -58,3 +71,4 @@ own-mc
 ft
 ft-faqs
 ft-trbl
+url-your-book-url-like-httpsbookdown.orgyihuibookdown

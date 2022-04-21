@@ -195,7 +195,7 @@ As an example, say we wish to add 2018 and 2019 harvest levels to Oregon’s dat
 
 The first of those lines refers to the original data, the second the name of the file with the Harvest_BF data for the new years, the third line identifies the location of the input data files, and the last line is the name the user wishes to use for the updated data set.  
 
-The new data can provide all of the original data for harvest board feet in addition to the more recent harvest data.  Or, the user can provide just the new data.  Once those four lines are correct the user can select and run all of the code from the file.  The code will attempt to generate a new Excel file with the desired updates.  The code also performs some QA checks:  
+The new data can provide all of the original data for harvest board feet in addition to the more recent harvest data (e.g., `Oregon_BF_2019.xlsx`).  Or, the user can provide just the new data (e.g., `Oregon_BF_2019v2.xlsx`).  Once those four lines are correct the user can select and run all of the code from the file.  The code will attempt to generate a new Excel file with the desired updates.  The code also performs some QA checks:  
 
 *	Verifies that data are numeric    
 
