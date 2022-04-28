@@ -17,6 +17,7 @@ header-includes:
 - \predate{\begin{center}\vspace{1cm}\Large\textit}
 site: bookdown::bookdown_site
 documentclass: book
+classoption: openany
 bibliography: [book.bib, packages.bib]
 # url: your book url like https://bookdown.org/yihui/bookdown
 # cover-image: path to the social sharing image like images/cover.jpg

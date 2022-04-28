@@ -45,15 +45,25 @@ These items provide users with links to this documentation, which in turn descri
 
 ## Operating the model from your own machine     {#run-opp}
 
-The Shiny [@R-shiny] application and stand-alone implementation of the HWP model are available on [GitHub](https://github.com/).  You will need to have Git installed on your computer, connect Git to RStudio, and finally tell RStudio where the GitHub files are to download (pull).  Once you have these files you will have the most up-to-date version of the deployed code.
+The Shiny [@R-shiny] application and stand-alone implementation of the HWP model are available on [GitHub](https://github.com/).  There are two options for obtaining the files. You will need to have Git installed on your computer, connect Git to RStudio, and finally tell RStudio where the GitHub files are to download (pull).  Once you have these files you will have the most up-to-date version of the deployed code.
 
 ### R, RStudio, GitHub, and downloading the files    {#run-opp-git}
 
-You will need to have [R](https://www.r-project.org/) and [RStudio](https://www.rstudio.com/products/rstudio/) installed on your computer.  Both are free.  R is the base program that executes the code; RStudio is an IDE, or Integrated Development Environment, that brings ease and power to using R.  You will operate R through RStudio.    
+You will need to have [R](https://www.r-project.org/) and [RStudio](https://www.rstudio.com/products/rstudio/) installed on your computer.  Both are free.  R is the base program that executes the code; RStudio is an IDE, or Integrated Development Environment, that brings ease and power to using R.  You will operate R through RStudio.  
 
-You will need to have a program called Git installed on your computer.  It may already be installed.  There is a bit of a learning curve to getting Git up and going, as well as connecting to GitHub through RStudio.  However, there is a great website that can smooth the way: [Happy Git and GitHub for the useR](https://happygitwithr.com/index.html). Another excellent website is [here](https://cfss.uchicago.edu/setup/git-with-rstudio/).  If you are not already using GitHub or similar, getting Git/GitHub/RProject set up may take an hour or two.  I recommend reading through the website carefully and following its instructions.  Going slowly is going quickly.
+There are two ways to download all of the code and associated files.  You can either download a zip file (~ 20mb) or clone the GitHub repository.  If you clone the repository you can easily update the code from the GitHub site in the future.  
 
-Based on Chapter 16 in Happy Git and Github (specifically 16.2), and assuming your RStudio connects to GitHub, perform the following:   
+#### Compressed file download    {#run-opp-git-zip}
+To obtain the compressed file, go to the [GitHub repository](https://github.com/jeremygroom/HWP_Shared_Test.git), click on the green "Code" button above the list of files, and then on "Download Zip" (see Figure \@ref(fig:zip-fig)).  Unzip the folder on your machine and then [check out the file structure](https://jeremygroom.github.io/HWP-vR-Documentation/run.html#run-opp-files) and follow [these directions](https://jeremygroom.github.io/HWP-vR-Documentation/run.html#run-opp-shiny) for running the Shiny code and [these](https://jeremygroom.github.io/HWP-vR-Documentation/run.html#run-opp-sa) for running the stand-alone version.  
+
+```{r zip-fig, echo = FALSE, fig.cap = "GitHub repository location for downloading the compressed files.", fig.asp = 0.7, fig.width= 6, out.width = '100%'}
+knitr::include_graphics("images/zip.png")
+```
+
+#### Clone the GitHub repository   {#run-opp-git-git}
+To successfully clone the repository, you will need to have a program called Git installed on your computer.  It may already be installed.  There is a bit of a learning curve to getting Git up and going, as well as connecting to GitHub through RStudio.  However, there is a great website that can smooth the way: [Happy Git and GitHub for the useR](https://happygitwithr.com/index.html). Another excellent website is [here](https://cfss.uchicago.edu/setup/git-with-rstudio/).  If you are not already using GitHub or similar, getting Git/GitHub/RProject set up may take an hour or two.  I recommend reading through the website carefully and following its instructions.  Going slowly is going quickly.
+
+Once you have Git set up on your machine and have verified that it is doing what you want you are ready to clone the repository.  The following is based on Chapter 16 in Happy Git and Github (specifically 16.2), and assumes that your RStudio can connect to GitHub:   
 1. Select a location on your computer where you would like a folder containing the code to be placed.   
 2. Start R studio.  
 3. Select the following menu options: File > New Project > Version Control > Git  
@@ -61,13 +71,7 @@ Based on Chapter 16 in Happy Git and Github (specifically 16.2), and assuming yo
 This will automatically populate the blank below the URL with the project name (HWP_Shared_Test).    
 5. Click “Create Project”  
 
-RStudio will now open the HWP_Shared_Test.Rproj file for you.  Within RStudio select from the menu File > Open File… .  Select the file app.r and click on the Open button.  The next step is to run all of the code in the app.r file.  There are several ways to do this.  One way is to click on the code itself, select all of the code (ctrl+A on a PC, apple+A on a Mac), and then ctrl+Enter (or apple+Enter) will run everything. Or, go to the menu item and select Code > Source.  From within this project, open the R files “app.r” to access and run the Shiny app (Open the “HWP_Stand_Alone_Code.R” to run the model outside of the app.    
-
-Users can run one or more lines of code by highlighting them and pressing ctrl-Enter or apple-Enter, or from the RStudio menu selecting Code > Run Selected Line(s).    
-
-The first line of the app.r or HWP_Stand_Alone_Code.R is: `renv::restore()`.  The first time you run this line the project file will (with your permission) download all versions of all libraries and the R instance used to run the app [@R-renv].  It takes a little while, but you’ll only need to do it once.  This version control step hopefully helps prevent conflicts between your newer or older versions of previously-installed R libraries and the code.    
-
-The stand-alone relies heavily upon functions and code chunks in the Shiny app file (HWP_Shiny_app  > R_code_data).  Updates to model code affect both the app and stand-alone code.  The guts of the HWP model are in the file HWP_Model_Function.r .  The file HWP_Model_Prep.R is used in several places for preparing data for entry into the model or versions of the model (HWP, Monte Carlo HWP, Sankey HWP).    
+RStudio will now open the HWP_Shared_Test.Rproj file for you.  
 
 ### File structure         {#run-opp-files}
 
@@ -150,7 +154,15 @@ This folder contains R environment variables that the Shiny application (app.r) 
 This folder contains shinyapps.io deployment information. The user can ignore this folder.   
 
 ### Running the Shiny app from your computer     {#run-opp-shiny}
-As stated above, if this is the first time you are running this code, it may take a little while as renv will need to load appropriate program and package versions.  Once you have run the Shiny application code, RStudio will display the application in its own window.  A button at the top of the window will allow you to open the application in your own browser, but this isn’t necessary.  The application should function as it does online when run from the Shinyapps.io server.    
+Open the RStudio project file "HWP_Shared_Test.Rproj".  Within RStudio select from the menu File > Open File… .  Select the file app.r and click on the Open button.  The next step is to run all of the code in the app.r file.  There are several ways to do this.  One way is to click on the code itself, select all of the code (ctrl+A on a PC, apple+A on a Mac), and then ctrl+Enter (or apple+Enter) will run everything. Or, go to the menu item and select Code > Source.  From within this project, open the R files “app.r” to access and run the Shiny app (Open the “HWP_Stand_Alone_Code.R” to run the model outside of the app.    
+
+Users can run one or more lines of code by highlighting them and pressing ctrl-Enter or apple-Enter, or from the RStudio menu selecting Code > Run Selected Line(s).    
+
+The first line of the app.r or HWP_Stand_Alone_Code.R is: `renv::restore()`.  The first time you run this line the project file will (with your permission) download all versions of all libraries and the R instance used to run the app [@R-renv].  It takes a little while, but you’ll only need to do it once.  This version control step hopefully helps prevent conflicts between your newer or older versions of previously-installed R libraries and the code.    
+
+The stand-alone relies heavily upon functions and code chunks in the Shiny app file (HWP_Shiny_app  > R_code_data).  Updates to model code affect both the app and stand-alone code.  The guts of the HWP model are in the file HWP_Model_Function.r .  The file HWP_Model_Prep.R is used in several places for preparing data for entry into the model or versions of the model (HWP, Monte Carlo HWP, Sankey HWP).    
+
+Once you have run the Shiny application code, RStudio will display the application in its own window.  A button at the top of the window will allow you to open the application in your own browser, but this isn’t necessary.  The application should function as it does online when run from the Shinyapps.io server.    
 
 The user can alter the Shiny code to produce different figures or to extract intermediary or final data frames used for figure generation.  As a warning, if the user alterations cause an error, the Shiny application can break. Troubleshooting in a Shiny application is not as straightforward as it is in standard R code (In the online book [Mastering Shiny](https://mastering-shiny.org/index.html) by @wickham2021, see [Chapter 5 Section 2, Debugging](https://mastering-shiny.org/action-workflow.html)).   I will not discuss the workings of Shiny to any extent here (if interested, see the previous link for more information), but if the user inserts the code `browser()` immediately after an item of interest, saves the change to the code, re-runs the Shiny app from their computer, and selects the figure or item of interest from the application, the code will halt at the `browser()` call and the user can inspect all elements created to that point. 
 

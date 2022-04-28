@@ -13,6 +13,7 @@ fig:mc-tests-fig
 fig:mc-tests2-fig
 fig:mc-tests3-fig
 fig:mc-tests4-fig
+fig:zip-fig
 fig:template-map-fig
 sum
 sum-ack
@@ -43,6 +44,8 @@ run-shiny-cse
 run-doc
 run-opp
 run-opp-git
+run-opp-git-zip
+run-opp-git-git
 run-opp-files
 run-opp-shiny
 run-opp-sa
