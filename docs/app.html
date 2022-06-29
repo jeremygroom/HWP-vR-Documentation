@@ -1,0 +1,341 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>Chapter 3 Option 1: Basic use of the R Shiny web application | Harvested Wood Products Carbon Model, Version R Documentation</title>
+  <meta name="description" content="This HWP vR documentation was written in bookdown.<br />
+The HTML output format for this document is bookdown::gitbook,
+set in the _output.yml file.</p>" />
+  <meta name="generator" content="bookdown 0.26 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="Chapter 3 Option 1: Basic use of the R Shiny web application | Harvested Wood Products Carbon Model, Version R Documentation" />
+  <meta property="og:type" content="book" />
+  
+  <meta property="og:description" content="This HWP vR documentation was written in bookdown.<br />
+The HTML output format for this document is bookdown::gitbook,
+set in the _output.yml file.</p>" />
+  <meta name="github-repo" content="jeremygroom/HWP-vR-Documentation" />
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Chapter 3 Option 1: Basic use of the R Shiny web application | Harvested Wood Products Carbon Model, Version R Documentation" />
+  
+  <meta name="twitter:description" content="This HWP vR documentation was written in bookdown.<br />
+The HTML output format for this document is bookdown::gitbook,
+set in the _output.yml file.</p>" />
+  
+
+
+
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="int.html"/>
+<link rel="next" href="own.html"/>
+<script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+<link href="libs/anchor-sections-1.1.0/anchor-sections.css" rel="stylesheet" />
+<link href="libs/anchor-sections-1.1.0/anchor-sections-hash.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.1.0/anchor-sections.js"></script>
+<script src="libs/kePrint-0.0.1/kePrint.js"></script>
+<link href="libs/lightable-0.0.1/lightable.css" rel="stylesheet" />
+
+
+
+<style type="text/css">
+/* Used with Pandoc 2.11+ new --citeproc when CSL is used */
+div.csl-bib-body { }
+div.csl-entry {
+  clear: both;
+}
+.hanging div.csl-entry {
+  margin-left:2em;
+  text-indent:-2em;
+}
+div.csl-left-margin {
+  min-width:2em;
+  float:left;
+}
+div.csl-right-inline {
+  margin-left:2em;
+  padding-left:1em;
+}
+div.csl-indent {
+  margin-left: 2em;
+}
+</style>
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">HWP vR Documentation</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> Summary</a>
+<ul>
+<li class="chapter" data-level="1.1" data-path="index.html"><a href="index.html#sum-ack"><i class="fa fa-check"></i><b>1.1</b> Acknowledgements</a></li>
+<li class="chapter" data-level="1.2" data-path="index.html"><a href="index.html#sum-abb"><i class="fa fa-check"></i><b>1.2</b> Abbreviations</a></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="int.html"><a href="int.html"><i class="fa fa-check"></i><b>2</b> Introduction</a>
+<ul>
+<li class="chapter" data-level="2.1" data-path="int.html"><a href="int.html#int-struc"><i class="fa fa-check"></i><b>2.1</b> Structure of this document</a></li>
+<li class="chapter" data-level="2.2" data-path="int.html"><a href="int.html#int-purp"><i class="fa fa-check"></i><b>2.2</b> General purpose and utility of the HWP C model</a></li>
+<li class="chapter" data-level="2.3" data-path="int.html"><a href="int.html#int-gen"><i class="fa fa-check"></i><b>2.3</b> General description of the HWP C model</a></li>
+<li class="chapter" data-level="2.4" data-path="int.html"><a href="int.html#int-assump"><i class="fa fa-check"></i><b>2.4</b> HWP model assumptions</a></li>
+<li class="chapter" data-level="2.5" data-path="int.html"><a href="int.html#int-hist"><i class="fa fa-check"></i><b>2.5</b> Model history</a></li>
+<li class="chapter" data-level="2.6" data-path="int.html"><a href="int.html#int-future"><i class="fa fa-check"></i><b>2.6</b> Future work</a></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="app.html"><a href="app.html"><i class="fa fa-check"></i><b>3</b> Option 1: Basic use of the R Shiny web application</a>
+<ul>
+<li class="chapter" data-level="3.1" data-path="app.html"><a href="app.html#app-sum"><i class="fa fa-check"></i><b>3.1</b> Interacting with the HWP-C vR model</a></li>
+<li class="chapter" data-level="3.2" data-path="app.html"><a href="app.html#app-shiny"><i class="fa fa-check"></i><b>3.2</b> Basic web interactivity – Shiny app</a>
+<ul>
+<li class="chapter" data-level="3.2.1" data-path="app.html"><a href="app.html#app-shiny-home"><i class="fa fa-check"></i><b>3.2.1</b> Homepage</a></li>
+<li class="chapter" data-level="3.2.2" data-path="app.html"><a href="app.html#app-shiny-timber"><i class="fa fa-check"></i><b>3.2.2</b> Timber harvest summary figures</a></li>
+<li class="chapter" data-level="3.2.3" data-path="app.html"><a href="app.html#app-shiny-cse"><i class="fa fa-check"></i><b>3.2.3</b> Carbon Storage and Emissions figures</a></li>
+<li class="chapter" data-level="3.2.4" data-path="app.html"><a href="app.html#app-doc"><i class="fa fa-check"></i><b>3.2.4</b> Documentation and Data Upload</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="own.html"><a href="own.html"><i class="fa fa-check"></i><b>4</b> Option 2: Upload and run your own data in the web application</a>
+<ul>
+<li class="chapter" data-level="4.1" data-path="own.html"><a href="own.html#own-over"><i class="fa fa-check"></i><b>4.1</b> Overview</a>
+<ul>
+<li class="chapter" data-level="4.1.1" data-path="own.html"><a href="own.html#own-over-inputSum"><i class="fa fa-check"></i><b>4.1.1</b> Data inputs</a></li>
+</ul></li>
+<li class="chapter" data-level="4.2" data-path="own.html"><a href="own.html#own-prov"><i class="fa fa-check"></i><b>4.2</b> Providing your own data</a>
+<ul>
+<li class="chapter" data-level="4.2.1" data-path="own.html"><a href="own.html#own-prov-temp"><i class="fa fa-check"></i><b>4.2.1</b> Select the template files</a></li>
+<li class="chapter" data-level="4.2.2" data-path="own.html"><a href="own.html#own-prov-input"><i class="fa fa-check"></i><b>4.2.2</b> Creation of the input file</a></li>
+</ul></li>
+<li class="chapter" data-level="4.3" data-path="own.html"><a href="own.html#own-qa"><i class="fa fa-check"></i><b>4.3</b> The quality assurance step</a></li>
+<li class="chapter" data-level="4.4" data-path="own.html"><a href="own.html#own-shiny"><i class="fa fa-check"></i><b>4.4</b> Uploading your data and running the model from the Shiny web app</a></li>
+<li class="chapter" data-level="4.5" data-path="own.html"><a href="own.html#own-mc"><i class="fa fa-check"></i><b>4.5</b> What to know about running the Monte Carlo simulation</a></li>
+<li class="chapter" data-level="4.6" data-path="own.html"><a href="own.html#own-tables"><i class="fa fa-check"></i><b>4.6</b> Generated Tables</a></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="dnld.html"><a href="dnld.html"><i class="fa fa-check"></i><b>5</b> Option 3: Operating the model from your own machine</a>
+<ul>
+<li class="chapter" data-level="5.1" data-path="dnld.html"><a href="dnld.html#dnld-git"><i class="fa fa-check"></i><b>5.1</b> R, RStudio, GitHub, and downloading the files</a>
+<ul>
+<li class="chapter" data-level="5.1.1" data-path="dnld.html"><a href="dnld.html#dnld-git-zip"><i class="fa fa-check"></i><b>5.1.1</b> Compressed file download</a></li>
+<li class="chapter" data-level="5.1.2" data-path="dnld.html"><a href="dnld.html#dnld-git-git"><i class="fa fa-check"></i><b>5.1.2</b> Clone the GitHub repository</a></li>
+</ul></li>
+<li class="chapter" data-level="5.2" data-path="dnld.html"><a href="dnld.html#dnld-files"><i class="fa fa-check"></i><b>5.2</b> File structure</a></li>
+<li class="chapter" data-level="5.3" data-path="dnld.html"><a href="dnld.html#dnld-shiny"><i class="fa fa-check"></i><b>5.3</b> Running the Shiny app from your computer</a>
+<ul>
+<li class="chapter" data-level="5.3.1" data-path="dnld.html"><a href="dnld.html#dnld-shiny-details"><i class="fa fa-check"></i><b>5.3.1</b> Details on running and editing the code</a></li>
+</ul></li>
+<li class="chapter" data-level="5.4" data-path="dnld.html"><a href="dnld.html#dnld-sa"><i class="fa fa-check"></i><b>5.4</b> The Stand-alone model: benefits, utility, and how to operate</a></li>
+<li class="chapter" data-level="5.5" data-path="dnld.html"><a href="dnld.html#dnld-add"><i class="fa fa-check"></i><b>5.5</b> How to add new data years to your data set</a></li>
+</ul></li>
+<li class="chapter" data-level="6" data-path="model.html"><a href="model.html"><i class="fa fa-check"></i><b>6</b> HWP Model Operations</a>
+<ul>
+<li class="chapter" data-level="6.1" data-path="model.html"><a href="model.html#model-func"><i class="fa fa-check"></i><b>6.1</b> HWP model function</a>
+<ul>
+<li class="chapter" data-level="6.1.1" data-path="model.html"><a href="model.html#model-func-inp"><i class="fa fa-check"></i><b>6.1.1</b> Model inputs</a></li>
+<li class="chapter" data-level="6.1.2" data-path="model.html"><a href="model.html#model-func-opp"><i class="fa fa-check"></i><b>6.1.2</b> Summary of model operations</a></li>
+<li class="chapter" data-level="6.1.3" data-path="model.html"><a href="model.html#model-func-schdesc"><i class="fa fa-check"></i><b>6.1.3</b> Model schematic description</a></li>
+<li class="chapter" data-level="6.1.4" data-path="model.html"><a href="model.html#model-func-schem"><i class="fa fa-check"></i><b>6.1.4</b> Model Schematic</a></li>
+<li class="chapter" data-level="6.1.5" data-path="model.html"><a href="model.html#model-func-out"><i class="fa fa-check"></i><b>6.1.5</b> Model Outputs</a></li>
+</ul></li>
+<li class="chapter" data-level="6.2" data-path="model.html"><a href="model.html#model-mc"><i class="fa fa-check"></i><b>6.2</b> Monte Carlo simulation</a>
+<ul>
+<li class="chapter" data-level="6.2.1" data-path="model.html"><a href="model.html#model-mc-spec"><i class="fa fa-check"></i><b>6.2.1</b> Simulation specifications</a></li>
+<li class="chapter" data-level="6.2.2" data-path="model.html"><a href="model.html#model-mc-samp"><i class="fa fa-check"></i><b>6.2.2</b> Simulation Sampling</a></li>
+<li class="chapter" data-level="6.2.3" data-path="model.html"><a href="model.html#model-mc-samphwp"><i class="fa fa-check"></i><b>6.2.3</b> Sampling and the HWP program</a></li>
+<li class="chapter" data-level="6.2.4" data-path="model.html"><a href="model.html#model-mc-res"><i class="fa fa-check"></i><b>6.2.4</b> Monte Carlo results and development</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="7" data-path="ft.html"><a href="ft.html"><i class="fa fa-check"></i><b>7</b> Frequently Asked Questions and Troubleshooting</a>
+<ul>
+<li class="chapter" data-level="7.1" data-path="ft.html"><a href="ft.html#ft-faqs"><i class="fa fa-check"></i><b>7.1</b> Frequently Asked Questions</a></li>
+<li class="chapter" data-level="7.2" data-path="ft.html"><a href="ft.html#ft-trbl"><i class="fa fa-check"></i><b>7.2</b> Troubleshooting</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="references.html"><a href="references.html"><i class="fa fa-check"></i>References</a></li>
+<li class="divider"></li>
+<li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Harvested Wood Products Carbon Model, Version R Documentation</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="app" class="section level1 hasAnchor" number="3">
+<h1><span class="header-section-number">Chapter 3</span> Option 1: Basic use of the R Shiny web application<a href="app.html#app" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<div id="app-sum" class="section level2 hasAnchor" number="3.1">
+<h2><span class="header-section-number">3.1</span> Interacting with the HWP-C vR model<a href="app.html#app-sum" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>There are two approaches available to users for interacting with the HWP model. The first way is to use the web application. Users can view a variety of graphical outputs from the California and Oregon data sets and manipulate the figures to a degree (this chapter). Users can also upload their own data (Chapter <a href="own.html#own">4</a>), run the HWP-C vR model, and view the results using the same suite of figures. Users can also download the model to their computer (Chapter <a href="dnld.html#dnld">5</a>). This option allows them to run the web app locally on their own machine. It also lets them operate a stand-alone version of the model, which is a code-based environment that does not produce the web app.</p>
+</div>
+<div id="app-shiny" class="section level2 hasAnchor" number="3.2">
+<h2><span class="header-section-number">3.2</span> Basic web interactivity – Shiny app<a href="app.html#app-shiny" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>The <a href="https://groomanalyticsllc.shinyapps.io/HWP_Shared_Test/">web site</a> allows users to switch between two pre-loaded data sets, California and Oregon state-wide timber harvests. The menu bar on the left also has some drop-down plotting and data upload options. Plots include displays of <strong>timber harvest summaries</strong>, <strong>harvested wood product carbon storage and emissions estimates</strong>, and <strong>Monte Carlo simulation</strong> results.</p>
+<p>The app was designed to aid users by providing figures that could usefully be incorporated into reports. To that end, all figures can be saved (with one exception) and the title for each figure can be customized.</p>
+<p>Below we describe the figures and options within each menu category</p>
+<div id="app-shiny-home" class="section level3 hasAnchor" number="3.2.1">
+<h3><span class="header-section-number">3.2.1</span> Homepage<a href="app.html#app-shiny-home" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>The only figure for the app homepage (<strong>Home</strong>) is an original drawing by Dr. Groom’s child, Farren Groom. This page offers a brief overview of the web app.</p>
+</div>
+<div id="app-shiny-timber" class="section level3 hasAnchor" number="3.2.2">
+<h3><span class="header-section-number">3.2.2</span> Timber harvest summary figures<a href="app.html#app-shiny-timber" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>The three figure options under Timber Harvest Summaries are <strong>Annual Timber Harvest</strong>, <strong>Fate of Harvest Carbon</strong>, and <strong>Harvest by Functional Lifespan</strong>.</p>
+<ul>
+<li><p><strong>Annual Timber Harvest</strong> shows the volume of harvest by year and ownership. Users can toggle between seeing annual or cumulative versions of total harvest volumes, ownership volumes, or both simultaneously. As in all figures, users can select seeing results by Tg C or Tg CO<span class="math inline">\(_2\)</span>e. This figure additionally allows users to see results by BBF. Results can be displayed by the year or cumulatively over time.</p></li>
+<li><p><strong>Fate of Harvest Carbon</strong>. This tab has two figures, a Sankey diagram and a more static figure to the lower right. The Sankey diagram depicts the fate, over time, of harvested carbon from a single year. In the bottom left portion of the screen, the user selects the harvest date of interest and the years post-harvest to track the fate of carbon in the system. Users can, by mouse, manipulate the location of the vertical bars associated with the fate of the harvested carbon. Mouse-overs of the diagram will also reveal the amount of carbon (Tg C / Tg CO<span class="math inline">\(_2\)</span>e) in pools or transitioning to pools. The same data are displayed in the lower-right figure, with the figure displaying over time the residence of carbon in different pools and emissions categories. The vertical line depicts the data slice displayed in the Sankey diagram. The Sankey diagram’s html code can be downloaded but cannot be saved as a pdf (the stand-alone version of the model can provide a PNG-savable version). The lower-right figure may be saved as a PNG file.</p></li>
+<li><p><strong>Harvest by Functional Lifespan</strong>. The HWP model has different half-lives for products in use. This figure bins the annual volume of harvest sent to different end use products by their associated half-lives. The figure displays values by either the harvest volume or proportion of total harvest.</p></li>
+</ul>
+</div>
+<div id="app-shiny-cse" class="section level3 hasAnchor" number="3.2.3">
+<h3><span class="header-section-number">3.2.3</span> Carbon Storage and Emissions figures<a href="app.html#app-shiny-cse" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>These four figures, under the Carbon Storage and Emissions menu option, track the size of pools and emissions categories over time.</p>
+<ul>
+<li><p><strong>Carbon Storage by Ownership</strong>. If harvest data by ownership are available, the figure plots the amount of carbon stored in products in use and SWDS. Users can select which ownership values are displayed along with whether to display products in use data, SWDS data, or both.<br />
+</p></li>
+<li><p><strong>Carbon Storage and Emissions</strong>. This selection allows viewers to access three similar figures of cumulative carbon states over time. All three allow users to view any combination of products in use, SWDS, and emissions categories.</p>
+<ul>
+<li>Summary Pool and Emission Categories: This figure displays general storage (products in use, SWDS) and emissions (emissions with energy capture, emission without energy capture).</li>
+<li>Pool and emission category components: This figure allows users to visualize emissions (eg., fuelwood, landfill decay, etc.) and storage (e.g., products in use, landfill stock subject to decay, etc.) pool components.</li>
+<li>Pools and emissions by halflife category: Storage and emissions categories are displayed by the contribution of immediate oxidation, short, medium, or long-lasting uses.<br />
+</li>
+</ul></li>
+<li><p><strong>Annual Net Change in Carbon Storage</strong>. These figures display annual change in stocks (products in use, SWDS; IPCC Production Approach – stock change) or net balance (annual harvest, and annual emissions with and without energy capture; IPCC Simple Decay approach - net balance). The option to add a “net” line displays the sum of the annual change in the products in use and SWDS storage pools. For the “IPCC Simple Decay approach - net balance” figure, the “net” line is comprised of the annual harvest minus the annual emissions equal the change in products in use plus SWDS. The text accompanying this figure in the app explains the figure in greater depth.</p></li>
+<li><p><strong>Monte Carlo Estimates</strong>. Two of these three figures display mean cumulative values from the Monte Carlo simulations with 90% confidence intervals.</p>
+<ul>
+<li>Cumulative carbon in individual storage and emission pools: There are separate results for Emitted with Energy Capture, Emitted without Energy Capture, Products in Use, and Solid Waste Disposal Sites.<br />
+</li>
+<li>Cumulative carbon in storage pools combined (Products in use + SWDS): This figure sums the products in use + SWDS values within each iteration of the Monte Carlo and provides the mean plus 90% confidence interval.<br />
+</li>
+<li>Monte Carlo convergence evaluation: This figure displays sequential iteration results for the final year of the Monte Carlo simulation. It shows values for the 5th and 95th percentiles of values (i.e., the boundaries of the 90% confidence intervals), the value for the mean and standard error (se) over time. The Monte Carlo estimation process allows for a burn-in period, for which iteration values prior to that period are discarded from the estimation (pink vertical line). If values after the burn-in period appear unstable, more iterations may be needed to arrive at reasonable values. If they appeared to stabilize long before the burn-in period, then the Monte Carlo may provide reliable results with fewer iterations.</li>
+</ul></li>
+</ul>
+</div>
+<div id="app-doc" class="section level3 hasAnchor" number="3.2.4">
+<h3><span class="header-section-number">3.2.4</span> Documentation and Data Upload<a href="app.html#app-doc" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>These items provide users with links to this documentation, which in turn describes aspects of the web application, the workings of the HWP model, and how users can upload their own data and download the source code.</p>
+<ul>
+<li><p>Documentation: The link to this document, which in turn describes aspects of the web application, the workings of the HWP tool, and how users can upload their own data and download the source code.</p></li>
+<li><p>Files and code: This is a link to the model’s GitHub site where users can view and download code, including code for the app and the stand-alone version of the HWP-C vR model, along with other files. For more about the site and ways to download the files, see Chapter <a href="dnld.html#dnld">5</a>.</p></li>
+<li><p>Data Templates: Users can download a compressed folder containing existing data files for California, Oregon, and Washington, as well as USFS regional input data templates (these lie within the GitHub site) that users can alter when preparing their own data for entry into the Shiny app (see Section <a href="own.html#own-prov-temp">4.2.1</a>) or stand-alone model version. Or, once the users have downloaded the template files, they can load provided versions of the Oregon and California data sets, or even a data set for Washington state (see the Try It! box in Section <a href="own.html#own-shiny">4.4</a>).</p></li>
+<li><p>Upload Data: This selection allows users to load their own Excel file of data, verify that the file is formatted completely, and run the model. Once the model is run, the upper left “<strong>Select a data set</strong>” option will have a third option; namely, the <strong>user’s new data set</strong>. All of the Shiny figures (except for the Monte Carlo Estimates selection) will plot the new data accordingly. The user must run the Monte Carlo separately from the page to populate the Monte Carlo figures with their data. The Monte Carlo simulation is run separately because it may take a few minutes to run. For details on preparing and uploading your own data, see Chapter <a href="own.html#own">4</a>.</p></li>
+</ul>
+
+</div>
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="int.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="own.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"whatsapp": false,
+"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": "https://github.com/USERNAME/REPO/edit/BRANCH/02-run-app.Rmd",
+"text": "Edit"
+},
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": null,
+"text": null
+},
+"download": ["HWP-CvR-Documentation.pdf", "HWP-CvR-Documentation.epub"],
+"search": {
+"engine": "fuse",
+"options": null
+},
+"toc": {
+"collapse": "subsection",
+"scroll_highlight": true
+}
+});
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+
+</html>

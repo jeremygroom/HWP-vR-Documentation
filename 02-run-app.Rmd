@@ -1,0 +1,51 @@
+# Option 1: Basic use of the R Shiny web application   {#app}
+
+## Interacting with the HWP-C vR model  {#app-sum}
+
+There are two approaches available to users for interacting with the HWP model.  The first way is to use the web application.  Users can view a variety of graphical outputs from the California and Oregon data sets and manipulate the figures to a degree (this chapter).  Users can also upload their own data (Chapter \@ref(own)), run the HWP-C vR model, and view the results using the same suite of figures.  Users can also download the model to their computer (Chapter \@ref(dnld)).  This option allows them to run the web app locally on their own machine.  It also lets them operate a stand-alone version of the model, which is a code-based environment that does not produce the web app.  
+
+## Basic web interactivity – Shiny app   {#app-shiny}
+
+The [web site](https://groomanalyticsllc.shinyapps.io/HWP_Shared_Test/) allows users to switch between two pre-loaded data sets, California and Oregon state-wide timber harvests.  The menu bar on the left also has some drop-down plotting and data upload options.  Plots include displays of **timber harvest summaries**, **harvested wood product carbon storage and emissions estimates**, and **Monte Carlo simulation** results.  
+
+The app was designed to aid users by providing figures that could usefully be incorporated into reports.  To that end, all figures can be saved (with one exception) and the title for each figure can be customized.  
+
+Below we describe the figures and options within each menu category
+
+### Homepage {#app-shiny-home}
+The only figure for the app homepage (**Home**) is an original drawing by Dr. Groom's child, Farren Groom.  This page offers a brief overview of the web app.
+
+### Timber harvest summary figures    {#app-shiny-timber}
+The three figure options under Timber Harvest Summaries are **Annual Timber Harvest**, **Fate of Harvest Carbon**, and **Harvest by Functional Lifespan**.  
+
+*	**Annual Timber Harvest** shows the volume of harvest by year and ownership.  Users can toggle between seeing annual or cumulative versions of total harvest volumes, ownership volumes, or both simultaneously.  As in all figures, users can select seeing results by Tg C or Tg CO$_2$e.  This figure additionally allows users to see results by BBF.  Results can be displayed by the year or cumulatively over time.  
+
+*	**Fate of Harvest Carbon**.  This tab has two figures, a Sankey diagram and a more static figure to the lower right.  The Sankey diagram depicts the fate, over time, of harvested carbon from a single year. In the bottom left portion of the screen, the user selects the harvest date of interest and the years post-harvest to track the fate of carbon in the system.  Users can, by mouse, manipulate the location of the vertical bars associated with the fate of the harvested carbon.  Mouse-overs of the diagram will also reveal the amount of carbon (Tg C / Tg CO$_2$e) in pools or transitioning to pools.  The same data are displayed in the lower-right figure, with the figure displaying over time the residence of carbon in different pools and emissions categories. The vertical line depicts the data slice displayed in the Sankey diagram.  The Sankey diagram’s html code can be downloaded but cannot be saved as a pdf (the stand-alone version of the model can provide a PNG-savable version).  The lower-right figure may be saved as a PNG file.  
+
+* **Harvest by Functional Lifespan**.  The HWP model has different half-lives for products in use.  This figure bins the annual volume of harvest sent to different end use products by their associated half-lives.  The figure displays values by either the harvest volume or proportion of total harvest.  
+
+### Carbon Storage and Emissions figures     {#app-shiny-cse}  
+These four figures, under the Carbon Storage and Emissions menu option, track the size of pools and emissions categories over time.   
+
+*	**Carbon Storage by Ownership**.  If harvest data by ownership are available, the figure plots the amount of carbon stored in products in use and SWDS.  Users can select which ownership values are displayed along with whether to display products in use data, SWDS data, or both.  
+*	**Carbon Storage and Emissions**.  This selection allows viewers to access three similar figures of cumulative carbon states over time.  All three allow users to view any combination of products in use, SWDS, and emissions categories.
+    +	Summary Pool and Emission Categories: This figure displays general storage (products in use, SWDS) and emissions (emissions with energy capture, emission without energy capture).
+    +	Pool and emission category components: This figure allows users to visualize emissions (eg., fuelwood, landfill decay, etc.) and storage (e.g., products in use, landfill stock subject to decay, etc.) pool components.
+    +	Pools and emissions by halflife category:  Storage and emissions categories are displayed by the contribution of immediate oxidation, short, medium, or long-lasting uses.  
+* **Annual Net Change in Carbon Storage**.  These figures display annual change in stocks (products in use, SWDS; IPCC Production Approach – stock change) or net balance (annual harvest, and annual emissions with and without energy capture; IPCC Simple Decay approach - net balance). The option to add a “net” line displays the sum of the annual change in the products in use and SWDS storage pools. For the “IPCC Simple Decay approach - net balance” figure, the “net” line is comprised of the annual harvest minus the annual emissions equal the change in products in use plus SWDS.  The text accompanying this figure in the app explains the figure in greater depth.    
+
+* **Monte Carlo Estimates**.  Two of these three figures display mean cumulative values from the Monte Carlo simulations with 90% confidence intervals.    
+    +	Cumulative carbon in individual storage and emission pools: There are separate results for Emitted with Energy Capture, Emitted without Energy Capture, Products in Use, and Solid Waste Disposal Sites.   
+    +	Cumulative carbon in storage pools combined (Products in use + SWDS): This figure sums the products in use + SWDS values within each iteration of the Monte Carlo and provides the mean plus 90% confidence interval.   
+    +	Monte Carlo convergence evaluation: This figure displays sequential iteration results for the final year of the Monte Carlo simulation.  It shows values for the 5th and 95th percentiles of values (i.e., the boundaries of the 90% confidence intervals), the value for the mean and standard error (se) over time.  The Monte Carlo estimation process allows for a burn-in period, for which iteration values prior to that period are discarded from the estimation (pink vertical line).  If values after the burn-in period appear unstable, more iterations may be needed to arrive at reasonable values. If they appeared to stabilize long before the burn-in period, then the Monte Carlo may provide reliable results with fewer iterations.    
+
+### Documentation and Data Upload     {#app-doc}
+These items provide users with links to this documentation, which in turn describes aspects of the web application, the workings of the HWP model, and how users can upload their own data and download the source code.    
+
+*	Documentation: The link to this document, which in turn describes aspects of the web application, the workings of the HWP tool, and how users can upload their own data and download the source code.
+
+* Files and code: This is a link to the model's GitHub site where users can view and download code, including code for the app and the stand-alone version of the HWP-C vR model, along with other files.  For more about the site and ways to download the files, see Chapter \@ref(dnld).
+
+*	Data Templates: Users can download a compressed folder containing existing data files for California, Oregon, and Washington, as well as USFS regional input data templates (these lie within the GitHub site) that users can alter when preparing their own data for entry into the Shiny app (see Section \@ref(own-prov-temp)) or stand-alone model version.  Or, once the users have downloaded the template files, they can load provided versions of the Oregon and California data sets, or even a data set for Washington state (see the Try It! box in Section \@ref(own-shiny)).  
+
+*	Upload Data: This selection allows users to load their own Excel file of data, verify that the file is formatted completely, and run the model.  Once the model is run, the upper left “**Select a data set**” option will have a third option; namely, the **user's new data set**.  All of the Shiny figures (except for the Monte Carlo Estimates selection) will plot the new data accordingly.  The user must run the Monte Carlo separately from the page to populate the Monte Carlo figures with their data.  The Monte Carlo simulation is run separately because it may take a few minutes to run.  For details on preparing and uploading your own data, see Chapter \@ref(own).    

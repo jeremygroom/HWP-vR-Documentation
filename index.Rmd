@@ -1,33 +1,27 @@
 --- 
-title: "Harvested Wood Products C vR Documentation"
-author: |
-  | Jeremy Groom, Ph.D.
-  | Groom Analytics, LLC
-  | 
-  | Nadia Tase
-  | California Department of Forestry and Fire Protection
-date: '`r paste("Date:",format(Sys.Date(), "%B %d, %Y"))`'
+title: "Harvested Wood Products Carbon Model, Version R Documentation"
+author: "| Jeremy Groom, Ph.D.\n| Groom Analytics, LLC \n| \n| Nadia Tase\n| California Department of Forestry and Fire Protection\n"
+date: "`r paste('Date:',format(Sys.Date(), '%B %d, %Y'))`"
+output: pdf_document
+site: bookdown::bookdown_site
+documentclass: book
+classoption: openany
+bibliography:
+- book.bib
+- packages.bib
+description: "This HWP vR documentation was written in bookdown.  \nThe HTML output
+  format for this document is bookdown::gitbook,\nset in the _output.yml file.\n"
+link-citations: yes
+github-repo: jeremygroom/HWP-vR-Documentation
 header-includes:
 - \usepackage[fontsize=12pt]{scrextend}
 - \usepackage{titling}
-- \pretitle{\begin{center}\vspace{3cm}\LARGE}
+- \pretitle{\begin{center}\vspace{5cm}\LARGE}
 - \posttitle{\end{center}}
 - \preauthor{\begin{center}\vspace{1.5cm}\Large\textit}
 - \postauthor{\end{center}}
 - \predate{\begin{center}\vspace{1cm}\Large\textit}
-site: bookdown::bookdown_site
-documentclass: book
-classoption: openany
-bibliography: [book.bib, packages.bib]
-# url: your book url like https://bookdown.org/yihui/bookdown
-# cover-image: path to the social sharing image like images/cover.jpg
-description: |
-  This HWP vR documentation was written in bookdown.  
-  The HTML output format for this document is bookdown::gitbook,
-  set in the _output.yml file.
-link-citations: yes
-github-repo: jeremygroom/HWP-vR-Documentation
-
+- \postdate{\end{center}\begin{center}\vspace{2cm}\includegraphics[width=3cm]{GroomAnalyticsE.png}\end{center}}
 ---
 
 ```{r libraries, echo = FALSE, warning=FALSE}
@@ -41,13 +35,19 @@ library(kableExtra)
 
 # Summary       {#sum}
 
-The Harvested Wood Products (HWP) model is a deterministic model which relies on optional and required user-supplied information.  The model is described in @stockmann2012.  There have been several builds of the model, on platforms including Microsoft Excel, C++, and now R [@R-base].  Another effort is currently underway to construct an interactive version of the model in Python.  This article describes a build of the model based on data from the U.S. west coast states of California, Oregon, and Washington.  This R-based platform allows for user interaction with California and Oregon data via a [web application](https://groomanalyticsllc.shinyapps.io/HWP_Shared_Test/).   Users may also upload their own data onto the app, run their data through the HWP model and associated Monte Carlo simulation, interact with their data, and construct and save figures.  Alternatively, users may access the full Shiny app code as well as a stand-alone version of the HWP model implementation. The stand-alone version allows users the opportunity to step through the code more easily, save model arrays for hand-calculation of outcomes, and alter the code to meet their own data needs.  Both versions allow users to download or generate the tables necessary to recreate figures to their own specifications. 
-This document describes the model and structure of the code, explains how to generate input files, and provides instruction on accessing model code. 
+The Harvested Wood Products (HWP) model calculates cumulative HWP carbon stocks and emissions using the [Tier 3 Production Approach](https://www.ipcc-nggip.iges.or.jp/public/2006gl/pdf/4_Volume4/V4_04_Ch4_Forest_Land.pdf) carbon estimation guidelines developed by the [Intergovernmental Panel on Climate Change](https://www.ipcc.ch/).  It is a deterministic model which relies on optional and required user-supplied information.  The model estimation methods are described in @stockmann2012.  There have been several builds of the model, originally created by the U.S. Forest Service (USFS), on platforms including Microsoft Excel and C++. Through partnership with the California Department of Forestry and Fire Protection (CAL FIRE), Oregon Department of Forestry (ODF) and Groom Analytics LLC, this version of the tool (deemed HWP-C vR) builds from the previous USFS versions on the R [@R-base] platform, for use in their state-level harvested wood product carbon inventories.  Another USFS effort is currently underway to construct an interactive version of the model in Python.  This version (HWP-C vR) is not intended to compete with or contradict the original or ongoing USFS work, but rather complement the work by being available in a different platform and coding language. This version also includes new data visualizations.    
+
+Here we describe the HWP-C vR build of the model based on data from the U.S. west coast states of California, Oregon, and Washington.  Users may explore California and Oregon data via the [R Shiny web application](https://groomanalyticsllc.shinyapps.io/HWP_Shared_Test/).  Users from any state or ownership may also upload their own data onto the app, run their data through the HWP model and associated Monte Carlo simulation, view and interact with figures, and download figures and tables.    
+
+Alternatively, users may access the full Shiny app R code as well as a stand-alone version of the R code for HWP model implementation. The stand-alone version allows users the opportunity to step through the code more easily, save intermediate outputs (i.e., arrays) for hand-calculation of outcomes, and alter the code to meet their own data needs.  Both versions allow users to download or generate the final output tables necessary to recreate figures to their own specifications.   
+
+This document describes the model and structure of the code, explains how to generate input files, and provides instruction on accessing the code. 
 
 
 
 ## Acknowledgements    {#sum-ack}
-Many thanks to Nadia Tase and Andrew Yost for supporting the development of this work through feedback, discussion, and their own efforts to dive into the code and understand the model at its core.  Jimmy Kagan and Amanda Reynolds provided administrative support.  We received feedback and support for the earlier iteration of the R-version of the model from Todd Morgan, Dan Loffler, Keith Stockmann, [OTHERS].  
+Many thanks to Nadia Tase (California Department of Forestry and Fire Protection - CAL FIRE) and Andrew Yost (Oregon Department of Forestry - ODF) for supporting the development of this work through feedback, discussion, and their own efforts to dive into the code and understand the model at its core.  Jimmy Kagan (Oregon State University, Institute for Natural Resources) and Amanda Reynolds (CAL FIRE) provided administrative support.  We received feedback and support for the earlier iteration of the R-version of the model from Todd Morgan (University of Montana, Bureau of Business and Economic Research), Dan Loffler (University of Montana), Keith Stockmann (USFS), [OTHERS].  
+
 This project was funded by the California Department of Forestry and Fire Protection Purchase Order 3540-0000277546.  Earlier work on the project was funded by the Oregon Department of Forestry and supported by the Institute for Natural Resources, Oregon State University.  
 
 ## Abbreviations      {#sum-abb}
@@ -57,7 +57,7 @@ The following description uses many acronyms for brevity.  Here is a list of the
 BF: Board Feet   
 BBF: Billion Board Feet   
 BLM: Bureau of Land Management   
-BWEC: Burned with Energy Capture   
+DEC: Discard Energy Capture   
 EWEC: Emitted with Energy Capture   
 EWOEC: Emitted without Energy Capture   
 EUR: End-use Product Ratios   
@@ -78,7 +78,8 @@ USFS: United States Forest Service
 
 
 A note about units for carbon:  
-Publications from the United States have frequently described carbon storage and emissions using the metric million metric tons carbon, or MMT C.  We are using the equivalent metric, teragrams of carbon (Tg C) in the HWP model and this manual to align with IPCC reporting requirements.  
+Publications from the United States have frequently described carbon storage and emissions using the metric million metric tons carbon, or MMT C.  We are using the equivalent metric, teragrams of carbon (Tg C) in the HWP model and this manual to align with common scientific reporting units.  Additionally, though the tool provides estimates for carbon emissions in both units of carbon and carbon dioxide equivalents, these estimates are for the biogenic carbon content in the wood only, and do not include other carbon-based greenhouse gas emissions with different global warming potentials, such as methane.  
+  
 
 
 
