@@ -37,7 +37,7 @@ library(kableExtra)
 
 The Harvested Wood Products (HWP) model calculates cumulative HWP carbon stocks and emissions using the [Tier 3 Production Approach](https://www.ipcc-nggip.iges.or.jp/public/2006gl/pdf/4_Volume4/V4_04_Ch4_Forest_Land.pdf) carbon estimation guidelines developed by the [Intergovernmental Panel on Climate Change](https://www.ipcc.ch/).  It is a deterministic model which relies on optional and required user-supplied information.  The model estimation methods are described in @stockmann2012.  There have been several builds of the model, originally created by the U.S. Forest Service (USFS), on platforms including Microsoft Excel and C++. Through partnership with the California Department of Forestry and Fire Protection (CAL FIRE), Oregon Department of Forestry (ODF) and Groom Analytics LLC, this version of the tool (deemed HWP-C vR) builds from the previous USFS versions on the R [@R-base] platform, for use in their state-level harvested wood product carbon inventories.  Another USFS effort is currently underway to construct an interactive version of the model in Python.  This version (HWP-C vR) is not intended to compete with or contradict the original or ongoing USFS work, but rather complement the work by being available in a different platform and coding language. This version also includes new data visualizations.    
 
-Here we describe the HWP-C vR build of the model based on data from the U.S. west coast states of California, Oregon, and Washington.  Users may explore California and Oregon data via the [R Shiny web application](https://groomanalyticsllc.shinyapps.io/HWP_Shared_Test/).  Users from any state or ownership may also upload their own data onto the app, run their data through the HWP model and associated Monte Carlo simulation, view and interact with figures, and download figures and tables.    
+Here we describe the HWP-C vR build of the model based on data from the U.S. west coast states of California, Oregon, and Washington.  Users may explore California and Oregon data via the [R Shiny web application](https://groomanalyticsllc.shinyapps.io/HWP-C-vR/).  Users from any state or ownership may also upload their own data onto the app, run their data through the HWP model and associated Monte Carlo simulation, view and interact with figures, and download figures and tables.    
 
 Alternatively, users may access the full Shiny app R code as well as a stand-alone version of the R code for HWP model implementation. The stand-alone version allows users the opportunity to step through the code more easily, save intermediate outputs (i.e., arrays) for hand-calculation of outcomes, and alter the code to meet their own data needs.  Both versions allow users to download or generate the final output tables necessary to recreate figures to their own specifications.   
 
@@ -46,7 +46,7 @@ This document describes the model and structure of the code, explains how to gen
 
 
 ## Acknowledgements    {#sum-ack}
-Many thanks to Nadia Tase (California Department of Forestry and Fire Protection - CAL FIRE) and Andrew Yost (Oregon Department of Forestry - ODF) for supporting the development of this work through feedback, discussion, and their own efforts to dive into the code and understand the model at its core.  Jimmy Kagan (Oregon State University, Institute for Natural Resources) and Amanda Reynolds (CAL FIRE) provided administrative support.  We received feedback and support for the earlier iteration of the R-version of the model from Todd Morgan (University of Montana, Bureau of Business and Economic Research), Dan Loffler (University of Montana), Keith Stockmann (USFS), [OTHERS].  
+Many thanks to Nadia Tase (California Department of Forestry and Fire Protection - CAL FIRE) and Andrew Yost (Oregon Department of Forestry - ODF) for supporting the development of this work through feedback, discussion, and their own efforts to dive into the code and understand the model at its core.  Jimmy Kagan (Oregon State University's Institute for Natural Resources) and Amanda Reynolds (CAL FIRE) provided administrative support.  We received feedback and support for the earlier iteration of the R-version of the model from Todd Morgan (University of Montana, Bureau of Business and Economic Research), Dan Loffler (University of Montana), Keith Stockmann (USFS), [OTHERS].  
 
 This project was funded by the California Department of Forestry and Fire Protection Purchase Order 3540-0000277546.  Earlier work on the project was funded by the Oregon Department of Forestry and supported by the Institute for Natural Resources, Oregon State University.  
 
@@ -58,7 +58,7 @@ BF: Board Feet
 BBF: Billion Board Feet   
 BLM: Bureau of Land Management   
 DEC: Discard Energy Capture   
-EWEC: Emitted with Energy Capture   
+EEC: Emitted with Energy Capture   
 EWOEC: Emitted without Energy Capture   
 EUR: End-use Product Ratios   
 HWP: Harvested Wood Products   
@@ -105,13 +105,13 @@ We wish to provide users with a document that will enable users to step into the
 
 The next three sections describe options for interacting with the model in progressively technical ways:  
 
-* Option 1: Chapter XX. Basic - Users can explore and view pre-laoded HWP C data in the R Shiny web application.   
+* Option 1: Chapter \@ref(app). Basic - Users can explore and view pre-laoded HWP C data in the R Shiny web application.   
     + Users can view a, interact with, and download a variety of graphical outputs from the California and Oregon default data sets  and manipulate the figures to a degree.
     + Outputs that can be viewed in or downloaded from the web application are described in section 5.7.  
-* Option 2: Chapter XX.  Intermediate - Users can provide their own data to run in the R Shiny web application to generate HWP C estimates.
+* Option 2: Chapter \@ref(own).  Intermediate - Users can provide their own data to run in the R Shiny web application to generate HWP C estimates.
     + Users can use the full functionality of the app on their own data, including generating HWP carbon storage and emissions estimates, producing, viewing, and downloading the same sorts of figures, and runing the Monte Carlo uncertainty analysis.  
     + This is a good option for users that would like to produce their own results but are unfamiliar with R or R Studio.
-* Option 3: Chapter XX.  Advanced - Users can download the Shiny web application and R code to run the model on to their own computer.  
+* Option 3: Chapter \@ref(dnld).  Advanced - Users can download the Shiny web application and R code to run the model on to their own computer.  
     + Allows the user to run the Shiny web app locally on their own machine.  
     + Also allows the user to operate the stand-alone version of the model using the R code in R or R Studio without needing to rely on the web app.
     + Users can use existing datasets for California, Oregon, and Washington or provide their own input datasets to generate cumulative estimates of harvested wood product carbon storage and emissions.
@@ -133,7 +133,7 @@ The model may also be useful for planners and decision-makers to explore hypothe
 
 An overview schematic of the HWP model is provided in Figure \@ref(fig:overview-fig). The model estimates cumulative HWP carbon stocks and emissions from current and historic harvests using the [Tier 3 Production Approach](https://www.ipcc-nggip.iges.or.jp/public/2006gl/pdf/4_Volume4/V4_04_Ch4_Forest_Land.pdf) carbon estimation guidelines developed by the [Intergovernmental Panel on Climate Change](https://www.ipcc.ch/).  For each year of consideration, the model allocates annual harvest volumes in thousand board feet (MBF) to timber products (e.g., sawlogs, non-sawtimber, pulpwood, fuelwood, etc.) and primary products (e.g., lumber, plywood, panels, pulp, etc.) using timber product ratios (TPR) and primary product ratios (PPR). Total harvest volumes or volumes partitioned by ownership can be analyzed. Conversion factors are used to convert harvest volumes in thousand board feet (MBF) to cubic foot (CF) volumes. Primary product volumes in cubic feet are then converted to units of carbon using conversions from @smith2006. Primary products are then distributed to end-uses using ratios (EUR) from @mckeever2009 and @mckeever2011, such as lumber in single family homes versus lumber in packaging and shipping materials. The carbon associated with primary products in each end-use comprises the “products in use” (PIU pool) HWP carbon pool. Approximately 8% of the carbon immediately enters discard pathways to reflect a loss factor when primary products enter the PIU pool. Each end-use has a different functional lifespan, or half-life, which determines the amount and rate at which harvested wood products are retired from the PIU pool to various discard pathways each year.   
 
-Retired HWPs are transferred to a solid waste disposal site (SWDS), recycled, composted, or burned with or without energy capture using discard disposition ratios. Discard emissions pathways with immediate oxidation include discarded products that are burned (with or without energy capture) or composted. Discard storage pathways include products that are recycled (products re-enter the in-use pool) or disposed into landfills and dumps, which comprise the SWDS pool. The landfill fixed carbon ratio determines the portion of carbon that remains permanently inert in the anaerobic environment of landfills. Decay half-lives are applied to carbon in dumps and the decaying portion in landfills of the SWDS pool to determine the quantity and rate at which carbon is emitted from this pool. All data sources for harvest volumes, timber and primary product ratios, board foot to cubic foot volume conversions, primary product volume to carbon conversions, loss factors, the distribution of HWPs to end-uses, the functional life span of wood products, distribution of HWPs to the various disposal pathways, landfill fixed carbon ratios and decay half-lives are provided in the individual state-level reports (e.g., @loeffler2019, @morgan2021, @nichols2020), and are also provided in Section \@ref(own-input). 
+Retired HWPs are transferred to a solid waste disposal site (SWDS), recycled, composted, or burned with or without energy capture using discard disposition ratios. Discard emissions pathways with immediate oxidation include discarded products that are burned (with or without energy capture) or composted. Discard storage pathways include products that are recycled (products re-enter the in-use pool) or disposed into landfills and dumps, which comprise the SWDS pool. The landfill fixed carbon ratio determines the portion of carbon that remains permanently inert in the anaerobic environment of landfills. Decay half-lives are applied to carbon in dumps and the decaying portion in landfills of the SWDS pool to determine the quantity and rate at which carbon is emitted from this pool. All data sources for harvest volumes, timber and primary product ratios, board foot to cubic foot volume conversions, primary product volume to carbon conversions, loss factors, the distribution of HWPs to end-uses, the functional life span of wood products, distribution of HWPs to the various disposal pathways, landfill fixed carbon ratios and decay half-lives are provided in the individual state-level reports (e.g., @loeffler2019, @morgan2021, @nichols2020), and are also described in Section \@ref(own-prov-input). 
 
 With each year of harvest more carbon enters the cycle. Some carbon is immediately oxidized as fuelwood, enters the products in use pool, or is discarded immediately. However, some carbon from the previous harvest year can remain stored as carbon in products in use, dumps, landfills, or recovered products, while some is emitted through decay from dumps, the decaying portion of landfills, compost, or waste incineration.  The model provides cumulative carbon storage and emissions for all harvest years analyzed. All carbon emission estimates from this model are for the biogenic carbon content of the harvested wood only and do not include emissions in the form of other carbon-containing greenhouse gasses such as methane. Intermediate outputs (i.e., arrays) and some figures allow users to explore outputs from single harvest years.  
 
@@ -167,7 +167,7 @@ Finally, this model does not include any method for overall model validation. Es
 
 The HWP model began as an Excel macro originally created by the U.S. Forest Service (USFS) for National Forest System Northern regional HWP carbon inventory [@anderson2013; @stockmann2012].  The Excel version was updated to one programmed in C++ for the remaining USFS regional HWP carbon inventories (USFS HWP-C; e.g., @stockmann2014).  The model was then modified in 2017 by the USFS for use in the California Forest Ecosystem and Harvested Wood Product Carbon Inventory [@loeffler2019] and is given the label here as the CA USFS HWP-C variant.  This history is depicted in Figure \@ref(fig:hist-fig). Though names for the USFS versions of the model did not exist, they are given here for clarifying purposes. However, in 2020 when Oregon and California were trying to establish or update HWP C inventories, no version of the model was available publicly due to older coding languages used in previous iterations of the model.     
 
-Building from the previous USFS-led versions of the model, Groom Analytics LLC undertook programming the model in R for the Oregon Department of Forestry (ODF) and California Department of Forestry and Fire Protection (CAL FIRE), and subsequently deployed the R version as a [web application](https://groomanalyticsllc.shinyapps.io/HWP_Shared_Test/).  This version of the model (HWP-C vR) described in this document largely functions the same as the original USFS Excel-based model and the v1 tool.   A few changes exist and are described more fully in Christensen et al. [-@christensen2020; -@christensen2021]. These  changes include:  
+Building from the previous USFS-led versions of the model, Groom Analytics LLC undertook programming the model in R for the Oregon Department of Forestry (ODF) and California Department of Forestry and Fire Protection (CAL FIRE), and subsequently deployed the R version as a [web application](https://groomanalyticsllc.shinyapps.io/HWP-C-vR/).  This version of the model (HWP-C vR) described in this document largely functions the same as the original USFS Excel-based model and the v1 tool.   A few changes exist and are described more fully in Christensen et al. [-@christensen2020; -@christensen2021]. These  changes include:  
 
 * Modification of lag times built in the original tool, in order to allow users to more easily verify calculations.  
 *	The CA USFS HWP-C variant of the tool used for the state-level inventory in California resulted in narrower confidences intervals than expected based on the parameters set for the Monte Carlo Uncertainty Analysis. This tool has established a new Monte Carlo simulation that has succeeded in introducing variability into the HWP C estimates.  
@@ -199,7 +199,7 @@ There are two approaches available to users for interacting with the HWP model. 
 
 ## Basic web interactivity – Shiny app   {#app-shiny}
 
-The [web site](https://groomanalyticsllc.shinyapps.io/HWP_Shared_Test/) allows users to switch between two pre-loaded data sets, California and Oregon state-wide timber harvests.  The menu bar on the left also has some drop-down plotting and data upload options.  Plots include displays of **timber harvest summaries**, **harvested wood product carbon storage and emissions estimates**, and **Monte Carlo simulation** results.  
+The [web site](https://groomanalyticsllc.shinyapps.io/HWP-C-vR/) allows users to switch between two pre-loaded data sets, California and Oregon state-wide timber harvests.  The menu bar on the left also has some drop-down plotting and data upload options.  Plots include displays of **timber harvest summaries**, **harvested wood product carbon storage and emissions estimates**, and **Monte Carlo simulation** results.  
 
 The app was designed to aid users by providing figures that could usefully be incorporated into reports.  To that end, all figures can be saved (with one exception) and the title for each figure can be customized.  
 
@@ -230,7 +230,7 @@ These four figures, under the Carbon Storage and Emissions menu option, track th
 * **Monte Carlo Estimates**.  Two of these three figures display mean cumulative values from the Monte Carlo simulations with 90% confidence intervals.    
     +	Cumulative carbon in individual storage and emission pools: There are separate results for Emitted with Energy Capture, Emitted without Energy Capture, Products in Use, and Solid Waste Disposal Sites.   
     +	Cumulative carbon in storage pools combined (Products in use + SWDS): This figure sums the products in use + SWDS values within each iteration of the Monte Carlo and provides the mean plus 90% confidence interval.   
-    +	Monte Carlo convergence evaluation: This figure displays sequential iteration results for the final year of the Monte Carlo simulation.  It shows values for the 5th and 95th percentiles of values (i.e., the boundaries of the 90% confidence intervals), the value for the mean and standard error (se) over time.  The Monte Carlo estimation process allows for a burn-in period, for which iteration values prior to that period are discarded from the estimation (pink vertical line).  If values after the burn-in period appear unstable, more iterations may be needed to arrive at reasonable values. If they appeared to stabilize long before the burn-in period, then the Monte Carlo may provide reliable results with fewer iterations.    
+    +	Monte Carlo convergence evaluation: This figure displays sequential iteration results for the final year of the Monte Carlo simulation.  It shows values for the 5th and 95th percentiles of values (i.e., the boundaries of the 90% confidence intervals), the value for the mean and standard error (se) over time.  If Monte Carlo values appear unstable, more iterations may be needed to arrive at reasonable values. If they appeared to stabilize long before the final iteration, then the Monte Carlo may provide reliable results with fewer iterations.    
 
 ### Documentation and Data Upload     {#app-doc}
 These items provide users with links to this documentation, which in turn describes aspects of the web application, the workings of the HWP model, and how users can upload their own data and download the source code.    
@@ -337,9 +337,7 @@ The first worksheet in the input data template file, HWP_MODEL_OPTIONS, allows t
 
 * OPT.START.VALUE (Numeric, between 0 and 1) – Affects both the Shiny web application and stand-alone model.  The MonteCarloDistrParameters states minimum and maximum 90% Confidence Intervals from which the Monte Carlo random variables are to be drawn.  However, when we transform random uniform values into values from a triangular distribution, we need to know the triangular distribution endpoints.  In the Monte Carlo code, the function "ab.boundaries.fcn" performs a search algorithm to find the triangular distribution end points given the confidence intervals provided in the MonteCarloDistrParameters worksheet.  The default start value for the algorithm is 0.5 and likely does not need to be altered for the Monte Carlo code to function adequately.  
 
-* \*N.ITER (Integer, 1 or greater) – Affects both the Shiny web application and stand-alone model.  This value determines the number of iterations the Monte Carlo performs.  In the Shiny application, the Monte Carlo Estimates selection "Monte Carlo convergence estimation" produces convergence plots that track estimates for the last year examined in the model.  The plot shows the values for the mean, standard error, and 95% and 5% Confidence Intervals given the iterations performed.  Of the four, the Mean is most informative.  If the line is stable for many iterations (we seem to obtain fairly stable results with 2000 iterations) then you likely have a sufficient number of iterations.  The more iterations, the slower the code will run.  Too few iterations will provide unreliable results.  The default value is currently 100 runs which is likely too few but is sufficient to verify that the process works.  1000 to 2000 might be a recommended number for obtaining reliable estimates and determining what the length of the burn-in period should be.  
-
-* \*BURN.IN (Integer, 0 or greater) - Affects both the Shiny web application and stand-alone model.  In the same figure mentioned in the previous N.ITER description, there is a vertical magenta line that signifies the burn-in period. Everything to the left of the line is discarded when results are plotted in the Shiny application or provided in Monte Carlo results tables.  The user should set the BURN.IN value to the number of iterations after which the Monte Carlo appears fairly stable, e.g., the estimate for the mean approximates a horizontal line.    
+* \*N.ITER (Integer, 1 or greater) – Affects both the Shiny web application and stand-alone model.  This value determines the number of iterations the Monte Carlo performs.  In the Shiny application, the Monte Carlo Estimates selection "Monte Carlo convergence estimation" produces convergence plots that track estimates for the last year examined in the model.  The plot shows the values for the mean, standard error, and 95% and 5% Confidence Intervals given the iterations performed.  Of the four, the Mean is most informative.  If the line is stable for many iterations (we seem to obtain fairly stable results with 2000 iterations) then you likely have a sufficient number of iterations.  The more iterations, the slower the code will run.  Too few iterations will provide unreliable results.  The default value is currently 100 runs which is likely too few but is sufficient to verify that the process works.  1000 to 2000 might be a recommended number for obtaining reliable estimates.  
 
 * MC.ARRAY.OUT (TRUE, FALSE) – This value only affects the stand-alone model.  If TRUE, the Monte Carlo code will generate the (large) Microsoft Excel workbook MC_All.xlsx that contains all MMTC values for each year and each iteration of the Monte Carlo code.  There is a separate tab for Emitted with Energy Capture (eec), Emitted Without Energy Capture (ewoec), Solid Waste Disposal Sites carbon (swdsC), and Products in Use (pu).  The default is TRUE; if it is FALSE the code will run a bit faster and the large (~10 MB?) file will not be produced.  The file is provided for model assessment purposes.    
 
@@ -607,11 +605,11 @@ From the Shiny app, click on the Upload Data button.
 ::::::
 
 ## What to know about running the Monte Carlo simulation   {#own-mc}
-As described above, there are several controls in the worksheet HWP_MODEL_OPTIONS.  The user can set the number of iterations they would like the Monte Carlo simulation to run, and set the burn-in period length.  The burn-in period is the number of initial iterations that are not considered when calculating means and confidence intervals.  You can also set the parameters R and OPT.START if you wish.   
+As described above, there are several controls in the worksheet HWP_MODEL_OPTIONS.  You can set the number of iterations that you would like the Monte Carlo simulation to run.  You can also set the parameters R and OPT.START if you wish.   
 
 If you would like to see the Monte Carlo array, which includes all estimates from all iterations, you will need to run the stand-alone version of the model and set MC.ARRAY.OUT to TRUE.   
 
-If you are trying to get the model to run or are playing around with data loading and execution on the Shiny App or stand-alone, I recommend setting the number of iterations to something small like 100.  You may find that the Monte Carlo estimates really aren’t that far off of from the standard deterministic HWP model run.  A small number of iterations will prevent you from waiting for several minutes while the simulation runs.  Running the simulations for 1000 iterations may demonstrate a reasonable burn-in number to enter into the input Excel file.  When you are ready to obtain a \"final\" estimate you can increase the number of iterations to 1500, 2000, or more.    
+If you are trying to get the model to run or are playing around with data loading and execution on the Shiny App or stand-alone, I recommend setting the number of iterations to something small like 100.  You may find that the Monte Carlo estimates really aren’t that far off of from the standard deterministic HWP model run.  A small number of iterations will prevent you from waiting for several minutes while the simulation runs.  Running the simulations for 1000 iterations may demonstrate a reasonable number to enter into the input Excel file.  When you are ready to obtain a \"final\" estimate you can increase the number of iterations to 1500, 2000, or more.    
 
 If you have ratio values that are close to boundaries (e.g., 0.03 and 0.98), you may notice that confidence intervals do not appear symmetrical around your mean estimate.  Please see the Section \@ref(model-mc-res).  The Monte Carlo simulation is encountering a \"sum-to-one\" boundary constraint that is frequently forcing one ratio value to its boundary (e.g., 1.0) and subsequently setting all related ratios to their opposite boundaries (e.g., 0.0).  This can result in a less continuous range of outputs, affecting the distribution of results.    
 
@@ -639,7 +637,7 @@ MC_ComponentsSummary.csv: This table provides the information necessary to produ
 
 MC_PIU_Plus_SWDS.csv: This table provides the information necessary to produce the figure **Monte Carlo Estimates: Cumulative carbon in storage pools combined (Products in Use + SWDS)**.  The values units are cumulative MTC which the Shiny application transforms to TgC and TgCO$_2$e.  The column Mean represents the mean value of SWDS plus PIU values for a given year across iterations.  The columns lci and uci represent lower and upper 90% confidence intervals, derived directly from the distribution of iteration values for given years.    
 
-MC_All.xlsx: This file is only produced by the stand-alone code if the user sets Run.MC = TRUE and MC.ARRAY.OUT = TRUE. The file has four worksheets: eec, ewoec, swdsC, and pu, representing EEC, EWOEC, SWDS, and PIU.  Each column is an iteration while each row is a year.  The data are in MTC.  The figure **Monte Carlo Estimates: Monte Carlo convergence evaluation** is created using the last year (last row) of the swdsC and pu worksheets.  The \"mean\" value is the successive means of the SWDS + PIU iteration values summed, starting with only the first column and adding columns to consideration (represented by the Iterations axis at the bottom of the figure).  The se, ci05, and ci95 columns are the estimated standard error and empirical 5% and 95% confidence intervals based on the number of iterations being considered.  If the user specifies 2000 iterations over 100 years of harvest data the resulting Excel file can be tens of megabytes in size.  
+MC_All.xlsx: This file is only produced by the stand-alone code if the user sets Run.MC = TRUE and MC.ARRAY.OUT = TRUE. The file has four worksheets: eec, ewoec, swdsC, and pu, representing EEC, EWOEC, SWDS, and PIU.  Each column is an iteration while each row is a year.  The data are in MTC.  The figure **Monte Carlo Estimates: Monte Carlo convergence evaluation** is created using the last year (last row) of the swdsC and pu worksheets.  The \"mean\" value is the successive means of the SWDS + PIU iteration values summed, starting with only the first column and adding columns to consideration (represented by the Iterations axis at the bottom of the figure).  The se, ci05, and ci95 columns are the estimated standard error and empirical 5% and 95% confidence intervals based on the number of iterations.  If the user specifies 2000 iterations over 100 years of harvest data the resulting Excel file can be tens of megabytes in size.  
 
 
 
@@ -657,7 +655,7 @@ This chapter explains how to download or clone the GitHub repository and then de
 There are two ways to download all of the code and associated files.  You can either download a zip file (~ 20MB) or clone the GitHub repository.  If you clone the repository you can easily update the code from the GitHub site in the future.  
 
 ### Compressed file download    {#dnld-git-zip}
-To obtain the compressed file, go to the [GitHub repository](https://github.com/jeremygroom/HWP_Shared_Test.git), click the green "Code" button above the list of files, and then select the "Download Zip" option (see Figure \@ref(fig:zip-fig)).  Unzip the folder on your machine and then [check out the file structure](https://jeremygroom.github.io/HWP-vR-Documentation/run.html#dnld-files) and follow [these directions](https://jeremygroom.github.io/HWP-vR-Documentation/run.html#dnld-shiny) for running the Shiny code and [these](https://jeremygroom.github.io/HWP-vR-Documentation/run.html#dnld-sa) for running the stand-alone version.  
+To obtain the compressed file, go to the [GitHub repository](https://github.com/jeremygroom/HWP-C-vR.git), click the green "Code" button above the list of files, and then select the "Download Zip" option (see Figure \@ref(fig:zip-fig)).  Unzip the folder on your machine and then [check out the file structure](https://jeremygroom.github.io/HWP-vR-Documentation/run.html#dnld-files) and follow [these directions](https://jeremygroom.github.io/HWP-vR-Documentation/run.html#dnld-shiny) for running the Shiny code and [these](https://jeremygroom.github.io/HWP-vR-Documentation/run.html#dnld-sa) for running the stand-alone version.  
 
 ```{r zip-fig, echo = FALSE, fig.cap = "GitHub repository location for downloading the compressed files.", fig.asp = 0.7, fig.width= 6, out.width = '100%'}
 knitr::include_graphics("images/zip.png")
@@ -669,24 +667,24 @@ To successfully clone the repository, you will need to have a program called Git
 * [Happy Git and GitHub for the useR](https://happygitwithr.com/index.html)  
 * [Using Git within RStudio](https://cfss.uchicago.edu/setup/git-with-rstudio/).    
 
-If you are not already using GitHub or similar, getting Git/GitHub/RProject set up may take an hour or two.  I recommend reading through Happy Git website carefully and following its instructions.  Going slowly is going quickly.
+If you are not already using GitHub or similar, getting Git/GitHub/RProject set up may take an hour or two.  I recommend reading through Happy Git website carefully and following its instructions.  Going slowly is going quickly.  You will also need to [create a GitHub account](https://github.com/signup?ref_cta=Sign+up&ref_loc=header+logged+out&ref_page=%2F&source=header-home).
 
 Once you have Git set up on your machine and have verified that it is doing what you want you are ready to clone the repository.  The following is based on Chapter 16 in Happy Git and Github (specifically 16.2), and assumes that your RStudio can connect to GitHub:   
 1. Select a location on your computer where you would like a folder containing the code to be placed.   
 2. Start R studio.  
 3. Select the following menu options: File > New Project > Version Control > Git  
-4. In the “repository URL” paste the URL of the HWP model's GitHub repository: <https://github.com/jeremygroom/HWP_Shared_Test.git>    
-This will automatically populate the blank below the URL with the project name (HWP_Shared_Test).    
+4. In the “repository URL” paste the URL of the HWP model's GitHub repository: <https://github.com/jeremygroom/HWP-C-vR.git>    
+This will automatically populate the blank below the URL with the project name (HWP-C-vR).    
 5. Click “Create Project”  
 
-RStudio will now open the HWP_Shared_Test.Rproj file for you.  You are ready to run the code.  But first, we describe the files you've downloaded.
+RStudio will now open the HWP-C-vR.Rproj file for you.  You are ready to run the code.  But first, we describe the files you've downloaded.
 
 ## File structure         {#dnld-files}
 
-*/HWP_Shared_Test/*  
+*/HWP-C-vR/*  
 This folder contains all files associated with the model, including template data, the Shiny application, the stand-alone code and folders, R environment controls, and the RStudio project that runs it all.  
 
-HWP_Shared_Test.Rproj: Open this to operate the Shiny app or stand-alone from your computer.    
+HWP-C-vR.Rproj: Open this to operate the Shiny app or stand-alone from your computer.    
 
 app.r: This is the main code file that runs the Shiny application.  
 
@@ -698,10 +696,10 @@ README.md: This file may contain some information about the GitHub version.
 
 renv.loc: R environment information.    
 
-*/HWP_Shared_Test/HWP Data/*  
+*/HWP-C-vR/HWP Data/*  
 This folder contains Oregon, California, and Washington data that may be uploaded into the app as well as templates for constructing input files from elsewhere in the United States.  
 
-*/HWP_Shared_Test/HWP Data/ExistingData/*  
+*/HWP-C-vR/HWP Data/ExistingData/*  
 This folder contains data files that may be loaded into the app or into the stand-alone model.  The files (mostly) include a harvest time series and timber and primary product ratios developed for these state-level inventories
 
 * bogus.xlsx: This file will cause the QA check to halt the processing of the data and produce a warning.  
@@ -712,14 +710,14 @@ This folder contains data files that may be loaded into the app or into the stan
 
 * OR_no_owner.xlsx: This file contains only total data for Oregon and lacks any ownership information.  
  
-* Oregon_BF_2019: This file is not an input file.  It contains additional harvest data for 2019 so that users may practice appending harvest data with provided code (Section \@ref(run-opp-add)).  
+* Oregon_BF_2019: This file is not an input file.  It contains additional harvest data for 2019 so that users may practice appending harvest data with provided code (Section \@ref(dnld-add)).  
 
 * WA_Inputs_HWP_Model.xlsx: This file contains data for Washington State.    
 
-*/HWP_Shared_Test/HWP Data/Templates/*  
+*/HWP-C-vR/HWP Data/Templates/*  
 This folder contains sub-folders that direct users to Excel templates that they can use when building their input file.
 
-*/HWP_Shared_Test/HWP Data/HWP Data.zip/*  
+*/HWP-C-vR/HWP Data/HWP Data.zip/*  
 This file contains compressed versions of the ExistingData and Templates folders for user download from the app.   
 
 *HWP_Shiny_App/www/*  
@@ -781,7 +779,7 @@ This folder contains shinyapps.io deployment information. The user can ignore th
 
 ## Running the Shiny app from your computer     {#dnld-shiny}
 
-1. Open the code in RStudio.  Launch the RStudio project by opening the project file **HWP_Shared_Test.Rproj** from within its folder.  Within RStudio select from the menu File > Open File… .  Select the file **app.r** and click on the Open button.  
+1. Open the code in RStudio.  Launch the RStudio project by opening the project file **HWP-C-vR.Rproj** from within its folder.  Within RStudio select from the menu File > Open File… .  Select the file **app.r** and click on the Open button.  
 
 2. Run the code in RStudio.  Here we run all of the code in the **app.r** file.  There are several ways to do this.  One way is to click on the code itself inside the code window, select all of the code (ctrl+A on a PC, apple+A on a Mac), and then ctrl+Enter (or apple+Enter) to run everything. Or, go to the menu item and select Code > Source.  
 
@@ -802,7 +800,7 @@ The stand-alone model provides the user with little additional utility over the 
 
 The main advantage of the stand-alone model code is that the user can step through it line by line to better understand what the code is doing.  The code is arranged in a much more readable way than it is for the Shiny application.  The user can step through the code piece wise or run all of the code at once after placing their data file in the HWP Data folder and entering their file name into the code as described below.  
 
-To run the stand-alone code, open the file “HWP_Shared_Test.Rproj”.  This will open the R Project using the program R Studio.  Open the file “HWP_Stand_Alone_Code.R”.  Then, run the `renv::restore()` line plus the library load code.  If this is the first time you are running the `renv::restore()` call, the process may take a few minutes to complete.  
+To run the stand-alone code, open the file “HWP-C-vR.Rproj”.  This will open the R Project using the program R Studio.  Open the file “HWP_Stand_Alone_Code.R”.  Then, run the `renv::restore()` line plus the library load code.  If this is the first time you are running the `renv::restore()` call, the process may take a few minutes to complete.  
 
 The next few lines select whether you wish to generate the Sankey diagram, which year you would like to generate it for, and for how many years the decay process should be run.  Change `GENERATE.SANKEY = TRUE` to  `GENERATE.SANKEY = FALSE` if you do not wish to generate the Sankey diagram.  Change the year in `SANKEY.HARVEST.YEAR` and `SANKEY.YEARS.OF.HARVEST` to your year of interest and the number of years of decay, respectively.  It would probably be most efficient to figure out these years/decay times beforehand by using the Shiny application.   
 
@@ -873,7 +871,7 @@ If the user's data input file indicates that the stand-alone model code should g
 ## How to add new data years to your data set       {#dnld-add}
 Users may wish to generate model outputs annually or every few years with new harvest values.  However, they may not want to alter all of the worksheets in their data file by hand to account for the newly added harvest years.  The file **Append_Harvest_Data.R** takes, as input, an Excel file with a single worksheet of harvest by board feet, formatted in the same way as their earlier Harvest_BF worksheet.  The user points the code toward their original data file, the new Harvest_BF Excel file, and provides a name for the output Excel file.  The code will make all necessary changes to the original file and append the new years.  Importantly, where needed, the code will read values used for the year prior and duplicate them for the new data.  Therefore, if the user wishes to update Timber Product Ratios, Primary Product Ratios, End Use Ratios, or any other dataset, they will need to do so by hand, possibly after this procedure is run.    
 
-As an example, say we wish to add 2018 and 2019 harvest levels to Oregon’s data.  We open the Append_Harvest_Data.R file in the `HWP_Shared_Test.Rproj` RStudio project, run the first few lines that load the needed libraries, and then alter the following lines to read:   
+As an example, say we wish to add 2018 and 2019 harvest levels to Oregon’s data.  We open the Append_Harvest_Data.R file in the `HWP-C-vR.Rproj` RStudio project, run the first few lines that load the needed libraries, and then alter the following lines to read:   
 `ORIG.DATA.FILE <- "Oregon_Inputs_HWP_Model.xlsx" `  
 `NEW.DATA <- "Oregon_BF_2019.xlsx"`            
 `DATA.FOLDER <- "HWP Data/ExistingData/"`              
@@ -1138,7 +1136,7 @@ $\textit{Discarded Disposition Ratios for Wood and Paper}$
 These ratios control what fraction of waste ends up as burned, burned with energy capture (DEC), recycled, composted, placed in a landfill, or sent to a dump (the six fates).  The values can differ by year.  I wrote a function that operated on the ratios for wood and paper separately.  The function performed the sum-to-one approach on the six ratios for either wood or paper.  The original HWP analysis process relied on a function for each of these six fates that was time consuming.  This function was removed for the MC simulation.  Prior to the MC loop I created a matrix that contained altered values for wood and paper across all years and for each iteration for the six fates.  The MC loop calls, for each iteration, a different subset of the matrix to use for calculations involving the six fates.   
 
 ### Monte Carlo results and development    {#model-mc-res}
-It appears that the full version of the MC simulation reaches convergence with 2000 iterations (Figure \@ref(fig:mc-conv-fig)).  Convergence was assessed visually by examining, over the iterations, the estimated values for the mean, standard error (SE), and the lower and upper empirical 90% confidence interval limits.  All four values appear to have reached their stable values by 1500 iterations, as verified with iterations 1501 - 2000.  (Note: the calculated SE values are not used beyond this figure.)
+It appears that the full version of the MC simulation for Oregon reaches convergence with 2000 iterations (Figure \@ref(fig:mc-conv-fig)).  Convergence was assessed visually by examining, over the iterations, the estimated values for the mean, standard error (SE), and the lower and upper empirical 90% confidence interval limits.  All four values appear to have reached their stable values by 1500 iterations, as verified with iterations 1501 - 2000.  (Note: the calculated SE values are not used beyond this figure.)
 
 ```{r mc-conv-fig, echo = FALSE, fig.cap = "Monte Carlo convergence assessment for the upper and lower bounds of the empirical 90\\% confidence interval, the mean, and the standard error for the full model.", fig.asp = 0.7, fig.width= 6, out.width = '100%'}
 knitr::include_graphics("images/MC_conv.png")
@@ -1236,11 +1234,37 @@ knitr::include_graphics("images/MC_tests4.png")
 ## Frequently Asked Questions         {#ft-faqs}
 
 *Q: Why can't I access the code on the GitHub page?  I'm getting a 404 error screen.*  
-A: To access the files you will need to create a GitHub account.
+A: To access the files you will need to create a GitHub account.  
+
+*Q: I'm creating an input file.  Do I have to have harvest ownership data?  All I have are totals.*  
+A: The model can run well without ownership data.  Just have two columns for the harvest data: Year and Total.  The ownership-focused Shiny app figures will not display data, and a few of the tables will not include data either.  Everything else should work fine.    
+
+*What if I only want to view California and Oregon data and do not want to run the tool for my own data?*  
+The Shiny app is pre-loaded with California and Oregon data.  For details about each of the app displays, take a look at Chapter \@ref(app).   
+
+*What are the steps to create my own input data file?*  
+Chapter \@ref(own) describes how to obtain template input files and what components of those files need to be modified so that you will have a working input file.  
+
+*What are the steps to upload my own input data file to the R Shiny web application?*   
+See Section \@ref(own-shiny) as well as the steps on the app's **Upload Data** page.  
+
+*What are the details to ensure I’ve set up my input data file correctly? *  
+The quality assurance (QA) step will check your file for you.  However, the details of what to include are in Section \@ref(own-prov-input) and the specific QA checks are listed in section \@ref(own-qa).  
+
+*What do I need to know about running the Monte Carlo Simulation? *  
+You will need to set the number of iterations you would like the simulation to use (see Section \@ref(own-prov-input-options)).  Section \@ref(own-mc) describes other aspects of running the Monte Carlo simulation.  Details on what the simulation is doing may be found in Section \@ref(model-mc).  
+
+*I only have timber harvest data in cubic feet.  Can I still use these data in the model?*  
+Yes!  But the model needs to think that it transformed your harvest data into cubic feet all on its own.  Here is how you fool it, using a template file:  
+
+1. Create the BFCF worksheet values.  For Conversion, use the value 1.  StartYear = your earliest data year or earlier. EndYear = your last harvest data year.  That's right, only one row of input values.  
+2. Create bogus (yet usable) Harvest_BF worksheet values.  Simply multiply each of your ownership and Total cubic feet values by 10.  Place them in this table.    
+3. Everything else is the same.  Fill in your TimberProdRatios and change any other values you need (see Chapter \@ref(own)).    
+
 
 ## Troubleshooting        {#ft-trbl}
 
-When uploading data, there can be an error message that appears in red right below the Browse button:   
+1. When uploading data, there can be an error message that appears in red right below the Browse button:   
 `<!DOCTYPE HTML><html lang=”en”><head>`  
 
 If this appears it is best to rebuild the excel file.  There does not appear to be a way to circumvent this issue aside from constructing a new file (the file name is probably irrelevant so long as it does not contain weird characters).  We recommend that users cut-copy-paste from the excel file into a blank file.  

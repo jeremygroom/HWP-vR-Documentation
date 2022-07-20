@@ -9,7 +9,7 @@ This chapter explains how to download or clone the GitHub repository and then de
 There are two ways to download all of the code and associated files.  You can either download a zip file (~ 20MB) or clone the GitHub repository.  If you clone the repository you can easily update the code from the GitHub site in the future.  
 
 ### Compressed file download    {#dnld-git-zip}
-To obtain the compressed file, go to the [GitHub repository](https://github.com/jeremygroom/HWP_Shared_Test.git), click the green "Code" button above the list of files, and then select the "Download Zip" option (see Figure \@ref(fig:zip-fig)).  Unzip the folder on your machine and then [check out the file structure](https://jeremygroom.github.io/HWP-vR-Documentation/run.html#dnld-files) and follow [these directions](https://jeremygroom.github.io/HWP-vR-Documentation/run.html#dnld-shiny) for running the Shiny code and [these](https://jeremygroom.github.io/HWP-vR-Documentation/run.html#dnld-sa) for running the stand-alone version.  
+To obtain the compressed file, go to the [GitHub repository](https://github.com/jeremygroom/HWP-C-vR.git), click the green "Code" button above the list of files, and then select the "Download Zip" option (see Figure \@ref(fig:zip-fig)).  Unzip the folder on your machine and then [check out the file structure](https://jeremygroom.github.io/HWP-vR-Documentation/run.html#dnld-files) and follow [these directions](https://jeremygroom.github.io/HWP-vR-Documentation/run.html#dnld-shiny) for running the Shiny code and [these](https://jeremygroom.github.io/HWP-vR-Documentation/run.html#dnld-sa) for running the stand-alone version.  
 
 ```{r zip-fig, echo = FALSE, fig.cap = "GitHub repository location for downloading the compressed files.", fig.asp = 0.7, fig.width= 6, out.width = '100%'}
 knitr::include_graphics("images/zip.png")
@@ -21,24 +21,24 @@ To successfully clone the repository, you will need to have a program called Git
 * [Happy Git and GitHub for the useR](https://happygitwithr.com/index.html)  
 * [Using Git within RStudio](https://cfss.uchicago.edu/setup/git-with-rstudio/).    
 
-If you are not already using GitHub or similar, getting Git/GitHub/RProject set up may take an hour or two.  I recommend reading through Happy Git website carefully and following its instructions.  Going slowly is going quickly.
+If you are not already using GitHub or similar, getting Git/GitHub/RProject set up may take an hour or two.  I recommend reading through Happy Git website carefully and following its instructions.  Going slowly is going quickly.  You will also need to [create a GitHub account](https://github.com/signup?ref_cta=Sign+up&ref_loc=header+logged+out&ref_page=%2F&source=header-home).
 
 Once you have Git set up on your machine and have verified that it is doing what you want you are ready to clone the repository.  The following is based on Chapter 16 in Happy Git and Github (specifically 16.2), and assumes that your RStudio can connect to GitHub:   
 1. Select a location on your computer where you would like a folder containing the code to be placed.   
 2. Start R studio.  
 3. Select the following menu options: File > New Project > Version Control > Git  
-4. In the “repository URL” paste the URL of the HWP model's GitHub repository: <https://github.com/jeremygroom/HWP_Shared_Test.git>    
-This will automatically populate the blank below the URL with the project name (HWP_Shared_Test).    
+4. In the “repository URL” paste the URL of the HWP model's GitHub repository: <https://github.com/jeremygroom/HWP-C-vR.git>    
+This will automatically populate the blank below the URL with the project name (HWP-C-vR).    
 5. Click “Create Project”  
 
-RStudio will now open the HWP_Shared_Test.Rproj file for you.  You are ready to run the code.  But first, we describe the files you've downloaded.
+RStudio will now open the HWP-C-vR.Rproj file for you.  You are ready to run the code.  But first, we describe the files you've downloaded.
 
 ## File structure         {#dnld-files}
 
-*/HWP_Shared_Test/*  
+*/HWP-C-vR/*  
 This folder contains all files associated with the model, including template data, the Shiny application, the stand-alone code and folders, R environment controls, and the RStudio project that runs it all.  
 
-HWP_Shared_Test.Rproj: Open this to operate the Shiny app or stand-alone from your computer.    
+HWP-C-vR.Rproj: Open this to operate the Shiny app or stand-alone from your computer.    
 
 app.r: This is the main code file that runs the Shiny application.  
 
@@ -50,10 +50,10 @@ README.md: This file may contain some information about the GitHub version.
 
 renv.loc: R environment information.    
 
-*/HWP_Shared_Test/HWP Data/*  
+*/HWP-C-vR/HWP Data/*  
 This folder contains Oregon, California, and Washington data that may be uploaded into the app as well as templates for constructing input files from elsewhere in the United States.  
 
-*/HWP_Shared_Test/HWP Data/ExistingData/*  
+*/HWP-C-vR/HWP Data/ExistingData/*  
 This folder contains data files that may be loaded into the app or into the stand-alone model.  The files (mostly) include a harvest time series and timber and primary product ratios developed for these state-level inventories
 
 * bogus.xlsx: This file will cause the QA check to halt the processing of the data and produce a warning.  
@@ -68,10 +68,10 @@ This folder contains data files that may be loaded into the app or into the stan
 
 * WA_Inputs_HWP_Model.xlsx: This file contains data for Washington State.    
 
-*/HWP_Shared_Test/HWP Data/Templates/*  
+*/HWP-C-vR/HWP Data/Templates/*  
 This folder contains sub-folders that direct users to Excel templates that they can use when building their input file.
 
-*/HWP_Shared_Test/HWP Data/HWP Data.zip/*  
+*/HWP-C-vR/HWP Data/HWP Data.zip/*  
 This file contains compressed versions of the ExistingData and Templates folders for user download from the app.   
 
 *HWP_Shiny_App/www/*  
@@ -133,7 +133,7 @@ This folder contains shinyapps.io deployment information. The user can ignore th
 
 ## Running the Shiny app from your computer     {#dnld-shiny}
 
-1. Open the code in RStudio.  Launch the RStudio project by opening the project file **HWP_Shared_Test.Rproj** from within its folder.  Within RStudio select from the menu File > Open File… .  Select the file **app.r** and click on the Open button.  
+1. Open the code in RStudio.  Launch the RStudio project by opening the project file **HWP-C-vR.Rproj** from within its folder.  Within RStudio select from the menu File > Open File… .  Select the file **app.r** and click on the Open button.  
 
 2. Run the code in RStudio.  Here we run all of the code in the **app.r** file.  There are several ways to do this.  One way is to click on the code itself inside the code window, select all of the code (ctrl+A on a PC, apple+A on a Mac), and then ctrl+Enter (or apple+Enter) to run everything. Or, go to the menu item and select Code > Source.  
 
@@ -154,7 +154,7 @@ The stand-alone model provides the user with little additional utility over the 
 
 The main advantage of the stand-alone model code is that the user can step through it line by line to better understand what the code is doing.  The code is arranged in a much more readable way than it is for the Shiny application.  The user can step through the code piece wise or run all of the code at once after placing their data file in the HWP Data folder and entering their file name into the code as described below.  
 
-To run the stand-alone code, open the file “HWP_Shared_Test.Rproj”.  This will open the R Project using the program R Studio.  Open the file “HWP_Stand_Alone_Code.R”.  Then, run the `renv::restore()` line plus the library load code.  If this is the first time you are running the `renv::restore()` call, the process may take a few minutes to complete.  
+To run the stand-alone code, open the file “HWP-C-vR.Rproj”.  This will open the R Project using the program R Studio.  Open the file “HWP_Stand_Alone_Code.R”.  Then, run the `renv::restore()` line plus the library load code.  If this is the first time you are running the `renv::restore()` call, the process may take a few minutes to complete.  
 
 The next few lines select whether you wish to generate the Sankey diagram, which year you would like to generate it for, and for how many years the decay process should be run.  Change `GENERATE.SANKEY = TRUE` to  `GENERATE.SANKEY = FALSE` if you do not wish to generate the Sankey diagram.  Change the year in `SANKEY.HARVEST.YEAR` and `SANKEY.YEARS.OF.HARVEST` to your year of interest and the number of years of decay, respectively.  It would probably be most efficient to figure out these years/decay times beforehand by using the Shiny application.   
 
@@ -225,7 +225,7 @@ If the user's data input file indicates that the stand-alone model code should g
 ## How to add new data years to your data set       {#dnld-add}
 Users may wish to generate model outputs annually or every few years with new harvest values.  However, they may not want to alter all of the worksheets in their data file by hand to account for the newly added harvest years.  The file **Append_Harvest_Data.R** takes, as input, an Excel file with a single worksheet of harvest by board feet, formatted in the same way as their earlier Harvest_BF worksheet.  The user points the code toward their original data file, the new Harvest_BF Excel file, and provides a name for the output Excel file.  The code will make all necessary changes to the original file and append the new years.  Importantly, where needed, the code will read values used for the year prior and duplicate them for the new data.  Therefore, if the user wishes to update Timber Product Ratios, Primary Product Ratios, End Use Ratios, or any other dataset, they will need to do so by hand, possibly after this procedure is run.    
 
-As an example, say we wish to add 2018 and 2019 harvest levels to Oregon’s data.  We open the Append_Harvest_Data.R file in the `HWP_Shared_Test.Rproj` RStudio project, run the first few lines that load the needed libraries, and then alter the following lines to read:   
+As an example, say we wish to add 2018 and 2019 harvest levels to Oregon’s data.  We open the Append_Harvest_Data.R file in the `HWP-C-vR.Rproj` RStudio project, run the first few lines that load the needed libraries, and then alter the following lines to read:   
 `ORIG.DATA.FILE <- "Oregon_Inputs_HWP_Model.xlsx" `  
 `NEW.DATA <- "Oregon_BF_2019.xlsx"`            
 `DATA.FOLDER <- "HWP Data/ExistingData/"`              

@@ -37,7 +37,7 @@ library(kableExtra)
 
 The Harvested Wood Products (HWP) model calculates cumulative HWP carbon stocks and emissions using the [Tier 3 Production Approach](https://www.ipcc-nggip.iges.or.jp/public/2006gl/pdf/4_Volume4/V4_04_Ch4_Forest_Land.pdf) carbon estimation guidelines developed by the [Intergovernmental Panel on Climate Change](https://www.ipcc.ch/).  It is a deterministic model which relies on optional and required user-supplied information.  The model estimation methods are described in @stockmann2012.  There have been several builds of the model, originally created by the U.S. Forest Service (USFS), on platforms including Microsoft Excel and C++. Through partnership with the California Department of Forestry and Fire Protection (CAL FIRE), Oregon Department of Forestry (ODF) and Groom Analytics LLC, this version of the tool (deemed HWP-C vR) builds from the previous USFS versions on the R [@R-base] platform, for use in their state-level harvested wood product carbon inventories.  Another USFS effort is currently underway to construct an interactive version of the model in Python.  This version (HWP-C vR) is not intended to compete with or contradict the original or ongoing USFS work, but rather complement the work by being available in a different platform and coding language. This version also includes new data visualizations.    
 
-Here we describe the HWP-C vR build of the model based on data from the U.S. west coast states of California, Oregon, and Washington.  Users may explore California and Oregon data via the [R Shiny web application](https://groomanalyticsllc.shinyapps.io/HWP_Shared_Test/).  Users from any state or ownership may also upload their own data onto the app, run their data through the HWP model and associated Monte Carlo simulation, view and interact with figures, and download figures and tables.    
+Here we describe the HWP-C vR build of the model based on data from the U.S. west coast states of California, Oregon, and Washington.  Users may explore California and Oregon data via the [R Shiny web application](https://groomanalyticsllc.shinyapps.io/HWP-C-vR/).  Users from any state or ownership may also upload their own data onto the app, run their data through the HWP model and associated Monte Carlo simulation, view and interact with figures, and download figures and tables.    
 
 Alternatively, users may access the full Shiny app R code as well as a stand-alone version of the R code for HWP model implementation. The stand-alone version allows users the opportunity to step through the code more easily, save intermediate outputs (i.e., arrays) for hand-calculation of outcomes, and alter the code to meet their own data needs.  Both versions allow users to download or generate the final output tables necessary to recreate figures to their own specifications.   
 
@@ -46,7 +46,7 @@ This document describes the model and structure of the code, explains how to gen
 
 
 ## Acknowledgements    {#sum-ack}
-Many thanks to Nadia Tase (California Department of Forestry and Fire Protection - CAL FIRE) and Andrew Yost (Oregon Department of Forestry - ODF) for supporting the development of this work through feedback, discussion, and their own efforts to dive into the code and understand the model at its core.  Jimmy Kagan (Oregon State University, Institute for Natural Resources) and Amanda Reynolds (CAL FIRE) provided administrative support.  We received feedback and support for the earlier iteration of the R-version of the model from Todd Morgan (University of Montana, Bureau of Business and Economic Research), Dan Loffler (University of Montana), Keith Stockmann (USFS), [OTHERS].  
+Many thanks to Nadia Tase (California Department of Forestry and Fire Protection - CAL FIRE) and Andrew Yost (Oregon Department of Forestry - ODF) for supporting the development of this work through feedback, discussion, and their own efforts to dive into the code and understand the model at its core.  Jimmy Kagan (Oregon State University's Institute for Natural Resources) and Amanda Reynolds (CAL FIRE) provided administrative support.  We received feedback and support for the earlier iteration of the R-version of the model from Todd Morgan (University of Montana, Bureau of Business and Economic Research), Dan Loffler (University of Montana), Keith Stockmann (USFS), [OTHERS].  
 
 This project was funded by the California Department of Forestry and Fire Protection Purchase Order 3540-0000277546.  Earlier work on the project was funded by the Oregon Department of Forestry and supported by the Institute for Natural Resources, Oregon State University.  
 
@@ -58,7 +58,7 @@ BF: Board Feet
 BBF: Billion Board Feet   
 BLM: Bureau of Land Management   
 DEC: Discard Energy Capture   
-EWEC: Emitted with Energy Capture   
+EEC: Emitted with Energy Capture   
 EWOEC: Emitted without Energy Capture   
 EUR: End-use Product Ratios   
 HWP: Harvested Wood Products   

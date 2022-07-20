@@ -6,7 +6,7 @@ There are two approaches available to users for interacting with the HWP model. 
 
 ## Basic web interactivity – Shiny app   {#app-shiny}
 
-The [web site](https://groomanalyticsllc.shinyapps.io/HWP_Shared_Test/) allows users to switch between two pre-loaded data sets, California and Oregon state-wide timber harvests.  The menu bar on the left also has some drop-down plotting and data upload options.  Plots include displays of **timber harvest summaries**, **harvested wood product carbon storage and emissions estimates**, and **Monte Carlo simulation** results.  
+The [web site](https://groomanalyticsllc.shinyapps.io/HWP-C-vR/) allows users to switch between two pre-loaded data sets, California and Oregon state-wide timber harvests.  The menu bar on the left also has some drop-down plotting and data upload options.  Plots include displays of **timber harvest summaries**, **harvested wood product carbon storage and emissions estimates**, and **Monte Carlo simulation** results.  
 
 The app was designed to aid users by providing figures that could usefully be incorporated into reports.  To that end, all figures can be saved (with one exception) and the title for each figure can be customized.  
 
@@ -37,7 +37,7 @@ These four figures, under the Carbon Storage and Emissions menu option, track th
 * **Monte Carlo Estimates**.  Two of these three figures display mean cumulative values from the Monte Carlo simulations with 90% confidence intervals.    
     +	Cumulative carbon in individual storage and emission pools: There are separate results for Emitted with Energy Capture, Emitted without Energy Capture, Products in Use, and Solid Waste Disposal Sites.   
     +	Cumulative carbon in storage pools combined (Products in use + SWDS): This figure sums the products in use + SWDS values within each iteration of the Monte Carlo and provides the mean plus 90% confidence interval.   
-    +	Monte Carlo convergence evaluation: This figure displays sequential iteration results for the final year of the Monte Carlo simulation.  It shows values for the 5th and 95th percentiles of values (i.e., the boundaries of the 90% confidence intervals), the value for the mean and standard error (se) over time.  The Monte Carlo estimation process allows for a burn-in period, for which iteration values prior to that period are discarded from the estimation (pink vertical line).  If values after the burn-in period appear unstable, more iterations may be needed to arrive at reasonable values. If they appeared to stabilize long before the burn-in period, then the Monte Carlo may provide reliable results with fewer iterations.    
+    +	Monte Carlo convergence evaluation: This figure displays sequential iteration results for the final year of the Monte Carlo simulation.  It shows values for the 5th and 95th percentiles of values (i.e., the boundaries of the 90% confidence intervals), the value for the mean and standard error (se) over time.  If Monte Carlo values appear unstable, more iterations may be needed to arrive at reasonable values. If they appeared to stabilize long before the final iteration, then the Monte Carlo may provide reliable results with fewer iterations.    
 
 ### Documentation and Data Upload     {#app-doc}
 These items provide users with links to this documentation, which in turn describes aspects of the web application, the workings of the HWP model, and how users can upload their own data and download the source code.    

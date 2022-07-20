@@ -9,13 +9,13 @@ We wish to provide users with a document that will enable users to step into the
 
 The next three sections describe options for interacting with the model in progressively technical ways:  
 
-* Option 1: Chapter XX. Basic - Users can explore and view pre-laoded HWP C data in the R Shiny web application.   
+* Option 1: Chapter \@ref(app). Basic - Users can explore and view pre-laoded HWP C data in the R Shiny web application.   
     + Users can view a, interact with, and download a variety of graphical outputs from the California and Oregon default data sets  and manipulate the figures to a degree.
     + Outputs that can be viewed in or downloaded from the web application are described in section 5.7.  
-* Option 2: Chapter XX.  Intermediate - Users can provide their own data to run in the R Shiny web application to generate HWP C estimates.
+* Option 2: Chapter \@ref(own).  Intermediate - Users can provide their own data to run in the R Shiny web application to generate HWP C estimates.
     + Users can use the full functionality of the app on their own data, including generating HWP carbon storage and emissions estimates, producing, viewing, and downloading the same sorts of figures, and runing the Monte Carlo uncertainty analysis.  
     + This is a good option for users that would like to produce their own results but are unfamiliar with R or R Studio.
-* Option 3: Chapter XX.  Advanced - Users can download the Shiny web application and R code to run the model on to their own computer.  
+* Option 3: Chapter \@ref(dnld).  Advanced - Users can download the Shiny web application and R code to run the model on to their own computer.  
     + Allows the user to run the Shiny web app locally on their own machine.  
     + Also allows the user to operate the stand-alone version of the model using the R code in R or R Studio without needing to rely on the web app.
     + Users can use existing datasets for California, Oregon, and Washington or provide their own input datasets to generate cumulative estimates of harvested wood product carbon storage and emissions.
@@ -71,7 +71,7 @@ Finally, this model does not include any method for overall model validation. Es
 
 The HWP model began as an Excel macro originally created by the U.S. Forest Service (USFS) for National Forest System Northern regional HWP carbon inventory [@anderson2013; @stockmann2012].  The Excel version was updated to one programmed in C++ for the remaining USFS regional HWP carbon inventories (USFS HWP-C; e.g., @stockmann2014).  The model was then modified in 2017 by the USFS for use in the California Forest Ecosystem and Harvested Wood Product Carbon Inventory [@loeffler2019] and is given the label here as the CA USFS HWP-C variant.  This history is depicted in Figure \@ref(fig:hist-fig). Though names for the USFS versions of the model did not exist, they are given here for clarifying purposes. However, in 2020 when Oregon and California were trying to establish or update HWP C inventories, no version of the model was available publicly due to older coding languages used in previous iterations of the model.     
 
-Building from the previous USFS-led versions of the model, Groom Analytics LLC undertook programming the model in R for the Oregon Department of Forestry (ODF) and California Department of Forestry and Fire Protection (CAL FIRE), and subsequently deployed the R version as a [web application](https://groomanalyticsllc.shinyapps.io/HWP_Shared_Test/).  This version of the model (HWP-C vR) described in this document largely functions the same as the original USFS Excel-based model and the v1 tool.   A few changes exist and are described more fully in Christensen et al. [-@christensen2020; -@christensen2021]. These  changes include:  
+Building from the previous USFS-led versions of the model, Groom Analytics LLC undertook programming the model in R for the Oregon Department of Forestry (ODF) and California Department of Forestry and Fire Protection (CAL FIRE), and subsequently deployed the R version as a [web application](https://groomanalyticsllc.shinyapps.io/HWP-C-vR/).  This version of the model (HWP-C vR) described in this document largely functions the same as the original USFS Excel-based model and the v1 tool.   A few changes exist and are described more fully in Christensen et al. [-@christensen2020; -@christensen2021]. These  changes include:  
 
 * Modification of lag times built in the original tool, in order to allow users to more easily verify calculations.  
 *	The CA USFS HWP-C variant of the tool used for the state-level inventory in California resulted in narrower confidences intervals than expected based on the parameters set for the Monte Carlo Uncertainty Analysis. This tool has established a new Monte Carlo simulation that has succeeded in introducing variability into the HWP C estimates.  

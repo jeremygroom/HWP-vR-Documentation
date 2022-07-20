@@ -208,7 +208,7 @@ div.csl-indent {
 </div>
 <div id="app-shiny" class="section level2 hasAnchor" number="3.2">
 <h2><span class="header-section-number">3.2</span> Basic web interactivity – Shiny app<a href="app.html#app-shiny" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p>The <a href="https://groomanalyticsllc.shinyapps.io/HWP_Shared_Test/">web site</a> allows users to switch between two pre-loaded data sets, California and Oregon state-wide timber harvests. The menu bar on the left also has some drop-down plotting and data upload options. Plots include displays of <strong>timber harvest summaries</strong>, <strong>harvested wood product carbon storage and emissions estimates</strong>, and <strong>Monte Carlo simulation</strong> results.</p>
+<p>The <a href="https://groomanalyticsllc.shinyapps.io/HWP-C-vR/">web site</a> allows users to switch between two pre-loaded data sets, California and Oregon state-wide timber harvests. The menu bar on the left also has some drop-down plotting and data upload options. Plots include displays of <strong>timber harvest summaries</strong>, <strong>harvested wood product carbon storage and emissions estimates</strong>, and <strong>Monte Carlo simulation</strong> results.</p>
 <p>The app was designed to aid users by providing figures that could usefully be incorporated into reports. To that end, all figures can be saved (with one exception) and the title for each figure can be customized.</p>
 <p>Below we describe the figures and options within each menu category</p>
 <div id="app-shiny-home" class="section level3 hasAnchor" number="3.2.1">
@@ -244,7 +244,7 @@ div.csl-indent {
 </li>
 <li>Cumulative carbon in storage pools combined (Products in use + SWDS): This figure sums the products in use + SWDS values within each iteration of the Monte Carlo and provides the mean plus 90% confidence interval.<br />
 </li>
-<li>Monte Carlo convergence evaluation: This figure displays sequential iteration results for the final year of the Monte Carlo simulation. It shows values for the 5th and 95th percentiles of values (i.e., the boundaries of the 90% confidence intervals), the value for the mean and standard error (se) over time. The Monte Carlo estimation process allows for a burn-in period, for which iteration values prior to that period are discarded from the estimation (pink vertical line). If values after the burn-in period appear unstable, more iterations may be needed to arrive at reasonable values. If they appeared to stabilize long before the burn-in period, then the Monte Carlo may provide reliable results with fewer iterations.</li>
+<li>Monte Carlo convergence evaluation: This figure displays sequential iteration results for the final year of the Monte Carlo simulation. It shows values for the 5th and 95th percentiles of values (i.e., the boundaries of the 90% confidence intervals), the value for the mean and standard error (se) over time. If Monte Carlo values appear unstable, more iterations may be needed to arrive at reasonable values. If they appeared to stabilize long before the final iteration, then the Monte Carlo may provide reliable results with fewer iterations.</li>
 </ul></li>
 </ul>
 </div>

@@ -3,11 +3,37 @@
 ## Frequently Asked Questions         {#ft-faqs}
 
 *Q: Why can't I access the code on the GitHub page?  I'm getting a 404 error screen.*  
-A: To access the files you will need to create a GitHub account.
+A: To access the files you will need to create a GitHub account.  
+
+*Q: I'm creating an input file.  Do I have to have harvest ownership data?  All I have are totals.*  
+A: The model can run well without ownership data.  Just have two columns for the harvest data: Year and Total.  The ownership-focused Shiny app figures will not display data, and a few of the tables will not include data either.  Everything else should work fine.    
+
+*What if I only want to view California and Oregon data and do not want to run the tool for my own data?*  
+The Shiny app is pre-loaded with California and Oregon data.  For details about each of the app displays, take a look at Chapter \@ref(app).   
+
+*What are the steps to create my own input data file?*  
+Chapter \@ref(own) describes how to obtain template input files and what components of those files need to be modified so that you will have a working input file.  
+
+*What are the steps to upload my own input data file to the R Shiny web application?*   
+See Section \@ref(own-shiny) as well as the steps on the app's **Upload Data** page.  
+
+*What are the details to ensure I’ve set up my input data file correctly? *  
+The quality assurance (QA) step will check your file for you.  However, the details of what to include are in Section \@ref(own-prov-input) and the specific QA checks are listed in section \@ref(own-qa).  
+
+*What do I need to know about running the Monte Carlo Simulation? *  
+You will need to set the number of iterations you would like the simulation to use (see Section \@ref(own-prov-input-options)).  Section \@ref(own-mc) describes other aspects of running the Monte Carlo simulation.  Details on what the simulation is doing may be found in Section \@ref(model-mc).  
+
+*I only have timber harvest data in cubic feet.  Can I still use these data in the model?*  
+Yes!  But the model needs to think that it transformed your harvest data into cubic feet all on its own.  Here is how you fool it, using a template file:  
+
+1. Create the BFCF worksheet values.  For Conversion, use the value 1.  StartYear = your earliest data year or earlier. EndYear = your last harvest data year.  That's right, only one row of input values.  
+2. Create bogus (yet usable) Harvest_BF worksheet values.  Simply multiply each of your ownership and Total cubic feet values by 10.  Place them in this table.    
+3. Everything else is the same.  Fill in your TimberProdRatios and change any other values you need (see Chapter \@ref(own)).    
+
 
 ## Troubleshooting        {#ft-trbl}
 
-When uploading data, there can be an error message that appears in red right below the Browse button:   
+1. When uploading data, there can be an error message that appears in red right below the Browse button:   
 `<!DOCTYPE HTML><html lang=”en”><head>`  
 
 If this appears it is best to rebuild the excel file.  There does not appear to be a way to circumvent this issue aside from constructing a new file (the file name is probably irrelevant so long as it does not contain weird characters).  We recommend that users cut-copy-paste from the excel file into a blank file.  

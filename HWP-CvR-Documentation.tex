@@ -112,7 +112,7 @@ Groom Analytics, LLC\\
 \strut \\
 Nadia Tase\\
 California Department of Forestry and Fire Protection}
-\date{Date: June 28, 2022}
+\date{Date: July 20, 2022}
 
 \begin{document}
 \frontmatter
@@ -147,9 +147,9 @@ data visualizations.
 Here we describe the HWP-C vR build of the model based on data from the
 U.S. west coast states of California, Oregon, and Washington. Users may
 explore California and Oregon data via the
-\href{https://groomanalyticsllc.shinyapps.io/HWP_Shared_Test/}{R Shiny
-web application}. Users from any state or ownership may also upload
-their own data onto the app, run their data through the HWP model and
+\href{https://groomanalyticsllc.shinyapps.io/HWP-C-vR/}{R Shiny web
+application}. Users from any state or ownership may also upload their
+own data onto the app, run their data through the HWP model and
 associated Monte Carlo simulation, view and interact with figures, and
 download figures and tables.
 
@@ -172,7 +172,7 @@ Many thanks to Nadia Tase (California Department of Forestry and Fire
 Protection - CAL FIRE) and Andrew Yost (Oregon Department of Forestry -
 ODF) for supporting the development of this work through feedback,
 discussion, and their own efforts to dive into the code and understand
-the model at its core. Jimmy Kagan (Oregon State University, Institute
+the model at its core. Jimmy Kagan (Oregon State University's Institute
 for Natural Resources) and Amanda Reynolds (CAL FIRE) provided
 administrative support. We received feedback and support for the earlier
 iteration of the R-version of the model from Todd Morgan (University of
@@ -194,7 +194,7 @@ BF: Board Feet\\
 BBF: Billion Board Feet\\
 BLM: Bureau of Land Management\\
 DEC: Discard Energy Capture\\
-EWEC: Emitted with Energy Capture\\
+EEC: Emitted with Energy Capture\\
 EWOEC: Emitted without Energy Capture\\
 EUR: End-use Product Ratios\\
 HWP: Harvested Wood Products\\
@@ -254,8 +254,8 @@ in progressively technical ways:
 \begin{itemize}
 \tightlist
 \item
-  Option 1: Chapter XX. Basic - Users can explore and view pre-laoded
-  HWP C data in the R Shiny web application.
+  Option 1: Chapter @ref(app). Basic - Users can explore and view
+  pre-laoded HWP C data in the R Shiny web application.
 
   \begin{itemize}
   \tightlist
@@ -268,8 +268,9 @@ in progressively technical ways:
     are described in section 5.7.\\
   \end{itemize}
 \item
-  Option 2: Chapter XX. Intermediate - Users can provide their own data
-  to run in the R Shiny web application to generate HWP C estimates.
+  Option 2: Chapter @ref(own). Intermediate - Users can provide their
+  own data to run in the R Shiny web application to generate HWP C
+  estimates.
 
   \begin{itemize}
   \tightlist
@@ -283,8 +284,8 @@ in progressively technical ways:
     results but are unfamiliar with R or R Studio.
   \end{itemize}
 \item
-  Option 3: Chapter XX. Advanced - Users can download the Shiny web
-  application and R code to run the model on to their own computer.
+  Option 3: Chapter @ref(dnld). Advanced - Users can download the Shiny
+  web application and R code to run the model on to their own computer.
 
   \begin{itemize}
   \tightlist
@@ -385,8 +386,8 @@ carbon ratios and decay half-lives are provided in the individual
 state-level reports (e.g., Loeffler et al.
 (\protect\hyperlink{ref-loeffler2019}{2019}), Morgan et al.
 (\protect\hyperlink{ref-morgan2021}{2021}), Nichols et al.
-(\protect\hyperlink{ref-nichols2020}{2020})), and are also provided in
-Section @ref(own-input).
+(\protect\hyperlink{ref-nichols2020}{2020})), and are also described in
+Section @ref(own-prov-input).
 
 With each year of harvest more carbon enters the cycle. Some carbon is
 immediately oxidized as fuelwood, enters the products in use pool, or is
@@ -536,7 +537,7 @@ Building from the previous USFS-led versions of the model, Groom
 Analytics LLC undertook programming the model in R for the Oregon
 Department of Forestry (ODF) and California Department of Forestry and
 Fire Protection (CAL FIRE), and subsequently deployed the R version as a
-\href{https://groomanalyticsllc.shinyapps.io/HWP_Shared_Test/}{web
+\href{https://groomanalyticsllc.shinyapps.io/HWP-C-vR/}{web
 application}. This version of the model (HWP-C vR) described in this
 document largely functions the same as the original USFS Excel-based
 model and the v1 tool. A few changes exist and are described more fully
@@ -611,13 +612,13 @@ code-based environment that does not produce the web app.
 \hypertarget{app-shiny}{%
 \section{Basic web interactivity -- Shiny app}\label{app-shiny}}
 
-The \href{https://groomanalyticsllc.shinyapps.io/HWP_Shared_Test/}{web
-site} allows users to switch between two pre-loaded data sets,
-California and Oregon state-wide timber harvests. The menu bar on the
-left also has some drop-down plotting and data upload options. Plots
-include displays of \textbf{timber harvest summaries}, \textbf{harvested
-wood product carbon storage and emissions estimates}, and \textbf{Monte
-Carlo simulation} results.
+The \href{https://groomanalyticsllc.shinyapps.io/HWP-C-vR/}{web site}
+allows users to switch between two pre-loaded data sets, California and
+Oregon state-wide timber harvests. The menu bar on the left also has
+some drop-down plotting and data upload options. Plots include displays
+of \textbf{timber harvest summaries}, \textbf{harvested wood product
+carbon storage and emissions estimates}, and \textbf{Monte Carlo
+simulation} results.
 
 The app was designed to aid users by providing figures that could
 usefully be incorporated into reports. To that end, all figures can be
@@ -742,13 +743,11 @@ track the size of pools and emissions categories over time.
     iteration results for the final year of the Monte Carlo simulation.
     It shows values for the 5th and 95th percentiles of values (i.e.,
     the boundaries of the 90\% confidence intervals), the value for the
-    mean and standard error (se) over time. The Monte Carlo estimation
-    process allows for a burn-in period, for which iteration values
-    prior to that period are discarded from the estimation (pink
-    vertical line). If values after the burn-in period appear unstable,
-    more iterations may be needed to arrive at reasonable values. If
-    they appeared to stabilize long before the burn-in period, then the
-    Monte Carlo may provide reliable results with fewer iterations.
+    mean and standard error (se) over time. If Monte Carlo values appear
+    unstable, more iterations may be needed to arrive at reasonable
+    values. If they appeared to stabilize long before the final
+    iteration, then the Monte Carlo may provide reliable results with
+    fewer iterations.
   \end{itemize}
 \end{itemize}
 
@@ -1127,18 +1126,7 @@ the remainder as optional to adjust for advanced users:
   run. Too few iterations will provide unreliable results. The default
   value is currently 100 runs which is likely too few but is sufficient
   to verify that the process works. 1000 to 2000 might be a recommended
-  number for obtaining reliable estimates and determining what the
-  length of the burn-in period should be.
-\item
-  *BURN.IN (Integer, 0 or greater) - Affects both the Shiny web
-  application and stand-alone model. In the same figure mentioned in the
-  previous N.ITER description, there is a vertical magenta line that
-  signifies the burn-in period. Everything to the left of the line is
-  discarded when results are plotted in the Shiny application or
-  provided in Monte Carlo results tables. The user should set the
-  BURN.IN value to the number of iterations after which the Monte Carlo
-  appears fairly stable, e.g., the estimate for the mean approximates a
-  horizontal line.
+  number for obtaining reliable estimates.
 \item
   MC.ARRAY.OUT (TRUE, FALSE) -- This value only affects the stand-alone
   model. If TRUE, the Monte Carlo code will generate the (large)
@@ -2056,11 +2044,9 @@ From the Shiny app, click on the Upload Data button.
 simulation}\label{own-mc}}
 
 As described above, there are several controls in the worksheet
-HWP\_MODEL\_OPTIONS. The user can set the number of iterations they
-would like the Monte Carlo simulation to run, and set the burn-in period
-length. The burn-in period is the number of initial iterations that are
-not considered when calculating means and confidence intervals. You can
-also set the parameters R and OPT.START if you wish.
+HWP\_MODEL\_OPTIONS. You can set the number of iterations that you would
+like the Monte Carlo simulation to run. You can also set the parameters
+R and OPT.START if you wish.
 
 If you would like to see the Monte Carlo array, which includes all
 estimates from all iterations, you will need to run the stand-alone
@@ -2073,9 +2059,9 @@ find that the Monte Carlo estimates really aren't that far off of from
 the standard deterministic HWP model run. A small number of iterations
 will prevent you from waiting for several minutes while the simulation
 runs. Running the simulations for 1000 iterations may demonstrate a
-reasonable burn-in number to enter into the input Excel file. When you
-are ready to obtain a "final" estimate you can increase the number of
-iterations to 1500, 2000, or more.
+reasonable number to enter into the input Excel file. When you are ready
+to obtain a "final" estimate you can increase the number of iterations
+to 1500, 2000, or more.
 
 If you have ratio values that are close to boundaries (e.g., 0.03 and
 0.98), you may notice that confidence intervals do not appear
@@ -2207,9 +2193,9 @@ SWDS + PIU iteration values summed, starting with only the first column
 and adding columns to consideration (represented by the Iterations axis
 at the bottom of the figure). The se, ci05, and ci95 columns are the
 estimated standard error and empirical 5\% and 95\% confidence intervals
-based on the number of iterations being considered. If the user
-specifies 2000 iterations over 100 years of harvest data the resulting
-Excel file can be tens of megabytes in size.
+based on the number of iterations. If the user specifies 2000 iterations
+over 100 years of harvest data the resulting Excel file can be tens of
+megabytes in size.
 
 \hypertarget{dnld}{%
 \chapter{Option 3: Operating the model from your own
@@ -2243,10 +2229,10 @@ code from the GitHub site in the future.
 \subsection{Compressed file download}\label{dnld-git-zip}}
 
 To obtain the compressed file, go to the
-\href{https://github.com/jeremygroom/HWP_Shared_Test.git}{GitHub
-repository}, click the green ``Code'' button above the list of files,
-and then select the ``Download Zip'' option (see Figure
-@ref(fig:zip-fig)). Unzip the folder on your machine and then
+\href{https://github.com/jeremygroom/HWP-C-vR.git}{GitHub repository},
+click the green ``Code'' button above the list of files, and then select
+the ``Download Zip'' option (see Figure @ref(fig:zip-fig)). Unzip the
+folder on your machine and then
 \href{https://jeremygroom.github.io/HWP-vR-Documentation/run.html\#dnld-files}{check
 out the file structure} and follow
 \href{https://jeremygroom.github.io/HWP-vR-Documentation/run.html\#dnld-shiny}{these
@@ -2280,7 +2266,9 @@ websites that can smooth the way:
 If you are not already using GitHub or similar, getting
 Git/GitHub/RProject set up may take an hour or two. I recommend reading
 through Happy Git website carefully and following its instructions.
-Going slowly is going quickly.
+Going slowly is going quickly. You will also need to
+\href{https://github.com/signup?ref_cta=Sign+up\&ref_loc=header+logged+out\&ref_page=\%2F\&source=header-home}{create
+a GitHub account}.
 
 Once you have Git set up on your machine and have verified that it is
 doing what you want you are ready to clone the repository. The following
@@ -2292,25 +2280,24 @@ containing the code to be placed.\\
 3. Select the following menu options: File \textgreater{} New Project
 \textgreater{} Version Control \textgreater{} Git\\
 4. In the ``repository URL'' paste the URL of the HWP model's GitHub
-repository: \url{https://github.com/jeremygroom/HWP_Shared_Test.git}\\
+repository: \url{https://github.com/jeremygroom/HWP-C-vR.git}\\
 This will automatically populate the blank below the URL with the
-project name (HWP\_Shared\_Test).\\
+project name (HWP-C-vR).\\
 5. Click ``Create Project''
 
-RStudio will now open the HWP\_Shared\_Test.Rproj file for you. You are
-ready to run the code. But first, we describe the files you've
-downloaded.
+RStudio will now open the HWP-C-vR.Rproj file for you. You are ready to
+run the code. But first, we describe the files you've downloaded.
 
 \hypertarget{dnld-files}{%
 \section{File structure}\label{dnld-files}}
 
-\emph{/HWP\_Shared\_Test/}\\
+\emph{/HWP-C-vR/}\\
 This folder contains all files associated with the model, including
 template data, the Shiny application, the stand-alone code and folders,
 R environment controls, and the RStudio project that runs it all.
 
-HWP\_Shared\_Test.Rproj: Open this to operate the Shiny app or
-stand-alone from your computer.
+HWP-C-vR.Rproj: Open this to operate the Shiny app or stand-alone from
+your computer.
 
 app.r: This is the main code file that runs the Shiny application.
 
@@ -2325,12 +2312,12 @@ version.
 
 renv.loc: R environment information.
 
-\emph{/HWP\_Shared\_Test/HWP Data/}\\
+\emph{/HWP-C-vR/HWP Data/}\\
 This folder contains Oregon, California, and Washington data that may be
 uploaded into the app as well as templates for constructing input files
 from elsewhere in the United States.
 
-\emph{/HWP\_Shared\_Test/HWP Data/ExistingData/}\\
+\emph{/HWP-C-vR/HWP Data/ExistingData/}\\
 This folder contains data files that may be loaded into the app or into
 the stand-alone model. The files (mostly) include a harvest time series
 and timber and primary product ratios developed for these state-level
@@ -2355,17 +2342,17 @@ inventories
 \item
   Oregon\_BF\_2019: This file is not an input file. It contains
   additional harvest data for 2019 so that users may practice appending
-  harvest data with provided code (Section @ref(run-opp-add)).
+  harvest data with provided code (Section @ref(dnld-add)).
 \item
   WA\_Inputs\_HWP\_Model.xlsx: This file contains data for Washington
   State.
 \end{itemize}
 
-\emph{/HWP\_Shared\_Test/HWP Data/Templates/}\\
+\emph{/HWP-C-vR/HWP Data/Templates/}\\
 This folder contains sub-folders that direct users to Excel templates
 that they can use when building their input file.
 
-\emph{/HWP\_Shared\_Test/HWP Data/HWP Data.zip/}\\
+\emph{/HWP-C-vR/HWP Data/HWP Data.zip/}\\
 This file contains compressed versions of the ExistingData and Templates
 folders for user download from the app.
 
@@ -2498,10 +2485,9 @@ ignore this folder.
 \def\labelenumi{\arabic{enumi}.}
 \item
   Open the code in RStudio. Launch the RStudio project by opening the
-  project file \textbf{HWP\_Shared\_Test.Rproj} from within its folder.
-  Within RStudio select from the menu File \textgreater{} Open
-  File\ldots{} . Select the file \textbf{app.r} and click on the Open
-  button.
+  project file \textbf{HWP-C-vR.Rproj} from within its folder. Within
+  RStudio select from the menu File \textgreater{} Open File\ldots{} .
+  Select the file \textbf{app.r} and click on the Open button.
 \item
   Run the code in RStudio. Here we run all of the code in the
   \textbf{app.r} file. There are several ways to do this. One way is to
@@ -2584,8 +2570,8 @@ run all of the code at once after placing their data file in the HWP
 Data folder and entering their file name into the code as described
 below.
 
-To run the stand-alone code, open the file ``HWP\_Shared\_Test.Rproj''.
-This will open the R Project using the program R Studio. Open the file
+To run the stand-alone code, open the file ``HWP-C-vR.Rproj''. This will
+open the R Project using the program R Studio. Open the file
 ``HWP\_Stand\_Alone\_Code.R''. Then, run the \texttt{renv::restore()}
 line plus the library load code. If this is the first time you are
 running the \texttt{renv::restore()} call, the process may take a few
@@ -2768,9 +2754,8 @@ possibly after this procedure is run.
 
 As an example, say we wish to add 2018 and 2019 harvest levels to
 Oregon's data. We open the Append\_Harvest\_Data.R file in the
-\texttt{HWP\_Shared\_Test.Rproj} RStudio project, run the first few
-lines that load the needed libraries, and then alter the following lines
-to read:\\
+\texttt{HWP-C-vR.Rproj} RStudio project, run the first few lines that
+load the needed libraries, and then alter the following lines to read:\\
 \texttt{ORIG.DATA.FILE\ \textless{}-\ "Oregon\_Inputs\_HWP\_Model.xlsx"}\strut \\
 \texttt{NEW.DATA\ \textless{}-\ "Oregon\_BF\_2019.xlsx"}\strut \\
 \texttt{DATA.FOLDER\ \textless{}-\ "HWP\ Data/ExistingData/"}\strut \\
@@ -3395,7 +3380,7 @@ involving the six fates.
 \hypertarget{model-mc-res}{%
 \subsection{Monte Carlo results and development}\label{model-mc-res}}
 
-It appears that the full version of the MC simulation reaches
+It appears that the full version of the MC simulation for Oregon reaches
 convergence with 2000 iterations (Figure @ref(fig:mc-conv-fig)).
 Convergence was assessed visually by examining, over the iterations, the
 estimated values for the mean, standard error (SE), and the lower and
@@ -3578,12 +3563,75 @@ separate random variables instead of the number used here.
 404 error screen.}\\
 A: To access the files you will need to create a GitHub account.
 
+\emph{Q: I'm creating an input file. Do I have to have harvest ownership
+data? All I have are totals.}\\
+A: The model can run well without ownership data. Just have two columns
+for the harvest data: Year and Total. The ownership-focused Shiny app
+figures will not display data, and a few of the tables will not include
+data either. Everything else should work fine.
+
+\emph{What if I only want to view California and Oregon data and do not
+want to run the tool for my own data?}\\
+The Shiny app is pre-loaded with California and Oregon data. For details
+about each of the app displays, take a look at Chapter @ref(app).
+
+\emph{What are the steps to create my own input data file?}\\
+Chapter @ref(own) describes how to obtain template input files and what
+components of those files need to be modified so that you will have a
+working input file.
+
+\emph{What are the steps to upload my own input data file to the R Shiny
+web application?}\\
+See Section @ref(own-shiny) as well as the steps on the app's
+\textbf{Upload Data} page.
+
+\emph{What are the details to ensure I've set up my input data file
+correctly? }\\
+The quality assurance (QA) step will check your file for you. However,
+the details of what to include are in Section @ref(own-prov-input) and
+the specific QA checks are listed in section @ref(own-qa).
+
+\emph{What do I need to know about running the Monte Carlo Simulation?
+}\\
+You will need to set the number of iterations you would like the
+simulation to use (see Section @ref(own-prov-input-options)). Section
+@ref(own-mc) describes other aspects of running the Monte Carlo
+simulation. Details on what the simulation is doing may be found in
+Section @ref(model-mc).
+
+\emph{I only have timber harvest data in cubic feet. Can I still use
+these data in the model?}\\
+Yes! But the model needs to think that it transformed your harvest data
+into cubic feet all on its own. Here is how you fool it, using a
+template file:
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  Create the BFCF worksheet values. For Conversion, use the value 1.
+  StartYear = your earliest data year or earlier. EndYear = your last
+  harvest data year. That's right, only one row of input values.\\
+\item
+  Create bogus (yet usable) Harvest\_BF worksheet values. Simply
+  multiply each of your ownership and Total cubic feet values by 10.
+  Place them in this table.\\
+\item
+  Everything else is the same. Fill in your TimberProdRatios and change
+  any other values you need (see Chapter @ref(own)).
+\end{enumerate}
+
 \hypertarget{ft-trbl}{%
 \section{Troubleshooting}\label{ft-trbl}}
 
-When uploading data, there can be an error message that appears in red
-right below the Browse button:\\
-\texttt{\textless{}!DOCTYPE\ HTML\textgreater{}\textless{}html\ lang=”en”\textgreater{}\textless{}head\textgreater{}}
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  When uploading data, there can be an error message that appears in red
+  right below the Browse button:\\
+  \texttt{\textless{}!DOCTYPE\ HTML\textgreater{}\textless{}html\ lang=”en”\textgreater{}\textless{}head\textgreater{}}
+\end{enumerate}
 
 If this appears it is best to rebuild the excel file. There does not
 appear to be a way to circumvent this issue aside from constructing a
