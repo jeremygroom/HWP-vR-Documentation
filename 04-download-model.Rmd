@@ -187,7 +187,7 @@ If the user's data input file indicates that the stand-alone model code should g
 
 * **dec_array.xlsx** - Working name in the code: dec.input_array.  This is the amount of all discarded material (see dp.total_array.xlsx) that is burned with energy capture.    
 
-* **dp.total_array.xlsx** - Working name in the code: dp.total_array.  The amount of carbon discarded each year. This includes byproduct of harvested wood  products (see PIU.LOSS, Section \@ref(own-prov-input-options)) and the annual amount of products in use that become discarded material.     
+* **dp.total_array.xlsx** - Working name in the code: dp.total_array.  The amount of carbon discarded each year. This includes byproduct of harvested wood products (see PIU.WOOD.LOSS and PIU.PAPER.LOSS, Section \@ref(own-prov-input-options)) and the annual amount of products in use that become discarded material.     
 
 * **dumps.discard_array.xlsx**  - Working name in the code: dumps.discard_array.  The amount of carbon in dumps each year that decays.      
 

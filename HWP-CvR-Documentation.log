@@ -1,11 +1,11 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.24 (TeX Live 2022) (preloaded format=pdflatex 2022.6.28)  20 JUL 2022 15:03
+This is pdfTeX, Version 3.141592653-2.6-1.40.24 (TeX Live 2022) (preloaded format=pdflatex 2022.7.20)  21 JUL 2022 16:36
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
 **HWP-CvR-Documentation.tex
 (./HWP-CvR-Documentation.tex
-LaTeX2e <2022-06-01> patch level 3
-L3 programming layer <2022-06-16> (c:/Users/jerem/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/base/book.cls
+LaTeX2e <2022-06-01> patch level 5
+L3 programming layer <2022-07-15> (c:/Users/jerem/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/base/book.cls
 Document Class: book 2021/10/04 v1.4n Standard LaTeX document class
 (c:/Users/jerem/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/base/bk10.clo
 File: bk10.clo 2021/10/04 v1.4n Standard LaTeX file (size option)
@@ -192,24 +192,24 @@ LaTeX Info: Redefining \addtolength on input line 81.
 \calc@Ccount=\count274
 \calc@Cskip=\skip57
 ) (c:/Users/jerem/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/koma-script/scrextend.sty
-Package: scrextend 2022/05/01 v3.36 KOMA-Script package (extend other classes with features of KOMA-Script classes)
+Package: scrextend 2022/07/04 v3.37 KOMA-Script package (extend other classes with features of KOMA-Script classes)
 (c:/Users/jerem/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/koma-script/scrkbase.sty
-Package: scrkbase 2022/05/01 v3.36 KOMA-Script package (KOMA-Script-dependent basics and keyval usage)
+Package: scrkbase 2022/07/04 v3.37 KOMA-Script package (KOMA-Script-dependent basics and keyval usage)
 (c:/Users/jerem/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/koma-script/scrbase.sty
-Package: scrbase 2022/05/01 v3.36 KOMA-Script package (KOMA-Script-independent basics and keyval usage)
+Package: scrbase 2022/07/04 v3.37 KOMA-Script package (KOMA-Script-independent basics and keyval usage)
 (c:/Users/jerem/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/koma-script/scrlfile.sty
-Package: scrlfile 2022/05/01 v3.36 KOMA-Script package (file load hooks)
+Package: scrlfile 2022/07/04 v3.37 KOMA-Script package (file load hooks)
 (c:/Users/jerem/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/koma-script/scrlfile-hook.sty
-Package: scrlfile-hook 2022/05/01 v3.36 KOMA-Script package (using LaTeX hooks)
+Package: scrlfile-hook 2022/07/04 v3.37 KOMA-Script package (using LaTeX hooks)
 (c:/Users/jerem/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/koma-script/scrlogo.sty
-Package: scrlogo 2022/05/01 v3.36 KOMA-Script package (logo)
+Package: scrlogo 2022/07/04 v3.37 KOMA-Script package (logo)
 )))
 Applying: [2021/05/01] Usage of raw or classic option list on input line 252.
 Already applied: [0000/00/00] Usage of raw or classic option list on input line 368.
 )))
 Package scrextend Info: File `scrsize12pt.clo' used to setup font sizes on input line 77.
 (c:/Users/jerem/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/koma-script/scrsize12pt.clo
-File: scrsize12pt.clo 2022/05/01 v3.36 KOMA-Script font size class option (12pt)
+File: scrsize12pt.clo 2022/07/04 v3.37 KOMA-Script font size class option (12pt)
 ) (c:/Users/jerem/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/titling/titling.sty
 Package: titling 2009/09/04 v2.1d maketitle typesetting
 \thanksmarkwidth=\skip58
@@ -450,15 +450,15 @@ with kernel methods
 \Fld@listcount=\count305
 \c@bookmark@seq@number=\count306
 (c:/Users/jerem/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/rerunfilecheck/rerunfilecheck.sty
-Package: rerunfilecheck 2019/12/05 v1.9 Rerun checks for auxiliary files (HO)
+Package: rerunfilecheck 2022-07-10 v1.10 Rerun checks for auxiliary files (HO)
 (c:/Users/jerem/AppData/Roaming/TinyTeX/texmf-dist/tex/generic/uniquecounter/uniquecounter.sty
 Package: uniquecounter 2019/12/15 v1.4 Provide unlimited unique counter (HO)
 )
-Package uniquecounter Info: New unique counter `rerunfilecheck' on input line 286.
+Package uniquecounter Info: New unique counter `rerunfilecheck' on input line 285.
 )
 \Hy@SectionHShift=\skip73
 ) (c:/Users/jerem/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/l3backend/l3backend-pdftex.def
-File: l3backend-pdftex.def 2022-04-20 L3 backend support: PDF output (pdfTeX)
+File: l3backend-pdftex.def 2022-07-01 L3 backend support: PDF output (pdfTeX)
 \l__color_backend_stack_int=\count307
 \l__pdf_internal_box=\box72
 )
@@ -502,7 +502,10 @@ Package pdftex.def Info: GroomAnalyticsE.png  used on input line 120.
 
 
 
+
+
 {c:/Users/jerem/AppData/Roaming/TinyTeX/texmf-var/fonts/map/pdftex/updmap/pdftex.map}] [2 <./GroomAnalyticsE.png>] [1
+
 
 
 ] [2] [3]
@@ -589,22 +592,22 @@ Overfull \hbox (8.53967pt too wide) has occurred while \output is active
  []
 
 [16]
-Underfull \hbox (badness 10000) in paragraph at lines 686--692
+Underfull \hbox (badness 10000) in paragraph at lines 684--690
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 709--712
+Underfull \hbox (badness 10000) in paragraph at lines 707--710
 
  []
 
 [17]
-Underfull \hbox (badness 10000) in paragraph at lines 732--737
+Underfull \hbox (badness 10000) in paragraph at lines 730--735
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 737--742
+Underfull \hbox (badness 10000) in paragraph at lines 735--740
 
  []
 
@@ -621,16 +624,16 @@ Overfull \hbox (8.53967pt too wide) has occurred while \output is active
 [20] [21
 
 ]
-LaTeX Font Info:    Trying to load font information for T1+lmtt on input line 827.
+LaTeX Font Info:    Trying to load font information for T1+lmtt on input line 825.
 (c:/Users/jerem/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/lm/t1lmtt.fd
 File: t1lmtt.fd 2015/05/01 v1.6.1 Font defs for Latin Modern
 )
-Underfull \hbox (badness 10000) in paragraph at lines 854--857
+Underfull \hbox (badness 10000) in paragraph at lines 852--855
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 857--860
+Underfull \hbox (badness 10000) in paragraph at lines 855--858
 
  []
 
@@ -640,7 +643,7 @@ Overfull \hbox (105.59988pt too wide) has occurred while \output is active
  []
 
 [22] [23]
-Underfull \hbox (badness 1331) in paragraph at lines 924--930
+Underfull \hbox (badness 1331) in paragraph at lines 922--928
 \T1/lmr/m/n/12 prov-input-options)). Na-tional de-fault. Un-nec-es-sary to
  []
 
@@ -650,14 +653,14 @@ Overfull \hbox (105.59988pt too wide) has occurred while \output is active
  []
 
 [24]
-Underfull \hbox (badness 1796) in paragraph at lines 950--964
+Underfull \hbox (badness 1796) in paragraph at lines 948--962
 \T1/lmr/m/n/12 and fig-ure @ref(fig:template-map-fig) de-scribes the ge-o-graphic
  []
 
 <images/regions_map.png, id=210, 804.00375pt x 513.41812pt>
 File: images/regions_map.png Graphic file (type png)
 <use images/regions_map.png>
-Package pdftex.def Info: images/regions_map.png  used on input line 966.
+Package pdftex.def Info: images/regions_map.png  used on input line 964.
 (pdftex.def)             Requested size: 344.99106pt x 220.30327pt.
 [25]
 Overfull \hbox (105.59988pt too wide) has occurred while \output is active
@@ -665,12 +668,12 @@ Overfull \hbox (105.59988pt too wide) has occurred while \output is active
  []
 
 [26 <./images/regions_map.png>]
-Overfull \hbox (29.30035pt too wide) in paragraph at lines 1007--1010
+Overfull \hbox (29.30035pt too wide) in paragraph at lines 1005--1008
 \T1/lmr/m/n/12 as CA_Inputs_HWP_Model.xlsx or Ore-gon_Inputs_HWP_Model.xlsx,
  []
 
 
-Overfull \hbox (58.27878pt too wide) in paragraph at lines 1016--1023
+Overfull \hbox (58.27878pt too wide) in paragraph at lines 1014--1021
 []\T1/lmr/m/n/12 The first work-sheet in the in-put data tem-plate file, HWP_MODEL_OPTIONS,
  []
 
@@ -680,12 +683,12 @@ Overfull \hbox (105.59988pt too wide) has occurred while \output is active
  []
 
 [28]
-Overfull \hbox (17.51909pt too wide) in paragraph at lines 1071--1077
+Overfull \hbox (17.51909pt too wide) in paragraph at lines 1075--1081
 \T1/lmr/m/n/12 model. The de-fault value is ``HWP_Stand_Alone_Files/Arrays/''.
  []
 
 
-Overfull \hbox (16.2181pt too wide) in paragraph at lines 1077--1083
+Overfull \hbox (16.2181pt too wide) in paragraph at lines 1081--1087
 \T1/lmr/m/n/12 model. The de-fault value is ``HWP_Stand_Alone_Files/Tables/''.
  []
 
@@ -704,31 +707,28 @@ Overfull \hbox (105.59988pt too wide) has occurred while \output is active
 \T1/lmr/m/n/12 34 \T1/lmr/m/sl/12 OPTION 2: UPLOAD AND RUN YOUR OWN DATA IN THE WEB APPLICATION
  []
 
-[34]
-Underfull \vbox (badness 1092) has occurred while \output is active []
-
-[35]
+[34] [35]
 Overfull \hbox (105.59988pt too wide) has occurred while \output is active
 \T1/lmr/m/n/12 36 \T1/lmr/m/sl/12 OPTION 2: UPLOAD AND RUN YOUR OWN DATA IN THE WEB APPLICATION
  []
 
 [36] [37]
-Underfull \hbox (badness 3919) in paragraph at lines 1472--1485
-\T1/lmr/m/n/12 (CA_DiscardEnergyCapture_Test.xlsx, see Sec-tion @ref(dnld-
- []
-
-
 Overfull \hbox (105.59988pt too wide) has occurred while \output is active
 \T1/lmr/m/n/12 38 \T1/lmr/m/sl/12 OPTION 2: UPLOAD AND RUN YOUR OWN DATA IN THE WEB APPLICATION
  []
 
-[38] [39]
+[38]
+Underfull \hbox (badness 3919) in paragraph at lines 1476--1489
+\T1/lmr/m/n/12 (CA_DiscardEnergyCapture_Test.xlsx, see Sec-tion @ref(dnld-
+ []
+
+[39]
 Overfull \hbox (105.59988pt too wide) has occurred while \output is active
 \T1/lmr/m/n/12 40 \T1/lmr/m/sl/12 OPTION 2: UPLOAD AND RUN YOUR OWN DATA IN THE WEB APPLICATION
  []
 
 [40]
-Underfull \hbox (badness 10000) in paragraph at lines 1587--1601
+Underfull \hbox (badness 10000) in paragraph at lines 1591--1605
 
  []
 
@@ -738,7 +738,7 @@ Overfull \hbox (105.59988pt too wide) has occurred while \output is active
  []
 
 [42]
-Overfull \hbox (10.79016pt too wide) in paragraph at lines 1648--1657
+Overfull \hbox (10.79016pt too wide) in paragraph at lines 1652--1661
 []\T1/lmr/m/n/12 Landfill_HalfLives, Dump_HalfLives, Re-cov-ered_HalfLives:
  []
 
@@ -748,42 +748,22 @@ Overfull \hbox (105.59988pt too wide) has occurred while \output is active
  []
 
 [44] [45]
-Underfull \hbox (badness 10000) in paragraph at lines 1763--1765
+Underfull \hbox (badness 10000) in paragraph at lines 1767--1769
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 1765--1767
+Underfull \hbox (badness 10000) in paragraph at lines 1769--1771
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 1780--1783
+Underfull \hbox (badness 10000) in paragraph at lines 1784--1787
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 1783--1786
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 1794--1797
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 1797--1802
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 1802--1804
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 1804--1806
+Underfull \hbox (badness 10000) in paragraph at lines 1787--1790
 
  []
 
@@ -793,97 +773,97 @@ Overfull \hbox (105.59988pt too wide) has occurred while \output is active
  []
 
 [46]
-Underfull \hbox (badness 10000) in paragraph at lines 1814--1817
+Underfull \hbox (badness 10000) in paragraph at lines 1798--1801
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 1817--1819
+Underfull \hbox (badness 10000) in paragraph at lines 1801--1806
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 1819--1821
+Underfull \hbox (badness 10000) in paragraph at lines 1806--1808
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 1821--1824
+Underfull \hbox (badness 10000) in paragraph at lines 1808--1810
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 1832--1834
+Underfull \hbox (badness 10000) in paragraph at lines 1818--1821
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 1834--1837
+Underfull \hbox (badness 10000) in paragraph at lines 1821--1823
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 1845--1848
+Underfull \hbox (badness 10000) in paragraph at lines 1823--1825
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 1848--1850
+Underfull \hbox (badness 10000) in paragraph at lines 1825--1828
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 1850--1852
+Underfull \hbox (badness 10000) in paragraph at lines 1836--1838
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 1852--1855
+Underfull \hbox (badness 10000) in paragraph at lines 1838--1841
 
  []
 
 [47]
-Underfull \hbox (badness 10000) in paragraph at lines 1863--1867
+Underfull \hbox (badness 10000) in paragraph at lines 1849--1852
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 1867--1869
+Underfull \hbox (badness 10000) in paragraph at lines 1852--1854
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 1869--1871
+Underfull \hbox (badness 10000) in paragraph at lines 1854--1856
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 1871--1874
+Underfull \hbox (badness 10000) in paragraph at lines 1856--1859
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 1874--1877
+Underfull \hbox (badness 10000) in paragraph at lines 1867--1871
 
  []
 
 
-Underfull \hbox (badness 1221) in paragraph at lines 1885--1887
-[]\T1/lmr/m/n/12 The col-umn names must be, in or-der, "En-dU-seID" and
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 1885--1887
+Underfull \hbox (badness 10000) in paragraph at lines 1871--1873
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 1887--1890
+Underfull \hbox (badness 10000) in paragraph at lines 1873--1875
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 1898--1901
+Underfull \hbox (badness 10000) in paragraph at lines 1875--1878
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 1878--1881
 
  []
 
@@ -893,66 +873,86 @@ Overfull \hbox (105.59988pt too wide) has occurred while \output is active
  []
 
 [48]
-Underfull \hbox (badness 10000) in paragraph at lines 1901--1903
+Underfull \hbox (badness 1221) in paragraph at lines 1889--1891
+[]\T1/lmr/m/n/12 The col-umn names must be, in or-der, "En-dU-seID" and
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 1889--1891
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 1903--1905
+Underfull \hbox (badness 10000) in paragraph at lines 1891--1894
 
  []
 
 
-Underfull \hbox (badness 1406) in paragraph at lines 1913--1917
+Underfull \hbox (badness 10000) in paragraph at lines 1902--1905
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 1905--1907
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 1907--1909
+
+ []
+
+
+Underfull \hbox (badness 1406) in paragraph at lines 1917--1921
 []\T1/lmr/m/n/12 The col-umn names must be, in or-der, "Pa-ram-e-ter_ID",
  []
 
 
-Underfull \hbox (badness 4981) in paragraph at lines 1913--1917
+Underfull \hbox (badness 4981) in paragraph at lines 1917--1921
 \T1/lmr/m/n/12 "Pa-ram-e-ter_Name", "Pa-per", "First_Year", "Last_Year",
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 1913--1917
+Underfull \hbox (badness 10000) in paragraph at lines 1917--1921
 
  []
 
 
-Underfull \hbox (badness 1168) in paragraph at lines 1917--1924
+Underfull \hbox (badness 1168) in paragraph at lines 1921--1928
 []\T1/lmr/m/n/12 The pa-ram-e-ter names need to be la-beled "CCFtoMTC",
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 1917--1924
+Underfull \hbox (badness 10000) in paragraph at lines 1921--1928
 \T1/lmr/m/n/12 "En-dUse_HalfLives", "En-dUseR-a-tios", "Dis-carded-Dis-po-si-
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 1917--1924
+Underfull \hbox (badness 10000) in paragraph at lines 1921--1928
 \T1/lmr/m/n/12 tion-Ra-tios", "Land-fillDe-cayLim-its", "Land-fill_HalfLives",
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 1917--1924
+Underfull \hbox (badness 10000) in paragraph at lines 1921--1928
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 1924--1926
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 1926--1929
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 1929--1932
+Underfull \hbox (badness 10000) in paragraph at lines 1928--1930
 
  []
 
 [49]
+Underfull \hbox (badness 10000) in paragraph at lines 1930--1933
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 1933--1936
+
+ []
+
+
 Overfull \hbox (105.59988pt too wide) has occurred while \output is active
 \T1/lmr/m/n/12 50 \T1/lmr/m/sl/12 OPTION 2: UPLOAD AND RUN YOUR OWN DATA IN THE WEB APPLICATION
  []
@@ -965,13 +965,13 @@ See the LaTeX manual or LaTeX Companion for explanation.
 Type  H <return>  for immediate help.
  ...                                              
                                                   
-l.2003 \begin{greybox}
+l.2007 \begin{greybox}
                        
 Here is how much of TeX's memory you used:
- 12992 strings out of 479997
- 210930 string characters out of 5886778
- 518167 words of memory out of 5000000
- 30754 multiletter control sequences out of 15000+600000
+ 13007 strings out of 479983
+ 211330 string characters out of 5886392
+ 522234 words of memory out of 5000000
+ 30784 multiletter control sequences out of 15000+600000
  523897 words of font info for 60 fonts, out of 8000000 for 9000
  14 hyphenation exceptions out of 8191
  108i,6n,106p,619b,581s stack positions out of 10000i,1000n,20000p,200000b,200000s

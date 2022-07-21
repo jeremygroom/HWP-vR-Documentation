@@ -183,7 +183,7 @@ knitr::include_graphics("images/ModelHistory.png")
 
 ## Future work    {#int-future}
 
-HWP carbon estimation is an area of active research. Efforts currently underway to improve the functionality of this model include updating the model so that user-controlled loss factors can be applied to paper in addition to solid wood products, as well as adding new and improving upon existing data visualizations. Efforts to provide a module to estimate carbon storage and emissions associated with bark utilization is also being explored.   
+HWP carbon estimation is an area of active research. Efforts currently underway to improve the functionality of this model include adding new data visualizations and improving upon existing ones. Efforts to provide a module to estimate carbon storage and emissions associated with bark utilization is also being explored.   
 
 Other directly related research underway at the University of Massachusetts explores the representation of landfill disposal pathways in the model, estimation of landfill methane emissions, improvements to the recycling pathway, and improvements to disposal parameters specifically for California, with the hope of expanding these improvements more generally in the model. 
 
@@ -325,7 +325,9 @@ The first worksheet in the input data template file, HWP_MODEL_OPTIONS, allows t
 
 * SHIFTYEAR (TRUE, FALSE) – Affects both the Shiny web application and stand-alone model.  If the user wants tabular and figure outputs of emissions and pools reported as occurring the year after harvest as in the original USFS variants of the tool, this value should be TRUE.  If the user wants those outputs reported as occurring during the same year as harvest, select FALSE.  Note that outputs for intermediate arrays are not year-shifted.   
 
-* PIU.LOSS (Double, 0.00 to 1.00) – Affects both the Shiny web application and stand-alone model.  The current estimated loss factor specifying the quantity of carbon that is immediately discarded when solid wood products are placed into end-uses and enter the PIU pool is 0.08, or 8%.  The default value is set to 0.08; enter a different value if you wish to alter the amount.  The value cannot exceed 1.0 or fall below 0.  For reference, @skog2000 also cite a value of 5% for paper.   Currently the tool only applies the loss factor to solid wood products.  
+* PIU.WOOD.LOSS (Double, 0.00 to 1.00) – Affects both the Shiny web application and stand-alone model.  The current estimated loss factor specifying the quantity of carbon that is immediately discarded when solid wood products are placed into end-uses and enter the PIU pool is 0.08, or 8%.  The default value is set to 0.08; enter a different value if you wish to alter the amount.  The value cannot exceed 1.0 or fall below 0.  For reference, @skog2000 also cite a value of 5% for paper. 
+
+* PIU.PAPER.LOSS (Double, 0.00 to 1.00) – Affects both the Shiny web application and stand-alone model.  Our default loss factor specifying the quantity of carbon that is immediately discarded when pulp wood products (paper) are placed into end-uses and enter the PIU pool is set to 0.0; enter a different value if you wish to alter the amount.  The value cannot exceed 1.0 or fall below 0.  
 
 * ARRAYLOC (Text) – This value only affects the stand-alone model.  The default value is "HWP_Stand_Alone_Files/Arrays/".  If you wish to save arrays to a different folder, change the folder location value.  If you are using Windows, be sure to use the forward slash "/" between folder levels and not the back slash.  
 
@@ -833,7 +835,7 @@ If the user's data input file indicates that the stand-alone model code should g
 
 * **dec_array.xlsx** - Working name in the code: dec.input_array.  This is the amount of all discarded material (see dp.total_array.xlsx) that is burned with energy capture.    
 
-* **dp.total_array.xlsx** - Working name in the code: dp.total_array.  The amount of carbon discarded each year. This includes byproduct of harvested wood  products (see PIU.LOSS, Section \@ref(own-prov-input-options)) and the annual amount of products in use that become discarded material.     
+* **dp.total_array.xlsx** - Working name in the code: dp.total_array.  The amount of carbon discarded each year. This includes byproduct of harvested wood products (see PIU.WOOD.LOSS and PIU.PAPER.LOSS, Section \@ref(own-prov-input-options)) and the annual amount of products in use that become discarded material.     
 
 * **dumps.discard_array.xlsx**  - Working name in the code: dumps.discard_array.  The amount of carbon in dumps each year that decays.      
 
@@ -921,7 +923,7 @@ The user may also provide ratios for discard fates.  These ratios determine, by 
 
 In the next section I provide a detailed schematic of how the HWP model code operates.  A more general schematic of the process, very similar to Figure 7 in @stockmann2012, is presented in Figure \@ref(fig:overview-fig).  Here I provide a written description of the code’s actions.  We start out with data sets and variable information that are arranged by different combinations of year, ownership, and ratio types.  First the model combines (i.e., performs a database join function) harvest data (units = BBF) with board feet to cubic feet conversion factors. The model combines Primary Product Ratios (PPR) with Timber Product Ratios (TPR) and then joins those with the timber harvest volume in cubic feet by year.  These are then joined with conversion values for cubic feet to metric tons of carbon, and the End Use Ratios (EUR).  The result is a data set called eu_ratios, and values for EUR, TPR, PPR, the harvest amount, and the cubic foot to metric tons of carbon conversion factor are multiplied together to produce a variable called MTC for Metric Tons of Carbon.  One million MTC (MMT C) = one Tg C.  This variable serves as the carbon input into the model and has the correct units of carbon input per year for each EUR category.    
 
-For each year, some of the carbon, fuel wood, is immediately burned and is Emitted with Energy Capture (EEC).  A certain percentage (8% for California and Oregon data) of the carbon allocated to each of the remaining EUR categories is discarded and enters the Discarded Products process and the remaining 92% become the annual carbon addition to the Products in Use (PIU) process.  The model currently assumes that 100% of pulp wood becomes paper with no loss.    
+For each year, some of the carbon, fuel wood, is immediately burned and is Emitted with Energy Capture (EEC).  A certain percentage (8% for California and Oregon data) of the carbon allocated to each of the remaining EUR categories is discarded and enters the Discarded Products process and the remaining 92% become the annual carbon addition to the Products in Use (PIU) process.  The provided data input and template files by default assume that 100% of pulp wood becomes paper with no loss.  However, users may adjust this percentage if they wish (Section \@ref(own-prov-input-options)).    
 
 The Products in Use process calculates, for every year, the amount of carbon remaining from the year prior and the amount of carbon entering the process as new PIU.  A decay function considers the previous year’s carbon amounts in each EUR/ownership category, applies a decay calculation, adds the result to the amount of incoming PIU carbon, and saves the value as the amount of PIU carbon for that year.  It also records the amount of carbon that was discarded from the process and sends that carbon to the Discarded Products process.  
 
@@ -956,7 +958,8 @@ T = Timber product ratio number (California = 40)
 P = Primary product ratio number (California = 64)  
 E = End use ratio number (California = 224)  
 e = particular EUR  
-loss.piu = Loss percentage for products entering PIU (California = 8%)  
+piu.wood.loss = Loss percentage for wood products entering PIU (California = 8%)  
+piu.paper.loss = Loss percentage for paper products entering PIU (California = 0%)  
 
 
 ```{r schem-0-fig, echo = FALSE, fig.asp = 0.7, fig.width= 6, out.width = '100%'}
