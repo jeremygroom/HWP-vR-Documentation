@@ -218,12 +218,12 @@ See Section <a href="own.html#own-shiny">4.4</a> as well as the steps on the app
 The quality assurance (QA) step will check your file for you. However, the details of what to include are in Section <a href="own.html#own-prov-input">4.2.2</a> and the specific QA checks are listed in section <a href="own.html#own-qa">4.3</a>.</p>
 <p><em>What do I need to know about running the Monte Carlo Simulation? </em><br />
 You will need to set the number of iterations you would like the simulation to use (see Section <a href="own.html#own-prov-input-options">4.2.2.1</a>). Section <a href="own.html#own-mc">4.5</a> describes other aspects of running the Monte Carlo simulation. Details on what the simulation is doing may be found in Section <a href="model.html#model-mc">6.2</a>.</p>
-<p><em>I only have timber harvest data in cubic feet. Can I still use these data in the model?</em><br />
+<p><em>I only have timber harvest data in hundred cubic feet (CCF). Can I still use these data in the model?</em><br />
 Yes! But the model needs to think that it transformed your harvest data into cubic feet all on its own. Here is how you fool it, using a template file:</p>
 <ol style="list-style-type: decimal">
-<li>Create the BFCF worksheet values. For Conversion, use the value 1. StartYear = your earliest data year or earlier. EndYear = your last harvest data year. That’s right, only one row of input values.<br />
+<li>Create the MBFCCF worksheet values. For Conversion, use the value 1. StartYear = your earliest data year or earlier. EndYear = your last harvest data year. That’s right, only one row of input values.<br />
 </li>
-<li>Create bogus (yet usable) Harvest_BF worksheet values. Simply multiply each of your ownership and Total cubic feet values by 10. Place them in this table.<br />
+<li>Create bogus (yet usable) Harvest_MBF worksheet values. Simply multiply each of your ownership and Total CCF values by 10. Place them in this table.<br />
 </li>
 <li>Everything else is the same. Fill in your TimberProdRatios and change any other values you need (see Chapter <a href="own.html#own">4</a>).</li>
 </ol>

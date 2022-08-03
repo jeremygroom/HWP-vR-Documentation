@@ -64,7 +64,7 @@ This folder contains data files that may be loaded into the app or into the stan
 
 * OR_no_owner.xlsx: This file contains only total data for Oregon and lacks any ownership information.  
  
-* Oregon_BF_2019: This file is not an input file.  It contains additional harvest data for 2019 so that users may practice appending harvest data with provided code (Section \@ref(dnld-add)).  
+* Oregon_MBF_2019: This file is not an input file.  It contains additional harvest data for 2019 so that users may practice appending harvest data with provided code (Section \@ref(dnld-add)).  
 
 * WA_Inputs_HWP_Model.xlsx: This file contains data for Washington State.    
 
@@ -223,17 +223,17 @@ If the user's data input file indicates that the stand-alone model code should g
 
 
 ## How to add new data years to your data set       {#dnld-add}
-Users may wish to generate model outputs annually or every few years with new harvest values.  However, they may not want to alter all of the worksheets in their data file by hand to account for the newly added harvest years.  The file **Append_Harvest_Data.R** takes, as input, an Excel file with a single worksheet of harvest by board feet, formatted in the same way as their earlier Harvest_BF worksheet.  The user points the code toward their original data file, the new Harvest_BF Excel file, and provides a name for the output Excel file.  The code will make all necessary changes to the original file and append the new years.  Importantly, where needed, the code will read values used for the year prior and duplicate them for the new data.  Therefore, if the user wishes to update Timber Product Ratios, Primary Product Ratios, End Use Ratios, or any other dataset, they will need to do so by hand, possibly after this procedure is run.    
+Users may wish to generate model outputs annually or every few years with new harvest values.  However, they may not want to alter all of the worksheets in their data file by hand to account for the newly added harvest years.  The file **Append_Harvest_Data.R** takes, as input, an Excel file with a single worksheet of harvest by thousand board feet, formatted in the same way as their earlier Harvest_MBF worksheet.  The user points the code toward their original data file, the new Harvest_MBF Excel file, and provides a name for the output Excel file.  The code will make all necessary changes to the original file and append the new years.  Importantly, where needed, the code will read values used for the year prior and duplicate them for the new data.  Therefore, if the user wishes to update Timber Product Ratios, Primary Product Ratios, End Use Ratios, or any other dataset, they will need to do so by hand, possibly after this procedure is run.    
 
 As an example, say we wish to add 2018 and 2019 harvest levels to Oregon’s data.  We open the Append_Harvest_Data.R file in the `HWP-C-vR.Rproj` RStudio project, run the first few lines that load the needed libraries, and then alter the following lines to read:   
 `ORIG.DATA.FILE <- "Oregon_Inputs_HWP_Model.xlsx" `  
-`NEW.DATA <- "Oregon_BF_2019.xlsx"`            
+`NEW.DATA <- "Oregon_MBF_2019.xlsx"`            
 `DATA.FOLDER <- "HWP Data/ExistingData/"`              
 `OUT.DATA <- "Oregon_Inputs_HWP_Modelv2.xlsx"`  
 
-The first of those lines refers to the original data, the second the name of the file with the Harvest_BF data for the new years, the third line identifies the location of the input data files, and the last line is the name the user wishes to use for the updated data set.  
+The first of those lines refers to the original data, the second the name of the file with the Harvest_MBF data for the new years, the third line identifies the location of the input data files, and the last line is the name the user wishes to use for the updated data set.  
 
-The new data can provide all of the original data for harvest board feet in addition to the more recent harvest data (e.g., `Oregon_BF_2019.xlsx`).  Or, the user can provide just the new data (e.g., `Oregon_BF_2019v2.xlsx`).  Once those four lines are correct the user can select and run all of the code from the file.  The code will attempt to generate a new Excel file with the desired updates.  The code also performs some QA checks:    
+The new data can provide all of the original data for harvest board feet in addition to the more recent harvest data (e.g., `Oregon_MBF_2019.xlsx`).  Or, the user can provide just the new data (e.g., `Oregon_MBF_2019v2.xlsx`).  Once those four lines are correct the user can select and run all of the code from the file.  The code will attempt to generate a new Excel file with the desired updates.  The code also performs some QA checks:    
 
 *	Verifies that data are numeric    
 

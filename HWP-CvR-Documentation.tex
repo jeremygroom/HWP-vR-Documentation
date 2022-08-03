@@ -112,7 +112,7 @@ Groom Analytics, LLC\\
 \strut \\
 Nadia Tase\\
 California Department of Forestry and Fire Protection}
-\date{Date: July 21, 2022}
+\date{Date: August 03, 2022}
 
 \begin{document}
 \frontmatter
@@ -174,10 +174,13 @@ ODF) for supporting the development of this work through feedback,
 discussion, and their own efforts to dive into the code and understand
 the model at its core. Jimmy Kagan (Oregon State University's Institute
 for Natural Resources) and Amanda Reynolds (CAL FIRE) provided
-administrative support. We received feedback and support for the earlier
-iteration of the R-version of the model from Todd Morgan (University of
-Montana, Bureau of Business and Economic Research), Dan Loffler
-(University of Montana), Keith Stockmann (USFS), {[}OTHERS{]}.
+administrative support. This work would not be possible without the
+original work completed by Nate Anderson (United States Forest Service -
+USFS), Keith Stockmann (USFS), Dan Loeffler (University of Montana), and
+others. The information and feedback they shared has been invaluable.
+Feedback and support for an earlier iteration of the R-version of the
+model from Todd Morgan (University of Montana, Bureau of Business and
+Economic Research) has also been indespensible.
 
 This project was funded by the California Department of Forestry and
 Fire Protection Purchase Order 3540-0000277546. Earlier work on the
@@ -864,13 +867,13 @@ further refine model estimates of carbon storage in HWP.
 
 \begin{itemize}
 \item
-  \textbf{Board feet (MBF) to cubic feet (CCF) volume conversion
-  factors} -- Values specific to California, Oregon and Washington
-  provided in their respective template files; national defaults last
-  updated through 2007, provided with the original USFS HWP C tool.
-  Ideally these are provided with local or regional data and updated
-  whenever mill surveys are completed (Section
-  @ref(own-prov-input-bfcf)).
+  \textbf{Thousand board feet (MBF) to hundred cubic feet (CCF) volume
+  conversion factors} -- Values specific to California, Oregon and
+  Washington provided in their respective template files; national
+  defaults last updated through 2007, provided with the original USFS
+  HWP C tool. Ideally these are provided with local or regional data and
+  updated whenever mill surveys are completed (Section
+  @ref(own-prov-input-mbfccf)).
 \item
   \textbf{Yearly end-use product ratios} -- National dataset last
   updated through 2009. Unnecessary for user to modify these ratios
@@ -1146,12 +1149,12 @@ the remainder as optional to adjust for advanced users:
 \hypertarget{own-prov-input-harvest}{%
 \subsubsection{Harvest}\label{own-prov-input-harvest}}
 
-Worksheet name: HARV\_BF
+Worksheet name: HARV\_MBF
 
-The worksheet Harvest\_BF contains a time series of total yearly harvest
-values in thousand board feet (MBF). Annual harvest time series are
-provided for California, Oregon and Washington. Otherwise, \emph{this
-worksheet must be populated by the user}.
+The worksheet Harvest\_MBF contains a time series of total yearly
+harvest values in thousand board feet (MBF). Annual harvest time series
+are provided for California, Oregon and Washington. Otherwise,
+\emph{this worksheet must be populated by the user}.
 
 The yearly harvest is the total annual harvest from the region or owner
 of interest, entered in MBF. The left column must contain the heading
@@ -1179,18 +1182,18 @@ Oregon and Washington annual harvest time series are provided in Morgan
 et al. (\protect\hyperlink{ref-morgan2021}{2021}) and Nichols et al.
 (\protect\hyperlink{ref-nichols2020}{2020}).
 
-\hypertarget{own-prov-input-bfcf}{%
+\hypertarget{own-prov-input-mbfccf}{%
 \subsubsection{MBF to CCF conversion
-factors}\label{own-prov-input-bfcf}}
+factors}\label{own-prov-input-mbfccf}}
 
-Worksheet name: BFCF
+Worksheet name: MBFCCF
 
-The worksheet BFCF contains the conversion factors between board feet
+The worksheet MBFCCF contains the conversion factors between board feet
 and cubic feet for various time periods. Additional calculations are
 completed in the R code to account for harvest volumes being provided in
 thousand board feet (MBF) and subsequent model calculations occurring on
-units of hundred cubic feet (CCF). Factors used to convert BF to CF vary
-by time and place. Annual harvest time series are provided for
+units of hundred cubic feet (CCF). Factors used to convert MBF to CCF
+vary by time and place. Annual harvest time series are provided for
 California, Oregon and Washington, as well as the defaults from the
 original USFS version of the tool for the nine NFS regions. The source
 for the NFS region defaults is unidentified. Ideally these are provided
@@ -1202,18 +1205,18 @@ are updated or if more detailed information is available by region
 spanning any given time series. There are only three columns,
 Conversion, StartYear, and EndYear to specify the conversion value and
 the starting and ending year of harvest data the conversion applies to.
-Ensure that the first Start Year begins with the minimum Harvest\_BF
+Ensure that the first Start Year begins with the minimum Harvest\_MBF
 Year and that conversion time periods do not overlap. When mill surveys
 are completed, ratios are applied from the year of the latest survey
-backwards to the last survey. For example, the BF to CF ratio from the
+backwards to the last survey. For example, the MBF to CCF ratio from the
 California mill survey for 2012 is applied from 2012 backwards to 2007,
 as the previous mill survey was completed in 2006. The most recent
-California mill survey for 2016 results in a BF to CF ratio applied from
-2016 backwards to 2013. This ratio is also applied forwards to the
+California mill survey for 2016 results in a MBF to CCF ratio applied
+from 2016 backwards to 2013. This ratio is also applied forwards to the
 present until a new mill survey is completed and this ratio can be
 updated for 2017 forward. The final end year must be the same as the
 final year annual harvest data is provided for in the worksheet named
-``Harvest\_BF.'' The Conversion column values are formatted as doubles
+``Harvest\_MBF.'' The Conversion column values are formatted as doubles
 and StartYear and EndYear values are integers.
 
 Data sources for CA/USFS Pacific Southwest region ratios were obtained
@@ -1227,7 +1230,7 @@ harvest time series are provided in Morgan et al.
 (\protect\hyperlink{ref-morgan2021}{2021}) and Nichols et al.
 (\protect\hyperlink{ref-nichols2020}{2020}).
 
-Default BF to CF conversion factors are provided for the rest of the
+Default MBF to CCF conversion factors are provided for the rest of the
 U.S. from the original USF HWP C versions of the tool up to 2007. The
 data sources is unclear for this dataset.
 
@@ -1250,7 +1253,7 @@ names are specified in the worksheet named ``RatioCategories'' (Section
 the sequential years of harvest data, from the earliest year to the
 final year. The number of years in this dataset must match the number of
 years annual harvest data is provided for in the worksheet named
-``Harvest\_BF''. All year-column values must sum to one. Row values may
+``Harvest\_MBF''. All year-column values must sum to one. Row values may
 change over time. When mill surveys are completed, ratios are applied
 from the year of the latest survey backwards to the last survey. Most
 recent available records may also need to be extended forwards if data
@@ -1302,7 +1305,7 @@ worksheet named ``RatioCategories'' (Section @ref(own-prov-input-rc)).
 The remainder of the columns are named after the sequential years of
 harvest data, from the earliest year to the final year. The number of
 years in this dataset must match the number of years annual harvest data
-is provided for in the worksheet named ``Harvest\_BF''. All year-column
+is provided for in the worksheet named ``Harvest\_MBF''. All year-column
 values must sum to the number of TPR rows. Row values may change over
 time.
 
@@ -1344,7 +1347,7 @@ specified in the worksheet named ``RatioCategories'' (Section
 the sequential years of harvest data, from the earliest year to the
 final year. The number of years in this dataset must match the number of
 years annual harvest data is provided for in the worksheet named
-``Harvest\_BF''. All year-column values must sum to the number of PPR
+``Harvest\_MBF''. All year-column values must sum to the number of PPR
 rows. Row values may change over time. \emph{Currently values for the
 last year for which data are available (2009) are applied forward for
 all subsequent years to the present. However, 2009 was in the heart of
@@ -1431,7 +1434,8 @@ Nicholson (\protect\hyperlink{ref-skog1998}{1998})), and Row and Phelps
 in the tool appear to have published half-lives. Some half-lives used
 for one product category were assumed to be sufficient for others that
 lacked data. A forthcoming general technical report from the USFS
-documents these apparent assumptions.
+documents these apparent assumptions
+(\protect\hyperlink{ref-lucey202X}{Lucey et al. In review}).
 
 \hypertarget{own-prov-input-discFates}{%
 \subsubsection{Discard products disposition
@@ -1451,7 +1455,7 @@ discard ratio values. The first two columns must be named DiscardType
 and DiscardDestination. The remainder of the column titles are the
 years, in order, from longest ago to most recent. The number of years in
 this dataset must match the number of years annual harvest data is
-provided for in the worksheet named ``Harvest\_BF''. The sum of each
+provided for in the worksheet named ``Harvest\_MBF''. The sum of each
 year-column should be two (all wood and all paper values within a column
 should sum to one). Row values may change over time.
 
@@ -1660,7 +1664,7 @@ in this worksheet.
   \item
     Harvest: This parameter references the cubic-foot volume amounts
     harvested each year. The values are originally provided as board
-    feet from the worksheet Harvest\_BF, but they are transformed to
+    feet from the worksheet Harvest\_MBF, but they are transformed to
     unis of CCF in the original (non-Monte Carlo) portion of the
     analysis and the transformed values are used in the Monte Carlo.
     Each Monte Carlo iteration alters the values of the annual harvest
@@ -1759,7 +1763,7 @@ attributes that are checked for each worksheet:
 \textbf{All 10 worksheets}: The QA code verifies that each worksheet
 correctly loaded. A misspelling of the worksheet name will trigger a
 terminal error.\\
-Havest\_BF:
+Havest\_MBF:
 
 \begin{itemize}
 \tightlist
@@ -1776,7 +1780,7 @@ Havest\_BF:
   ownership category amount will be necessary to correct.
 \end{itemize}
 
-\textbf{BFCF}:
+\textbf{MBFCCF}:
 
 \begin{itemize}
 \tightlist
@@ -1785,7 +1789,7 @@ Havest\_BF:
   "EndYear".\\
 \item
   The final year value under Years must equal the last year value of
-  Harvest\_BF.\\
+  Harvest\_MBF.\\
 \item
   Values are numeric.
 \end{itemize}
@@ -1796,7 +1800,7 @@ Havest\_BF:
 \tightlist
 \item
   The number of TPR years equals the number of harvest years in
-  Harvest\_BF.\\
+  Harvest\_MBF.\\
 \item
   The year columns must be transformable to numeric values. E.g., a text
   value of "1952" can become the integer 1952. A year column name such
@@ -1816,7 +1820,7 @@ Havest\_BF:
 \tightlist
 \item
   The number of PPR years equals the number of harvest years in
-  Harvest\_BF.\\
+  Harvest\_MBF.\\
 \item
   The year columns must be transformable to numeric values.\\
 \item
@@ -1902,7 +1906,7 @@ Havest\_BF:
   The first two columns must be named "DiscardType" and
   "DiscardDestination".\\
 \item
-  There must be the same number of years as in Harvest\_BF.\\
+  There must be the same number of years as in Harvest\_MBF.\\
 \item
   The year column labels must be transformable to numeric values.\\
 \item
@@ -2344,7 +2348,7 @@ inventories
   OR\_no\_owner.xlsx: This file contains only total data for Oregon and
   lacks any ownership information.
 \item
-  Oregon\_BF\_2019: This file is not an input file. It contains
+  Oregon\_MBF\_2019: This file is not an input file. It contains
   additional harvest data for 2019 so that users may practice appending
   harvest data with provided code (Section @ref(dnld-add)).
 \item
@@ -2745,38 +2749,38 @@ Users may wish to generate model outputs annually or every few years
 with new harvest values. However, they may not want to alter all of the
 worksheets in their data file by hand to account for the newly added
 harvest years. The file \textbf{Append\_Harvest\_Data.R} takes, as
-input, an Excel file with a single worksheet of harvest by board feet,
-formatted in the same way as their earlier Harvest\_BF worksheet. The
-user points the code toward their original data file, the new
-Harvest\_BF Excel file, and provides a name for the output Excel file.
-The code will make all necessary changes to the original file and append
-the new years. Importantly, where needed, the code will read values used
-for the year prior and duplicate them for the new data. Therefore, if
-the user wishes to update Timber Product Ratios, Primary Product Ratios,
-End Use Ratios, or any other dataset, they will need to do so by hand,
-possibly after this procedure is run.
+input, an Excel file with a single worksheet of harvest by thousand
+board feet, formatted in the same way as their earlier Harvest\_MBF
+worksheet. The user points the code toward their original data file, the
+new Harvest\_MBF Excel file, and provides a name for the output Excel
+file. The code will make all necessary changes to the original file and
+append the new years. Importantly, where needed, the code will read
+values used for the year prior and duplicate them for the new data.
+Therefore, if the user wishes to update Timber Product Ratios, Primary
+Product Ratios, End Use Ratios, or any other dataset, they will need to
+do so by hand, possibly after this procedure is run.
 
 As an example, say we wish to add 2018 and 2019 harvest levels to
 Oregon's data. We open the Append\_Harvest\_Data.R file in the
 \texttt{HWP-C-vR.Rproj} RStudio project, run the first few lines that
 load the needed libraries, and then alter the following lines to read:\\
 \texttt{ORIG.DATA.FILE\ \textless{}-\ "Oregon\_Inputs\_HWP\_Model.xlsx"}\strut \\
-\texttt{NEW.DATA\ \textless{}-\ "Oregon\_BF\_2019.xlsx"}\strut \\
+\texttt{NEW.DATA\ \textless{}-\ "Oregon\_MBF\_2019.xlsx"}\strut \\
 \texttt{DATA.FOLDER\ \textless{}-\ "HWP\ Data/ExistingData/"}\strut \\
 \texttt{OUT.DATA\ \textless{}-\ "Oregon\_Inputs\_HWP\_Modelv2.xlsx"}
 
 The first of those lines refers to the original data, the second the
-name of the file with the Harvest\_BF data for the new years, the third
+name of the file with the Harvest\_MBF data for the new years, the third
 line identifies the location of the input data files, and the last line
 is the name the user wishes to use for the updated data set.
 
 The new data can provide all of the original data for harvest board feet
 in addition to the more recent harvest data (e.g.,
-\texttt{Oregon\_BF\_2019.xlsx}). Or, the user can provide just the new
-data (e.g., \texttt{Oregon\_BF\_2019v2.xlsx}). Once those four lines are
-correct the user can select and run all of the code from the file. The
-code will attempt to generate a new Excel file with the desired updates.
-The code also performs some QA checks:
+\texttt{Oregon\_MBF\_2019.xlsx}). Or, the user can provide just the new
+data (e.g., \texttt{Oregon\_MBF\_2019v2.xlsx}). Once those four lines
+are correct the user can select and run all of the code from the file.
+The code will attempt to generate a new Excel file with the desired
+updates. The code also performs some QA checks:
 
 \begin{itemize}
 \item
@@ -2806,7 +2810,7 @@ code again. Otherwise, R will generate an error message.
 
 The HWP model is a deterministic model which relies on optional and
 required user-supplied information. The user must supply annual timber
-harvest volumes in board feet (BF) by ownership, annual timber product
+harvest volumes in board feet (MBF) by ownership, annual timber product
 ratios (TPR) that allocate harvest to different timber product classes,
 annual primary product ratios (PPR) that allocate timber products to
 different primary products and residue uses, and annual end-use product
@@ -2841,7 +2845,7 @@ Figure 7 in Stockmann et al.
 code's actions. We start out with data sets and variable information
 that are arranged by different combinations of year, ownership, and
 ratio types. First the model combines (i.e., performs a database join
-function) harvest data (units = BBF) with board feet to cubic feet
+function) harvest data (units = MBF) with hundred cubic feet (CCF)
 conversion factors. The model combines Primary Product Ratios (PPR) with
 Timber Product Ratios (TPR) and then joins those with the timber harvest
 volume in cubic feet by year. These are then joined with conversion
@@ -3608,8 +3612,8 @@ simulation to use (see Section @ref(own-prov-input-options)). Section
 simulation. Details on what the simulation is doing may be found in
 Section @ref(model-mc).
 
-\emph{I only have timber harvest data in cubic feet. Can I still use
-these data in the model?}\\
+\emph{I only have timber harvest data in hundred cubic feet (CCF). Can I
+still use these data in the model?}\\
 Yes! But the model needs to think that it transformed your harvest data
 into cubic feet all on its own. Here is how you fool it, using a
 template file:
@@ -3618,13 +3622,13 @@ template file:
 \def\labelenumi{\arabic{enumi}.}
 \tightlist
 \item
-  Create the BFCF worksheet values. For Conversion, use the value 1.
+  Create the MBFCCF worksheet values. For Conversion, use the value 1.
   StartYear = your earliest data year or earlier. EndYear = your last
   harvest data year. That's right, only one row of input values.\\
 \item
-  Create bogus (yet usable) Harvest\_BF worksheet values. Simply
-  multiply each of your ownership and Total cubic feet values by 10.
-  Place them in this table.\\
+  Create bogus (yet usable) Harvest\_MBF worksheet values. Simply
+  multiply each of your ownership and Total CCF values by 10. Place them
+  in this table.\\
 \item
   Everything else is the same. Fill in your TimberProdRatios and change
   any other values you need (see Chapter @ref(own)).
