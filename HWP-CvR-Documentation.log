@@ -1,11 +1,11 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.24 (TeX Live 2022) (preloaded format=pdflatex 2022.8.3)  3 AUG 2022 15:30
+This is pdfTeX, Version 3.141592653-2.6-1.40.24 (TeX Live 2022) (preloaded format=pdflatex 2022.9.12)  12 SEP 2022 16:24
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
 **HWP-CvR-Documentation.tex
 (./HWP-CvR-Documentation.tex
 LaTeX2e <2022-06-01> patch level 5
-L3 programming layer <2022-07-15> (c:/Users/jerem/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/base/book.cls
+L3 programming layer <2022-08-30> (c:/Users/jerem/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/base/book.cls
 Document Class: book 2021/10/04 v1.4n Standard LaTeX document class
 (c:/Users/jerem/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/base/bk10.clo
 File: bk10.clo 2021/10/04 v1.4n Standard LaTeX file (size option)
@@ -459,7 +459,7 @@ Package uniquecounter Info: New unique counter `rerunfilecheck' on input line 28
 )
 \Hy@SectionHShift=\skip73
 ) (c:/Users/jerem/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/l3backend/l3backend-pdftex.def
-File: l3backend-pdftex.def 2022-07-01 L3 backend support: PDF output (pdfTeX)
+File: l3backend-pdftex.def 2022-08-30 L3 backend support: PDF output (pdfTeX)
 \l__color_backend_stack_int=\count308
 \l__pdf_internal_box=\box72
 )
@@ -548,47 +548,46 @@ Package pdftex.def Info: images/OverviewModelSchematic.png  used on input line 4
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
 [10]
-LaTeX Font Info:    Trying to load font information for OT1+lmr on input line 497.
+LaTeX Font Info:    Trying to load font information for OT1+lmr on input line 509.
 (c:/Users/jerem/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/lm/ot1lmr.fd
 File: ot1lmr.fd 2015/05/01 v1.6.1 Font defs for Latin Modern
 )
-LaTeX Font Info:    Trying to load font information for OML+lmm on input line 497.
+LaTeX Font Info:    Trying to load font information for OML+lmm on input line 509.
 (c:/Users/jerem/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/lm/omllmm.fd
 File: omllmm.fd 2015/05/01 v1.6.1 Font defs for Latin Modern
 )
-LaTeX Font Info:    Trying to load font information for OMS+lmsy on input line 497.
+LaTeX Font Info:    Trying to load font information for OMS+lmsy on input line 509.
 (c:/Users/jerem/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/lm/omslmsy.fd
 File: omslmsy.fd 2015/05/01 v1.6.1 Font defs for Latin Modern
 )
-LaTeX Font Info:    Trying to load font information for OMX+lmex on input line 497.
+LaTeX Font Info:    Trying to load font information for OMX+lmex on input line 509.
 (c:/Users/jerem/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/lm/omxlmex.fd
 File: omxlmex.fd 2015/05/01 v1.6.1 Font defs for Latin Modern
 )
 LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <12> on input line 497.
+(Font)              <12> on input line 509.
 LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <8> on input line 497.
+(Font)              <8> on input line 509.
 LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <6> on input line 497.
-LaTeX Font Info:    Trying to load font information for U+msa on input line 497.
+(Font)              <6> on input line 509.
+LaTeX Font Info:    Trying to load font information for U+msa on input line 509.
 (c:/Users/jerem/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/amsfonts/umsa.fd
 File: umsa.fd 2013/01/14 v3.01 AMS symbols A
 )
-LaTeX Font Info:    Trying to load font information for U+msb on input line 497.
+LaTeX Font Info:    Trying to load font information for U+msb on input line 509.
 (c:/Users/jerem/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/amsfonts/umsb.fd
 File: umsb.fd 2013/01/14 v3.01 AMS symbols B
-) [11]
-Underfull \hbox (badness 10000) in paragraph at lines 553--556
+) [11] [12]
+Underfull \hbox (badness 10000) in paragraph at lines 569--572
 
  []
 
-[12]
-<images/ModelHistory.png, id=132, 871.00406pt x 438.8897pt>
+<images/ModelHistory.png, id=143, 721.19438pt x 368.87813pt>
 File: images/ModelHistory.png Graphic file (type png)
 <use images/ModelHistory.png>
-Package pdftex.def Info: images/ModelHistory.png  used on input line 572.
-(pdftex.def)             Requested size: 344.9931pt x 173.83835pt.
-[13 <./images/ModelHistory.png>] [14] [15
+Package pdftex.def Info: images/ModelHistory.png  used on input line 587.
+(pdftex.def)             Requested size: 344.99188pt x 176.45721pt.
+[13] [14 <./images/ModelHistory.png>] [15
 
 ]
 Overfull \hbox (8.53967pt too wide) has occurred while \output is active
@@ -596,22 +595,22 @@ Overfull \hbox (8.53967pt too wide) has occurred while \output is active
  []
 
 [16]
-Underfull \hbox (badness 10000) in paragraph at lines 687--693
+Underfull \hbox (badness 10000) in paragraph at lines 702--708
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 710--713
+Underfull \hbox (badness 10000) in paragraph at lines 725--728
 
  []
 
 [17]
-Underfull \hbox (badness 10000) in paragraph at lines 733--738
+Underfull \hbox (badness 10000) in paragraph at lines 748--753
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 738--743
+Underfull \hbox (badness 10000) in paragraph at lines 753--758
 
  []
 
@@ -628,16 +627,16 @@ Overfull \hbox (8.53967pt too wide) has occurred while \output is active
 [20] [21
 
 ]
-LaTeX Font Info:    Trying to load font information for T1+lmtt on input line 828.
+LaTeX Font Info:    Trying to load font information for T1+lmtt on input line 844.
 (c:/Users/jerem/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/lm/t1lmtt.fd
 File: t1lmtt.fd 2015/05/01 v1.6.1 Font defs for Latin Modern
 )
-Underfull \hbox (badness 10000) in paragraph at lines 855--858
+Underfull \hbox (badness 10000) in paragraph at lines 872--875
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 858--861
+Underfull \hbox (badness 10000) in paragraph at lines 875--878
 
  []
 
@@ -647,7 +646,7 @@ Overfull \hbox (105.59988pt too wide) has occurred while \output is active
  []
 
 [22] [23]
-Underfull \hbox (badness 1331) in paragraph at lines 925--931
+Underfull \hbox (badness 1331) in paragraph at lines 946--952
 \T1/lmr/m/n/12 prov-input-options)). Na-tional de-fault. Un-nec-es-sary to
  []
 
@@ -657,14 +656,14 @@ Overfull \hbox (105.59988pt too wide) has occurred while \output is active
  []
 
 [24]
-Underfull \hbox (badness 1796) in paragraph at lines 951--965
-\T1/lmr/m/n/12 and fig-ure @ref(fig:template-map-fig) de-scribes the ge-o-graphic
+Underfull \hbox (badness 1019) in paragraph at lines 972--986
+\T1/lmr/m/n/12 and Fig-ure @ref(fig:template-map-fig) de-scribes the ge-o-graphic
  []
 
-<images/regions_map.png, id=210, 804.00375pt x 513.41812pt>
+<images/regions_map.png, id=227, 804.00375pt x 513.41812pt>
 File: images/regions_map.png Graphic file (type png)
 <use images/regions_map.png>
-Package pdftex.def Info: images/regions_map.png  used on input line 967.
+Package pdftex.def Info: images/regions_map.png  used on input line 988.
 (pdftex.def)             Requested size: 344.99106pt x 220.30327pt.
 [25]
 Overfull \hbox (105.59988pt too wide) has occurred while \output is active
@@ -672,12 +671,12 @@ Overfull \hbox (105.59988pt too wide) has occurred while \output is active
  []
 
 [26 <./images/regions_map.png>]
-Overfull \hbox (29.30035pt too wide) in paragraph at lines 1008--1011
+Overfull \hbox (29.30035pt too wide) in paragraph at lines 1029--1032
 \T1/lmr/m/n/12 as CA_Inputs_HWP_Model.xlsx or Ore-gon_Inputs_HWP_Model.xlsx,
  []
 
 
-Overfull \hbox (58.27878pt too wide) in paragraph at lines 1017--1024
+Overfull \hbox (58.27878pt too wide) in paragraph at lines 1038--1045
 []\T1/lmr/m/n/12 The first work-sheet in the in-put data tem-plate file, HWP_MODEL_OPTIONS,
  []
 
@@ -687,12 +686,12 @@ Overfull \hbox (105.59988pt too wide) has occurred while \output is active
  []
 
 [28]
-Overfull \hbox (17.51909pt too wide) in paragraph at lines 1078--1084
+Overfull \hbox (17.51909pt too wide) in paragraph at lines 1099--1105
 \T1/lmr/m/n/12 model. The de-fault value is ``HWP_Stand_Alone_Files/Arrays/''.
  []
 
 
-Overfull \hbox (16.2181pt too wide) in paragraph at lines 1084--1090
+Overfull \hbox (16.2181pt too wide) in paragraph at lines 1105--1111
 \T1/lmr/m/n/12 model. The de-fault value is ``HWP_Stand_Alone_Files/Tables/''.
  []
 
@@ -717,32 +716,35 @@ Overfull \hbox (105.59988pt too wide) has occurred while \output is active
  []
 
 [36] [37]
-Underfull \hbox (badness 3919) in paragraph at lines 1480--1493
-\T1/lmr/m/n/12 (CA_DiscardEnergyCapture_Test.xlsx, see Sec-tion @ref(dnld-
- []
-
-
 Overfull \hbox (105.59988pt too wide) has occurred while \output is active
 \T1/lmr/m/n/12 38 \T1/lmr/m/sl/12 OPTION 2: UPLOAD AND RUN YOUR OWN DATA IN THE WEB APPLICATION
  []
 
-[38] [39]
+[38]
+Underfull \hbox (badness 3919) in paragraph at lines 1517--1530
+\T1/lmr/m/n/12 (CA_DiscardEnergyCapture_Test.xlsx, see Sec-tion @ref(dnld-
+ []
+
+
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+[39]
 Overfull \hbox (105.59988pt too wide) has occurred while \output is active
 \T1/lmr/m/n/12 40 \T1/lmr/m/sl/12 OPTION 2: UPLOAD AND RUN YOUR OWN DATA IN THE WEB APPLICATION
  []
 
-[40]
-Underfull \hbox (badness 10000) in paragraph at lines 1595--1609
+[40] [41]
+Underfull \hbox (badness 10000) in paragraph at lines 1634--1648
 
  []
 
-[41]
+
 Overfull \hbox (105.59988pt too wide) has occurred while \output is active
 \T1/lmr/m/n/12 42 \T1/lmr/m/sl/12 OPTION 2: UPLOAD AND RUN YOUR OWN DATA IN THE WEB APPLICATION
  []
 
 [42]
-Overfull \hbox (10.79016pt too wide) in paragraph at lines 1656--1665
+Overfull \hbox (10.79016pt too wide) in paragraph at lines 1695--1704
 []\T1/lmr/m/n/12 Landfill_HalfLives, Dump_HalfLives, Re-cov-ered_HalfLives:
  []
 
@@ -752,27 +754,7 @@ Overfull \hbox (105.59988pt too wide) has occurred while \output is active
  []
 
 [44] [45]
-Underfull \hbox (badness 10000) in paragraph at lines 1771--1773
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 1773--1775
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 1788--1791
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 1791--1794
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 1802--1805
+Underfull \hbox (badness 10000) in paragraph at lines 1810--1812
 
  []
 
@@ -782,102 +764,92 @@ Overfull \hbox (105.59988pt too wide) has occurred while \output is active
  []
 
 [46]
-Underfull \hbox (badness 10000) in paragraph at lines 1805--1810
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 1810--1812
-
- []
-
-
 Underfull \hbox (badness 10000) in paragraph at lines 1812--1814
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 1822--1825
+Underfull \hbox (badness 10000) in paragraph at lines 1827--1830
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 1825--1827
+Underfull \hbox (badness 10000) in paragraph at lines 1830--1833
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 1827--1829
+Underfull \hbox (badness 10000) in paragraph at lines 1841--1844
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 1829--1832
+Underfull \hbox (badness 10000) in paragraph at lines 1844--1849
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 1840--1842
+Underfull \hbox (badness 10000) in paragraph at lines 1849--1851
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 1842--1845
+Underfull \hbox (badness 10000) in paragraph at lines 1851--1853
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 1861--1864
 
  []
 
 [47]
-Underfull \hbox (badness 10000) in paragraph at lines 1853--1856
+Underfull \hbox (badness 10000) in paragraph at lines 1864--1866
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 1856--1858
+Underfull \hbox (badness 10000) in paragraph at lines 1866--1868
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 1858--1860
+Underfull \hbox (badness 10000) in paragraph at lines 1868--1871
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 1860--1863
+Underfull \hbox (badness 10000) in paragraph at lines 1879--1881
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 1871--1875
+Underfull \hbox (badness 10000) in paragraph at lines 1881--1884
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 1875--1877
+Underfull \hbox (badness 10000) in paragraph at lines 1892--1895
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 1877--1879
+Underfull \hbox (badness 10000) in paragraph at lines 1895--1897
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 1879--1882
+Underfull \hbox (badness 10000) in paragraph at lines 1897--1899
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 1882--1885
+Underfull \hbox (badness 10000) in paragraph at lines 1899--1902
 
  []
 
 
-Underfull \hbox (badness 1221) in paragraph at lines 1893--1895
-[]\T1/lmr/m/n/12 The col-umn names must be, in or-der, "En-dU-seID" and
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 1893--1895
+Underfull \hbox (badness 10000) in paragraph at lines 1910--1914
 
  []
 
@@ -887,58 +859,28 @@ Overfull \hbox (105.59988pt too wide) has occurred while \output is active
  []
 
 [48]
-Underfull \hbox (badness 10000) in paragraph at lines 1895--1898
+Underfull \hbox (badness 10000) in paragraph at lines 1914--1916
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 1906--1909
+Underfull \hbox (badness 10000) in paragraph at lines 1916--1918
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 1909--1911
+Underfull \hbox (badness 10000) in paragraph at lines 1918--1921
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 1911--1913
+Underfull \hbox (badness 10000) in paragraph at lines 1921--1924
 
  []
 
 
-Underfull \hbox (badness 1406) in paragraph at lines 1921--1925
-[]\T1/lmr/m/n/12 The col-umn names must be, in or-der, "Pa-ram-e-ter_ID",
- []
-
-
-Underfull \hbox (badness 4981) in paragraph at lines 1921--1925
-\T1/lmr/m/n/12 "Pa-ram-e-ter_Name", "Pa-per", "First_Year", "Last_Year",
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 1921--1925
-
- []
-
-
-Underfull \hbox (badness 1168) in paragraph at lines 1925--1932
-[]\T1/lmr/m/n/12 The pa-ram-e-ter names need to be la-beled "CCFtoMTC",
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 1925--1932
-\T1/lmr/m/n/12 "En-dUse_HalfLives", "En-dUseR-a-tios", "Dis-carded-Dis-po-si-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 1925--1932
-\T1/lmr/m/n/12 tion-Ra-tios", "Land-fillDe-cayLim-its", "Land-fill_HalfLives",
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 1925--1932
-
+Underfull \hbox (badness 1221) in paragraph at lines 1932--1934
+[]\T1/lmr/m/n/12 The col-umn names must be, in or-der, "En-dU-seID" and
  []
 
 
@@ -951,8 +893,68 @@ Underfull \hbox (badness 10000) in paragraph at lines 1934--1937
 
  []
 
+
+Underfull \hbox (badness 10000) in paragraph at lines 1945--1948
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 1948--1950
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 1950--1952
+
+ []
+
 [49]
-Underfull \hbox (badness 10000) in paragraph at lines 1937--1940
+Underfull \hbox (badness 1406) in paragraph at lines 1960--1964
+[]\T1/lmr/m/n/12 The col-umn names must be, in or-der, "Pa-ram-e-ter_ID",
+ []
+
+
+Underfull \hbox (badness 4981) in paragraph at lines 1960--1964
+\T1/lmr/m/n/12 "Pa-ram-e-ter_Name", "Pa-per", "First_Year", "Last_Year",
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 1960--1964
+
+ []
+
+
+Underfull \hbox (badness 1168) in paragraph at lines 1964--1971
+[]\T1/lmr/m/n/12 The pa-ram-e-ter names need to be la-beled "CCFtoMTC",
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 1964--1971
+\T1/lmr/m/n/12 "En-dUse_HalfLives", "En-dUseR-a-tios", "Dis-carded-Dis-po-si-
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 1964--1971
+\T1/lmr/m/n/12 tion-Ra-tios", "Land-fillDe-cayLim-its", "Land-fill_HalfLives",
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 1964--1971
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 1971--1973
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 1973--1976
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 1976--1979
 
  []
 
@@ -962,6 +964,11 @@ Overfull \hbox (105.59988pt too wide) has occurred while \output is active
  []
 
 [50]
+Overfull \hbox (141.31897pt too wide) has occurred while \output is active
+\T1/lmr/m/sl/12 UPLOADING YOUR DATA AND RUNNING THE MODEL FROM THE SHINY WEB APP \T1/lmr/m/n/12 51
+ []
+
+[51]
 
 ! LaTeX Error: Environment greybox undefined.
 
@@ -969,15 +976,15 @@ See the LaTeX manual or LaTeX Companion for explanation.
 Type  H <return>  for immediate help.
  ...                                              
                                                   
-l.2011 \begin{greybox}
+l.2050 \begin{greybox}
                        
 Here is how much of TeX's memory you used:
- 13009 strings out of 479983
- 211349 string characters out of 5886393
- 522452 words of memory out of 5000000
- 30786 multiletter control sequences out of 15000+600000
+ 13018 strings out of 477035
+ 211477 string characters out of 5826726
+ 564416 words of memory out of 5000000
+ 33733 multiletter control sequences out of 15000+600000
  523897 words of font info for 60 fonts, out of 8000000 for 9000
  14 hyphenation exceptions out of 8191
- 108i,6n,106p,619b,581s stack positions out of 10000i,1000n,20000p,200000b,200000s
+ 108i,6n,106p,647b,581s stack positions out of 10000i,1000n,20000p,200000b,200000s
 
 !  ==> Fatal error occurred, no output PDF file produced!

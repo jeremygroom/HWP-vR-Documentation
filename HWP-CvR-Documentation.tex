@@ -112,7 +112,7 @@ Groom Analytics, LLC\\
 \strut \\
 Nadia Tase\\
 California Department of Forestry and Fire Protection}
-\date{Date: August 03, 2022}
+\date{Date: September 12, 2022}
 
 \begin{document}
 \frontmatter
@@ -443,8 +443,11 @@ there is inherently some level of uncertainty in the precision or
 accuracy of the datasets as they rely on a number of other analyses,
 datasets, are in areas of active research, are provided at national or
 international scales rather than local or regional, or have not been
-updated recently. The model results can be expected to be precise or
-accurate to the extent the underlying datasets are precise and accurate.
+updated recently. Sections @ref(own-prov-input-harvest) --
+@ref(own-prov-input-discHL) describe in more detail the scale and
+sources of these datasets and when they were last updated. The model
+results can be expected to be precise or accurate to the extent the
+underlying datasets are precise and accurate.
 
 The model also provides certain pathways, such as for recycling or
 disposal to landfills. These pathways are assumed to adequately
@@ -460,20 +463,29 @@ pool with a single landfill decay rate, whereas in reality there are
 many types of landfills with varying landfill decay rates. Additionally,
 when primary products enter the PIU pool, the loss factor is currently
 only applied to solid wood products. However, literature supports a loss
-factor for paper as well. Though paper is already a short lived product,
-this may result in an overestimation of emissions earlier than they
-might otherwise occur in reality. Several other pathways and processes
-in the model exist that have an unknown set of implications depending on
-how closely they mimic reality. For example, the model represents decay
+factor for paper as well (\protect\hyperlink{ref-skog1998}{Skog and
+Nicholson 1998}). Though paper is already a short lived product, this
+may result in an overestimation of emissions earlier than they might
+otherwise occur in reality. Several other pathways and processes in the
+model exist that have an unknown set of implications depending on how
+closely they mimic reality. For example, the model represents decay
 through a first order decay function while other decay functions may be
 more appropriate. The model also omits certain pathways that may result
 in additional carbon storage and emissions associated with harvested
 wood. For example, in some jurisdictions substantial bark utilization
-occurs. While bark is not considered a harvested wood product by
-traditional definitions and is rather considered a byproduct,
-utilization of this material typically results in additional fuelwood
-emissions. However, given the focus on carbon storage through the IPCC
-Production Approach, this is less of a concern.
+occurs. While bark is not considered a harvested wood product from an
+IPCC roundwood source (\protect\hyperlink{ref-buendia2019}{Buendia et
+al. 2019}) and is rather considered a byproduct, utilization of this
+material typically results in additional fuelwood emissions. IPCC
+(\protect\hyperlink{ref-ipcc2014}{2014}) recognizes that there are other
+sources of feedstock for commodities besides industrial roundwood or
+wood pulp and encourages countries to use country-specific data. In this
+way, it may be important for states like California where bark is
+utilized for energy production
+(\protect\hyperlink{ref-marcille2020}{Marcille et al. 2020}) to consider
+additional measures to account for bark utilization. It is a goal to add
+functionality to estimate carbon storage and emissions associated with
+bark utilization to subsequent versions of this model.
 
 The Monte Carlo analysis attempts to explore the range of possible
 outcomes given different levels of certainty in the data. There are
@@ -519,11 +531,14 @@ calculation outputs in a reasonable way.
 \section{Model history}\label{int-hist}}
 
 The HWP model began as an Excel macro originally created by the U.S.
-Forest Service (USFS) for National Forest System Northern regional HWP
-carbon inventory (\protect\hyperlink{ref-anderson2013}{Anderson et al.
-2013}; \protect\hyperlink{ref-stockmann2012}{Stockmann et al. 2012}).
-The Excel version was updated to one programmed in C++ for the remaining
-USFS regional HWP carbon inventories (USFS HWP-C; e.g., Stockmann et al.
+Forest Service (USFS) to estimate an HWP carbon inventory for the
+Northern Region of the National Forest System
+(\protect\hyperlink{ref-stockmann2012}{Stockmann et al. 2012};
+\protect\hyperlink{ref-anderson2013}{Anderson et al. 2013}). The Excel
+version was updated to one programmed in C++ for the remaining USFS
+Regional HWP carbon inventories (USFS HWP-C; e.g., Butler et al.
+(\protect\hyperlink{ref-butler2014}{2014}), Loeffler et al.
+(\protect\hyperlink{ref-loeffler2014}{2014}), Stockmann et al.
 (\protect\hyperlink{ref-stockmann2014}{2014})). The model was then
 modified in 2017 by the USFS for use in the California Forest Ecosystem
 and Harvested Wood Product Carbon Inventory
@@ -532,9 +547,10 @@ given the label here as the CA USFS HWP-C variant. This history is
 depicted in Figure @ref(fig:hist-fig). Though names for the USFS
 versions of the model did not exist, they are given here for clarifying
 purposes. However, in 2020 when Oregon and California were trying to
-establish or update HWP C inventories, no version of the model was
-available publicly due to older coding languages used in previous
-iterations of the model.
+establish or update HWP C inventories, no version of the HWP C model was
+available publicly, as the USFS's hosting partner's server expired and
+older coding languages used in previous iterations of the model were no
+longer operational and being updated.
 
 Building from the previous USFS-led versions of the model, Groom
 Analytics LLC undertook programming the model in R for the Oregon
@@ -554,9 +570,8 @@ in Christensen et al. (\protect\hyperlink{ref-christensen2020}{2020},
   allow users to more easily verify calculations.\\
 \item
   The CA USFS HWP-C variant of the tool used for the state-level
-  inventory in California resulted in narrower confidences intervals
-  than expected based on the parameters set for the Monte Carlo
-  Uncertainty Analysis. This tool has established a new Monte Carlo
+  inventory in California was not coded correctly to perform the
+  uncertainty analysis. This tool has established a new Monte Carlo
   simulation that has succeeded in introducing variability into the HWP
   C estimates.
 \end{itemize}
@@ -811,10 +826,11 @@ If the user has the data, it is also ideal for them to supply the annual
 primary product ratios (PPR) that allocate timber products to different
 primary products and residue uses. However, if the user does not have
 these data they can rely on defaults provided for California, Oregon,
-Washington, or the USFS regions. The user may rely on the defaults
-provided for the remaining datasets, though advanced users may supply
-their own values if desired. Details for all input data template file
-worksheets and datasets are provided in this chapter.
+Washington, or the U.S. regions developed in Smith
+(\protect\hyperlink{ref-smith2006}{2006}). The user may rely on the
+defaults provided for the remaining datasets, though advanced users may
+supply their own values if desired. Details for all input data template
+file worksheets and datasets are provided in this chapter.
 
 Once the user has built their own input file for the harvest years of
 interest, the file can be uploaded to the Shiny web application (or read
@@ -834,11 +850,12 @@ template files. Users can customize the operation and outputs of the HWP
 C tool in the first worksheet of the input data template file.
 
 There are many values that the user should consider altering based on
-regional available and historic mill data, dump and landfill
+regionally available and historic mill data, dump and landfill
 decomposition information, etc. At a minimum users can provide yearly
-values of total harvested thousand board feet from their region, alter
-the rest of the worksheets to reflect their year values, and make use of
-all other available values from one of the examples or templates.
+values of total harvested thousand board feet from their region or study
+area, alter the rest of the worksheets to reflect their year values, and
+make use of all other available values from one of the examples or
+templates.
 
 \hypertarget{own-over-inputSum}{%
 \subsection{Data inputs}\label{own-over-inputSum}}
@@ -901,13 +918,17 @@ further refine model estimates of carbon storage in HWP.
   last updated in 2005. Unnecessary for the user to update unless the
   national dataset is updated, data is developed at the regional or
   local level, or the user wants to explore hypothetical scenarios
-  (Section @ref(own-prov-input-discFates)).
+  (Section @ref(own-prov-input-discFates)). The national dataset is in
+  the process of being updated with more recent data
+  (\protect\hyperlink{ref-usepa2020}{US EPA 2020}) to cover the period
+  from 2005-2020.
 \item
-  \textbf{Ratios for wood and paper burned with energy capture} --
-  Currently no data identified, defaults set to 0. Unnecessary to update
-  unless national, regional, or local data is identified to develop this
-  ratio or the user wants to explore hypothetical scenarios (Sections
-  @ref(own-prov-input-discFates) and @ref(own-shiny)).
+  \textbf{Ratios for discarded wood and paper burned with energy
+  capture} -- Currently no data identified, defaults set to 0.
+  Unnecessary to update unless national, regional, or local data is
+  identified to develop this ratio or the user wants to explore
+  hypothetical scenarios (Section @ref(own-prov-input-discFates) and the
+  ``Try it!'' box in Section @ref(own-shiny)).
 \item
   \textbf{Discarded products disposition half-lives and landfill fixed
   carbon ratios} -- International datasets. Unnecessary for the user to
@@ -953,7 +974,7 @@ based templates to work from. These templates were derived from those
 offered with the HWP v1 tool
 (\protect\hyperlink{ref-stockmann2014}{Stockmann et al. 2014}), see
 Section @ref(int-hist). Each subfolder contains a different template,
-and figure @ref(fig:template-map-fig) describes the geographic range for
+and Figure @ref(fig:template-map-fig) describes the geographic range for
 each template. The \texttt{HWP\ Data\textbackslash{}ExistingData} folder
 contains the California, Washington, and Oregon data sets along with
 other supporting data sets (generally modifications of the California or
@@ -964,7 +985,7 @@ half lives, discard ratios, discard half-lives, and Monte Carlo
 parameters.
 
 \begin{figure}
-\includegraphics[width=1\linewidth]{images/regions_map} \caption{Definition of regions: Pacific Northwest, West (PWW); Pacific Northwest, East (PWE); Pacific Southwest (PSW); Rocky Mountain, North (RMN); Rocky Mountain, South (RMS); Northern Prairie States (NPS); Northern Lake States (NLS); Northeast (NE); South Central (SC); and Southeast (SE).  Note that regions are merged for some template files, these combiantions include: NLS and NPS as North Central, RMN and RMS as Rocky Mountain; and RMN, RMSE, PWE and PSW as West.}\label{fig:template-map-fig}
+\includegraphics[width=1\linewidth]{images/regions_map} \caption{Definition of regions: Pacific Northwest, West (PWW); Pacific Northwest, East (PWE); Pacific Southwest (PSW); Rocky Mountain, North (RMN); Rocky Mountain, South (RMS); Northern Prairie States (NPS); Northern Lake States (NLS); Northeast (NE); South Central (SC); and Southeast (SE).  Note that regions are merged for some template files, these combinations include: NLS and NPS as North Central, RMN and RMS as Rocky Mountain; and RMN, RMSE, PWE and PSW as West. Source: Smith et al. (2006)}\label{fig:template-map-fig}
 \end{figure}
 
 Each template lacks harvest data and timber product ratios. The user
@@ -1154,7 +1175,12 @@ Worksheet name: HARV\_MBF
 The worksheet Harvest\_MBF contains a time series of total yearly
 harvest values in thousand board feet (MBF). Annual harvest time series
 are provided for California, Oregon and Washington. Otherwise,
-\emph{this worksheet must be populated by the user}.
+\emph{this worksheet must be populated by the user}. The user may choose
+to analyze an entire historic annual harvest time series dataset or only
+a subset of years. Analyzing a different number of years will provide a
+different picture of trends in storage and emissions than modeling the
+entire period. This is due both to the annual harvest quantities and
+utilization and disposal parameters, which vary over time.
 
 The yearly harvest is the total annual harvest from the region or owner
 of interest, entered in MBF. The left column must contain the heading
@@ -1192,13 +1218,14 @@ The worksheet MBFCCF contains the conversion factors between board feet
 and cubic feet for various time periods. Additional calculations are
 completed in the R code to account for harvest volumes being provided in
 thousand board feet (MBF) and subsequent model calculations occurring on
-units of hundred cubic feet (CCF). Factors used to convert MBF to CCF
-vary by time and place. Annual harvest time series are provided for
+units of hundred cubic feet (CCF). Factors used to convert BF to CF vary
+by time and place. Conversions are based on Scribner log scale rather
+than lumber scale rules. Annual harvest time series are provided for
 California, Oregon and Washington, as well as the defaults from the
-original USFS version of the tool for the nine NFS regions. The source
-for the NFS region defaults is unidentified. Ideally these are provided
-with local or regional data, and updated whenever mill surveys are
-completed.
+original USFS version of the tool for the nine US regions (see Figure
+@ref(fig:template-map-fig)). The source for the US region defaults is
+unidentified. Ideally these are provided with local or regional data,
+and updated whenever mill surveys are completed.
 
 The user may choose to change these conversion factors when mill surveys
 are updated or if more detailed information is available by region
@@ -1275,8 +1302,8 @@ Oswald (\protect\hyperlink{ref-barrette1970}{1970}), Hiserote and Howard
 (\protect\hyperlink{ref-morgan2012}{2012}), Ward
 (\protect\hyperlink{ref-ward1995}{1995}), and Ward
 (\protect\hyperlink{ref-ward1997}{1997}). The original model templates
-for NFS region (9) rely on Smith
-(\protect\hyperlink{ref-smith2006}{2006}) which in turn depends on
+for the nine US regions (see Figure @ref(fig:template-map-fig)) rely on
+Smith (\protect\hyperlink{ref-smith2006}{2006}) which in turn depends on
 information from Adams (\protect\hyperlink{ref-adams2006}{2006}), and
 therefore are likely based on mill surveys updated through 2005 at the
 latest.
@@ -1291,23 +1318,23 @@ PPR. The yearly primary products ratios represent the portion of each
 yearly timber product that is used in specific primary products, such as
 lumber, wood pulp, plywood, and fuelwood. Default PPRs are provided for
 California, Oregon and Washington, as well as the defaults from the
-original USFS version of the tool for the 9 NFS regions. Default PPRs
-for the 9 NFS regions are constant across the years, whereas the
-California, Oregon and Washington PPRs contain a more detailed set of
-primary product ratios that vary through time based on literature
-documenting historic and current wood utilization. \textbf{Otherwise,
-this worksheet must be populated by the user}. If the user has the
-resources to construct more detailed primary product ratios for the area
-of analysis, that is ideal. The first column in the worksheet must be
-PrimaryProductID, which is a numerical identifier of the primary product
-category name. Primary product category names are specified in the
-worksheet named ``RatioCategories'' (Section @ref(own-prov-input-rc)).
-The remainder of the columns are named after the sequential years of
-harvest data, from the earliest year to the final year. The number of
-years in this dataset must match the number of years annual harvest data
-is provided for in the worksheet named ``Harvest\_MBF''. All year-column
-values must sum to the number of TPR rows. Row values may change over
-time.
+original USFS version of the tool for the nine US regions (see Figure
+@ref(fig:template-map-fig)). Default PPRs for the nine US regions are
+constant across the years, whereas the California, Oregon and Washington
+PPRs contain a more detailed set of primary product ratios that vary
+through time based on literature documenting historic and current wood
+utilization. \textbf{Otherwise, this worksheet must be populated by the
+user}. If the user has the resources to construct more detailed primary
+product ratios for the area of analysis, that is ideal. The first column
+in the worksheet must be PrimaryProductID, which is a numerical
+identifier of the primary product category name. Primary product
+category names are specified in the worksheet named ``RatioCategories''
+(Section @ref(own-prov-input-rc)). The remainder of the columns are
+named after the sequential years of harvest data, from the earliest year
+to the final year. The number of years in this dataset must match the
+number of years annual harvest data is provided for in the worksheet
+named ``Harvest\_MBF''. All year-column values must sum to the number of
+TPR rows. Row values may change over time.
 
 Data sources for California TPR and PPR include Barrette, Gedney, and
 Oswald (\protect\hyperlink{ref-barrette1970}{1970}), Hiserote and Howard
@@ -1332,11 +1359,16 @@ Worksheet name: EndUseRatios
 The worksheet EndUseRatios contains end use ratios, or EUR. End-use
 product ratios determine the annual distribution of primary wood
 products, such as lumber and non-structural panels, to end-uses, such as
-single family new housing and furniture manufacturing. This is the
-amount of the primary product carbon that enters the Products in Use
-(PIU) pool. National default EURs are provided. It is unnecessary for
-the user to modify these ratios unless the national dataset is updated
-or users want to explore hypothetical wood utilization scenarios.
+single family new housing and furniture manufacturing. These ratios
+determine the amount of each primary product that enters the Products in
+Use (PIU) carbon pool and the end-use each primary product is associated
+with. The end-use is important to know because it will determine the
+time the carbon remains in the PIU pool prior to discard based on
+end-use product half-lives discussed in Section
+@ref(own-prov-input-euhl). National default EURs are provided. It is
+unnecessary for the user to modify these ratios unless the national
+dataset is updated or users want to explore hypothetical wood
+utilization scenarios.
 
 The distribution of each primary product among end-uses must sum to 1.0.
 The program will only work if each primary products end-use distribution
@@ -1353,7 +1385,9 @@ last year for which data are available (2009) are applied forward for
 all subsequent years to the present. However, 2009 was in the heart of
 the recession and may not be representative of more recent years. Users
 may want to use EURs from a year just prior to the recession, such as
-2006, for more recent analysis years}.
+2006, for more recent analysis years. On the other hand, using 2006 EUR
+values would not reflect the changes in milling opportunities that may
+have occurred after the recession.}.
 
 National end-use ratios were obtained from McKeever
 (\protect\hyperlink{ref-mckeever2009}{2009}) and McKeever and Howard
@@ -1466,16 +1500,19 @@ represent a (U.S.) nationwide dataset that has not been updated since
 local/regional datasets from relevant waste characterization studies.
 Skog (\protect\hyperlink{ref-skog2008}{2008}) cites HWP dump and
 landfill data from Freed (\protect\hyperlink{ref-freed2004}{2004}) which
-is an unpublished spreadsheet that made use of data from EPA
+is an unpublished spreadsheet that made use of data from US EPA
 (\protect\hyperlink{ref-epa2006}{2006}), Melosi
 (\protect\hyperlink{ref-melosi1982}{1982}), and Melosi
 (\protect\hyperlink{ref-melosi1999}{1999}). It is unnecessary for the
 user to update unless the national dataset is updated, data is developed
 at the regional or local level for relevant waste characterization
-studies, or the user wants to explore hypothetical scenarios. The user
-may alter as few or as many discard ratios as desired. Altering ratios
-can affect the quantity of HWPs that are emitted with and without energy
-capture at the end of their functional lifespan.
+studies, or the user wants to explore hypothetical scenarios. The
+national data set is in the process of being updated with more recent
+data (i.e., US EPA (\protect\hyperlink{ref-usepa2020}{2020})) to cover
+the period from 2005-2020. The user may alter as few or as many discard
+ratios as desired. Altering ratios can affect the quantity of HWPs that
+are emitted with and without energy capture at the end of their
+functional lifespan.
 
 It should be noted that some of the HWP discarded into the SWDS may be
 burned for disposal in a boiler with energy capture (DEC; e.g., a trash
@@ -1527,8 +1564,10 @@ the landfill fixed carbon ratios will increase the amount of carbon that
 is not subject to decay and therefore decrease landfill emissions.
 Decreasing these ratios would have the opposite effect. \emph{Please
 note, current defaults for landfill fixed carbon ratios have not been
-updated to the current, higher IPCC 2019 refinement defaults
-(\protect\hyperlink{ref-buendia2019}{Buendia et al. 2019}).}
+updated in the templates to the current, higher IPCC 2019 refinement
+defaults (\protect\hyperlink{ref-buendia2019}{Buendia et al. 2019}). The
+next state-level inventories for Oregon and California will reflect
+these updated values.}
 
 Data sources for Landfill, dumps, and recovered (recycled) wood and
 paper half-lives are listed in Skog
@@ -1559,7 +1598,7 @@ the ratios using information provided in the 2019 IPCC refinement
 
 Worksheet name: MonteCarloValues
 
-The worksheet MonteCarloValues allows users to define how much ``noise''
+The worksheet MonteCarloValues allows users to define how much variation
 to introduce into the HWP model for the Monte Carlo simulation. The
 outcomes of the simulation are summarized as statistical confidence
 intervals for carbon storage (PIU, SWDS pools, and both pools combined)
@@ -2877,21 +2916,22 @@ records the amount of carbon that was discarded from the process and
 sends that carbon to the Discarded Products process.
 
 The Discarded Products process uses proportions to divide incoming
-discarded products among six fates: burn, burn with energy capture,
-compost, dump, landfill, and recover (recycle). Burned and composted
-proportions are treated as EWOEC. The proportion of discarded products
-that are burned for energy capture (DEC) will be treated as EEC (for
-California and Oregon all carbon is currently modeled as BWOEC).
-Discarded Products that are recovered or sent to dumps are processed
-with the same decay function used for Products in Use, but with
-different half-life values. The outputs that do not decay in a given
-year are treated either as Products in Use (recovered) or Solid Waste
-Disposal Site (SWDS) material (dumps). Discarded Products that are sent
-to Landfill are treated like Dumps, except that a proportion of the
-landfill is not subject to decay. That amount will become one of the
-carbon pools that comprise SWDS. The remainder of carbon in the landfill
-decays and is treated as EWOEC or remains in the landfill and is counted
-as another SWDS carbon pool: landfill material subject to decay.
+discarded products among six fates: burn without energy capture, burn
+with energy capture, compost, dump, landfill, and recover (recycle).
+Burned without energy capture and composted proportions are treated as
+EWOEC. The proportion of discarded products that are burned for energy
+capture (DEC) will be treated as EEC (for California and Oregon all
+carbon is currently modeled as BWOEC). Discarded Products that are
+recovered or sent to dumps are processed with the same decay function
+used for Products in Use, but with different half-life values. The
+outputs that do not decay in a given year are treated either as Products
+in Use (recovered) or Solid Waste Disposal Site (SWDS) material (dumps).
+Discarded Products that are sent to Landfill are treated like Dumps,
+except that a proportion of the landfill is not subject to decay. That
+amount will become one of the carbon pools that comprise SWDS. The
+remainder of carbon in the landfill decays and is treated as EWOEC or
+remains in the landfill and is counted as another SWDS carbon pool:
+landfill material subject to decay.
 
 The HWP code's outputs are EEC and combined versions of EWOEC, PIU, and
 SWDS. The final EEC values are the original EEC values for fuel wood
@@ -3396,14 +3436,14 @@ involving the six fates.
 It appears that the full version of the MC simulation for Oregon reaches
 convergence with 2000 iterations (Figure @ref(fig:mc-conv-fig)).
 Convergence was assessed visually by examining, over the iterations, the
-estimated values for the mean, standard error (SE), and the lower and
-upper empirical 90\% confidence interval limits. All four values appear
-to have reached their stable values by 1500 iterations, as verified with
+estimated values for the mean, standard error, and the lower and upper
+empirical 90\% confidence interval limits. All four values appear to
+have reached their stable values by 1500 iterations, as verified with
 iterations 1501 - 2000. (Note: the calculated SE values are not used
 beyond this figure.)
 
 \begin{figure}
-\includegraphics[width=1\linewidth]{images/MC_conv} \caption{Monte Carlo convergence assessment for the upper and lower bounds of the empirical 90\% confidence interval, the mean, and the standard error for the full model.}\label{fig:mc-conv-fig}
+\includegraphics[width=1\linewidth]{images/MC_conv} \caption{Monte Carlo convergence assessment for the upper and lower limits of the empirical 90\% confidence interval, the mean, and the standard error for the full model.}\label{fig:mc-conv-fig}
 \end{figure}
 
 The Monte Carlo outputs are summarized in Figures @ref(fig:mc-all4-fig)
@@ -3686,10 +3726,20 @@ Service, Pacific Northwest Forest; Range Experimental Station, US.
 
 \leavevmode\vadjust pre{\hypertarget{ref-buendia2019}{}}%
 Buendia, Calvo E., Kiyoto Tanabe, Andrej Kranjc, Jamsranjav Baasansuren,
-Fukuda Maya, Ngarize Sekai, A. Osako, Yurii Pyrozhenko, P. Shermanau,
+Maya Fukuda, Ngarize Sekai, A. Osako, Yurii Pyrozhenko, P. Shermanau,
 and Sandro Federici, eds. 2019. \emph{2019 Refinement to the 2006 IPCC
 Guidelines for National Greenhouse Gas Inventories, Volume 4:
 Agriculture, Forestry, and Other Land Use.} Switzerland: IPCC.
+
+\leavevmode\vadjust pre{\hypertarget{ref-butler2014}{}}%
+Butler, Edward, Keith Stockmann, Nathaniel Anderson, Ken Skog, Sean
+Healey, Dan Loeffler, J Greg Jones, James Morrison, and Jesse Young.
+2014. {``Estimates of Carbon Stored in Harvested Wood Products from
+United States Forest Service Pacific Northwest Region, 1909-2012.''}
+\emph{Unpublished Report. Missoula, MT: US Department of Agriculture,
+Forest Service, Rocky Mountain Research Station, Forestry Sciences
+Laboratory. 28 p.}
+\url{https://www.fs.usda.gov/rmrs/publications/estimates-carbon-stored-harvested-wood-products-united-states-forest-service-pacific}.
 
 \leavevmode\vadjust pre{\hypertarget{ref-R-lhs}{}}%
 Carnell, Rob. 2022. \emph{Lhs: Latin Hypercube Samples}.
@@ -3717,11 +3767,6 @@ Barlaz. 1997. {``Biodegradability of Municipal Solid Waste Components in
 Laboratory-Scale Landfills.''} \emph{Environmental Science \&
 Technology} 31 (3): 911--17.
 
-\leavevmode\vadjust pre{\hypertarget{ref-epa2006}{}}%
-EPA, USA. 2006. {``Municipal Solid Waste in the United States: 2000
-Facts and Figures.''} \emph{Epa530-R-06-011. Office of Solid Waste and
-Emergency Response (5306p), Washington D.C.}
-
 \leavevmode\vadjust pre{\hypertarget{ref-freed2004}{}}%
 Freed, R. 2004. {``Open-Dump and Landfill Timeline Spreadsheet.
 Unpublished.''}
@@ -3741,6 +3786,13 @@ and Characteristics, 1972. Forest Service Resource Bulletin.''} Forest
 Service, Portland, OR (USA). Pacific Northwest Forest; Range
 Experimental Station, US.
 
+\leavevmode\vadjust pre{\hypertarget{ref-ipcc2014}{}}%
+IPCC. 2014. Edited by Taka Hiraishi, Thema Krug, Kiyoto Tanabe, Nalin
+Srivastava, Jamsranjav Baasansuren, Maya Fukuda, and Tiffany Troxler.
+Switzerland: Intergovernmental Panel on Climate Change: IPCC,
+Switzerland.
+\url{http://www.ipcc-nggip.iges.or.jp/public/kpsg/pdf/KP_Supplement_Entire_Report.pdf}.
+
 \leavevmode\vadjust pre{\hypertarget{ref-keegan2010}{}}%
 Keegan, Charles E. III, Todd A. Morgan, Keith A. Blatner, and Jean M.
 Daniels. 2010. {``Trends in Lumber Processing in the Western United
@@ -3758,6 +3810,15 @@ Forest Service agreement no. 18-CO-11052021-214, 17-CO-11261979-086,
 California Department of Forestry; Fire Protection agreement no.
 8CA04056; 8CA03714; the University of Montana.
 \url{https://bof.fire.ca.gov/media/8026/4-final_1504_forest_ecosys_hwp_c_2017_13feb19_full.pdf}.
+
+\leavevmode\vadjust pre{\hypertarget{ref-loeffler2014}{}}%
+Loeffler, Daniel R., Nathaniel Anderson, Keith Stockmann, Ken Skog, Sean
+Healey, J. Greg Jones, James Morrison, and Jesse Young. 2014.
+{``Estimates of Carbon Stored in Harvested Wood Products from United
+States Forest Service Southern Region, 1911-2012.''} \emph{Unpublished
+Report. Missoula, MT: US Department of Agriculture, Forest Service,
+Rocky Mountain Research Station, Forestry Sciences Laboratory. 27 p.}
+\url{https://www.fs.usda.gov/rmrs/publications/estimates-carbon-stored-harvested-wood-products-united-states-forest-service-pacific}.
 
 \leavevmode\vadjust pre{\hypertarget{ref-lucey202X}{}}%
 Lucey, Taylor, Nadia A. Tase, N. Prakash, R. Bergman, D. Nichols, Andrew
@@ -3863,7 +3924,7 @@ Hassan. 2019. {``Chapter 12: Harvested Wood Products.''} In \emph{2019
 Refinement to the 2006 IPCC Guidelines for National Greenhouse Gas
 Inventories, Volume 4: Agriculture, Forestry, and Other Land Use.},
 edited by Calvo E. Buendia, Kiyoto Tanabe, Andrej Kranjc, Jamsranjav
-Baasansuren, Fukuda Maya, Ngarize Sekai, A. Osako, Yurii Pyrozhenko, P.
+Baasansuren, Maya Fukuda, Ngarize Sekai, A. Osako, Yurii Pyrozhenko, P.
 Shermanau, and Sandro Federici. Switzerland: IPCC.
 
 \leavevmode\vadjust pre{\hypertarget{ref-skog2008}{}}%
@@ -3906,6 +3967,16 @@ from United States Forest Service Intermountain Region, 1911-2012.''}
 \emph{Unpublished Report. Missoula, MT: US Department of Agriculture,
 Forest Service, Rocky Mountain Research Station, Forestry Sciences
 Laboratory. 28 p.}
+
+\leavevmode\vadjust pre{\hypertarget{ref-epa2006}{}}%
+US EPA. 2006. {``Municipal Solid Waste in the United States: 2000 Facts
+and Figures.''} \emph{Epa530-R-06-011. Office of Solid Waste and
+Emergency Response (5306p), Washington D.C.}
+
+\leavevmode\vadjust pre{\hypertarget{ref-usepa2020}{}}%
+---------. 2020. {``Waste Reduction Model (WARM).''} \emph{US
+Environmental Protection Agency, Washington, DC}.
+\url{https://www.epa.gov/warm/versions-waste-reduction-model-warm\#15}.
 
 \leavevmode\vadjust pre{\hypertarget{ref-R-renv}{}}%
 Ushey, Kevin. 2022. \emph{Renv: Project Environments}.

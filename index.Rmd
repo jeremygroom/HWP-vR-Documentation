@@ -22,6 +22,7 @@ header-includes:
 - \postauthor{\end{center}}
 - \predate{\begin{center}\vspace{1cm}\Large\textit}
 - \postdate{\end{center}\begin{center}\vspace{2cm}\includegraphics[width=3cm]{GroomAnalyticsE.png}\end{center}}
+
 ---
 
 ```{r libraries, echo = FALSE, warning=FALSE}
