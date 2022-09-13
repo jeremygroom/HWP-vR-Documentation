@@ -80,7 +80,6 @@
 \preauthor{\begin{center}\vspace{1.5cm}\Large\textit}
 \postauthor{\end{center}}
 \predate{\begin{center}\vspace{1cm}\Large\textit}
-\postdate{\end{center}\begin{center}\vspace{2cm}\includegraphics[width=3cm]{GroomAnalyticsE.png}\end{center}}
 \usepackage{booktabs}
 \usepackage{longtable}
 \usepackage{array}
@@ -112,7 +111,7 @@ Groom Analytics, LLC\\
 \strut \\
 Nadia Tase\\
 California Department of Forestry and Fire Protection}
-\date{Date: September 12, 2022}
+\date{Date: September 13, 2022}
 
 \begin{document}
 \frontmatter
@@ -193,20 +192,22 @@ the Institute for Natural Resources, Oregon State University.
 The following description uses many acronyms for brevity. Here is a list
 of the most common:
 
-BF: Board Feet\\
 BBF: Billion Board Feet\\
+BF: Board Feet\\
 BLM: Bureau of Land Management\\
+CCF: Hundred Cubic Feet\\
+CF: Cubic Feet\\
 DEC: Discard Energy Capture\\
 EEC: Emitted with Energy Capture\\
-EWOEC: Emitted without Energy Capture\\
 EUR: End-use Product Ratios\\
+EWOEC: Emitted without Energy Capture\\
 HWP: Harvested Wood Products\\
-CCF: Hundred Cubic Feet\\
 IPCC: Intergovernmental Panel on Climate Change\\
-MBF: Thousand Board Feet), MT: Metric Tons\\
+MBF: Thousand Board Feet)\\
 MMT C: Million Metric Tons of Carbon\\
-PPR: Primary Product Ratios\\
+MT: Metric Tons\\
 PIU; Products in Use\\
+PPR: Primary Product Ratios\\
 SWDS: Solid Waste Disposal Sites\\
 Tg C: Teragrams of Carbon: Tg C\\
 Tg CO2e: Teragrams of Carbon Dioxide Equivalent\\
@@ -884,13 +885,16 @@ further refine model estimates of carbon storage in HWP.
 
 \begin{itemize}
 \item
-  \textbf{Thousand board feet (MBF) to hundred cubic feet (CCF) volume
-  conversion factors} -- Values specific to California, Oregon and
-  Washington provided in their respective template files; national
-  defaults last updated through 2007, provided with the original USFS
-  HWP C tool. Ideally these are provided with local or regional data and
-  updated whenever mill surveys are completed (Section
-  @ref(own-prov-input-mbfccf)).
+  \textbf{Board feet (BF) to cubic feet (CF) volume conversion factors}
+  -- Values specific to California, Oregon and Washington provided in
+  their respective template files; national defaults last updated
+  through 2007, provided with the original USFS HWP C tool. Ideally
+  these are provided with local or regional data and updated whenever
+  mill surveys are completed (Section @ref(own-prov-input-bfcf)).
+  Harvest inputs in units of thousand board feet (MBF) are converted to
+  board feet (BF), to which these ratios are then applied, with a final
+  calculation in the code to convert from cubic feet (CF) to hundred
+  cubic feet (CCF).
 \item
   \textbf{Yearly end-use product ratios} -- National dataset last
   updated through 2009. Unnecessary for user to modify these ratios
@@ -1208,13 +1212,12 @@ Oregon and Washington annual harvest time series are provided in Morgan
 et al. (\protect\hyperlink{ref-morgan2021}{2021}) and Nichols et al.
 (\protect\hyperlink{ref-nichols2020}{2020}).
 
-\hypertarget{own-prov-input-mbfccf}{%
-\subsubsection{MBF to CCF conversion
-factors}\label{own-prov-input-mbfccf}}
+\hypertarget{own-prov-input-bfcf}{%
+\subsubsection{BF to CF conversion factors}\label{own-prov-input-bfcf}}
 
-Worksheet name: MBFCCF
+Worksheet name: BFCF
 
-The worksheet MBFCCF contains the conversion factors between board feet
+The worksheet BFCF contains the conversion factors between board feet
 and cubic feet for various time periods. Additional calculations are
 completed in the R code to account for harvest volumes being provided in
 thousand board feet (MBF) and subsequent model calculations occurring on
@@ -1235,16 +1238,18 @@ the starting and ending year of harvest data the conversion applies to.
 Ensure that the first Start Year begins with the minimum Harvest\_MBF
 Year and that conversion time periods do not overlap. When mill surveys
 are completed, ratios are applied from the year of the latest survey
-backwards to the last survey. For example, the MBF to CCF ratio from the
-California mill survey for 2012 is applied from 2012 backwards to 2007,
-as the previous mill survey was completed in 2006. The most recent
-California mill survey for 2016 results in a MBF to CCF ratio applied
-from 2016 backwards to 2013. This ratio is also applied forwards to the
-present until a new mill survey is completed and this ratio can be
-updated for 2017 forward. The final end year must be the same as the
-final year annual harvest data is provided for in the worksheet named
-``Harvest\_MBF.'' The Conversion column values are formatted as doubles
-and StartYear and EndYear values are integers.
+backwards to the last survey (note that in the WA template, ratios are
+applied from the year of the latest survey \emph{forwards} to the next
+survey). For example, the BF to CF ratio from the California mill survey
+for 2012 is applied from 2012 backwards to 2007, as the previous mill
+survey was completed in 2006. The most recent California mill survey for
+2016 results in a BF to CF ratio applied from 2016 backwards to 2013.
+This ratio is also applied forwards to the present until a new mill
+survey is completed and this ratio can be updated for 2017 forward. The
+final end year must be the same as the final year annual harvest data is
+provided for in the worksheet named ``Harvest\_MBF.'' The Conversion
+column values are formatted as doubles and StartYear and EndYear values
+are integers.
 
 Data sources for CA/USFS Pacific Southwest region ratios were obtained
 from Keegan et al. (\protect\hyperlink{ref-keegan2010}{2010}) (1952 --
@@ -1257,9 +1262,9 @@ harvest time series are provided in Morgan et al.
 (\protect\hyperlink{ref-morgan2021}{2021}) and Nichols et al.
 (\protect\hyperlink{ref-nichols2020}{2020}).
 
-Default MBF to CCF conversion factors are provided for the rest of the
+Default BF to CF conversion factors are provided for the rest of the
 U.S. from the original USF HWP C versions of the tool up to 2007. The
-data sources is unclear for this dataset.
+data sources are unclear for this dataset.
 
 \hypertarget{own-prov-input-tpr}{%
 \subsubsection{Timber Product Ratios}\label{own-prov-input-tpr}}
@@ -1282,15 +1287,17 @@ final year. The number of years in this dataset must match the number of
 years annual harvest data is provided for in the worksheet named
 ``Harvest\_MBF''. All year-column values must sum to one. Row values may
 change over time. When mill surveys are completed, ratios are applied
-from the year of the latest survey backwards to the last survey. Most
-recent available records may also need to be extended forwards if data
-for recent years of analysis do not yet exist. For example, the TPRs
-from the California mill survey for 2012 is applied from 2012 backwards
-to 2007, as the previous mill survey was completed in 2006. The most
-recent California mill survey for 2016 results in a set of TPRs applied
-from 2016 backwards to 2013. This ratio is also applied forwards to the
-present until a new mill survey is completed and this ratio can be
-updated for 2017 forward.
+from the year of the latest survey backwards to the last survey (note
+that in the WA template, ratios are applied from the year of the latest
+survey \emph{forwards} to the next survey). Most recent available
+records may also need to be extended forwards if data for recent years
+of analysis do not yet exist. For example, the TPRs from the California
+mill survey for 2012 is applied from 2012 backwards to 2007, as the
+previous mill survey was completed in 2006. The most recent California
+mill survey for 2016 results in a set of TPRs applied from 2016
+backwards to 2013. This ratio is also applied forwards to the present
+until a new mill survey is completed and this ratio can be updated for
+2017 forward.
 
 Data sources for California TPR and PPR include Barrette, Gedney, and
 Oswald (\protect\hyperlink{ref-barrette1970}{1970}), Hiserote and Howard
@@ -1819,7 +1826,7 @@ Havest\_MBF:
   ownership category amount will be necessary to correct.
 \end{itemize}
 
-\textbf{MBFCCF}:
+\textbf{BFCF}:
 
 \begin{itemize}
 \tightlist
@@ -2876,25 +2883,24 @@ entering landfills that is subject to decay or remains permanently.
 \hypertarget{model-func-opp}{%
 \subsection{Summary of model operations}\label{model-func-opp}}
 
-In the next section I provide a detailed schematic of how the HWP model
+In the next section we provide a detailed schematic of how the HWP model
 code operates. A more general schematic of the process, very similar to
 Figure 7 in Stockmann et al.
 (\protect\hyperlink{ref-stockmann2012}{2012}), is presented in Figure
-@ref(fig:overview-fig). Here I provide a written description of the
+@ref(fig:overview-fig). Here we provide a written description of the
 code's actions. We start out with data sets and variable information
 that are arranged by different combinations of year, ownership, and
-ratio types. First the model combines (i.e., performs a database join
-function) harvest data (units = MBF) with hundred cubic feet (CCF)
-conversion factors. The model combines Primary Product Ratios (PPR) with
-Timber Product Ratios (TPR) and then joins those with the timber harvest
-volume in cubic feet by year. These are then joined with conversion
-values for cubic feet to metric tons of carbon, and the End Use Ratios
-(EUR). The result is a data set called eu\_ratios, and values for EUR,
-TPR, PPR, the harvest amount, and the cubic foot to metric tons of
-carbon conversion factor are multiplied together to produce a variable
-called MTC for Metric Tons of Carbon. One million MTC (MMT C) = one Tg
-C. This variable serves as the carbon input into the model and has the
-correct units of carbon input per year for each EUR category.
+ratio types. First the code converts harvest data in units of MBF to CCF
+using BF to CF conversion ratios. The model combines Primary Product
+Ratios (PPR) with Timber Product Ratios (TPR) and then joins those with
+the timber harvest volume in CCF by year. These are then joined with
+conversion values for CCF to metric tons of carbon, and the End Use
+Ratios (EUR). The result is a data set called eu\_ratios, and values for
+EUR, TPR, PPR, the harvest amount, and the CCF to metric tons of carbon
+conversion factor are multiplied together to produce a variable called
+MTC for Metric Tons of Carbon. One million MTC (MMT C) = one Tg C. This
+variable serves as the carbon input into the model and has the correct
+units of carbon input per year for each EUR category.
 
 For each year, some of the carbon, fuel wood, is immediately burned and
 is Emitted with Energy Capture (EEC). A certain percentage (8\% for
@@ -2945,12 +2951,12 @@ decaying carbon in landfills plus remaining carbon in dumps.
 \hypertarget{model-func-schdesc}{%
 \subsection{Model schematic description}\label{model-func-schdesc}}
 
-Below I provide a schematic of how the HWP model operates. The schematic
-color codes items and flows from the top to bottom of each page. Inputs,
-such as worksheets from the Excel data file, are yellow. Calculated
-matrices or arrays are blue. Final output, which may be manipulated to
-produce tables and figures, are purple. Calculations or data
-transformations are peach colored.
+Below we provide a schematic of how the HWP model operates. The
+schematic color codes items and flows from the top to bottom of each
+page. Inputs, such as worksheets from the Excel data file, are yellow.
+Calculated matrices or arrays are blue. Final output, which may be
+manipulated to produce tables and figures, are purple. Calculations or
+data transformations are peach colored.
 
 The file and object names listed in the schematic may be found in the
 provided model code. My intent is to provide a written description
@@ -3188,7 +3194,7 @@ the random selections across distributions to avoid clumping. As a
 result, many fewer iterations are needed to achieve stable estimates
 from the MC simulation.
 
-For this analysis I used the function ``randomLHS'' in the package
+For this analysis we used the function ``randomLHS'' in the package
 ``lhs'' (\protect\hyperlink{ref-R-lhs}{Carnell 2022}) to conduct a
 random LHS sample. When we obtain random draws for a given distribution,
 the package divides the uniform distribution into as many partitions as
@@ -3212,7 +3218,7 @@ random uniform variable (the LHS draw), \(F(c)=(c-a)/(b-a), a\) is the
 minimum value for the triangle, \(b\) is the maximum value, and \(c\) is
 the midpoint. Note that the specifications require 90\% confidence
 intervals and do not state what the endpoints for the triangular
-distributions should be. I derived the endpoints that corresponded with
+distributions should be. We derived the endpoints that corresponded with
 the desired 90\% confidence intervals (Table @ref(tab:triang-tab)) using
 an optimization algorithm.
 
@@ -3253,16 +3259,16 @@ developed those values, the intervals would likely have been constructed
 in similar ways and therefore would have been correlated (biased).
 Therefore, we force a correlation among the three Harvest variables.
 Timber Product Ratios and End Use Product Ratios can each have sets of
-correlated variables and I created pairs of correlated random triangular
-variables for all paper/wood discard disposition ratios.
+correlated variables and we created pairs of correlated random
+triangular variables for all paper/wood discard disposition ratios.
 
-I used a Pearson's correlation of 0.5 for all correlations. This was
+We used a Pearson's correlation of 0.5 for all correlations. This was
 also done by Anderson et al.
 (\protect\hyperlink{ref-anderson2013}{2013}) and Stockmann et al.
-(\protect\hyperlink{ref-stockmann2012}{2012}). I used the Pearson's
+(\protect\hyperlink{ref-stockmann2012}{2012}). We used the Pearson's
 correlation to create a Pearson's correlation matrix, with the number of
 columns and rows corresponding to the number of random variables to
-correlate. For a three-variable correlation I would use the following
+correlate. For a three-variable correlation we would use the following
 matrix and create a Choleski decomposition from it:
 
 \[ \text{Pearson's Correlation Matrix} = \begin{bmatrix}
@@ -3281,7 +3287,7 @@ matrix and create a Choleski decomposition from it:
 
 Linear multiplication of the three variables against the Choleski
 decomposition alters the second and third variables such that they are
-correlated to the first. I create the correlated triangular random
+correlated to the first. We create the correlated triangular random
 variables by first transforming an iteration's three LHS random uniform
 variables into values from a standard normal distribution by treating
 the random uniform variables as probability quantiles from a standard
@@ -3324,7 +3330,7 @@ only focuses on total values across ownerships (the final category), the
 eu\_array item becomes a two-dimensional matrix with EUR categories for
 rows and years for the columns.
 
-Below I describe how each parameter is altered.
+Below we describe how each parameter is altered.
 
 \(\textit{CCF to MgC Conversion Factors}\)\\
 This is a simple alteration. Within a single iteration, one random
@@ -3419,16 +3425,16 @@ function.
 \(\textit{Discarded Disposition Ratios for Wood and Paper}\)\\
 These ratios control what fraction of waste ends up as burned, burned
 with energy capture (DEC), recycled, composted, placed in a landfill, or
-sent to a dump (the six fates). The values can differ by year. I wrote a
-function that operated on the ratios for wood and paper separately. The
-function performed the sum-to-one approach on the six ratios for either
-wood or paper. The original HWP analysis process relied on a function
-for each of these six fates that was time consuming. This function was
-removed for the MC simulation. Prior to the MC loop I created a matrix
-that contained altered values for wood and paper across all years and
-for each iteration for the six fates. The MC loop calls, for each
-iteration, a different subset of the matrix to use for calculations
-involving the six fates.
+sent to a dump (the six fates). The values can differ by year. We wrote
+a function that operated on the ratios for wood and paper separately.
+The function performed the sum-to-one approach on the six ratios for
+either wood or paper. The original HWP analysis process relied on a
+function for each of these six fates that was time consuming. This
+function was removed for the MC simulation. Prior to the MC loop we
+created a matrix that contained altered values for wood and paper across
+all years and for each iteration for the six fates. The MC loop calls,
+for each iteration, a different subset of the matrix to use for
+calculations involving the six fates.
 
 \hypertarget{model-mc-res}{%
 \subsection{Monte Carlo results and development}\label{model-mc-res}}
@@ -3526,7 +3532,7 @@ distributions.
 \includegraphics[width=1\linewidth]{images/triang3} \caption{Histograms of sum-to-one Timber Product Ratios variables TPR.1 and TPR2; the values for TPR.2 were truncated at 1.0.  Both variables are for the year 2002.}\label{fig:mc-tri3-fig}
 \end{figure}
 
-The MC simulation was developed in pieces. I first altered the values
+The MC simulation was developed in pieces. We first altered the values
 for the non-sum-to-one variables: CCF to MgC conversion factors, annual
 harvest amounts, product half-lives, landfill decay limits, and the
 half-lives of decaying paper and wood in landfill, dumps, and recovered
@@ -3535,17 +3541,17 @@ amounts and the conversion factors control all carbon input into the
 model, product half-lives affect PIU residence and SWDS input, and the
 SWDS decay limits and half lives affect residency in SWDS.
 
-I next introduced Timber Production Ratios as the first sum-to-one MC
+We next introduced Timber Production Ratios as the first sum-to-one MC
 alterations, then Primary Production Ratios, then End Use Ratios.
-Finally, I added the Discarded Disposition Ratios (DDR). These additions
-did not affect MC results for all carbon fates (Emitted with Energy
-Capture, Emitted without Energy Capture, Solid Waste Disposal Sites, and
-Products in Use) equally.
+Finally, we added the Discarded Disposition Ratios (DDR). These
+additions did not affect MC results for all carbon fates (Emitted with
+Energy Capture, Emitted without Energy Capture, Solid Waste Disposal
+Sites, and Products in Use) equally.
 
 Figure @ref(fig:mc-tests-fig) provides results for Emitted with Energy
 Capture. We can see that the MC 90\% confidence intervals increase
 between the first (No Sum-to-One MC Variables) and second (TPR) versions
-of the model. When I introduced variation into the Timber Production
+of the model. When we introduced variation into the Timber Production
 Ratios and then Primary Product Ratios the ratios for fuel wood were
 altered. Those fuel wood ratios are not altered by changes to EUR, as
 EUR in this case effectively serves as a ``pass-through'' category for

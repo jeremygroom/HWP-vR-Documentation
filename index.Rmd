@@ -21,7 +21,6 @@ header-includes:
 - \preauthor{\begin{center}\vspace{1.5cm}\Large\textit}
 - \postauthor{\end{center}}
 - \predate{\begin{center}\vspace{1cm}\Large\textit}
-- \postdate{\end{center}\begin{center}\vspace{2cm}\includegraphics[width=3cm]{GroomAnalyticsE.png}\end{center}}
 
 ---
 
@@ -55,21 +54,22 @@ This project was funded by the California Department of Forestry and Fire Protec
 
 The following description uses many acronyms for brevity.  Here is a list of the most common:
 
-BF: Board Feet   
-BBF: Billion Board Feet   
-BLM: Bureau of Land Management   
+BBF: Billion Board Feet     
+BF: Board Feet       
+BLM: Bureau of Land Management    
+CCF: Hundred Cubic Feet      
+CF: Cubic Feet    
 DEC: Discard Energy Capture   
 EEC: Emitted with Energy Capture   
-EWOEC: Emitted without Energy Capture   
 EUR: End-use Product Ratios   
+EWOEC: Emitted without Energy Capture   
 HWP: Harvested Wood Products   
-CCF: Hundred Cubic Feet   
 IPCC: Intergovernmental Panel on Climate Change  
-MBF: Thousand Board Feet), 
-MT: Metric Tons   
-MMT C: Million Metric Tons of Carbon   
-PPR: Primary Product Ratios   
+MBF: Thousand Board Feet)   
+MMT C: Million Metric Tons of Carbon       
+MT: Metric Tons     
 PIU; Products in Use   
+PPR: Primary Product Ratios   
 SWDS: Solid Waste Disposal Sites   
 Tg C: Teragrams of Carbon: Tg C   
 Tg CO2e: Teragrams of Carbon Dioxide Equivalent   
