@@ -111,7 +111,7 @@ Groom Analytics, LLC\\
 \strut \\
 Nadia Tase\\
 California Department of Forestry and Fire Protection}
-\date{Date: September 13, 2022}
+\date{Date: September 26, 2022}
 
 \begin{document}
 \frontmatter
@@ -537,12 +537,12 @@ Northern Region of the National Forest System
 (\protect\hyperlink{ref-stockmann2012}{Stockmann et al. 2012};
 \protect\hyperlink{ref-anderson2013}{Anderson et al. 2013}). The Excel
 version was updated to one programmed in C++ for the remaining USFS
-Regional HWP carbon inventories (USFS HWP-C; e.g., Butler et al.
-(\protect\hyperlink{ref-butler2014}{2014}), Loeffler et al.
-(\protect\hyperlink{ref-loeffler2014}{2014}), Stockmann et al.
-(\protect\hyperlink{ref-stockmann2014}{2014})). The model was then
-modified in 2017 by the USFS for use in the California Forest Ecosystem
-and Harvested Wood Product Carbon Inventory
+Regional HWP carbon inventories (USFS HWP-C; e.g.,
+(\protect\hyperlink{ref-butler2014}{\textbf{butler2014?}}),
+(\protect\hyperlink{ref-loeffler2014}{\textbf{loeffler2014?}}),
+(\protect\hyperlink{ref-stockmann2014}{\textbf{stockmann2014?}})). The
+model was then modified in 2017 by the USFS for use in the California
+Forest Ecosystem and Harvested Wood Product Carbon Inventory
 (\protect\hyperlink{ref-loeffler2019}{Loeffler et al. 2019}) and is
 given the label here as the CA USFS HWP-C variant. This history is
 depicted in Figure @ref(fig:hist-fig). Though names for the USFS
@@ -886,10 +886,16 @@ further refine model estimates of carbon storage in HWP.
 \begin{itemize}
 \item
   \textbf{Board feet (BF) to cubic feet (CF) volume conversion factors}
-  -- Values specific to California, Oregon and Washington provided in
-  their respective template files; national defaults last updated
-  through 2007, provided with the original USFS HWP C tool. Ideally
-  these are provided with local or regional data and updated whenever
+  -- Values specific to California, Oregon and Washington are provided
+  in their respective data files. Regional templates provided with the
+  original USFS HWP C tool contain the same set of conversions for all
+  regions; the template defaults were last updated through 2007 and no
+  datasource was provided, although values appear to match values
+  developed for the California inventory provided with the original USFS
+  HWP C tool. Recommended values from USFS Regional HWP C reports are
+  provided in the templates; if using regional templates, users must
+  decide which values to use. Ideally, users provide valkues derived
+  from local or regional datasets and users updat the values whenever
   mill surveys are completed (Section @ref(own-prov-input-bfcf)).
   Harvest inputs in units of thousand board feet (MBF) are converted to
   board feet (BF), to which these ratios are then applied, with a final
@@ -973,19 +979,22 @@ input template file must have the same number of years.
 \hypertarget{own-prov-temp}{%
 \subsection{Select the template files}\label{own-prov-temp}}
 
-The \texttt{HWP\ Data/Templates} folder contains several United States
+The \texttt{HWP\ Data/Templates/} folder contains several United States
 based templates to work from. These templates were derived from those
-offered with the HWP v1 tool
-(\protect\hyperlink{ref-stockmann2014}{Stockmann et al. 2014}), see
-Section @ref(int-hist). Each subfolder contains a different template,
-and Figure @ref(fig:template-map-fig) describes the geographic range for
-each template. The \texttt{HWP\ Data\textbackslash{}ExistingData} folder
-contains the California, Washington, and Oregon data sets along with
-other supporting data sets (generally modifications of the California or
-Oregon data). The California, Washington, and Oregon data sets can
-additionally serve as templates. All templates have the same information
-for end use ratios, cubic foot to metric ton conversion values, end use
-half lives, discard ratios, discard half-lives, and Monte Carlo
+offered with the USFS HWP v1 tool, see Section @ref(int-hist). Each
+subfolder contains a different template, and Figure
+@ref(fig:template-map-fig) describes the geographic range for each
+template. Note that these geographic regions were determined by Smith
+(\protect\hyperlink{ref-smith2006}{2006}) and differ slightly from U.S.
+Forest Service regions.
+
+The \texttt{HWP\ Data/ExistingData/} folder contains the California,
+Washington, and Oregon data sets along with other supporting data sets
+(generally modifications of the California or Oregon data). The
+California, Washington, and Oregon data sets can additionally serve as
+templates. All templates have the same information for end use ratios,
+cubic foot to metric tons of carbon conversion values, end use
+half-lives, discard ratios, discard half-lives, and Monte Carlo
 parameters.
 
 \begin{figure}
@@ -997,24 +1006,42 @@ must provide these. We recommend searching for references similar to the
 citations listed in the section above to revise or verify given values.
 The \texttt{Natl\_datasets} folder contains a (U.S.) national template
 that additionally lacks primary product ratios and the board foot to
-cubic foot conversion factors. The other templates each have a unique
-primary products ratios data sheet (except for the Pacific Southwest
-which shares values with the California input file) that rely on Smith
-(\protect\hyperlink{ref-smith2006}{2006}) which in turn depends on
-information from Adams (\protect\hyperlink{ref-adams2006}{2006}), and
+cubic foot conversion factors. The other original templates based on
+Smith (\protect\hyperlink{ref-smith2006}{2006}) geographic regions each
+have a unique primary products ratios data sheet (except for the Pacific
+Southwest which shares values with the California input file) that rely
+on Smith (\protect\hyperlink{ref-smith2006}{2006}) which in turn depends
+on information from Adams (\protect\hyperlink{ref-adams2006}{2006}), and
 therefore are likely based on mill surveys updated through 2005 at the
-latest. Generic board foot to cubic foot volume conversions are provided
-in the regional templates that are the same for each region. These
+latest. We urge users to consider carefully whether they want to use
+these included values. These ratios, as can be seen, are constant across
+years. This is not the case for the California, Oregon, or Washington
+data sets which contain a more detailed set of primary product ratios
+that vary through time based on literature documenting historic and
+current wood utilization. If the user has the resources to construct
+more detailed primary product ratios for the area of analysis, that is
+ideal.
+
+Generic board foot to cubic foot volume conversions are provided in the
+original regional templates that are the same for each region. These
 values are only updated to 2007 and it is unclear what the data source
-is for these values. We urge users to consider carefully whether they
-want to use the included values (see previous section) and especially
-urge this in relation to the primary product ratios. Those ratios, as
-can be seen, are constant across years. This is not the case for the
-California, Oregon, or Washington data sets which contain a more
-detailed set of primary product ratios that vary through time based on
-literature documenting historic and current wood utilization. If the
-user has the resources to construct more detailed primary product ratios
-for the area of analysis, that is ideal.
+is for these values, though they appear to match the values developed
+for the California inventory. We urge users to consider carefully
+whether they want to use these included values. It is recommended
+instead that, in the absence of user-provided data for these values,
+users choose the board foot to cubic foot volume conversion provided in
+the appropriate U.S. Forest Service Regional HWP C report (D. Loeffler
+and K. Stockmann, personal communication, September 16, 2022). Some
+regions used in this model overlap more than one U.S. Forest Service
+region, as noted above. The original values and the recommended values
+for each state within the model region are provided as notes within each
+template. Users must decide which value to use and populate the
+necessary fields in the template themselves.
+
+We urge users to inspect the details and datasources provided in Section
+@ref(own-prov-input) for each input parameter in the templates and
+decide whether they want to use the included values, provide their own
+values, or search for updated datasets.
 
 When using a template to construct a data set, users may need to adjust
 yearly ranges or values in any of the worksheets that come before or
@@ -1224,11 +1251,24 @@ thousand board feet (MBF) and subsequent model calculations occurring on
 units of hundred cubic feet (CCF). Factors used to convert BF to CF vary
 by time and place. Conversions are based on Scribner log scale rather
 than lumber scale rules. Annual harvest time series are provided for
-California, Oregon and Washington, as well as the defaults from the
-original USFS version of the tool for the nine US regions (see Figure
-@ref(fig:template-map-fig)). The source for the US region defaults is
-unidentified. Ideally these are provided with local or regional data,
-and updated whenever mill surveys are completed.
+California, Oregon and Washington.
+
+Generic conversions are provided in the original regional templates that
+are the same for each region. These values are only updated to 2007 and
+it is unclear what the data source is for these values. We urge users to
+consider carefully whether they want to use these included values. It is
+recommended instead, that in the absence of user-provided data for these
+values, users choose the BF to CF volume conversion provided in the
+appropriate U.S. Forest Service Regional HWP C report (D. Loeffler and
+K. Stockmann, personal communication, September 16, 2022). Note that
+there is only a single value provided for the entire time series. Some
+regions used in this model overlap more than one U.S. Forest Service
+region, as noted above. The original values and the recommended values
+for each state within the model region are provided as notes within each
+template. Users must decide which value to use and populate the
+necessary fields in the template themselves. Ideally the user provides
+local or regional values and updates the values whenever relevatn mill
+surveys are completed.
 
 The user may choose to change these conversion factors when mill surveys
 are updated or if more detailed information is available by region
@@ -1262,9 +1302,19 @@ harvest time series are provided in Morgan et al.
 (\protect\hyperlink{ref-morgan2021}{2021}) and Nichols et al.
 (\protect\hyperlink{ref-nichols2020}{2020}).
 
-Default BF to CF conversion factors are provided for the rest of the
-U.S. from the original USF HWP C versions of the tool up to 2007. The
-data sources are unclear for this dataset.
+Default BF to CF conversion factors provided for the rest of the U.S.
+from the original USFS HWP C version of the tool only exist up to 2007
+and are extrapolated beyond 2007. Additionally, this data set's data
+sources are unclear. The recommended regional defaults provided in each
+template were obtained from the following U.S. Forest Service Regional
+HWP C reports: Butler, Stockmann, Anderson, Skog, et al.
+(\protect\hyperlink{ref-butler2014nw}{2014}), Butler, Stockmann,
+Anderson, Young, et al. (\protect\hyperlink{ref-butler2014sw}{2014}),
+Loeffler et al. (\protect\hyperlink{ref-loeffler2014er}{2014a}),
+Loeffler et al. (\protect\hyperlink{ref-loeffler2014sr}{2014b}),
+Stockmann et al. (\protect\hyperlink{ref-stockmann2014nr}{2014a}),
+Stockmann et al. (\protect\hyperlink{ref-stockmann2014imr}{2014c}),
+Stockmann et al. (\protect\hyperlink{ref-stockmann2014rmr}{2014b})
 
 \hypertarget{own-prov-input-tpr}{%
 \subsubsection{Timber Product Ratios}\label{own-prov-input-tpr}}
@@ -1341,7 +1391,25 @@ named after the sequential years of harvest data, from the earliest year
 to the final year. The number of years in this dataset must match the
 number of years annual harvest data is provided for in the worksheet
 named ``Harvest\_MBF''. All year-column values must sum to the number of
-TPR rows. Row values may change over time.
+TPR rows (e.g., 40 TPR categories for California and Oregon data). Sets
+of PPR ratios sum to 1; most sets include only one ratio. For instance,
+California and Oregon data set PPR IDs 1-7, 8-14, 15-21, and 22-28 sum
+to 1. Row values may change over time.
+
+Note that sets of PPRs did not sum to 1 in some of the original regional
+templates. In some cases, these values were off by hundredths or
+thousandths and were manually updated. These rows are highlighted in
+yellow and comments are provided in the cells of the templates where
+these manual adjustments were made. In other cases some PPR set values
+were set to 0, likely because in those regions (i.e., PNW-E, Rocky
+Mountain, West) the timber product associated with those primary
+products did not exist (e.g., timber product hardwood sawtimber or
+hardwood pulpwood). However, in this case the TPRs should be set to 0
+rather than the PPRs. For the model code to run correctly, the PPR sets
+must sum to 1. Where the discrepancy existed, these values were manually
+updated. These worksheets are highlighted in red and comments are
+provided in the cells of the templates where these manual adjustments
+were made.
 
 Data sources for California TPR and PPR include Barrette, Gedney, and
 Oswald (\protect\hyperlink{ref-barrette1970}{1970}), Hiserote and Howard
@@ -2069,7 +2137,7 @@ From the Shiny app, click on the Upload Data button.
 \tightlist
 \item
   To see the QA fail, navigate to
-  \texttt{HWP\ Data\textbackslash{}ExistingData\textbackslash{}bogus.xlsx}
+  \texttt{HWP\ Data\textbackslash{}ModelExploration\textbackslash{}bogus.xlsx}
   and select the file. Run the QA.\\
 \item
   To run data from the state of Washington, navigate to
@@ -2079,13 +2147,13 @@ From the Shiny app, click on the Upload Data button.
   Run the Monte Carlo simulation for the Washington data.
 \item
   To see what happens when there is no ownership data, navigate to
-  \texttt{HWP\ Data\textbackslash{}ExistingData\textbackslash{}OR\_no-owner.xlsx}
+  \texttt{HWP\ Data\textbackslash{}ModelExploration\textbackslash{}OR\_no-owner.xlsx}
   and select the file. Run the QA and then the HWP model.\\
 \item
   To see how the Sankey diagram and other figures change if discarded
   products \emph{were} burned for energy capture (DEC), navigate to the
   altered file
-  \texttt{HWP\ Data\textbackslash{}ExistingData\textbackslash{}CA\_DiscardEnergyCapture\_Test.xlsx}
+  \texttt{HWP\ Data\textbackslash{}ModelExploration\textbackslash{}CA\_DiscardEnergyCapture\_Test.xlsx}
   and select.
 \end{itemize}
 
@@ -2368,14 +2436,30 @@ renv.loc: R environment information.
 
 \emph{/HWP-C-vR/HWP Data/}\\
 This folder contains Oregon, California, and Washington data that may be
-uploaded into the app as well as templates for constructing input files
-from elsewhere in the United States.
+uploaded into the app, test data for exploring the model's
+functionality, and templates for constructing input files for elsewhere
+in the United States.
 
 \emph{/HWP-C-vR/HWP Data/ExistingData/}\\
 This folder contains data files that may be loaded into the app or into
-the stand-alone model. The files (mostly) include a harvest time series
-and timber and primary product ratios developed for these state-level
+the stand-alone model. The files include a harvest time series and
+timber and primary product ratios developed for these state-level
 inventories
+
+\begin{itemize}
+\item
+  CA\_Inputs\_HWP\_Model.xlsx, Oregon\_Inputs\_HWP\_Model.xlsx: These
+  file contains the California and Oregon data already loaded in the
+  app.
+\item
+  WA\_Inputs\_HWP\_Model.xlsx: This file contains data for Washington
+  State.
+\end{itemize}
+
+\emph{/HWP-C-vR/HWP Data/ModelExploration/}\\
+This folder contains files that allow the user to experience the app
+under different data scenarios (e.g., no ownership data) and practice
+appending additional data to existing files.
 
 \begin{itemize}
 \item
@@ -2387,19 +2471,16 @@ inventories
   @ref(own-prov-input-discFates)) is altered from 1980 and beyond to
   include a fraction of Discard Energy Capture (DEC).
 \item
-  CA\_Inputs\_HWP\_Model.xlsx, Oregon\_Inputs\_HWP\_Model.xlsx: These
-  file contains the California and Oregon data already loaded in the
-  app.
-\item
   OR\_no\_owner.xlsx: This file contains only total data for Oregon and
   lacks any ownership information.
 \item
-  Oregon\_MBF\_2019: This file is not an input file. It contains
-  additional harvest data for 2019 so that users may practice appending
-  harvest data with provided code (Section @ref(dnld-add)).
+  Oregon\_MBF\_2019.xlsx: This file is not an input file. It contains
+  two rows of additional Oregon harvest data for 2018 and 2019. Users
+  may practice appending this harvest data to the current Oregon harvest
+  data (1906 - 2017) with provided code (Section @ref(dnld-add)).
 \item
-  WA\_Inputs\_HWP\_Model.xlsx: This file contains data for Washington
-  State.
+  Oregon\_MBF\_2019v2.xlsx: Same as above, but this version includes all
+  available Oregon harvest data (1906 - 2019).
 \end{itemize}
 
 \emph{/HWP-C-vR/HWP Data/Templates/}\\
@@ -2799,34 +2880,40 @@ input, an Excel file with a single worksheet of harvest by thousand
 board feet, formatted in the same way as their earlier Harvest\_MBF
 worksheet. The user points the code toward their original data file, the
 new Harvest\_MBF Excel file, and provides a name for the output Excel
-file. The code will make all necessary changes to the original file and
-append the new years. Importantly, where needed, the code will read
-values used for the year prior and duplicate them for the new data.
-Therefore, if the user wishes to update Timber Product Ratios, Primary
-Product Ratios, End Use Ratios, or any other dataset, they will need to
-do so by hand, possibly after this procedure is run.
+file. They also provide a location for the new file to be written. The
+code will make all necessary changes to the original file and append the
+new years. Importantly, where needed, the code will read values used for
+the year prior and duplicate them in the new data set. Therefore, if the
+user wishes to update Timber Product Ratios, Primary Product Ratios, End
+Use Ratios, or any other dataset, they will need to do so by hand,
+possibly after this procedure is run.
 
 As an example, say we wish to add 2018 and 2019 harvest levels to
 Oregon's data. We open the Append\_Harvest\_Data.R file in the
 \texttt{HWP-C-vR.Rproj} RStudio project, run the first few lines that
-load the needed libraries, and then alter the following lines to read:\\
+load the needed libraries, and then alter the following lines to read:
+
 \texttt{ORIG.DATA.FILE\ \textless{}-\ "Oregon\_Inputs\_HWP\_Model.xlsx"}\strut \\
-\texttt{NEW.DATA\ \textless{}-\ "Oregon\_MBF\_2019.xlsx"}\strut \\
-\texttt{DATA.FOLDER\ \textless{}-\ "HWP\ Data/ExistingData/"}\strut \\
-\texttt{OUT.DATA\ \textless{}-\ "Oregon\_Inputs\_HWP\_Modelv2.xlsx"}
+\texttt{NEW.DATA.FILE\ \textless{}-\ "Oregon\_MBF\_2019.xlsx"}\strut \\
+\texttt{OUT.DATA.FILE\ \textless{}-\ "Oregon\_Inputs\_HWP\_Modelv2.xlsx"}
 
-The first of those lines refers to the original data, the second the
-name of the file with the Harvest\_MBF data for the new years, the third
-line identifies the location of the input data files, and the last line
-is the name the user wishes to use for the updated data set.
+\texttt{ORIG.DATA.FOLDER\ \textless{}-\ "HWP\ Data/ExistingData/"}\strut \\
+\texttt{NEW.DATA.FOLDER\ \textless{}-\ "HWP\ Data/ModelExploration/"}\strut \\
+\texttt{OUT.DATA.FOLDER\ \textless{}-\ "HWP\ Data/ModelExploration/"}
 
-The new data can provide all of the original data for harvest board feet
-in addition to the more recent harvest data (e.g.,
-\texttt{Oregon\_MBF\_2019.xlsx}). Or, the user can provide just the new
-data (e.g., \texttt{Oregon\_MBF\_2019v2.xlsx}). Once those four lines
-are correct the user can select and run all of the code from the file.
-The code will attempt to generate a new Excel file with the desired
-updates. The code also performs some QA checks:
+The first of those lines identifies the name of the original data, the
+second the name of the file with the Harvest\_MBF data for the new
+years, and the third line assigns the name of the output data file.
+Lines 4-6 identify the folder locations of the original, updated, and
+output data set Excel files.
+
+The new data file can provide data for just the new years (e.g.,
+\texttt{Oregon\_MBF\_2019.xlsx}); or, the user can provide all of the
+original harvest data in addition to the more recent harvest data (e.g.,
+\texttt{Oregon\_MBF\_2019v2.xlsx}). Once those six lines are correct the
+user can select and run all of the code from the file. The code will
+attempt to generate a new Excel file with the desired updates. The code
+also performs some QA checks:
 
 \begin{itemize}
 \item
@@ -3668,7 +3755,7 @@ template file:
 \def\labelenumi{\arabic{enumi}.}
 \tightlist
 \item
-  Create the MBFCCF worksheet values. For Conversion, use the value 1.
+  Create the BFCF worksheet values. For Conversion, use the value 1.
   StartYear = your earliest data year or earlier. EndYear = your last
   harvest data year. That's right, only one row of input values.\\
 \item
@@ -3707,7 +3794,7 @@ OR: U.S. Department of Agriculture, Forest Service, Pacific Northwest
 Research Station.}
 
 \leavevmode\vadjust pre{\hypertarget{ref-anderson2013}{}}%
-Anderson, Nathaniel, Jesse Young, Keith Stockmann, Kenneth Skog, Sean
+Anderson, Nathaniel, Jesse Young, Keith D. Stockmann, Kenneth Skog, Sean
 Healey, Daniel R. Loeffler, J. Greg Jones, and James Morrison. 2013.
 {``Regional and Forest-Level Estimates of Carbon Stored in Harvested
 Wood Products from the United States Forest Service Northern Region,
@@ -3737,15 +3824,24 @@ and Sandro Federici, eds. 2019. \emph{2019 Refinement to the 2006 IPCC
 Guidelines for National Greenhouse Gas Inventories, Volume 4:
 Agriculture, Forestry, and Other Land Use.} Switzerland: IPCC.
 
-\leavevmode\vadjust pre{\hypertarget{ref-butler2014}{}}%
-Butler, Edward, Keith Stockmann, Nathaniel Anderson, Ken Skog, Sean
-Healey, Dan Loeffler, J Greg Jones, James Morrison, and Jesse Young.
+\leavevmode\vadjust pre{\hypertarget{ref-butler2014nw}{}}%
+Butler, Edward, Keith D. Stockmann, Nathaniel Anderson, Ken Skog, Sean
+Healey, Daniel R. Loeffler, J Greg Jones, James Morrison, and Jesse
+Young. 2014. {``Estimates of Carbon Stored in Harvested Wood Products
+from United States Forest Service Pacific Northwest Region,
+1909-2012.''} \emph{Unpublished Report. Missoula, MT: US Department of
+Agriculture, Forest Service, Rocky Mountain Research Station, Forestry
+Sciences Laboratory. 28 p.}
+\url{https://www.fs.usda.gov/rmrs/publications/estimates-carbon-stored-harvested-wood-products-united-states-forest-service-pacific}.
+
+\leavevmode\vadjust pre{\hypertarget{ref-butler2014sw}{}}%
+Butler, Edward, Keith D. Stockmann, Nathaniel Anderson, Jesse Young, Ken
+Skog, Sean Healey, Daniel R. Loeffler, J Greg Jones, and James Morrison.
 2014. {``Estimates of Carbon Stored in Harvested Wood Products from
-United States Forest Service Pacific Northwest Region, 1909-2012.''}
+United States Forest Service Southwestern Region, 1909-2012.''}
 \emph{Unpublished Report. Missoula, MT: US Department of Agriculture,
 Forest Service, Rocky Mountain Research Station, Forestry Sciences
-Laboratory. 28 p.}
-\url{https://www.fs.usda.gov/rmrs/publications/estimates-carbon-stored-harvested-wood-products-united-states-forest-service-pacific}.
+Laboratory. 27 p.}
 
 \leavevmode\vadjust pre{\hypertarget{ref-R-lhs}{}}%
 Carnell, Rob. 2022. \emph{Lhs: Latin Hypercube Samples}.
@@ -3806,7 +3902,7 @@ States. Part i: Board Foot Scribner Volume Per Cubic Foot of Timber.''}
 \emph{Forest Products Journal} 60 (2): 133--39.
 
 \leavevmode\vadjust pre{\hypertarget{ref-loeffler2019}{}}%
-Loeffler, Daniel R., Nathaniel Anderson, Keith Stockmann, Todd A.
+Loeffler, Daniel R., Nathaniel Anderson, Keith D. Stockmann, Todd A.
 Morgan, and Nadia A. Tase. 2019. {``Harvested Wood Products Carbon
 Chapters 5 and 6.''} In \emph{AB 1504 California Forest Ecosystem and
 Harvested Wood Product Carbon Inventory: 2017 Reporting Period. Final
@@ -3817,9 +3913,17 @@ California Department of Forestry; Fire Protection agreement no.
 8CA04056; 8CA03714; the University of Montana.
 \url{https://bof.fire.ca.gov/media/8026/4-final_1504_forest_ecosys_hwp_c_2017_13feb19_full.pdf}.
 
-\leavevmode\vadjust pre{\hypertarget{ref-loeffler2014}{}}%
-Loeffler, Daniel R., Nathaniel Anderson, Keith Stockmann, Ken Skog, Sean
-Healey, J. Greg Jones, James Morrison, and Jesse Young. 2014.
+\leavevmode\vadjust pre{\hypertarget{ref-loeffler2014er}{}}%
+Loeffler, Daniel R., Nathaniel Anderson, Keith D. Stockmann, Ken Skog,
+Sean Healey, J Greg Jones, James Morrison, and Jesse Young. 2014a.
+{``Estimates of Carbon Stored in Harvested Wood Products from United
+States Forest Service Eastern Region, 1911-2012.''} \emph{Unpublished
+Report. Missoula, MT: US Department of Agriculture, Forest Service,
+Rocky Mountain Research Station, Forestry Sciences Laboratory. 27 p.}
+
+\leavevmode\vadjust pre{\hypertarget{ref-loeffler2014sr}{}}%
+Loeffler, Daniel R., Nathaniel Anderson, Keith D. Stockmann, Ken Skog,
+Sean Healey, J. Greg Jones, James Morrison, and Jesse Young. 2014b.
 {``Estimates of Carbon Stored in Harvested Wood Products from United
 States Forest Service Southern Region, 1911-2012.''} \emph{Unpublished
 Report. Missoula, MT: US Department of Agriculture, Forest Service,
@@ -3965,14 +4069,30 @@ Healey, Daniel R. Loeffler, Greg Jones, and James F. Morrison. 2012.
 States Forest Service Northern Region, 1906-2010.''} \emph{Carbon
 Balance and Management} 7 (1): 1--16.
 
-\leavevmode\vadjust pre{\hypertarget{ref-stockmann2014}{}}%
+\leavevmode\vadjust pre{\hypertarget{ref-stockmann2014nr}{}}%
+Stockmann, Keith D., Nathaniel Anderson, Jesse Young, Ken Skog, Sean
+Healey, Daniel R. Loeffler, Edward Butler, J Greg Jones, and James
+Morrison. 2014a. {``Estimates of Carbon Stored in Harvested Wood
+Products from United States Forest Service Northern Region,
+1906-2012.''} \emph{Unpublished Report. Missoula, MT: US Department of
+Agriculture, Forest Service, Rocky Mountain Research Station, Forestry
+Sciences Laboratory. 27 p.}
+
+\leavevmode\vadjust pre{\hypertarget{ref-stockmann2014rmr}{}}%
+---------. 2014b. {``Estimates of Carbon Stored in Harvested Wood
+Products from United States Forest Service Rocky Mountain Region,
+1906-2012.''} \emph{Unpublished Report. Missoula, MT: US Department of
+Agriculture, Forest Service, Rocky Mountain Research Station, Forestry
+Sciences Laboratory. 27 p.}
+
+\leavevmode\vadjust pre{\hypertarget{ref-stockmann2014imr}{}}%
 Stockmann, Keith D., Nathaniel Anderson, Jesse Young, Ken Skog, Sean
 Healey, Daniel R. Loeffler, Edward Butler, J. Greg Jones, and James
-Morrison. 2014. {``Estimates of Carbon Stored in Harvested Wood Products
-from United States Forest Service Intermountain Region, 1911-2012.''}
-\emph{Unpublished Report. Missoula, MT: US Department of Agriculture,
-Forest Service, Rocky Mountain Research Station, Forestry Sciences
-Laboratory. 28 p.}
+Morrison. 2014c. {``Estimates of Carbon Stored in Harvested Wood
+Products from United States Forest Service Intermountain Region,
+1911-2012.''} \emph{Unpublished Report. Missoula, MT: US Department of
+Agriculture, Forest Service, Rocky Mountain Research Station, Forestry
+Sciences Laboratory. 28 p.}
 
 \leavevmode\vadjust pre{\hypertarget{ref-epa2006}{}}%
 US EPA. 2006. {``Municipal Solid Waste in the United States: 2000 Facts

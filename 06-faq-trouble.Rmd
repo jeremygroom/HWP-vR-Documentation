@@ -26,7 +26,7 @@ You will need to set the number of iterations you would like the simulation to u
 *I only have timber harvest data in hundred cubic feet (CCF).  Can I still use these data in the model?*  
 Yes!  But the model needs to think that it transformed your harvest data into cubic feet all on its own.  Here is how you fool it, using a template file:  
 
-1. Create the MBFCCF worksheet values.  For Conversion, use the value 1.  StartYear = your earliest data year or earlier. EndYear = your last harvest data year.  That's right, only one row of input values.  
+1. Create the BFCF worksheet values.  For Conversion, use the value 1.  StartYear = your earliest data year or earlier. EndYear = your last harvest data year.  That's right, only one row of input values.  
 2. Create bogus (yet usable) Harvest_MBF worksheet values.  Simply multiply each of your ownership and Total CCF values by 10.  Place them in this table.    
 3. Everything else is the same.  Fill in your TimberProdRatios and change any other values you need (see Chapter \@ref(own)).    
 

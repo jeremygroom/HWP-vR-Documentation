@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.24 (TeX Live 2022) (preloaded format=pdflatex 2022.9.12)  13 SEP 2022 11:35
+This is pdfTeX, Version 3.141592653-2.6-1.40.24 (TeX Live 2022) (preloaded format=pdflatex 2022.9.26)  26 SEP 2022 16:46
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -148,7 +148,9 @@ File: color.cfg 2016/01/02 v1.6 sample color configuration
 )
 Package xcolor Info: Driver file: pdftex.def on input line 227.
 (c:/Users/jerem/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/graphics-def/pdftex.def
-File: pdftex.def 2020/10/05 v1.2a Graphics/color driver for pdftex
+File: pdftex.def 2022/09/22 v1.2b Graphics/color driver for pdftex
+\stockwidth=\dimen148
+\stockheight=\dimen149
 ) (c:/Users/jerem/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/graphics/mathcolor.ltx)
 Package xcolor Info: Model `cmy' substituted by `cmy0' on input line 1353.
 Package xcolor Info: Model `hsb' substituted by `rgb' on input line 1357.
@@ -173,8 +175,8 @@ File: graphics.cfg 2016/06/04 v1.11 sample graphics configuration
 )
 Package graphics Info: Driver file: pdftex.def on input line 107.
 )
-\Gin@req@height=\dimen148
-\Gin@req@width=\dimen149
+\Gin@req@height=\dimen150
+\Gin@req@width=\dimen151
 )
 \cslhangindent=\skip52
 \csllabelwidth=\skip53
@@ -183,8 +185,8 @@ Package graphics Info: Driver file: pdftex.def on input line 107.
 Package: calc 2017/05/25 v4.3 Infix arithmetic (KKT,FJ)
 \calc@Acount=\count272
 \calc@Bcount=\count273
-\calc@Adimen=\dimen150
-\calc@Bdimen=\dimen151
+\calc@Adimen=\dimen152
+\calc@Bdimen=\dimen153
 \calc@Askip=\skip55
 \calc@Bskip=\skip56
 LaTeX Info: Redefining \setlength on input line 80.
@@ -217,23 +219,23 @@ Package: titling 2009/09/04 v2.1d maketitle typesetting
 \droptitle=\skip60
 ) (c:/Users/jerem/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/booktabs/booktabs.sty
 Package: booktabs 2020/01/12 v1.61803398 Publication quality tables
-\heavyrulewidth=\dimen152
-\lightrulewidth=\dimen153
-\cmidrulewidth=\dimen154
-\belowrulesep=\dimen155
-\belowbottomsep=\dimen156
-\aboverulesep=\dimen157
-\abovetopsep=\dimen158
-\cmidrulesep=\dimen159
-\cmidrulekern=\dimen160
-\defaultaddspace=\dimen161
+\heavyrulewidth=\dimen154
+\lightrulewidth=\dimen155
+\cmidrulewidth=\dimen156
+\belowrulesep=\dimen157
+\belowbottomsep=\dimen158
+\aboverulesep=\dimen159
+\abovetopsep=\dimen160
+\cmidrulesep=\dimen161
+\cmidrulekern=\dimen162
+\defaultaddspace=\dimen163
 \@cmidla=\count275
 \@cmidlb=\count276
-\@aboverulesep=\dimen162
-\@belowrulesep=\dimen163
+\@aboverulesep=\dimen164
+\@belowrulesep=\dimen165
 \@thisruleclass=\count277
 \@lastruleclass=\count278
-\@thisrulewidth=\dimen164
+\@thisrulewidth=\dimen166
 ) (c:/Users/jerem/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/tools/longtable.sty
 Package: longtable 2021-09-01 v4.17 Multi-page Table package (DPC)
 \LTleft=\skip61
@@ -241,7 +243,7 @@ Package: longtable 2021-09-01 v4.17 Multi-page Table package (DPC)
 \LTpre=\skip63
 \LTpost=\skip64
 \LTchunksize=\count279
-\LTcapwidth=\dimen165
+\LTcapwidth=\dimen167
 \LT@head=\box53
 \LT@firsthead=\box54
 \LT@foot=\box55
@@ -254,9 +256,9 @@ Package: longtable 2021-09-01 v4.17 Multi-page Table package (DPC)
 \LT@p@ftn=\toks24
 ) (c:/Users/jerem/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/tools/array.sty
 Package: array 2022/03/10 v2.5f Tabular extension package (FMi)
-\col@sep=\dimen166
+\col@sep=\dimen168
 \ar@mcellbox=\box58
-\extrarowheight=\dimen167
+\extrarowheight=\dimen169
 \NC@list=\toks25
 \extratabsurround=\skip65
 \backup@length=\skip66
@@ -266,10 +268,10 @@ Package: multirow 2021/03/15 v2.8 Span multiple rows of a table
 \multirow@colwidth=\skip67
 \multirow@cntb=\count284
 \multirow@dima=\skip68
-\bigstrutjot=\dimen168
+\bigstrutjot=\dimen170
 ) (c:/Users/jerem/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/wrapfig/wrapfig.sty
-\wrapoverhang=\dimen169
-\WF@size=\dimen170
+\wrapoverhang=\dimen171
+\WF@size=\dimen172
 \c@WF@wrappedlines=\count285
 \WF@box=\box60
 \WF@everypar=\toks26
@@ -298,8 +300,8 @@ Package: tabu 2019/01/11 v2.9 - flexible LaTeX tabulars (FC+tabu-fixed)
 Package: varwidth 2009/03/30 ver 0.92;  Variable-width minipages
 \@vwid@box=\box63
 \sift@deathcycles=\count288
-\@vwid@loff=\dimen171
-\@vwid@roff=\dimen172
+\@vwid@loff=\dimen173
+\@vwid@roff=\dimen174
 )
 \c@taburow=\count289
 \tabu@nbcols=\count290
@@ -307,15 +309,15 @@ Package: varwidth 2009/03/30 ver 0.92;  Variable-width minipages
 \tabu@Xcol=\count292
 \tabu@alloc=\count293
 \tabu@nested=\count294
-\tabu@target=\dimen173
-\tabu@spreadtarget=\dimen174
-\tabu@naturalX=\dimen175
-\tabucolX=\dimen176
-\tabu@Xsum=\dimen177
-\extrarowdepth=\dimen178
-\abovetabulinesep=\dimen179
-\belowtabulinesep=\dimen180
-\tabustrutrule=\dimen181
+\tabu@target=\dimen175
+\tabu@spreadtarget=\dimen176
+\tabu@naturalX=\dimen177
+\tabucolX=\dimen178
+\tabu@Xsum=\dimen179
+\extrarowdepth=\dimen180
+\abovetabulinesep=\dimen181
+\belowtabulinesep=\dimen182
+\tabustrutrule=\dimen183
 \tabu@thebody=\toks30
 \tabu@footnotes=\toks31
 \tabu@box=\box64
@@ -339,19 +341,19 @@ Package: trimspaces 2009/09/17 v1.1 Trim spaces around a token list
 \UL@hyphenbox=\box70
 \UL@skip=\skip72
 \UL@hook=\toks32
-\UL@height=\dimen182
+\UL@height=\dimen184
 \UL@pe=\count295
-\UL@pixel=\dimen183
+\UL@pixel=\dimen185
 \ULC@box=\box71
 Package: ulem 2019/11/18
-\ULdepth=\dimen184
+\ULdepth=\dimen186
 ) (c:/Users/jerem/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/makecell/makecell.sty
 Package: makecell 2009/08/03 V0.1e Managing of Tab Column Heads and Cells
-\rotheadsize=\dimen185
+\rotheadsize=\dimen187
 \c@nlinenum=\count296
 \TeXr@lab=\toks33
 ) (c:/Users/jerem/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/hyperref/hyperref.sty
-Package: hyperref 2022-06-20 v7.00s Hypertext links for LaTeX
+Package: hyperref 2022-09-22 v7.00t Hypertext links for LaTeX
 (c:/Users/jerem/AppData/Roaming/TinyTeX/texmf-dist/tex/generic/ltxcmds/ltxcmds.sty
 Package: ltxcmds 2020-05-10 v1.25 LaTeX kernel commands for general use (HO)
 ) (c:/Users/jerem/AppData/Roaming/TinyTeX/texmf-dist/tex/generic/pdftexcmds/pdftexcmds.sty
@@ -385,11 +387,11 @@ Package: kvoptions 2022-06-15 v3.15 Key value format for package options (HO)
 ))
 \c@section@level=\count297
 )
-\@linkdim=\dimen186
+\@linkdim=\dimen188
 \Hy@linkcounter=\count298
 \Hy@pagecounter=\count299
 (c:/Users/jerem/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/hyperref/pd1enc.def
-File: pd1enc.def 2022-06-20 v7.00s Hyperref: PDFDocEncoding definition (HO)
+File: pd1enc.def 2022-09-22 v7.00t Hyperref: PDFDocEncoding definition (HO)
 Now handling font encoding PD1 ...
 ... no UTF-8 mapping file for font encoding PD1
 ) (c:/Users/jerem/AppData/Roaming/TinyTeX/texmf-dist/tex/generic/intcalc/intcalc.sty
@@ -399,7 +401,7 @@ Package: etexcmds 2019/12/15 v1.7 Avoid name clashes with e-TeX commands (HO)
 )
 \Hy@SavedSpaceFactor=\count300
 (c:/Users/jerem/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/hyperref/puenc.def
-File: puenc.def 2022-06-20 v7.00s Hyperref: PDF Unicode definition (HO)
+File: puenc.def 2022-09-22 v7.00t Hyperref: PDF Unicode definition (HO)
 Now handling font encoding PU ...
 ... no UTF-8 mapping file for font encoding PU
 )
@@ -410,29 +412,29 @@ Package hyperref Info: Hyper index ON on input line 4170.
 Package hyperref Info: Plain pages OFF on input line 4177.
 Package hyperref Info: Backreferencing OFF on input line 4182.
 Package hyperref Info: Implicit mode ON; LaTeX internals redefined.
-Package hyperref Info: Bookmarks ON on input line 4408.
+Package hyperref Info: Bookmarks ON on input line 4410.
 \c@Hy@tempcnt=\count301
 (c:/Users/jerem/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/url/url.sty
 \Urlmuskip=\muskip17
 Package: url 2013/09/16  ver 3.4  Verb mode for urls, etc.
 )
-LaTeX Info: Redefining \url on input line 4746.
-\XeTeXLinkMargin=\dimen187
+LaTeX Info: Redefining \url on input line 4748.
+\XeTeXLinkMargin=\dimen189
 (c:/Users/jerem/AppData/Roaming/TinyTeX/texmf-dist/tex/generic/bitset/bitset.sty
 Package: bitset 2019/12/09 v1.3 Handle bit-vector datatype (HO)
 (c:/Users/jerem/AppData/Roaming/TinyTeX/texmf-dist/tex/generic/bigintcalc/bigintcalc.sty
 Package: bigintcalc 2019/12/15 v1.5 Expandable calculations on big integers (HO)
 ))
 \Fld@menulength=\count302
-\Field@Width=\dimen188
-\Fld@charsize=\dimen189
-Package hyperref Info: Hyper figures OFF on input line 6024.
-Package hyperref Info: Link nesting OFF on input line 6029.
-Package hyperref Info: Hyper index ON on input line 6032.
-Package hyperref Info: backreferencing OFF on input line 6039.
-Package hyperref Info: Link coloring OFF on input line 6044.
-Package hyperref Info: Link coloring with OCG OFF on input line 6049.
-Package hyperref Info: PDF/A mode OFF on input line 6054.
+\Field@Width=\dimen190
+\Fld@charsize=\dimen191
+Package hyperref Info: Hyper figures OFF on input line 6027.
+Package hyperref Info: Link nesting OFF on input line 6032.
+Package hyperref Info: Hyper index ON on input line 6035.
+Package hyperref Info: backreferencing OFF on input line 6042.
+Package hyperref Info: Link coloring OFF on input line 6047.
+Package hyperref Info: Link coloring with OCG OFF on input line 6052.
+Package hyperref Info: PDF/A mode OFF on input line 6057.
 (c:/Users/jerem/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/base/atbegshi-ltx.sty
 Package: atbegshi-ltx 2021/01/10 v1.0c Emulation of the original atbegshi
 package with kernel methods
@@ -443,7 +445,7 @@ package with kernel methods
 )
 Package hyperref Info: Driver (autodetected): hpdftex.
 (c:/Users/jerem/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/hyperref/hpdftex.def
-File: hpdftex.def 2022-06-20 v7.00s Hyperref driver for pdfTeX
+File: hpdftex.def 2022-09-22 v7.00t Hyperref driver for pdfTeX
 (c:/Users/jerem/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/base/atveryend-ltx.sty
 Package: atveryend-ltx 2020/08/19 v1.0a Emulation of the original atveryend package
 with kernel methods
@@ -642,7 +644,7 @@ Overfull \hbox (105.59988pt too wide) has occurred while \output is active
  []
 
 [22] [23]
-Underfull \hbox (badness 1331) in paragraph at lines 950--956
+Underfull \hbox (badness 1331) in paragraph at lines 956--962
 \T1/lmr/m/n/12 prov-input-options)). Na-tional de-fault. Un-nec-es-sary to
  []
 
@@ -652,46 +654,46 @@ Overfull \hbox (105.59988pt too wide) has occurred while \output is active
  []
 
 [24]
-Underfull \hbox (badness 1019) in paragraph at lines 976--990
-\T1/lmr/m/n/12 and Fig-ure @ref(fig:template-map-fig) de-scribes the ge-o-graphic
+Underfull \hbox (badness 2318) in paragraph at lines 991--999
+[]\T1/lmr/m/n/12 The \T1/lmtt/m/n/12 HWP Data/ExistingData/ \T1/lmr/m/n/12 folder con-tains the Cal-i-for-nia,
  []
 
 <images/regions_map.png, id=225, 804.00375pt x 513.41812pt>
 File: images/regions_map.png Graphic file (type png)
 <use images/regions_map.png>
-Package pdftex.def Info: images/regions_map.png  used on input line 992.
+Package pdftex.def Info: images/regions_map.png  used on input line 1001.
 (pdftex.def)             Requested size: 344.99106pt x 220.30327pt.
 [25]
 Overfull \hbox (105.59988pt too wide) has occurred while \output is active
 \T1/lmr/m/n/12 26 \T1/lmr/m/sl/12 OPTION 2: UPLOAD AND RUN YOUR OWN DATA IN THE WEB APPLICATION
  []
 
-[26 <./images/regions_map.png>]
-Overfull \hbox (29.30035pt too wide) in paragraph at lines 1033--1036
+[26 <./images/regions_map.png>] [27]
+Overfull \hbox (29.30035pt too wide) in paragraph at lines 1060--1063
 \T1/lmr/m/n/12 as CA_Inputs_HWP_Model.xlsx or Ore-gon_Inputs_HWP_Model.xlsx,
  []
 
 
-Overfull \hbox (58.27878pt too wide) in paragraph at lines 1042--1049
+Overfull \hbox (58.27878pt too wide) in paragraph at lines 1069--1076
 []\T1/lmr/m/n/12 The first work-sheet in the in-put data tem-plate file, HWP_MODEL_OPTIONS,
  []
 
-[27]
+
 Overfull \hbox (105.59988pt too wide) has occurred while \output is active
 \T1/lmr/m/n/12 28 \T1/lmr/m/sl/12 OPTION 2: UPLOAD AND RUN YOUR OWN DATA IN THE WEB APPLICATION
  []
 
-[28]
-Overfull \hbox (17.51909pt too wide) in paragraph at lines 1103--1109
+[28] [29]
+Overfull \hbox (17.51909pt too wide) in paragraph at lines 1130--1136
 \T1/lmr/m/n/12 model. The de-fault value is ``HWP_Stand_Alone_Files/Arrays/''.
  []
 
 
-Overfull \hbox (16.2181pt too wide) in paragraph at lines 1109--1115
+Overfull \hbox (16.2181pt too wide) in paragraph at lines 1136--1142
 \T1/lmr/m/n/12 model. The de-fault value is ``HWP_Stand_Alone_Files/Tables/''.
  []
 
-[29]
+
 Overfull \hbox (105.59988pt too wide) has occurred while \output is active
 \T1/lmr/m/n/12 30 \T1/lmr/m/sl/12 OPTION 2: UPLOAD AND RUN YOUR OWN DATA IN THE WEB APPLICATION
  []
@@ -711,126 +713,61 @@ Overfull \hbox (105.59988pt too wide) has occurred while \output is active
 \T1/lmr/m/n/12 36 \T1/lmr/m/sl/12 OPTION 2: UPLOAD AND RUN YOUR OWN DATA IN THE WEB APPLICATION
  []
 
-[36]
-Underfull \vbox (badness 3019) has occurred while \output is active []
-
-[37]
+[36] [37]
 Overfull \hbox (105.59988pt too wide) has occurred while \output is active
 \T1/lmr/m/n/12 38 \T1/lmr/m/sl/12 OPTION 2: UPLOAD AND RUN YOUR OWN DATA IN THE WEB APPLICATION
  []
 
-[38]
-Underfull \hbox (badness 3919) in paragraph at lines 1524--1537
-\T1/lmr/m/n/12 (CA_DiscardEnergyCapture_Test.xlsx, see Sec-tion @ref(dnld-
- []
-
-[39]
+[38] [39]
 Overfull \hbox (105.59988pt too wide) has occurred while \output is active
 \T1/lmr/m/n/12 40 \T1/lmr/m/sl/12 OPTION 2: UPLOAD AND RUN YOUR OWN DATA IN THE WEB APPLICATION
  []
 
-[40] [41]
-Underfull \hbox (badness 10000) in paragraph at lines 1641--1655
-
+[40]
+Underfull \hbox (badness 3919) in paragraph at lines 1592--1605
+\T1/lmr/m/n/12 (CA_DiscardEnergyCapture_Test.xlsx, see Sec-tion @ref(dnld-
  []
+
+[41]
+Underfull \vbox (badness 10000) has occurred while \output is active []
 
 
 Overfull \hbox (105.59988pt too wide) has occurred while \output is active
 \T1/lmr/m/n/12 42 \T1/lmr/m/sl/12 OPTION 2: UPLOAD AND RUN YOUR OWN DATA IN THE WEB APPLICATION
  []
 
-[42] [43]
-Overfull \hbox (10.79016pt too wide) in paragraph at lines 1702--1711
-[]\T1/lmr/m/n/12 Landfill_HalfLives, Dump_HalfLives, Re-cov-ered_HalfLives:
+[42]
+Underfull \hbox (badness 10000) in paragraph at lines 1709--1723
+
  []
 
-
+[43]
 Overfull \hbox (105.59988pt too wide) has occurred while \output is active
 \T1/lmr/m/n/12 44 \T1/lmr/m/sl/12 OPTION 2: UPLOAD AND RUN YOUR OWN DATA IN THE WEB APPLICATION
  []
 
-[44] [45]
+[44]
+Overfull \hbox (10.79016pt too wide) in paragraph at lines 1770--1779
+[]\T1/lmr/m/n/12 Landfill_HalfLives, Dump_HalfLives, Re-cov-ered_HalfLives:
+ []
+
+[45]
 Overfull \hbox (105.59988pt too wide) has occurred while \output is active
 \T1/lmr/m/n/12 46 \T1/lmr/m/sl/12 OPTION 2: UPLOAD AND RUN YOUR OWN DATA IN THE WEB APPLICATION
  []
 
-[46]
-Underfull \hbox (badness 10000) in paragraph at lines 1817--1819
+[46] [47]
+Underfull \hbox (badness 10000) in paragraph at lines 1885--1887
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 1819--1821
+Underfull \hbox (badness 10000) in paragraph at lines 1887--1889
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 1834--1837
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 1837--1840
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 1848--1851
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 1851--1856
-
- []
-
-[47]
-Underfull \hbox (badness 10000) in paragraph at lines 1856--1858
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 1858--1860
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 1868--1871
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 1871--1873
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 1873--1875
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 1875--1878
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 1886--1888
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 1888--1891
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 1899--1902
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 1902--1904
+Underfull \hbox (badness 10000) in paragraph at lines 1902--1905
 
  []
 
@@ -840,43 +777,33 @@ Overfull \hbox (105.59988pt too wide) has occurred while \output is active
  []
 
 [48]
-Underfull \hbox (badness 10000) in paragraph at lines 1904--1906
+Underfull \hbox (badness 10000) in paragraph at lines 1905--1908
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 1906--1909
+Underfull \hbox (badness 10000) in paragraph at lines 1916--1919
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 1917--1921
+Underfull \hbox (badness 10000) in paragraph at lines 1919--1924
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 1921--1923
+Underfull \hbox (badness 10000) in paragraph at lines 1924--1926
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 1923--1925
+Underfull \hbox (badness 10000) in paragraph at lines 1926--1928
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 1925--1928
+Underfull \hbox (badness 10000) in paragraph at lines 1936--1939
 
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 1928--1931
-
- []
-
-
-Underfull \hbox (badness 1221) in paragraph at lines 1939--1941
-[]\T1/lmr/m/n/12 The col-umn names must be, in or-der, "En-dU-seID" and
  []
 
 
@@ -885,72 +812,67 @@ Underfull \hbox (badness 10000) in paragraph at lines 1939--1941
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 1941--1944
+Underfull \hbox (badness 10000) in paragraph at lines 1941--1943
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 1943--1946
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 1954--1956
 
  []
 
 [49]
-Underfull \hbox (badness 10000) in paragraph at lines 1952--1955
+Underfull \hbox (badness 10000) in paragraph at lines 1956--1959
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 1955--1957
+Underfull \hbox (badness 10000) in paragraph at lines 1967--1970
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 1957--1959
+Underfull \hbox (badness 10000) in paragraph at lines 1970--1972
 
  []
 
 
-Underfull \hbox (badness 1406) in paragraph at lines 1967--1971
-[]\T1/lmr/m/n/12 The col-umn names must be, in or-der, "Pa-ram-e-ter_ID",
- []
-
-
-Underfull \hbox (badness 4981) in paragraph at lines 1967--1971
-\T1/lmr/m/n/12 "Pa-ram-e-ter_Name", "Pa-per", "First_Year", "Last_Year",
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 1967--1971
+Underfull \hbox (badness 10000) in paragraph at lines 1972--1974
 
  []
 
 
-Underfull \hbox (badness 1168) in paragraph at lines 1971--1978
-[]\T1/lmr/m/n/12 The pa-ram-e-ter names need to be la-beled "CCFtoMTC",
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 1971--1978
-\T1/lmr/m/n/12 "En-dUse_HalfLives", "En-dUseR-a-tios", "Dis-carded-Dis-po-si-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 1971--1978
-\T1/lmr/m/n/12 tion-Ra-tios", "Land-fillDe-cayLim-its", "Land-fill_HalfLives",
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 1971--1978
+Underfull \hbox (badness 10000) in paragraph at lines 1974--1977
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 1978--1980
+Underfull \hbox (badness 10000) in paragraph at lines 1985--1989
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 1980--1983
+Underfull \hbox (badness 10000) in paragraph at lines 1989--1991
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 1983--1986
+Underfull \hbox (badness 10000) in paragraph at lines 1991--1993
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 1993--1996
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 1996--1999
 
  []
 
@@ -960,11 +882,96 @@ Overfull \hbox (105.59988pt too wide) has occurred while \output is active
  []
 
 [50]
-Overfull \hbox (141.31897pt too wide) has occurred while \output is active
-\T1/lmr/m/sl/12 UPLOADING YOUR DATA AND RUNNING THE MODEL FROM THE SHINY WEB APP \T1/lmr/m/n/12 51
+Underfull \hbox (badness 1221) in paragraph at lines 2007--2009
+[]\T1/lmr/m/n/12 The col-umn names must be, in or-der, "En-dU-seID" and
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 2007--2009
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 2009--2012
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 2020--2023
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 2023--2025
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 2025--2027
+
+ []
+
+
+Underfull \hbox (badness 1406) in paragraph at lines 2035--2039
+[]\T1/lmr/m/n/12 The col-umn names must be, in or-der, "Pa-ram-e-ter_ID",
+ []
+
+
+Underfull \hbox (badness 4981) in paragraph at lines 2035--2039
+\T1/lmr/m/n/12 "Pa-ram-e-ter_Name", "Pa-per", "First_Year", "Last_Year",
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 2035--2039
+
+ []
+
+
+Underfull \hbox (badness 1168) in paragraph at lines 2039--2046
+[]\T1/lmr/m/n/12 The pa-ram-e-ter names need to be la-beled "CCFtoMTC",
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 2039--2046
+\T1/lmr/m/n/12 "En-dUse_HalfLives", "En-dUseR-a-tios", "Dis-carded-Dis-po-si-
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 2039--2046
+\T1/lmr/m/n/12 tion-Ra-tios", "Land-fillDe-cayLim-its", "Land-fill_HalfLives",
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 2039--2046
+
  []
 
 [51]
+Underfull \hbox (badness 10000) in paragraph at lines 2046--2048
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 2048--2051
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 2051--2054
+
+ []
+
+
+Overfull \hbox (105.59988pt too wide) has occurred while \output is active
+\T1/lmr/m/n/12 52 \T1/lmr/m/sl/12 OPTION 2: UPLOAD AND RUN YOUR OWN DATA IN THE WEB APPLICATION
+ []
+
+[52]
+Overfull \hbox (141.31897pt too wide) has occurred while \output is active
+\T1/lmr/m/sl/12 UPLOADING YOUR DATA AND RUNNING THE MODEL FROM THE SHINY WEB APP \T1/lmr/m/n/12 53
+ []
+
+[53]
 
 ! LaTeX Error: Environment greybox undefined.
 
@@ -972,13 +979,13 @@ See the LaTeX manual or LaTeX Companion for explanation.
 Type  H <return>  for immediate help.
  ...                                              
                                                   
-l.2057 \begin{greybox}
+l.2125 \begin{greybox}
                        
 Here is how much of TeX's memory you used:
- 13010 strings out of 477035
- 211305 string characters out of 5826726
- 564360 words of memory out of 5000000
- 33727 multiletter control sequences out of 15000+600000
+ 13026 strings out of 477035
+ 211678 string characters out of 5826726
+ 564723 words of memory out of 5000000
+ 33733 multiletter control sequences out of 15000+600000
  523897 words of font info for 60 fonts, out of 8000000 for 9000
  14 hyphenation exceptions out of 8191
  108i,6n,106p,647b,581s stack positions out of 10000i,1000n,20000p,200000b,200000s

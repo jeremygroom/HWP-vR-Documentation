@@ -51,22 +51,28 @@ README.md: This file may contain some information about the GitHub version.
 renv.loc: R environment information.    
 
 */HWP-C-vR/HWP Data/*  
-This folder contains Oregon, California, and Washington data that may be uploaded into the app as well as templates for constructing input files from elsewhere in the United States.  
+This folder contains Oregon, California, and Washington data that may be uploaded into the app, test data for exploring the model's functionality, and templates for constructing input files for elsewhere in the United States.  
 
 */HWP-C-vR/HWP Data/ExistingData/*  
-This folder contains data files that may be loaded into the app or into the stand-alone model.  The files (mostly) include a harvest time series and timber and primary product ratios developed for these state-level inventories
+This folder contains data files that may be loaded into the app or into the stand-alone model.  The files include a harvest time series and timber and primary product ratios developed for these state-level inventories
+
+* CA_Inputs_HWP_Model.xlsx, Oregon_Inputs_HWP_Model.xlsx: These file contains the California and Oregon data already loaded in the app.  
+
+* WA_Inputs_HWP_Model.xlsx: This file contains data for Washington State.    
+
+
+*/HWP-C-vR/HWP Data/ModelExploration/*  
+This folder contains files that allow the user to experience the app under different data scenarios (e.g., no ownership data) and practice appending additional data to existing files.    
 
 * bogus.xlsx: This file will cause the QA check to halt the processing of the data and produce a warning.  
 
 * CA_DiscardEnergyCapture_Test: This file contains the California data.  The worksheet for discard fates (Section \@ref(own-prov-input-discFates)) is altered from 1980 and beyond to include a fraction of Discard Energy Capture (DEC).  
 
-* CA_Inputs_HWP_Model.xlsx, Oregon_Inputs_HWP_Model.xlsx: These file contains the California and Oregon data already loaded in the app.  
-
 * OR_no_owner.xlsx: This file contains only total data for Oregon and lacks any ownership information.  
  
-* Oregon_MBF_2019: This file is not an input file.  It contains additional harvest data for 2019 so that users may practice appending harvest data with provided code (Section \@ref(dnld-add)).  
+* Oregon_MBF_2019.xlsx: This file is not an input file.  It contains two rows of additional Oregon harvest data for 2018 and 2019.  Users may practice appending this harvest data to the current Oregon harvest data (1906 - 2017) with provided code (Section \@ref(dnld-add)).     
 
-* WA_Inputs_HWP_Model.xlsx: This file contains data for Washington State.    
+* Oregon_MBF_2019v2.xlsx: Same as above, but this version includes all available Oregon harvest data (1906 - 2019).
 
 */HWP-C-vR/HWP Data/Templates/*  
 This folder contains sub-folders that direct users to Excel templates that they can use when building their input file.
@@ -223,17 +229,21 @@ If the user's data input file indicates that the stand-alone model code should g
 
 
 ## How to add new data years to your data set       {#dnld-add}
-Users may wish to generate model outputs annually or every few years with new harvest values.  However, they may not want to alter all of the worksheets in their data file by hand to account for the newly added harvest years.  The file **Append_Harvest_Data.R** takes, as input, an Excel file with a single worksheet of harvest by thousand board feet, formatted in the same way as their earlier Harvest_MBF worksheet.  The user points the code toward their original data file, the new Harvest_MBF Excel file, and provides a name for the output Excel file.  The code will make all necessary changes to the original file and append the new years.  Importantly, where needed, the code will read values used for the year prior and duplicate them for the new data.  Therefore, if the user wishes to update Timber Product Ratios, Primary Product Ratios, End Use Ratios, or any other dataset, they will need to do so by hand, possibly after this procedure is run.    
+Users may wish to generate model outputs annually or every few years with new harvest values.  However, they may not want to alter all of the worksheets in their data file by hand to account for the newly added harvest years.  The file **Append_Harvest_Data.R** takes, as input, an Excel file with a single worksheet of harvest by thousand board feet, formatted in the same way as their earlier Harvest_MBF worksheet.  The user points the code toward their original data file, the new Harvest_MBF Excel file, and provides a name for the output Excel file.  They also provide a location for the new file to be written.  The code will make all necessary changes to the original file and append the new years.  Importantly, where needed, the code will read values used for the year prior and duplicate them in the new data set.  Therefore, if the user wishes to update Timber Product Ratios, Primary Product Ratios, End Use Ratios, or any other dataset, they will need to do so by hand, possibly after this procedure is run.    
 
 As an example, say we wish to add 2018 and 2019 harvest levels to Oregon’s data.  We open the Append_Harvest_Data.R file in the `HWP-C-vR.Rproj` RStudio project, run the first few lines that load the needed libraries, and then alter the following lines to read:   
-`ORIG.DATA.FILE <- "Oregon_Inputs_HWP_Model.xlsx" `  
-`NEW.DATA <- "Oregon_MBF_2019.xlsx"`            
-`DATA.FOLDER <- "HWP Data/ExistingData/"`              
-`OUT.DATA <- "Oregon_Inputs_HWP_Modelv2.xlsx"`  
 
-The first of those lines refers to the original data, the second the name of the file with the Harvest_MBF data for the new years, the third line identifies the location of the input data files, and the last line is the name the user wishes to use for the updated data set.  
+`ORIG.DATA.FILE <- "Oregon_Inputs_HWP_Model.xlsx"`    
+`NEW.DATA.FILE <- "Oregon_MBF_2019.xlsx"`             
+`OUT.DATA.FILE <- "Oregon_Inputs_HWP_Modelv2.xlsx"`       
 
-The new data can provide all of the original data for harvest board feet in addition to the more recent harvest data (e.g., `Oregon_MBF_2019.xlsx`).  Or, the user can provide just the new data (e.g., `Oregon_MBF_2019v2.xlsx`).  Once those four lines are correct the user can select and run all of the code from the file.  The code will attempt to generate a new Excel file with the desired updates.  The code also performs some QA checks:    
+`ORIG.DATA.FOLDER <- "HWP Data/ExistingData/"`         
+`NEW.DATA.FOLDER <- "HWP Data/ModelExploration/"`      
+`OUT.DATA.FOLDER <- "HWP Data/ModelExploration/"`   
+
+The first of those lines identifies the name of the original data, the second the name of the file with the Harvest_MBF data for the new years, and the third line assigns the name of the output data file.  Lines 4-6 identify the folder locations of the original, updated, and output data set Excel files.    
+
+The new data file can provide data for just the new years (e.g., `Oregon_MBF_2019.xlsx`); or, the user can provide all of the original harvest data in addition to the more recent harvest data (e.g., `Oregon_MBF_2019v2.xlsx`).  Once those six lines are correct the user can select and run all of the code from the file.  The code will attempt to generate a new Excel file with the desired updates.  The code also performs some QA checks:    
 
 *	Verifies that data are numeric    
 
