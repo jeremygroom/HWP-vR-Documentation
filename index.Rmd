@@ -13,6 +13,8 @@ description: "This HWP vR documentation was written in bookdown.  \nThe HTML out
   format for this document is bookdown::gitbook,\nset in the _output.yml file.\n"
 link-citations: yes
 github-repo: jeremygroom/HWP-vR-Documentation
+language: "en"
+lang: "en"
 header-includes:
 - \usepackage[fontsize=12pt]{scrextend}
 - \usepackage{titling}

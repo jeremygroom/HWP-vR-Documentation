@@ -73,6 +73,15 @@
 \newcommand{\CSLLeftMargin}[1]{\parbox[t]{\csllabelwidth}{#1}}
 \newcommand{\CSLRightInline}[1]{\parbox[t]{\linewidth - \csllabelwidth}{#1}\break}
 \newcommand{\CSLIndent}[1]{\hspace{\cslhangindent}#1}
+\ifLuaTeX
+\usepackage[bidi=basic]{babel}
+\else
+\usepackage[bidi=default]{babel}
+\fi
+\babelprovide[main,import]{english}
+% get rid of language-specific shorthands (see #6817):
+\let\LanguageShortHands\languageshorthands
+\def\languageshorthands#1{}
 \usepackage[fontsize=12pt]{scrextend}
 \usepackage{titling}
 \pretitle{\begin{center}\vspace{5cm}\LARGE}
@@ -102,6 +111,7 @@
 \urlstyle{same} % disable monospaced font for URLs
 \hypersetup{
   pdftitle={Harvested Wood Products Carbon Model, Version R Documentation},
+  pdflang={en},
   hidelinks,
   pdfcreator={LaTeX via pandoc}}
 
@@ -111,7 +121,7 @@ Groom Analytics, LLC\\
 \strut \\
 Nadia Tase\\
 California Department of Forestry and Fire Protection}
-\date{Date: September 26, 2022}
+\date{Date: October 03, 2022}
 
 \begin{document}
 \frontmatter
@@ -356,7 +366,7 @@ and primary product ratios (PPR). Total harvest volumes or volumes
 partitioned by ownership can be analyzed. Conversion factors are used to
 convert harvest volumes in thousand board feet (MBF) to cubic foot (CF)
 volumes. Primary product volumes in cubic feet are then converted to
-units of carbon using conversions from Smith
+units of carbon using conversions from Smith et al.
 (\protect\hyperlink{ref-smith2006}{2006}). Primary products are then
 distributed to end-uses using ratios (EUR) from McKeever
 (\protect\hyperlink{ref-mckeever2009}{2009}) and McKeever and Howard
@@ -537,10 +547,10 @@ Northern Region of the National Forest System
 (\protect\hyperlink{ref-stockmann2012}{Stockmann et al. 2012};
 \protect\hyperlink{ref-anderson2013}{Anderson et al. 2013}). The Excel
 version was updated to one programmed in C++ for the remaining USFS
-Regional HWP carbon inventories (USFS HWP-C; e.g.,
-(\protect\hyperlink{ref-butler2014}{\textbf{butler2014?}}),
-(\protect\hyperlink{ref-loeffler2014}{\textbf{loeffler2014?}}),
-(\protect\hyperlink{ref-stockmann2014}{\textbf{stockmann2014?}})). The
+Regional HWP carbon inventories (USFS HWP-C; e.g., Butler, Stockmann,
+Anderson, Skog, et al. (\protect\hyperlink{ref-butler2014nw}{2014}),
+Loeffler et al. (\protect\hyperlink{ref-loeffler2014sr}{2014b}),
+Stockmann et al. (\protect\hyperlink{ref-stockmann2014imr}{2014c})). The
 model was then modified in 2017 by the USFS for use in the California
 Forest Ecosystem and Harvested Wood Product Carbon Inventory
 (\protect\hyperlink{ref-loeffler2019}{Loeffler et al. 2019}) and is
@@ -688,15 +698,21 @@ The three figure options under Timber Harvest Summaries are
   \textbf{Harvest by Functional Lifespan}. The HWP model has different
   half-lives for products in use. This figure bins the annual volume of
   harvest sent to different end use products by their associated
-  half-lives. The figure displays values by either the harvest volume or
-  proportion of total harvest.
+  half-lives. Half-life groupings for ``short,'' ``medium,'' and
+  ``long'' lifespan categories were determined through expert opinion in
+  the Canadian Forest Service, the British Columbia Ministry of Forests,
+  the California Department of Forestry and Fire Protection, the Oregon
+  Department of Forestry, and the University of Montana Bureau of
+  Business and Economic Research. The figure displays values by either
+  the harvest volume or proportion of total harvest.
 \end{itemize}
 
 \hypertarget{app-shiny-cse}{%
 \subsection{Carbon Storage and Emissions figures}\label{app-shiny-cse}}
 
 These four figures, under the Carbon Storage and Emissions menu option,
-track the size of pools and emissions categories over time.
+track the size of pools and emissions categories in Tg C or Tg CO\(_2\)e
+over time.
 
 \begin{itemize}
 \item
@@ -827,7 +843,7 @@ If the user has the data, it is also ideal for them to supply the annual
 primary product ratios (PPR) that allocate timber products to different
 primary products and residue uses. However, if the user does not have
 these data they can rely on defaults provided for California, Oregon,
-Washington, or the U.S. regions developed in Smith
+Washington, or the U.S. regions developed in Smith et al.
 (\protect\hyperlink{ref-smith2006}{2006}). The user may rely on the
 defaults provided for the remaining datasets, though advanced users may
 supply their own values if desired. Details for all input data template
@@ -984,9 +1000,9 @@ based templates to work from. These templates were derived from those
 offered with the USFS HWP v1 tool, see Section @ref(int-hist). Each
 subfolder contains a different template, and Figure
 @ref(fig:template-map-fig) describes the geographic range for each
-template. Note that these geographic regions were determined by Smith
-(\protect\hyperlink{ref-smith2006}{2006}) and differ slightly from U.S.
-Forest Service regions.
+template. Note that these geographic regions were determined by Smith et
+al. (\protect\hyperlink{ref-smith2006}{2006}) and differ slightly from
+U.S. Forest Service regions.
 
 The \texttt{HWP\ Data/ExistingData/} folder contains the California,
 Washington, and Oregon data sets along with other supporting data sets
@@ -1007,11 +1023,12 @@ citations listed in the section above to revise or verify given values.
 The \texttt{Natl\_datasets} folder contains a (U.S.) national template
 that additionally lacks primary product ratios and the board foot to
 cubic foot conversion factors. The other original templates based on
-Smith (\protect\hyperlink{ref-smith2006}{2006}) geographic regions each
-have a unique primary products ratios data sheet (except for the Pacific
-Southwest which shares values with the California input file) that rely
-on Smith (\protect\hyperlink{ref-smith2006}{2006}) which in turn depends
-on information from Adams (\protect\hyperlink{ref-adams2006}{2006}), and
+Smith et al. (\protect\hyperlink{ref-smith2006}{2006}) geographic
+regions each have a unique primary products ratios data sheet (except
+for the Pacific Southwest which shares values with the California input
+file) that rely on Smith et al.
+(\protect\hyperlink{ref-smith2006}{2006}) which in turn depends on
+information from Adams (\protect\hyperlink{ref-adams2006}{2006}), and
 therefore are likely based on mill surveys updated through 2005 at the
 latest. We urge users to consider carefully whether they want to use
 these included values. These ratios, as can be seen, are constant across
@@ -1250,8 +1267,7 @@ completed in the R code to account for harvest volumes being provided in
 thousand board feet (MBF) and subsequent model calculations occurring on
 units of hundred cubic feet (CCF). Factors used to convert BF to CF vary
 by time and place. Conversions are based on Scribner log scale rather
-than lumber scale rules. Annual harvest time series are provided for
-California, Oregon and Washington.
+than lumber scale rules.
 
 Generic conversions are provided in the original regional templates that
 are the same for each region. These values are only updated to 2007 and
@@ -1267,7 +1283,7 @@ region, as noted above. The original values and the recommended values
 for each state within the model region are provided as notes within each
 template. Users must decide which value to use and populate the
 necessary fields in the template themselves. Ideally the user provides
-local or regional values and updates the values whenever relevatn mill
+local or regional values and updates the values whenever relevant mill
 surveys are completed.
 
 The user may choose to change these conversion factors when mill surveys
@@ -1360,10 +1376,10 @@ Oswald (\protect\hyperlink{ref-barrette1970}{1970}), Hiserote and Howard
 (\protect\hyperlink{ref-ward1995}{1995}), and Ward
 (\protect\hyperlink{ref-ward1997}{1997}). The original model templates
 for the nine US regions (see Figure @ref(fig:template-map-fig)) rely on
-Smith (\protect\hyperlink{ref-smith2006}{2006}) which in turn depends on
-information from Adams (\protect\hyperlink{ref-adams2006}{2006}), and
-therefore are likely based on mill surveys updated through 2005 at the
-latest.
+Smith et al. (\protect\hyperlink{ref-smith2006}{2006}) which in turn
+depends on information from Adams
+(\protect\hyperlink{ref-adams2006}{2006}), and therefore are likely
+based on mill surveys updated through 2005 at the latest.
 
 \hypertarget{own-prov-input-ppr}{%
 \subsubsection{Primary Product Ratios}\label{own-prov-input-ppr}}
@@ -1421,10 +1437,11 @@ Oswald (\protect\hyperlink{ref-barrette1970}{1970}), Hiserote and Howard
 (\protect\hyperlink{ref-morgan2012}{2012}), Ward
 (\protect\hyperlink{ref-ward1995}{1995}), and Ward
 (\protect\hyperlink{ref-ward1997}{1997}). The original model templates
-for NFS Region 9 rely on Smith (\protect\hyperlink{ref-smith2006}{2006})
-which in turn depends on information from Adams
-(\protect\hyperlink{ref-adams2006}{2006}), and therefore are likely
-based on mill surveys updated through 2005 at the latest.
+for NFS Region 9 rely on Smith et al.
+(\protect\hyperlink{ref-smith2006}{2006}) which in turn depends on
+information from Adams (\protect\hyperlink{ref-adams2006}{2006}), and
+therefore are likely based on mill surveys updated through 2005 at the
+latest.
 
 \hypertarget{own-prov-input-eur}{%
 \subsubsection{End Use Ratios}\label{own-prov-input-eur}}
@@ -1435,15 +1452,13 @@ The worksheet EndUseRatios contains end use ratios, or EUR. End-use
 product ratios determine the annual distribution of primary wood
 products, such as lumber and non-structural panels, to end-uses, such as
 single family new housing and furniture manufacturing. These ratios
-determine the amount of each primary product that enters the Products in
-Use (PIU) carbon pool and the end-use each primary product is associated
-with. The end-use is important to know because it will determine the
-time the carbon remains in the PIU pool prior to discard based on
-end-use product half-lives discussed in Section
-@ref(own-prov-input-euhl). National default EURs are provided. It is
-unnecessary for the user to modify these ratios unless the national
-dataset is updated or users want to explore hypothetical wood
-utilization scenarios.
+determine the end-use each primary product is associated with. The
+end-use is important to know because it will determine the time the
+carbon remains in the PIU pool prior to discard based on end-use product
+half-lives discussed in Section @ref(own-prov-input-euhl). National
+default EURs are provided. It is unnecessary for the user to modify
+these ratios unless the national dataset is updated or users want to
+explore hypothetical wood utilization scenarios.
 
 The distribution of each primary product among end-uses must sum to 1.0.
 The program will only work if each primary products end-use distribution
@@ -1457,12 +1472,12 @@ years annual harvest data is provided for in the worksheet named
 ``Harvest\_MBF''. All year-column values must sum to the number of PPR
 rows. Row values may change over time. \emph{Currently values for the
 last year for which data are available (2009) are applied forward for
-all subsequent years to the present. However, 2009 was in the heart of
-the recession and may not be representative of more recent years. Users
-may want to use EURs from a year just prior to the recession, such as
-2006, for more recent analysis years. On the other hand, using 2006 EUR
-values would not reflect the changes in milling opportunities that may
-have occurred after the recession.}.
+all subsequent years to the present. However, 2009 was in the tail end
+of the Great Recession and may not be representative of more recent
+years. Users may want to use EURs from a year just prior to the
+recession, such as 2006, for more recent analysis years. On the other
+hand, using 2006 EUR values would not reflect the changes in milling
+opportunities that may have occurred after the recession.}.
 
 National end-use ratios were obtained from McKeever
 (\protect\hyperlink{ref-mckeever2009}{2009}) and McKeever and Howard
@@ -1506,7 +1521,7 @@ The first column title must be PrimaryProductID, and the second column
 CCFtoMTconv. The first column values must be integers and include all
 primary product ratio categories.
 
-The conversion factors were obtained from Smith
+The conversion factors were obtained from Smith et al.
 (\protect\hyperlink{ref-smith2006}{2006}) and Skog
 (\protect\hyperlink{ref-skog2008}{2008}).
 
@@ -1534,16 +1549,16 @@ EndUseID, the second EU\_HalfLife. The values for EndUseID must be
 integers and include all end use ratio categories.
 
 References for end-use product half-lives are listed in and were
-obtained from Smith (\protect\hyperlink{ref-smith2006}{2006}). In turn,
-Smith (\protect\hyperlink{ref-smith2006}{2006}) cites Skog and Nicholson
-(\protect\hyperlink{ref-skog1998}{1998}), Skog and Nicholson
-(\protect\hyperlink{ref-skog2000}{2000}) (which is identical to Skog and
-Nicholson (\protect\hyperlink{ref-skog1998}{1998})), and Row and Phelps
-(\protect\hyperlink{ref-row1996}{1996}). Not all end-use half-lives used
-in the tool appear to have published half-lives. Some half-lives used
-for one product category were assumed to be sufficient for others that
-lacked data. A forthcoming general technical report from the USFS
-documents these apparent assumptions
+obtained from Smith et al. (\protect\hyperlink{ref-smith2006}{2006}). In
+turn, Smith et al. (\protect\hyperlink{ref-smith2006}{2006}) cites Skog
+and Nicholson (\protect\hyperlink{ref-skog1998}{1998}), Skog and
+Nicholson (\protect\hyperlink{ref-skog2000}{2000}) (which is identical
+to Skog and Nicholson (\protect\hyperlink{ref-skog1998}{1998})), and Row
+and Phelps (\protect\hyperlink{ref-row1996}{1996}). Not all end-use
+half-lives used in the tool appear to have published half-lives. Some
+half-lives used for one product category were assumed to be sufficient
+for others that lacked data. A forthcoming general technical report from
+the USFS documents these apparent assumptions
 (\protect\hyperlink{ref-lucey202X}{Lucey et al. In review}).
 
 \hypertarget{own-prov-input-discFates}{%
@@ -1657,7 +1672,7 @@ Skog (\protect\hyperlink{ref-skog2008}{2008}) cites Pingoud et al.
 However, the value in Pingoud et al.
 (\protect\hyperlink{ref-pingoud2006}{2006}) is not what was included in
 the original USFS versions of the tool and the value that was included
-appears to match the paper half-life presented in Smith
+appears to match the paper half-life presented in Smith et al.
 (\protect\hyperlink{ref-smith2006}{2006}).
 
 For the landfill fixed carbon ratio information, Skog
@@ -2978,16 +2993,17 @@ Figure 7 in Stockmann et al.
 code's actions. We start out with data sets and variable information
 that are arranged by different combinations of year, ownership, and
 ratio types. First the code converts harvest data in units of MBF to CCF
-using BF to CF conversion ratios. The model combines Primary Product
-Ratios (PPR) with Timber Product Ratios (TPR) and then joins those with
-the timber harvest volume in CCF by year. These are then joined with
-conversion values for CCF to metric tons of carbon, and the End Use
-Ratios (EUR). The result is a data set called eu\_ratios, and values for
-EUR, TPR, PPR, the harvest amount, and the CCF to metric tons of carbon
-conversion factor are multiplied together to produce a variable called
-MTC for Metric Tons of Carbon. One million MTC (MMT C) = one Tg C. This
-variable serves as the carbon input into the model and has the correct
-units of carbon input per year for each EUR category.
+using BF to CF conversion ratios and other standard unit conversion
+factors. The model combines Primary Product Ratios (PPR) with Timber
+Product Ratios (TPR) and then joins those with the timber harvest volume
+in CCF by year. These are then joined with conversion values for CCF to
+metric tons of carbon, and the End Use Ratios (EUR). The result is a
+data set called eu\_ratios, and values for EUR, TPR, PPR, the harvest
+amount, and the CCF to metric tons of carbon conversion factor are
+multiplied together to produce a variable called MTC for Metric Tons of
+Carbon. One million MTC (MMT C) = one Tg C. This variable serves as the
+carbon input into the model and has the correct units of carbon input
+per year for each EUR category.
 
 For each year, some of the carbon, fuel wood, is immediately burned and
 is Emitted with Energy Capture (EEC). A certain percentage (8\% for
@@ -3010,21 +3026,22 @@ sends that carbon to the Discarded Products process.
 
 The Discarded Products process uses proportions to divide incoming
 discarded products among six fates: burn without energy capture, burn
-with energy capture, compost, dump, landfill, and recover (recycle).
+with energy capture, compost, dump, landfill, and recovered (recycled).
 Burned without energy capture and composted proportions are treated as
 EWOEC. The proportion of discarded products that are burned for energy
 capture (DEC) will be treated as EEC (for California and Oregon all
 carbon is currently modeled as BWOEC). Discarded Products that are
 recovered or sent to dumps are processed with the same decay function
-used for Products in Use, but with different half-life values. The
-outputs that do not decay in a given year are treated either as Products
-in Use (recovered) or Solid Waste Disposal Site (SWDS) material (dumps).
-Discarded Products that are sent to Landfill are treated like Dumps,
-except that a proportion of the landfill is not subject to decay. That
-amount will become one of the carbon pools that comprise SWDS. The
-remainder of carbon in the landfill decays and is treated as EWOEC or
-remains in the landfill and is counted as another SWDS carbon pool:
-landfill material subject to decay.
+used for Products in Use, but with different half-life values. Decay
+from recovered products does not re-enter the Discarded Products process
+but instead is treated as EWOEC. The outputs that do not decay in a
+given year are treated either as Products in Use (recovered) or Solid
+Waste Disposal Site (SWDS) material (dumps). Discarded Products that are
+sent to Landfill are treated like Dumps, except that a proportion of the
+landfill is not subject to decay. That amount will become one of the
+carbon pools that comprise SWDS. The remainder of carbon in the landfill
+decays and is treated as EWOEC or remains in the landfill and is counted
+as another SWDS carbon pool: landfill material subject to decay.
 
 The HWP code's outputs are EEC and combined versions of EWOEC, PIU, and
 SWDS. The final EEC values are the original EEC values for fuel wood
@@ -4049,17 +4066,18 @@ Sequestration.''} \emph{Forest Products Journal} 48 (7): 75--83.
 
 \leavevmode\vadjust pre{\hypertarget{ref-skog2000}{}}%
 ---------. 2000. {``Carbon Sequestration in Wood and Paper Products.''}
-\emph{In: Joyce, Linda A.; Birdsey, Richard, Technical Editors. 2000.
+\emph{In: Joyce, Linda A.; Birdsey, Richard A., Technical Editors. 2000.
 The Impact of Climate Change on America's Forests: A Technical Document
 Supporting the 2000 USDA Forest Service RPA Assessment. Gen. Tech. Rep.
 RMRS-GTR-59. Fort Collins, CO: US Department of Agriculture, Forest
 Service, Rocky Mountain Research Station. P. 79-88} 59.
 
 \leavevmode\vadjust pre{\hypertarget{ref-smith2006}{}}%
-Smith, James E. 2006. {``Methods for Calculating Forest Ecosystem and
-Harvested Carbon with Standard Estimates for Forest Types of the United
-States.''} \emph{Gen. Tech. Rep. NE-343. Newtown Square, PA: United
-States Department of Agriculture, Forest Service, Northeastern Research
+Smith, James E., Linda S. Heath, Kenneth E. Skog, and Richard A.
+Birdsey. 2006. {``Methods for Calculating Forest Ecosystem and Harvested
+Carbon with Standard Estimates for Forest Types of the United States.''}
+\emph{Gen. Tech. Rep. NE-343. Newtown Square, PA: United States
+Department of Agriculture, Forest Service, Northeastern Research
 Station} 343.
 
 \leavevmode\vadjust pre{\hypertarget{ref-stockmann2012}{}}%
