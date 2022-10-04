@@ -241,21 +241,21 @@ E = End use ratio number (California = 224)<br />
 e = particular EUR<br />
 piu.wood.loss = Loss percentage for wood products entering PIU (California = 8%)<br />
 piu.paper.loss = Loss percentage for paper products entering PIU (California = 0%)</p>
-<p><img src="images/schematic-0.png" width="100%" /></p>
+<p><img src="images/schematic-0.png" title="Key for model schematic." alt="Key for model schematic." width="100%" /></p>
 <div style="page-break-after: always;"></div>
-<p><img src="images/schematic-1.png" width="100%" /></p>
+<p><img src="images/schematic-1.png" title="Model Start, the flow diagram for harvested wood as it is converted into CCF and sent to the Carbon Distribution Page figure, next. " alt="Model Start, the flow diagram for harvested wood as it is converted into CCF and sent to the Carbon Distribution Page figure, next. " width="100%" /></p>
 <div style="page-break-after: always;"></div>
-<p><img src="images/schematic-2.png" width="100%" /></p>
+<p><img src="images/schematic-2.png" title="Carbon Distribution, a flow diagram that takes the carbon from Model Start, creates the array eu_array with carbon values in Tg C, sends carbon burned for energy capture to the Final Fates page as fuel_array, and sends the discarded products array, dp_array, and the carbon entering Products in Use, eu.reduced_array, into the Products in Use Page." alt="Carbon Distribution, a flow diagram that takes the carbon from Model Start, creates the array eu_array with carbon values in Tg C, sends carbon burned for energy capture to the Final Fates page as fuel_array, and sends the discarded products array, dp_array, and the carbon entering Products in Use, eu.reduced_array, into the Products in Use Page." width="100%" /></p>
 <div style="page-break-after: always;"></div>
-<p><img src="images/schematic-3.png" width="100%" /></p>
+<p><img src="images/schematic-3.png" title="Products in Use page of the flow diagram.  Incoming carbon from the eu.reduced_array is combined with existing and decomposing Products in Use carbon to stay in the Products in Use array, pu_array, sent to the Final Fates page or to the Discarded Products page as the Total Discarded Products array, dp.total_array." alt="Products in Use page of the flow diagram.  Incoming carbon from the eu.reduced_array is combined with existing and decomposing Products in Use carbon to stay in the Products in Use array, pu_array, sent to the Final Fates page or to the Discarded Products page as the Total Discarded Products array, dp.total_array." width="100%" /></p>
 <div style="page-break-after: always;"></div>
-<p><img src="images/schematic-4.png" width="100%" /></p>
+<p><img src="images/schematic-4.png" title="Discarded Products Fates - Burned, Composted, Discard with Energy Capture page.  The Total Discarded Products Array, dp.total_array, sends some carbon to terminal endpoints at the Final Fates Page, such as Discard Energy Capture (dec.input_array), compost (compost.input_array), and Burned without Energy Capture (bwoec.input_array)." alt="Discarded Products Fates - Burned, Composted, Discard with Energy Capture page.  The Total Discarded Products Array, dp.total_array, sends some carbon to terminal endpoints at the Final Fates Page, such as Discard Energy Capture (dec.input_array), compost (compost.input_array), and Burned without Energy Capture (bwoec.input_array)." width="100%" /></p>
 <div style="page-break-after: always;"></div>
-<p><img src="images/schematic-5.png" width="100%" /></p>
+<p><img src="images/schematic-5.png" title="Discarded Products Fates - Recovered and Dumps.  This flowchart tracks discarded carbon that enters or decays in dumps (dumps_array, dumps.discard_array) or as recovered material (recov_array, recov.discard_array), all of which are on the Final Fates page." alt="Discarded Products Fates - Recovered and Dumps.  This flowchart tracks discarded carbon that enters or decays in dumps (dumps_array, dumps.discard_array) or as recovered material (recov_array, recov.discard_array), all of which are on the Final Fates page." width="100%" /></p>
 <div style="page-break-after: always;"></div>
-<p><img src="images/schematic-6.png" width="100%" /></p>
+<p><img src="images/schematic-6.png" title="Discarded Products Fates - Landfill.  This flowchart describes how discarded material entering landfills ends up as the portion of the landfill carbon subject to decay (landfill_array), not subject to decay (lf.fixed_array), or the emitted carbon from landfill decay (landfill.discard_array), all of which are on the Final Fates page." alt="Discarded Products Fates - Landfill.  This flowchart describes how discarded material entering landfills ends up as the portion of the landfill carbon subject to decay (landfill_array), not subject to decay (lf.fixed_array), or the emitted carbon from landfill decay (landfill.discard_array), all of which are on the Final Fates page." width="100%" /></p>
 <div style="page-break-after: always;"></div>
-<p><img src="images/schematic-7.png" width="100%" /></p>
+<p><img src="images/schematic-7.png" title="Final Fates page.  The previously-mentioned arrays are combined into the Emitted with Energy Capture array (eec_array), Emitted without Energy Capture (ewoec_array), Total Products in Use (pu.final_array), or the Total SWDS Carbon (swdsCtotal_array)." alt="Final Fates page.  The previously-mentioned arrays are combined into the Emitted with Energy Capture array (eec_array), Emitted without Energy Capture (ewoec_array), Total Products in Use (pu.final_array), or the Total SWDS Carbon (swdsCtotal_array)." width="100%" /></p>
 </div>
 <div id="model-func-out" class="section level3 hasAnchor" number="6.1.5">
 <h3><span class="header-section-number">6.1.5</span> Model Outputs<a href="model.html#model-func-out" class="anchor-section" aria-label="Anchor link to header"></a></h3>
@@ -921,7 +921,8 @@ Figure 6.1: Monte Carlo convergence assessment for the upper and lower limits of
 </caption>
 <thead>
 <tr>
-<th style="text-align:left;">
+<th style="text-align:center;">
+Variables
 </th>
 <th style="text-align:center;">
 Variable 1
@@ -936,7 +937,7 @@ Variable 3
 </thead>
 <tbody>
 <tr>
-<td style="text-align:left;">
+<td style="text-align:center;">
 Variable 1
 </td>
 <td style="text-align:center;">
@@ -950,7 +951,7 @@ Variable 1
 </td>
 </tr>
 <tr>
-<td style="text-align:left;">
+<td style="text-align:center;">
 Variable 2
 </td>
 <td style="text-align:center;">
@@ -964,7 +965,7 @@ Variable 2
 </td>
 </tr>
 <tr>
-<td style="text-align:left;">
+<td style="text-align:center;">
 Variable 3
 </td>
 <td style="text-align:center;">

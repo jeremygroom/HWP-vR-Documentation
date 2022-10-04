@@ -53,7 +53,7 @@ piu.wood.loss = Loss percentage for wood products entering PIU (California = 8%)
 piu.paper.loss = Loss percentage for paper products entering PIU (California = 0%)  
 
 
-```{r schem-0-fig, echo = FALSE, fig.asp = 0.7, fig.width= 6, out.width = '100%'}
+```{r schem-0-fig, echo = FALSE, fig.asp = 0.7, fig.width= 6, out.width = '100%', fig.alt = "Key for model schematic."}
 knitr::include_graphics("images/schematic-0.png")
 ```
 
@@ -61,44 +61,44 @@ knitr::include_graphics("images/schematic-0.png")
 
 \newpage
 
-```{r schem-1-fig, echo = FALSE, fig.asp = 0.7, fig.width= 6, out.width = '100%'}
+```{r schem-1-fig, echo = FALSE, fig.asp = 0.7, fig.width= 6, out.width = '100%', fig.alt = "Model Start, the flow diagram for harvested wood as it is converted into CCF and sent to the Carbon Distribution Page figure, next. "}
 knitr::include_graphics("images/schematic-1.png")
 ```
 
 
 \newpage
-```{r schem-2-fig, echo = FALSE, fig.asp = 0.7, fig.width= 6, out.width = '100%'}
+```{r schem-2-fig, echo = FALSE, fig.asp = 0.7, fig.width= 6, out.width = '100%', fig.alt = "Carbon Distribution, a flow diagram that takes the carbon from Model Start, creates the array eu_array with carbon values in Tg C, sends carbon burned for energy capture to the Final Fates page as fuel_array, and sends the discarded products array, dp_array, and the carbon entering Products in Use, eu.reduced_array, into the Products in Use Page."}
 knitr::include_graphics("images/schematic-2.png")
 ```
 
 \newpage
 
-```{r schem-3-fig, echo = FALSE, fig.asp = 0.7, fig.width= 6, out.width = '100%'}
+```{r schem-3-fig, echo = FALSE, fig.asp = 0.7, fig.width= 6, out.width = '100%', fig.alt = "Products in Use page of the flow diagram.  Incoming carbon from the eu.reduced_array is combined with existing and decomposing Products in Use carbon to stay in the Products in Use array, pu_array, sent to the Final Fates page or to the Discarded Products page as the Total Discarded Products array, dp.total_array."}
 knitr::include_graphics("images/schematic-3.png")
 ```
 
 
 \newpage
-```{r schem-4-fig, echo = FALSE, fig.asp = 0.7, fig.width= 6, out.width = '100%'}
+```{r schem-4-fig, echo = FALSE, fig.asp = 0.7, fig.width= 6, out.width = '100%', fig.alt = "Discarded Products Fates - Burned, Composted, Discard with Energy Capture page.  The Total Discarded Products Array, dp.total_array, sends some carbon to terminal endpoints at the Final Fates Page, such as Discard Energy Capture (dec.input_array), compost (compost.input_array), and Burned without Energy Capture (bwoec.input_array)."}
 knitr::include_graphics("images/schematic-4.png")
 ```
 
 \newpage
 
-```{r schem-5-fig, echo = FALSE, fig.asp = 0.7, fig.width= 6, out.width = '100%'}
+```{r schem-5-fig, echo = FALSE, fig.asp = 0.7, fig.width= 6, out.width = '100%', fig.alt = "Discarded Products Fates - Recovered and Dumps.  This flowchart tracks discarded carbon that enters or decays in dumps (dumps_array, dumps.discard_array) or as recovered material (recov_array, recov.discard_array), all of which are on the Final Fates page."}
 knitr::include_graphics("images/schematic-5.png")
 ```
 
 
 \newpage
-```{r schem-6-fig, echo = FALSE, fig.asp = 0.7, fig.width= 6, out.width = '100%'}
+```{r schem-6-fig, echo = FALSE, fig.asp = 0.7, fig.width= 6, out.width = '100%', fig.alt = "Discarded Products Fates - Landfill.  This flowchart describes how discarded material entering landfills ends up as the portion of the landfill carbon subject to decay (landfill_array), not subject to decay (lf.fixed_array), or the emitted carbon from landfill decay (landfill.discard_array), all of which are on the Final Fates page."}
 knitr::include_graphics("images/schematic-6.png")
 ```
 
 
 \newpage
 
-```{r schem-7-fig, echo = FALSE, fig.asp = 0.7, fig.width= 6, out.width = '100%'}
+```{r schem-7-fig, echo = FALSE, fig.asp = 0.7, fig.width= 6, out.width = '100%', fig.alt = "Final Fates page.  The previously-mentioned arrays are combined into the Emitted with Energy Capture array (eec_array), Emitted without Energy Capture (ewoec_array), Total Products in Use (pu.final_array), or the Total SWDS Carbon (swdsCtotal_array)."}
 knitr::include_graphics("images/schematic-7.png")
 ```
 
@@ -243,13 +243,14 @@ The correlation procedure described above appeared to work.  Table \@ref(tab:ppr
 
 ```{r ppr-cor-tab, echo = F}
 
-ppr.tab <- data.frame(V1 = c(1, 0.505, 0.508),
+c.r.var.names <- c("Variable 1", "Variable 2", "Variable 3")
+ppr.tab <- data.frame(Variables = c.r.var.names,
+                      V1 = c(1, 0.505, 0.508),
                       V2 = c(0.505, 1, 0.521),
                       V3 = c(0.508, 0.521, 1))
-c.r.var.names <- c("Variable 1", "Variable 2", "Variable 3")
-row.names(ppr.tab) <- c.r.var.names
+#row.names(ppr.tab)[2:4] <- c.r.var.names
 knitr::kable(ppr.tab, 
-             col.names = c.r.var.names,
+             col.names = c("Variables", c.r.var.names),
              booktabs = TRUE, 
              align = "c", 
              caption = 'Correlation matrix for Primary Products Ratios random variables, 2000 draws.'
