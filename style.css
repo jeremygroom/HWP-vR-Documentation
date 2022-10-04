@@ -1,7 +1,5 @@
-
-
-p.caption {
-  color: #777;
+p.caption {           /* Sets the color for captions for figures and tables  */
+  color: #0E6251;
   margin-top: 10px;
 }
 p code {
