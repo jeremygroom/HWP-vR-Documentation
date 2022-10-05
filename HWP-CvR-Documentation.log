@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.24 (TeX Live 2022) (preloaded format=pdflatex 2022.10.3)  4 OCT 2022 11:50
+This is pdfTeX, Version 3.141592653-2.6-1.40.24 (TeX Live 2022) (preloaded format=pdflatex 2022.10.3)  5 OCT 2022 13:11
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -562,7 +562,7 @@ File: images/OverviewModelSchematic.png Graphic file (type png)
 <use images/OverviewModelSchematic.png>
 Package pdftex.def Info: images/OverviewModelSchematic.png  used on input line 425.
 (pdftex.def)             Requested size: 344.99826pt x 236.37082pt.
-[8] [9 <./images/OverviewModelSchematic.png>]
+[8 <./images/OverviewModelSchematic.png>] [9]
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
 [10]
@@ -595,17 +595,21 @@ File: umsa.fd 2013/01/14 v3.01 AMS symbols A
 LaTeX Font Info:    Trying to load font information for U+msb on input line 520.
 (c:/Users/jerem/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/amsfonts/umsb.fd
 File: umsb.fd 2013/01/14 v3.01 AMS symbols B
-) [11] [12]
+)
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+[11]
 Underfull \hbox (badness 10000) in paragraph at lines 580--583
 
  []
 
-<images/ModelHistory.png, id=139, 721.19438pt x 368.87813pt>
+[12]
+<images/ModelHistory.png, id=141, 721.19438pt x 368.87813pt>
 File: images/ModelHistory.png Graphic file (type png)
 <use images/ModelHistory.png>
 Package pdftex.def Info: images/ModelHistory.png  used on input line 598.
 (pdftex.def)             Requested size: 344.99188pt x 176.45721pt.
-[13] [14 <./images/ModelHistory.png>] [15
+[13 <./images/ModelHistory.png>] [14] [15
 
 ]
 Overfull \hbox (8.53967pt too wide) has occurred while \output is active
