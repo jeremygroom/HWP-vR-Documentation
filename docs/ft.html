@@ -8,7 +8,7 @@
   <meta name="description" content="This HWP vR documentation was written in bookdown.<br />
 The HTML output format for this document is bookdown::gitbook,
 set in the _output.yml file.</p>" />
-  <meta name="generator" content="bookdown 0.27 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.34 and GitBook 2.6.7" />
 
   <meta property="og:title" content="Chapter 7 Frequently Asked Questions and Troubleshooting | Harvested Wood Products Carbon Model, Version R Documentation" />
   <meta property="og:type" content="book" />
@@ -35,7 +35,7 @@ set in the _output.yml file.</p>" />
   
   
 <link rel="prev" href="model.html"/>
-<link rel="next" href="references.html"/>
+<link rel="next" href="vc.html"/>
 <script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
@@ -61,6 +61,10 @@ set in the _output.yml file.</p>" />
 
 
 
+<style type="text/css">
+  
+  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+</style>
 <style type="text/css">
 /* Used with Pandoc 2.11+ new --citeproc when CSL is used */
 div.csl-bib-body { }
@@ -179,6 +183,10 @@ div.csl-indent {
 <li class="chapter" data-level="7.1" data-path="ft.html"><a href="ft.html#ft-faqs"><i class="fa fa-check"></i><b>7.1</b> Frequently Asked Questions</a></li>
 <li class="chapter" data-level="7.2" data-path="ft.html"><a href="ft.html#ft-trbl"><i class="fa fa-check"></i><b>7.2</b> Troubleshooting</a></li>
 </ul></li>
+<li class="chapter" data-level="8" data-path="vc.html"><a href="vc.html"><i class="fa fa-check"></i><b>8</b> Version Changes</a>
+<ul>
+<li class="chapter" data-level="8.1" data-path="vc.html"><a href="vc.html#vc-v1.1.0"><i class="fa fa-check"></i><b>8.1</b> Version 1.1.0: Major and Minor Changes</a></li>
+</ul></li>
 <li class="chapter" data-level="" data-path="references.html"><a href="references.html"><i class="fa fa-check"></i>References</a></li>
 <li class="divider"></li>
 <li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
@@ -218,6 +226,8 @@ See Section <a href="own.html#own-shiny">4.4</a> as well as the steps on the app
 The quality assurance (QA) step will check your file for you. However, the details of what to include are in Section <a href="own.html#own-prov-input">4.2.2</a> and the specific QA checks are listed in section <a href="own.html#own-qa">4.3</a>.</p>
 <p><em>What do I need to know about running the Monte Carlo Simulation? </em><br />
 You will need to set the number of iterations you would like the simulation to use (see Section <a href="own.html#own-prov-input-options">4.2.2.1</a>). Section <a href="own.html#own-mc">4.5</a> describes other aspects of running the Monte Carlo simulation. Details on what the simulation is doing may be found in Section <a href="model.html#model-mc">6.2</a>.</p>
+<p><em>How do I change the confidence intervals in the Monte Carlo plots? </em><br />
+See Section <a href="own.html#own-prov-input-options">4.2.2.1</a>. The confidence intervals are changed in the input file. Specifically, set the desired confidence interval in the MC.CI.REPORT column of the HWP_MODEL_OPTIONS worksheet. <strong>Do not</strong> change the CI column values in the MonteCarloValues worksheet. That does something else (Section <a href="own.html#own-prov-input-mc">4.2.2.12</a>).</p>
 <p><em>I only have timber harvest data in hundred cubic feet (CCF). Can I still use these data in the model?</em><br />
 Yes! But the model needs to think that it transformed your harvest data into cubic feet all on its own. Here is how you fool it, using a template file:</p>
 <ol style="list-style-type: decimal">
@@ -244,7 +254,7 @@ Yes! But the model needs to think that it transformed your harvest data into cub
         </div>
       </div>
 <a href="model.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="references.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="vc.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
@@ -305,7 +315,7 @@ gitbook.start({
     var script = document.createElement("script");
     script.type = "text/javascript";
     var src = "true";
-    if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
+    if (src === "" || src === "true") src = "https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.9/latest.js?config=TeX-MML-AM_CHTML";
     if (location.protocol !== "file:")
       if (/^https?:/.test(src))
         src = src.replace(/^https?:/, '');

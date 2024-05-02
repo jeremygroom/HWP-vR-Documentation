@@ -116,9 +116,13 @@ Users are encouraged to generate the arrays (OUTPUT_ARRAYS = TRUE) in the stand-
 
 ### Simulation specifications    {#model-mc-spec}
 
-The Monte Carlo (MC) simulation alters the values of at least 16 different parameters, listed in Table \@ref(tab:mc-table).  The columns Min Value, Peak Value, and Max Value describe the desired 90% confidence interval for the range of random proportions against which the parameters of interest will be adjusted.  In Table \@ref(tab:mc-table) harvest, timber product ratios and primary product ratios each have two parameters with confidence intervals.  These parameters represent different year sets.  The Oregon data have three year sets for harvest, timber production, and primary product ratios.  Each parameter requires a separate MC random variable.  Finally, parameters for timber product ratios and end use product ratios have a sum-to-one characteristic.  For instance, timber product ratios (TPRs) represent the proportion of total harvest for a given year that is allocated to each of the timber product ratio values. While the proportions change during the time series the full set of TPR proportions will always sum to one.   
+(Note: when uploading your own data, change the reported and plotted Monte Carlo empirical confidence intervals by altering the MC.CI.REPORT value in the data input worksheet HWP_MODEL_OPTIONS; see Chapter \@ref(own) and specifically Section \@ref(own-prov-input-options).)
+
+The Monte Carlo (MC) simulation alters the values of at least 16 different parameters, listed in Table \@ref(tab:mc-table).  The columns Min Value, Peak Value, Max Value, and CI are used by the program to determine the triangular distribution from which the range of random proportions are drawn (Section \@ref(own-prov-input-mc)), with one proportion drawn for each parameter per iteration.  Within each iteration the parameters are adjusted by these proportions.  In Table \@ref(tab:mc-table) harvest, timber product ratios and primary product ratios each have two parameters with confidence intervals.  These parameters represent different year sets.  The Oregon data have three year sets for harvest, timber production, and primary product ratios.  Each parameter requires a separate MC random variable.  Finally, parameters for timber product ratios and end use product ratios have a sum-to-one characteristic.  For instance, timber product ratios (TPRs) represent the proportion of total harvest for a given year that is allocated to each of the timber product ratio values. While the proportions change during the time series the full set of TPR proportions will always sum to one.   
 
 ```{r mc-table, echo = F, message=FALSE}
+library(tidyverse)
+library(kableExtra)
 c1 <- read_csv("images/MC_Parameters.csv")
 c1 <- data.frame(c1)
 
@@ -132,7 +136,7 @@ knitr::kable(c1,
 
 ### Simulation Sampling     {#model-mc-samp}
 
-As in other HWP publications such as @stockmann2012 and @anderson2013, the random variables in the Monte Carlo simulations are drawn from triangular distributions.  The distributions all have a peak value of 1.0 (Table \@ref(tab:mc-table)) and symmetrically taper to given 90% confidence interval bounds.  The values from the triangular distribution are used as proportions for adjusting parameter values.  
+As in other HWP publications such as @stockmann2012 and @anderson2013, the random variables in the Monte Carlo simulations are drawn from triangular distributions.  These distributions have probability distribution functions that look like triangles.  In our case the distributions all have a peak value of 1.0 (Table \@ref(tab:mc-table)) and symmetrically taper to endpoints on either side of 1.0.  The values randomly drawn from the triangular distribution are used as proportions for adjusting parameter values.  
 
 Drawing random variables from triangular distributions is a multi-step process.  The first step involves drawing random variables from a standard uniform (0, 1) distribution using a Latin Hypercube Sampling (LHS) process.  The standard uniform distribution is an excellent starting place for randomly selecting points along other distributions.  The random uniform points can be translated as locations along some other distribution’s Cumulative Distribution Function (CDF).  However, with unorganized, truly random draws of random uniform variables for more than one distribution (we are using at least 16 separate distributions, with one to three distributions per parameter) there is a strong probability that samples will by chance generally fall in the same local region for several of the distributions.  In other words, a purely random sample may be inefficient.  Many iterations are needed to obtain a full suite of the possible MC values across distributions.  LHS offers a method for partitioning the uniform distributions and forcing the random selections across distributions to avoid clumping.  As a result, many fewer iterations are needed to achieve stable estimates from the MC simulation.  
 
@@ -148,7 +152,7 @@ $$   \text{TRV} =
     else  & b - \sqrt{(1-U)(b-a)(c-a)}
   \end{cases} $$
 
-In this equation $TRV$ is the triangular random variable, $U$ is the random uniform variable (the LHS draw), $F(c)=(c-a)/(b-a), a$ is the minimum value for the triangle, $b$ is the maximum value, and $c$ is the midpoint.  Note that the specifications require 90% confidence intervals and do not state what the endpoints for the triangular distributions should be.  We derived the endpoints that corresponded with the desired 90% confidence intervals (Table \@ref(tab:triang-tab)) using an optimization algorithm.   
+In this equation $TRV$ is the triangular random variable, $U$ is the random uniform variable (the LHS draw), $F(c)=(c-a)/(b-a), a$ is the minimum value for the triangle, $b$ is the maximum value, and $c$ is the midpoint.  Note that the specifications require confidence intervals for the variables and do not state what the endpoints for the triangular distributions should be.  We derived the endpoints that corresponded with the desired confidence intervals (Table \@ref(tab:triang-tab)) using an optimization algorithm.   
 
 
 ```{r triang-tab, echo = F}
@@ -161,7 +165,7 @@ knitr::kable(tri.tab,
              escape = FALSE,   # Need this if I'd like the "90%" in col.names (but not caption??) to work in pdf.
              booktabs = TRUE, 
              align = "c", 
-             caption = 'Translation of 90\\% Confidence Intervals to endpoints for triangular distributions.'
+             caption = 'Translation of Variable 90\\% Confidence Intervals to endpoints for triangular distributions.'
 ) #%>%
   #kable_styling(latex_options = "scale_down")
 ```

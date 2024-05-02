@@ -2,7 +2,7 @@
 
 ## Structure of this document {#int-struc}
 
-We wish to provide users with a document that will enable users to step into the HWP-C vR model to the degree that they find comfortable and useful.  This could range from manipulating pre-loaded California and Oregon data from the web app to downloading all of the code onto their machine and modifying it to their purposes.  We laid out the sections to reflect this progression.
+We wish to provide users with a document that will enable them to step into the HWP-C vR model to the degree that they find comfortable and useful.  This could range from manipulating pre-loaded California and Oregon data from the web app to downloading all of the code onto their machine and modifying it to their purposes.  We laid out the sections to reflect this progression.
 
 * Chapter \@ref(sum): This section provides a brief overview of the model, a list of abbreviations, an explanation of units used, and acknowledgements.  
 * This chapter (Chapter \@ref(int)): Here we provide some background on the model including a bit of history and a description of how it functions.  We also discuss some of the model's assumptions and future work.  

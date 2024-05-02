@@ -23,6 +23,9 @@ The quality assurance (QA) step will check your file for you.  However, the deta
 *What do I need to know about running the Monte Carlo Simulation? *  
 You will need to set the number of iterations you would like the simulation to use (see Section \@ref(own-prov-input-options)).  Section \@ref(own-mc) describes other aspects of running the Monte Carlo simulation.  Details on what the simulation is doing may be found in Section \@ref(model-mc).  
 
+*How do I change the confidence intervals in the Monte Carlo plots? *  
+See Section \@ref(own-prov-input-options).  The confidence intervals are changed in the input file.  Specifically, set the desired confidence interval in the MC.CI.REPORT column of the HWP_MODEL_OPTIONS worksheet.  **Do not** change the CI column values in the MonteCarloValues worksheet.  That does something else (Section \@ref(own-prov-input-mc)).
+
 *I only have timber harvest data in hundred cubic feet (CCF).  Can I still use these data in the model?*  
 Yes!  But the model needs to think that it transformed your harvest data into cubic feet all on its own.  Here is how you fool it, using a template file:  
 

@@ -8,7 +8,7 @@
   <meta name="description" content="This HWP vR documentation was written in bookdown.<br />
 The HTML output format for this document is bookdown::gitbook,
 set in the _output.yml file.</p>" />
-  <meta name="generator" content="bookdown 0.27 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.34 and GitBook 2.6.7" />
 
   <meta property="og:title" content="Chapter 5 Option 3: Operating the model from your own machine | Harvested Wood Products Carbon Model, Version R Documentation" />
   <meta property="og:type" content="book" />
@@ -61,6 +61,10 @@ set in the _output.yml file.</p>" />
 
 
 
+<style type="text/css">
+  
+  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+</style>
 <style type="text/css">
 /* Used with Pandoc 2.11+ new --citeproc when CSL is used */
 div.csl-bib-body { }
@@ -179,6 +183,10 @@ div.csl-indent {
 <li class="chapter" data-level="7.1" data-path="ft.html"><a href="ft.html#ft-faqs"><i class="fa fa-check"></i><b>7.1</b> Frequently Asked Questions</a></li>
 <li class="chapter" data-level="7.2" data-path="ft.html"><a href="ft.html#ft-trbl"><i class="fa fa-check"></i><b>7.2</b> Troubleshooting</a></li>
 </ul></li>
+<li class="chapter" data-level="8" data-path="vc.html"><a href="vc.html"><i class="fa fa-check"></i><b>8</b> Version Changes</a>
+<ul>
+<li class="chapter" data-level="8.1" data-path="vc.html"><a href="vc.html#vc-v1.1.0"><i class="fa fa-check"></i><b>8.1</b> Version 1.1.0: Major and Minor Changes</a></li>
+</ul></li>
 <li class="chapter" data-level="" data-path="references.html"><a href="references.html"><i class="fa fa-check"></i>References</a></li>
 <li class="divider"></li>
 <li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
@@ -202,7 +210,7 @@ div.csl-indent {
             <section class="normal" id="section-">
 <div id="dnld" class="section level1 hasAnchor" number="5">
 <h1><span class="header-section-number">Chapter 5</span> Option 3: Operating the model from your own machine<a href="dnld.html#dnld" class="anchor-section" aria-label="Anchor link to header"></a></h1>
-<p>The Shiny <span class="citation">(<a href="#ref-R-shiny" role="doc-biblioref">Chang et al. 2021</a>)</span> web application and stand-alone R code for implementation of the HWP model are available on <a href="https://github.com/">GitHub</a> for download. To run the files you will need to have <a href="https://www.r-project.org/">R</a> and <a href="https://www.rstudio.com/products/rstudio/">RStudio</a> installed on your computer. Both are free. R is the base program that executes the code; RStudio is an IDE, or Integrated Development Environment, that brings ease and power to using R. You will operate R through RStudio.</p>
+<p>The Shiny <span class="citation">(<a href="#ref-R-shiny">Chang et al. 2021</a>)</span> web application and stand-alone R code for implementation of the HWP model are available on <a href="https://github.com/">GitHub</a> for download. To run the files you will need to have <a href="https://www.r-project.org/">R</a> and <a href="https://www.rstudio.com/products/rstudio/">RStudio</a> installed on your computer. Both are free. R is the base program that executes the code; RStudio is an IDE, or Integrated Development Environment, that brings ease and power to using R. You will operate R through RStudio.</p>
 <p>This chapter explains how to download or clone the GitHub repository and then describes all of the files in the repository. It then provides direction for running the Shiny app directly from your machine, followed by instructions for running the stand-alone R code from your computer. Finally, it describes how to use some downloaded code for appending extra harvest data to your input file.</p>
 <div id="dnld-git" class="section level2 hasAnchor" number="5.1">
 <h2><span class="header-section-number">5.1</span> R, RStudio, GitHub, and downloading the files<a href="dnld.html#dnld-git" class="anchor-section" aria-label="Anchor link to header"></a></h2>
@@ -324,9 +332,9 @@ This folder contains shinyapps.io deployment information. The user can ignore th
 <div id="dnld-shiny-details" class="section level3 hasAnchor" number="5.3.1">
 <h3><span class="header-section-number">5.3.1</span> Details on running and editing the code<a href="dnld.html#dnld-shiny-details" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>Users can run one or more lines of code by highlighting them and pressing ctrl-Enter or apple-Enter, or from the RStudio menu selecting Code &gt; Run Selected Line(s).</p>
-<p>The first line of the app.r or HWP_Stand_Alone_Code.R is: <code>renv::restore()</code>. The first time you run this line on its own or when running all of the code, the project file will (with your permission) download all versions of all libraries and the R instance used to run the app <span class="citation">(<a href="#ref-R-renv" role="doc-biblioref">Ushey 2022</a>)</span>. It takes a little while, but you’ll only need to do it once. This version control step hopefully helps prevent conflicts between your newer or older versions of previously-installed R libraries and the code.</p>
+<p>The first line of the app.r or HWP_Stand_Alone_Code.R is: <code>renv::restore()</code>. The first time you run this line on its own or when running all of the code, the project file will (with your permission) download all versions of all libraries and the R instance used to run the app <span class="citation">(<a href="#ref-R-renv">Ushey 2022</a>)</span>. It takes a little while, but you’ll only need to do it once. This version control step hopefully helps prevent conflicts between your newer or older versions of previously-installed R libraries and the code.</p>
 <p>The stand-alone code relies heavily upon functions and code chunks located in the Shiny app code folder (HWP_Shiny_app/R_code_data/). Updates to these code files can affect both the app and stand-alone code. For instance, the guts of the HWP model are in the file HWP_Model_Function.r, which both the Shiny app and the stand-alone code rely upon.</p>
-<p>The user can alter the Shiny code to produce different figures or to extract intermediary or final data frames used for figure generation. As a warning, if the user alterations cause an error, the Shiny application can break. Troubleshooting in a Shiny application is not as straightforward as it is in standard R code (In the online book <a href="https://mastering-shiny.org/index.html">Mastering Shiny</a> by <span class="citation">Wickham (<a href="#ref-wickham2021" role="doc-biblioref">2021</a>)</span>, see <a href="https://mastering-shiny.org/action-workflow.html">Chapter 5 Section 2, Debugging</a>). I will not discuss the workings of Shiny to any extent here (if interested, see the previous link for more information), but if the user inserts the code <code>browser()</code> immediately after an item of interest, saves the change to the code, re-runs the Shiny app from their computer, and selects the figure or item of interest from the application, the code will halt at the <code>browser()</code> call and the user can inspect all elements created to that point.</p>
+<p>The user can alter the Shiny code to produce different figures or to extract intermediary or final data frames used for figure generation. As a warning, if the user alterations cause an error, the Shiny application can break. Troubleshooting in a Shiny application is not as straightforward as it is in standard R code (In the online book <a href="https://mastering-shiny.org/index.html">Mastering Shiny</a> by <span class="citation">Wickham (<a href="#ref-wickham2021">2021</a>)</span>, see <a href="https://mastering-shiny.org/action-workflow.html">Chapter 5 Section 2, Debugging</a>). I will not discuss the workings of Shiny to any extent here (if interested, see the previous link for more information), but if the user inserts the code <code>browser()</code> immediately after an item of interest, saves the change to the code, re-runs the Shiny app from their computer, and selects the figure or item of interest from the application, the code will halt at the <code>browser()</code> call and the user can inspect all elements created to that point.</p>
 </div>
 </div>
 <div id="dnld-sa" class="section level2 hasAnchor" number="5.4">
@@ -472,7 +480,7 @@ gitbook.start({
     var script = document.createElement("script");
     script.type = "text/javascript";
     var src = "true";
-    if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
+    if (src === "" || src === "true") src = "https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.9/latest.js?config=TeX-MML-AM_CHTML";
     if (location.protocol !== "file:")
       if (/^https?:/.test(src))
         src = src.replace(/^https?:/, '');

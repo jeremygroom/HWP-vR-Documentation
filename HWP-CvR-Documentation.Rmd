@@ -1,6 +1,6 @@
 --- 
 title: "Harvested Wood Products Carbon Model, Version R Documentation"
-author: "| Jeremy Groom, Ph.D.\n| Groom Analytics, LLC \n| \n| Nadia Tase\n| California Department of Forestry and Fire Protection\n"
+author: "| Jeremy Groom, Ph.D.\n| Groom Analytics, LLC \n| \n| Nadia Tase\n| California Department of Forestry and Fire Protection \n| \n| Version 1.1.0\n"
 date: "`r paste('Date:',format(Sys.Date(), '%B %d, %Y'))`"
 output: pdf_document
 site: bookdown::bookdown_site
@@ -101,7 +101,7 @@ Publications from the United States have frequently described carbon storage and
 
 ## Structure of this document {#int-struc}
 
-We wish to provide users with a document that will enable users to step into the HWP-C vR model to the degree that they find comfortable and useful.  This could range from manipulating pre-loaded California and Oregon data from the web app to downloading all of the code onto their machine and modifying it to their purposes.  We laid out the sections to reflect this progression.
+We wish to provide users with a document that will enable them to step into the HWP-C vR model to the degree that they find comfortable and useful.  This could range from manipulating pre-loaded California and Oregon data from the web app to downloading all of the code onto their machine and modifying it to their purposes.  We laid out the sections to reflect this progression.
 
 * Chapter \@ref(sum): This section provides a brief overview of the model, a list of abbreviations, an explanation of units used, and acknowledgements.  
 * This chapter (Chapter \@ref(int)): Here we provide some background on the model including a bit of history and a description of how it functions.  We also discuss some of the model's assumptions and future work.  
@@ -344,6 +344,8 @@ The first worksheet in the input data template file, HWP_MODEL_OPTIONS, allows t
 
 * \*RUN.MC (TRUE, FALSE) – This value only affects the stand-alone model.  If you would like to run the Monte Carlo simulation on your data set, ensure that this value is TRUE.  The main model code will run and then verify that this value is TRUE, at which time it will source the Monte Carlo R code and run it.  Note: running the Monte Carlo simulation is very time consuming.  Set this option to FALSE if you are running the stand-alone model and are not currently interested in the Monte Carlo output.    
 
+* \*MC.CI.REPORT (Numeric, between 0 and 1) – This value controls the reported confidence interval for Monte Carlo estimates.  If you run the Monte Carlo on your own data, within the Shiny app or stand-alone version, this value is used to create an empirical confidence interval from the Monte Carlo iterations.  A 95% confidence interval (0.95) will produce wider bands around the mean values than a 90% confidence interval.  The Shiny app Monte Carlo figure titles will change accordingly.  The default is 0.9, for a 90% confidence interval.  
+
 * R (Numeric, between 0 to 1) – Affects both the Shiny web application and stand-alone model.  This value is the target Pearson’s correlation coefficient that will be used to correlate triangular distribution values in the Monte Carlo.  For instance, if the worksheet MonteCarloDistrParameters has three accuracy values for Harvest, depending on the year of harvest, the value for R will determine how correlated the three random draws are that are used to adjust the Harvest values for each iteration.   The default is 0.5, as was used in @stockmann2012.  
 
 * OPT.START.VALUE (Numeric, between 0 and 1) – Affects both the Shiny web application and stand-alone model.  The MonteCarloDistrParameters states minimum and maximum 90% Confidence Intervals from which the Monte Carlo random variables are to be drawn.  However, when we transform random uniform values into values from a triangular distribution, we need to know the triangular distribution endpoints.  In the Monte Carlo code, the function "ab.boundaries.fcn" performs a search algorithm to find the triangular distribution end points given the confidence intervals provided in the MonteCarloDistrParameters worksheet.  The default start value for the algorithm is 0.5 and likely does not need to be altered for the Monte Carlo code to function adequately.  
@@ -465,7 +467,7 @@ For the landfill fixed carbon ratio information, @skog2008 which cites @freed200
 
 Worksheet name: MonteCarloValues  
 
-The worksheet MonteCarloValues allows users to define how much variation to introduce into the HWP model for the Monte Carlo simulation.  The outcomes of the simulation are summarized as statistical confidence intervals for carbon storage (PIU, SWDS pools, and both pools combined) and carbon emissions (with and without energy capture). This worksheet also allows the user  to specify aspects of the Monte Carlo that they would like to control.  The worksheet needs to be altered to conform to the user’s data structure for the Monte Carlo to run.  That is, if users have data from 1970 – 2018, they will need to change First_Year and Last_Year values for some of the rows.  Default distributions were obtained from @stockmann2012.  It is  unnecessary to change the defaults unless the user has more details on the range of uncertainty for the various parameters used in HWP carbon estimation.  Users can change First_Year, Last_Year, MinCI, MaxCI, and CI values. They may add or delete rows for Harvest, TimberProdRatios, and PrimaryProdRatios.  Each row of the worksheet represents a vector of random draws, with one random draw per iteration.  If our model had 100 iterations and this worksheet had 20 rows, the R script will obtain 2000 random uniform draws between zero and one, 100 random values per row.  (Please use more than 100 iterations for your final runs.)  The R script will change these values to triangular distributions with a peak at 1.0 (column Peak Value) and lower and upper confidence intervals as defined by the columns MinCI and MaxCI.  The resulting random numbers for a given parameter (row) will have values that are above or below 1.0.  In general, the parameter values associated with each of the parameters are multiplied by the random number for a single iteration.  If the random number is 0.86, the parameter value will be reduced to 86% of its original size.  Below we describe each of the columns and column values in this worksheet.  
+The worksheet MonteCarloValues allows users to define how much variation to introduce into the HWP model for the Monte Carlo simulation.  The outcomes of the simulation are summarized as statistical confidence intervals for carbon storage (PIU, SWDS pools, and both pools combined) and carbon emissions (with and without energy capture). This worksheet also allows the user  to specify aspects of the Monte Carlo that they would like to control.  The worksheet needs to be altered to conform to the user’s data structure for the Monte Carlo to run.  That is, if users have data from 1970 – 2018, they will need to change First_Year and Last_Year values for some of the rows.  Default distributions were obtained from @stockmann2012.  It is  unnecessary to change the defaults unless the user has more details on the range of uncertainty for the various parameters used in HWP carbon estimation.  Users can change First_Year, Last_Year, MinCI, MaxCI, and CI values. They may add or delete rows for Harvest, TimberProdRatios, and PrimaryProdRatios.  Each row of the worksheet represents a vector of random draws, with one random draw per iteration.  If our model had 100 iterations and this worksheet had 20 rows, the R script will obtain 2000 random uniform draws between zero and one, 100 random values per row.  (Please use more than 100 iterations for your final runs.)  The R script will change these values to triangular distributions with a peak at 1.0 (column Peak Value) and lower and upper confidence intervals as defined by the columns MinCI,  MaxCI, and CI.  The resulting random numbers for a given parameter (row) will have values that are above or below 1.0.  In general, the parameter values associated with each of the parameters are multiplied by the random number for a single iteration.  If the random number is 0.86, the parameter value will be reduced to 86% of its original size.  Below we describe each of the columns and column values in this worksheet.  
 
 * Parameter_ID: This column is included for the user’s information; the R script does not rely upon it.  Each of the parameters to be altered is listed here.  Some parameters (namely, those after Parameter ID number 13) may have more than one set of random numbers generated for it.  For instance, if we wish for Harvest values to be modeled as becoming more accurate through time, reflecting improvements in reporting and data collection, we may wish to indicate three periods of years with increasing estimate precision.  A series of random numbers will be drawn for each of the time periods, and then correlated (see above).  Within an iteration, this example would have three correlated random numbers that would be used for the three periods of years.  The parameter ID for Harvest would be the same number repeated three times (14, 14, 14).    
 * Parameter_Name: The column name, "Parameter Name", is not used by the code.  However, the column values are names for specific parameters that are used by the code.  These must remain unchanged.  The names can be repeated as necessary (following on the example for Parameter ID, Parameter ID 14, 14, 14 would be associated with Parameter Name "Harvest", "Harvest", "Harvest").  Below are descriptions of which parameters and worksheets each relates to:  
@@ -492,9 +494,9 @@ The worksheet MonteCarloValues allows users to define how much variation to intr
 
 * First Year, Last Year: These are values that users must change.  The values in these columns represent the first year and last year of a given year period.  For instance, if our data set included harvest from 1906 to 2017 but we wanted to increase the precision of the Monte Carlo values in steps leading to the final year, then we need to indicate what years each level of precision refers to.  If only one level of precision is used, provide the first year of harvest (e.g., 1906) under the First Year column and the last year of harvest (2017) to the Last Year column. If there are three Harvest rows, we want the First Year to capture all beginning years for given year periods and Last Year to capture the terminal year.  For the first Harvest we might have First and Last Year values of 1906 and 1945, then in the second row the values 1946 and 1979, and finally the third row would contain a First Year of 1980 to 2017.   Crucially: the very first First Year must be the first year of your harvest values, whether for Harvest, TimberProdRatios, or PrimaryProdRatios.  There must not be overlap in years (e.g., if the first row had 1906 to 1945 and the next row had 1941 to 1955, the sets would overlap).  There must not be gaps (e.g., 1906 to 1945, then 1947 to 1955, leaving out 1946).  You do not have to have the same sets of years used among parameter types (e.g., Harvest year sets do not need to match TimberProdRatios year sets).  You do not need parameter types to have the same number of sets (Harvest could have two rows, PrimaryProdRatios could have three). You may have more or fewer than three year-sets per parameter type.   
 
-* MinCI, Peak Value, MaxCI: As described above, these values are used to define the triangular distributions from which the random Monte Carlo values will be generated.  For these three columns, Peak Values should all be 1.0, with the MinCI and MaxCI symmetric around this value (the Monte Carlo code assumes symmetric triangular distributions).  That is, the MinCI and MaxCI must differ from the Peak Value by the same amount (e.g., MinCI = 0.85, Max CI = 1.15.  Both are 0.15 distant from 1.0).  The MinCI and MaxCI are the user-specified confidence intervals; e.g., the user states what they wish the confidence intervals should be around 1.0.    
+* MinCI, Peak Value, MaxCI: As described above and in Section \@ref(model-mc-samp), these values are used to define the triangular distributions from which the random Monte Carlo values will be generated.  For these three columns, Peak Values should all be 1.0, with the MinCI and MaxCI symmetric around this value (the Monte Carlo code assumes symmetric triangular distributions).  That is, the MinCI and MaxCI must differ from the Peak Value by the same amount (e.g., MinCI = 0.85, Max CI = 1.15.  Both are 0.15 distant from 1.0).  The MinCI and MaxCI are the user-specified confidence interval boundaries, where the next column, CI, defines the confidence interval represented (i.e., 90%) by those boundaries.  The user can adjust the MinCI and MaxCI values to create narrower or wider triangular distributions to draw from, depending on their certainty in the parameter values.  
 
-* CI: This value allows the user to change what sort of a confidence interval is used. The default value is a 90% confidence interval, as was used in @stockmann2012.  The user could change this value to 0.95, or a 95% confidence interval.  This sort of adjustment will affect the spread of the triangular distribution, with a 90% confidence interval having a wider spread. 
+* CI: This value allows the user to change what sort of a confidence interval is used to generate the triangular distribution. The default value is a 90% confidence interval, as was used in @stockmann2012.  The user could change this value to 0.95, or a 95% confidence interval.  This sort of adjustment will affect the width (available values) of the triangular distribution, with a 90% confidence interval resulting in a wider triangular distribution than a 95% confidence interval. Users interested in adjusting the range of the triangular distributions should consider carefully whether they wish to adjust MinCI and MaxCI, CI, or both.  If a user only wishes to adjust the confidence intervals displayed in the Shiny app's plots, they should not adjust MinCI, MaxCI, and CI discussed here and instead adjust the MC.CI.REPORT value in the HWP_MODEL_OPTIONS worksheet (Section \@ref(own-over-inputSum)). 
 
 
 
@@ -502,10 +504,15 @@ The worksheet MonteCarloValues allows users to define how much variation to intr
 
 ## The quality assurance step  {#own-qa}
 
-The Quality Assurance (QA) step is mandatory for data brought into the Shiny web application and optional for the stand-alone program (see above: QA_TEST = TRUE/FALSE).   The QA code, QA_Code_Shiny.r, assesses the imported Excel file data.  The QA step has over 55 checks it performs on the incoming data to help ensure that the program will run correctly.  As it runs through its checks, it populates the file Error_Report.csv in the QA folder with results.  It first verifies that it can load a worksheet and then conducts subsequent tests on it.  The code performs tasks such as verifying that column labels are correct and that years and TPR/PPR/EUR categories match among files.  If it finds an error, it will record a "1" in the Terminate column that matches the issue at hand and describe the problem in the Comments column.  If no problem is found the Comments column will indicate which checks it made and found correct.  A zero in the Comments column may be ignored.  If an error is found, the R session will terminate (stand-alone model) or an error message will be produced preventing further analysis (Shiny application). This is on purpose!  It prevents the code from attempting to proceed.  If termination occurs, check the error report to find out which worksheet was triggering the error and why.  Below we describe the attributes that are checked for each worksheet:
+The Quality Assurance (QA) step is mandatory for data brought into the Shiny web application and optional for the stand-alone program (see above: QA_TEST = TRUE/FALSE).   The QA code, QA_Code_Shiny.r, assesses the imported Excel file data.  The QA step has over 60 checks it performs on the incoming data to help ensure that the program will run correctly.  As it runs through its checks, it populates the file Error_Report.csv in the QA folder with results.  It first verifies that it can load a worksheet and then conducts subsequent tests on it.  The code performs tasks such as verifying that column labels are correct and that years and TPR/PPR/EUR categories match among files.  If it finds an error, it will record a "1" in the Terminate column that matches the issue at hand and describe the problem in the Comments column.  If no problem is found the Comments column will indicate which checks it made and found correct.  A zero in the Comments column may be ignored.  If an error is found, the R session will terminate (stand-alone model) or an error message will be produced preventing further analysis (Shiny application). This is on purpose!  It prevents the code from attempting to proceed.  If termination occurs, check the error report to find out which worksheet was triggering the error and why.  Below we describe the attributes that are checked for each worksheet:
 
-**All 10 worksheets**: The QA code verifies that each worksheet correctly loaded.  A misspelling of the worksheet name will trigger a terminal error.  
-Havest_MBF:   
+**All 11 worksheets**: The QA code verifies that each worksheet correctly loaded.  A misspelling of the worksheet name will trigger a terminal error.   
+
+**HWP_MODEL_OPTIONS**:  
+* The column MC.CI.REPORT exists.  
+* The value for MC.CI.REPORT is between zero and one.  
+
+**Havest_MBF**:   
 
 * The first and last column names must be \"Year\" and \"Total\".    
 * Values are numeric.  
@@ -620,11 +627,11 @@ From the Shiny app, click on the Upload Data button.
 ::::::
 
 ## What to know about running the Monte Carlo simulation   {#own-mc}
-As described above, there are several controls in the worksheet HWP_MODEL_OPTIONS.  You can set the number of iterations that you would like the Monte Carlo simulation to run.  You can also set the parameters R and OPT.START if you wish.   
+As described above, there are several controls in the worksheet HWP_MODEL_OPTIONS.  You can set the number of iterations that you would like the Monte Carlo simulation to run and the type of confidence interval to plot.  You can also set the parameters R and OPT.START if you wish.   
 
 If you would like to see the Monte Carlo array, which includes all estimates from all iterations, you will need to run the stand-alone version of the model and set MC.ARRAY.OUT to TRUE.   
 
-If you are trying to get the model to run or are playing around with data loading and execution on the Shiny App or stand-alone, I recommend setting the number of iterations to something small like 100.  You may find that the Monte Carlo estimates really aren’t that far off of from the standard deterministic HWP model run.  A small number of iterations will prevent you from waiting for several minutes while the simulation runs.  Running the simulations for 1000 iterations may demonstrate a reasonable number to enter into the input Excel file.  When you are ready to obtain a \"final\" estimate you can increase the number of iterations to 1500, 2000, or more.    
+If you are trying to get the model to run or are playing around with data loading and execution on the Shiny App or stand-alone, I recommend setting the number of iterations to something small like 100.  You may find that the Monte Carlo estimates really aren’t that far off of from the standard deterministic HWP model run.  A small number of iterations will prevent you from waiting for several minutes while the simulation runs.  1000 may be a reasonable number of iterations for obtaining stable estimates.  When you are ready to obtain a \"final\" estimate you can increase the number of iterations to 1500, 2000, or more.    
 
 If you have ratio values that are close to boundaries (e.g., 0.03 and 0.98), you may notice that confidence intervals do not appear symmetrical around your mean estimate.  Please see the Section \@ref(model-mc-res).  The Monte Carlo simulation is encountering a \"sum-to-one\" boundary constraint that is frequently forcing one ratio value to its boundary (e.g., 1.0) and subsequently setting all related ratios to their opposite boundaries (e.g., 0.0).  This can result in a less continuous range of outputs, affecting the distribution of results.    
 
@@ -652,7 +659,7 @@ MC_ComponentsSummary.csv: This table provides the information necessary to produ
 
 MC_PIU_Plus_SWDS.csv: This table provides the information necessary to produce the figure **Monte Carlo Estimates: Cumulative carbon in storage pools combined (Products in Use + SWDS)**.  The values units are cumulative MTC which the Shiny application transforms to TgC and TgCO$_2$e.  The column Mean represents the mean value of SWDS plus PIU values for a given year across iterations.  The columns lci and uci represent lower and upper 90% confidence intervals, derived directly from the distribution of iteration values for given years.    
 
-MC_All.xlsx: This file is only produced by the stand-alone code if the user sets Run.MC = TRUE and MC.ARRAY.OUT = TRUE. The file has four worksheets: eec, ewoec, swdsC, and pu, representing EEC, EWOEC, SWDS, and PIU.  Each column is an iteration while each row is a year.  The data are in MTC.  The figure **Monte Carlo Estimates: Monte Carlo convergence evaluation** is created using the last year (last row) of the swdsC and pu worksheets.  The \"mean\" value is the successive means of the SWDS + PIU iteration values summed, starting with only the first column and adding columns to consideration (represented by the Iterations axis at the bottom of the figure).  The se, ci05, and ci95 columns are the estimated standard error and empirical 5% and 95% confidence intervals based on the number of iterations.  If the user specifies 2000 iterations over 100 years of harvest data the resulting Excel file can be tens of megabytes in size.  
+MC_All.xlsx: This file is only produced by the stand-alone code if the user sets Run.MC = TRUE and MC.ARRAY.OUT = TRUE. The file has four worksheets: eec, ewoec, swdsC, and pu, representing EEC, EWOEC, SWDS, and PIU.  Each column is an iteration while each row is a year.  The data are in MTC.  The figure **Monte Carlo Estimates: Monte Carlo convergence evaluation** is created using the last year (last row) of the swdsC and pu worksheets.  The \"mean\" value is the successive means of the SWDS + PIU iteration values summed, starting with only the first column and adding columns to consideration (represented by the Iterations axis at the bottom of the figure).  The se, ciLCI, and ciUCI columns are the estimated standard error and empirical lower and upper confidence intervals based on the number of iterations.  If the user specifies 2000 iterations over 100 years of harvest data the resulting Excel file can be tens of megabytes in size.  
 
 
 
@@ -1048,9 +1055,13 @@ Users are encouraged to generate the arrays (OUTPUT_ARRAYS = TRUE) in the stand-
 
 ### Simulation specifications    {#model-mc-spec}
 
-The Monte Carlo (MC) simulation alters the values of at least 16 different parameters, listed in Table \@ref(tab:mc-table).  The columns Min Value, Peak Value, and Max Value describe the desired 90% confidence interval for the range of random proportions against which the parameters of interest will be adjusted.  In Table \@ref(tab:mc-table) harvest, timber product ratios and primary product ratios each have two parameters with confidence intervals.  These parameters represent different year sets.  The Oregon data have three year sets for harvest, timber production, and primary product ratios.  Each parameter requires a separate MC random variable.  Finally, parameters for timber product ratios and end use product ratios have a sum-to-one characteristic.  For instance, timber product ratios (TPRs) represent the proportion of total harvest for a given year that is allocated to each of the timber product ratio values. While the proportions change during the time series the full set of TPR proportions will always sum to one.   
+(Note: when uploading your own data, change the reported and plotted Monte Carlo empirical confidence intervals by altering the MC.CI.REPORT value in the data input worksheet HWP_MODEL_OPTIONS; see Chapter \@ref(own) and specifically Section \@ref(own-prov-input-options).)
+
+The Monte Carlo (MC) simulation alters the values of at least 16 different parameters, listed in Table \@ref(tab:mc-table).  The columns Min Value, Peak Value, Max Value, and CI are used by the program to determine the triangular distribution from which the range of random proportions are drawn (Section \@ref(own-prov-input-mc)), with one proportion drawn for each parameter per iteration.  Within each iteration the parameters are adjusted by these proportions.  In Table \@ref(tab:mc-table) harvest, timber product ratios and primary product ratios each have two parameters with confidence intervals.  These parameters represent different year sets.  The Oregon data have three year sets for harvest, timber production, and primary product ratios.  Each parameter requires a separate MC random variable.  Finally, parameters for timber product ratios and end use product ratios have a sum-to-one characteristic.  For instance, timber product ratios (TPRs) represent the proportion of total harvest for a given year that is allocated to each of the timber product ratio values. While the proportions change during the time series the full set of TPR proportions will always sum to one.   
 
 ```{r mc-table, echo = F, message=FALSE}
+library(tidyverse)
+library(kableExtra)
 c1 <- read_csv("images/MC_Parameters.csv")
 c1 <- data.frame(c1)
 
@@ -1064,7 +1075,7 @@ knitr::kable(c1,
 
 ### Simulation Sampling     {#model-mc-samp}
 
-As in other HWP publications such as @stockmann2012 and @anderson2013, the random variables in the Monte Carlo simulations are drawn from triangular distributions.  The distributions all have a peak value of 1.0 (Table \@ref(tab:mc-table)) and symmetrically taper to given 90% confidence interval bounds.  The values from the triangular distribution are used as proportions for adjusting parameter values.  
+As in other HWP publications such as @stockmann2012 and @anderson2013, the random variables in the Monte Carlo simulations are drawn from triangular distributions.  These distributions have probability distribution functions that look like triangles.  In our case the distributions all have a peak value of 1.0 (Table \@ref(tab:mc-table)) and symmetrically taper to endpoints on either side of 1.0.  The values randomly drawn from the triangular distribution are used as proportions for adjusting parameter values.  
 
 Drawing random variables from triangular distributions is a multi-step process.  The first step involves drawing random variables from a standard uniform (0, 1) distribution using a Latin Hypercube Sampling (LHS) process.  The standard uniform distribution is an excellent starting place for randomly selecting points along other distributions.  The random uniform points can be translated as locations along some other distribution’s Cumulative Distribution Function (CDF).  However, with unorganized, truly random draws of random uniform variables for more than one distribution (we are using at least 16 separate distributions, with one to three distributions per parameter) there is a strong probability that samples will by chance generally fall in the same local region for several of the distributions.  In other words, a purely random sample may be inefficient.  Many iterations are needed to obtain a full suite of the possible MC values across distributions.  LHS offers a method for partitioning the uniform distributions and forcing the random selections across distributions to avoid clumping.  As a result, many fewer iterations are needed to achieve stable estimates from the MC simulation.  
 
@@ -1080,7 +1091,7 @@ $$   \text{TRV} =
     else  & b - \sqrt{(1-U)(b-a)(c-a)}
   \end{cases} $$
 
-In this equation $TRV$ is the triangular random variable, $U$ is the random uniform variable (the LHS draw), $F(c)=(c-a)/(b-a), a$ is the minimum value for the triangle, $b$ is the maximum value, and $c$ is the midpoint.  Note that the specifications require 90% confidence intervals and do not state what the endpoints for the triangular distributions should be.  We derived the endpoints that corresponded with the desired 90% confidence intervals (Table \@ref(tab:triang-tab)) using an optimization algorithm.   
+In this equation $TRV$ is the triangular random variable, $U$ is the random uniform variable (the LHS draw), $F(c)=(c-a)/(b-a), a$ is the minimum value for the triangle, $b$ is the maximum value, and $c$ is the midpoint.  Note that the specifications require confidence intervals for the variables and do not state what the endpoints for the triangular distributions should be.  We derived the endpoints that corresponded with the desired confidence intervals (Table \@ref(tab:triang-tab)) using an optimization algorithm.   
 
 
 ```{r triang-tab, echo = F}
@@ -1093,7 +1104,7 @@ knitr::kable(tri.tab,
              escape = FALSE,   # Need this if I'd like the "90%" in col.names (but not caption??) to work in pdf.
              booktabs = TRUE, 
              align = "c", 
-             caption = 'Translation of 90\\% Confidence Intervals to endpoints for triangular distributions.'
+             caption = 'Translation of Variable 90\\% Confidence Intervals to endpoints for triangular distributions.'
 ) #%>%
   #kable_styling(latex_options = "scale_down")
 ```
@@ -1281,6 +1292,9 @@ The quality assurance (QA) step will check your file for you.  However, the deta
 *What do I need to know about running the Monte Carlo Simulation? *  
 You will need to set the number of iterations you would like the simulation to use (see Section \@ref(own-prov-input-options)).  Section \@ref(own-mc) describes other aspects of running the Monte Carlo simulation.  Details on what the simulation is doing may be found in Section \@ref(model-mc).  
 
+*How do I change the confidence intervals in the Monte Carlo plots? *  
+See Section \@ref(own-prov-input-options).  The confidence intervals are changed in the input file.  Specifically, set the desired confidence interval in the MC.CI.REPORT column of the HWP_MODEL_OPTIONS worksheet.  **Do not** change the CI column values in the MonteCarloValues worksheet.  That does something else (Section \@ref(own-prov-input-mc)).
+
 *I only have timber harvest data in hundred cubic feet (CCF).  Can I still use these data in the model?*  
 Yes!  But the model needs to think that it transformed your harvest data into cubic feet all on its own.  Here is how you fool it, using a template file:  
 
@@ -1315,9 +1329,44 @@ If this appears it is best to rebuild the excel file.  There does not appear to 
 
 <!--chapter:end:06-faq-trouble.Rmd-->
 
+# Version Changes   {#vc}
+
+## Version 1.1.0: Major and Minor Changes         {#vc-v1.1.0}
+
+*Version 1.1.0 released 5 May 2024*
+
+**Major changes in Version 1.1.0**
+
+Version 1.1.0 allows users to more easily change the displayed Monte Carlo confidence intervals.  To change the confidence intervals, a new column, MC.CI.REPORT, has been added to the HWP_TOOL_OPTIONS worksheet for all templates and provided data sets (See Section \@ref(own-prov-input-options)).  Of note, users do not change the confidence intervals by altering the "MinCI", "MaxCI" or "CI" values of the MonteCarloValues worksheet (See Sections \@ref(own-prov-input-mc), \@ref(model-mc-spec), and \@ref(model-mc-samp)); instead, these values change the dimensions of the triangular distributions from which the Monte Carlo draws values.  What these changes mean for the user:    
+
+* Users who upload data to the app (or use the stand-alone version) need to update their input Excel files or download new template files.  The fix is easy: add the MC.CI.REPORT column to the first worksheet with your desired Monte Carlo confidence interval.  
+
+* The QA procedure will check for the column MC.CI.REPORT and its accompanying value (Section \@ref(own-qa)).  
+
+* The user has control over the confidence intervals generated by the Monte Carlo.
+
+* The labels for figures produced for the App tab "Monte Carlo Estimates" should now reflect the user-stated confidence interval.
+
+
+**Minor changes in Version 1.1.0**
+
+Table 3.0 produced by the stand-alone code did not appear to incorporate a year shift like Tables 4.x and 5.  Therefore, the HWP_Tables_Code.R has been altered so that Table 3.0 populates the Years column with the harvest year + 1 to match the others.   
+
+Carbon Storage and Emissions figures: 
+
+* These have been altered such that the emissions data are not reported as negative values.  This change has now been made to all three of the Carbon Storage and Emissions figures.  I also removed the widget that labeled the positive values as “Storage” and negative as. “Emissions”.
+
+* The “Pool and emission category component” figure – I reversed the SWDS and PIU colors to better match the color scheme for the "Summary pool and emissions categories" figure. 
+
+All figures associated with the tabs "Annual Timber Harvest", "Harvest by Functional Lifespan", "Carbon Storage and Emissions", and "Annual Net Change in Carbon" were altered to accommodate longer time series, helping to prevent the overlap of X-axis year values.  This was done by increasing the X-axis increments as a function of total timesteps (e.g., a 20-year increment could replace a 10-year increment). 
+
+Annual Net Change in Carbon tab, figure "IPCC production approach - stock change": The colors for PIU and SWDS were reversed to better match those of the figure “Pool and emission category component” in the Carbon Storage and Emissions tab.
+
+<!--chapter:end:07-version-changes.Rmd-->
+
 `r if (knitr::is_html_output()) '
 # References {-}
 '`
 
-<!--chapter:end:07-references.Rmd-->
+<!--chapter:end:08-references.Rmd-->
 
