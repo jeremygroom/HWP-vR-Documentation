@@ -8,7 +8,7 @@
   <meta name="description" content="This HWP vR documentation was written in bookdown.<br />
 The HTML output format for this document is bookdown::gitbook,
 set in the _output.yml file.</p>" />
-  <meta name="generator" content="bookdown 0.34 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.39 and GitBook 2.6.7" />
 
   <meta property="og:title" content="Chapter 8 Version Changes | Harvested Wood Products Carbon Model, Version R Documentation" />
   <meta property="og:type" content="book" />
@@ -70,6 +70,7 @@ set in the _output.yml file.</p>" />
 div.csl-bib-body { }
 div.csl-entry {
   clear: both;
+  margin-bottom: 0em;
 }
 .hanging div.csl-entry {
   margin-left:2em;
@@ -228,8 +229,11 @@ div.csl-indent {
 <li><p>These have been altered such that the emissions data are not reported as negative values. This change has now been made to all three of the Carbon Storage and Emissions figures. I also removed the widget that labeled the positive values as “Storage” and negative as. “Emissions”.</p></li>
 <li><p>The “Pool and emission category component” figure – I reversed the SWDS and PIU colors to better match the color scheme for the “Summary pool and emissions categories” figure.</p></li>
 </ul>
-<p>All figures associated with the tabs “Annual Timber Harvest”, “Harvest by Functional Lifespan”, “Carbon Storage and Emissions”, and “Annual Net Change in Carbon” were altered to accommodate longer time series, helping to prevent the overlap of X-axis year values. This was done by increasing the X-axis increments as a function of total timesteps (e.g., a 20-year increment could replace a 10-year increment).</p>
+<p>All figures associated with the tabs “Annual Timber Harvest”, “Harvest by Functional Lifespan”, “Carbon Storage and Emissions”, and “Annual Net Change in Carbon” were altered to accommodate longer time series, helping to prevent the overlap of X-axis year values. This was done by increasing the X-axis increments as a function of total time steps (e.g., a 20-year increment could replace a 10-year increment). The x-axis year labels for the Monte Carlo Estimates tab figure “Cumulative carbon in individual storage and emissions pools” are now at a 45-degree angle to reduce the possibility of overlap between adjacent facet labels.</p>
 <p>Annual Net Change in Carbon tab, figure “IPCC production approach - stock change”: The colors for PIU and SWDS were reversed to better match those of the figure “Pool and emission category component” in the Carbon Storage and Emissions tab.</p>
+<p>Some verbiage has been added to the Carbon Storage and Emissions tab.</p>
+<p>Empty space to the right of figures has been reduced.</p>
+<p>California’s default data has been updated, and now the timber harvest data spans 1906 - 2021. The original data set now resides in the folder <code>HWP Data\ModelExploration\</code> and is named <code>CA_Inputs_1952_2019.xlsx</code>.</p>
 
 </div>
 </div>

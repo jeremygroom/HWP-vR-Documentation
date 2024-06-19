@@ -27,6 +27,16 @@ Carbon Storage and Emissions figures:
 
 * The “Pool and emission category component” figure – I reversed the SWDS and PIU colors to better match the color scheme for the "Summary pool and emissions categories" figure. 
 
-All figures associated with the tabs "Annual Timber Harvest", "Harvest by Functional Lifespan", "Carbon Storage and Emissions", and "Annual Net Change in Carbon" were altered to accommodate longer time series, helping to prevent the overlap of X-axis year values.  This was done by increasing the X-axis increments as a function of total timesteps (e.g., a 20-year increment could replace a 10-year increment). 
+All figures associated with the tabs "Annual Timber Harvest", "Harvest by Functional Lifespan", "Carbon Storage and Emissions", and "Annual Net Change in Carbon" were altered to accommodate longer time series, helping to prevent the overlap of X-axis year values.  This was done by increasing the X-axis increments as a function of total time steps (e.g., a 20-year increment could replace a 10-year increment). The x-axis year labels for the Monte Carlo Estimates tab figure "Cumulative carbon in individual storage and emissions pools" are now at a 45-degree angle to reduce the possibility of overlap between adjacent facet labels.  
 
-Annual Net Change in Carbon tab, figure "IPCC production approach - stock change": The colors for PIU and SWDS were reversed to better match those of the figure “Pool and emission category component” in the Carbon Storage and Emissions tab.
+Annual Net Change in Carbon tab, figure "IPCC production approach - stock change": The colors for PIU and SWDS were reversed to better match those of the figure “Pool and emission category component” in the Carbon Storage and Emissions tab.  
+
+Some verbiage has been added to the Carbon Storage and Emissions tab.    
+
+Empty space to the right of figures has been reduced. 
+
+California's default data has been updated, and now the timber harvest data spans 1906 - 2021.  The original data set now resides in the folder `HWP Data\ModelExploration\` and is named `CA_Inputs_1952_2019.xlsx`.   
+
+
+
+

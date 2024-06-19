@@ -8,7 +8,7 @@
   <meta name="description" content="This HWP vR documentation was written in bookdown.<br />
 The HTML output format for this document is bookdown::gitbook,
 set in the _output.yml file.</p>" />
-  <meta name="generator" content="bookdown 0.34 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.39 and GitBook 2.6.7" />
 
   <meta property="og:title" content="Chapter 6 HWP Model Operations | Harvested Wood Products Carbon Model, Version R Documentation" />
   <meta property="og:type" content="book" />
@@ -70,6 +70,7 @@ set in the _output.yml file.</p>" />
 div.csl-bib-body { }
 div.csl-entry {
   clear: both;
+  margin-bottom: 0em;
 }
 .hanging div.csl-entry {
   margin-left:2em;
@@ -281,7 +282,7 @@ piu.paper.loss = Loss percentage for paper products entering PIU (California = 0
 <p>The Monte Carlo (MC) simulation alters the values of at least 16 different parameters, listed in Table <a href="model.html#tab:mc-table">6.1</a>. The columns Min Value, Peak Value, Max Value, and CI are used by the program to determine the triangular distribution from which the range of random proportions are drawn (Section <a href="own.html#own-prov-input-mc">4.2.2.12</a>), with one proportion drawn for each parameter per iteration. Within each iteration the parameters are adjusted by these proportions. In Table <a href="model.html#tab:mc-table">6.1</a> harvest, timber product ratios and primary product ratios each have two parameters with confidence intervals. These parameters represent different year sets. The Oregon data have three year sets for harvest, timber production, and primary product ratios. Each parameter requires a separate MC random variable. Finally, parameters for timber product ratios and end use product ratios have a sum-to-one characteristic. For instance, timber product ratios (TPRs) represent the proportion of total harvest for a given year that is allocated to each of the timber product ratio values. While the proportions change during the time series the full set of TPR proportions will always sum to one.</p>
 <table class="table" style="margin-left: auto; margin-right: auto;">
 <caption>
-<span id="tab:mc-table">Table 6.1: </span>Monte Carlo simulation target parameters and ranges for provided California data.
+<span id="tab:mc-table">Table 6.1: </span><span id="tab:mc-table">Table 6.2: </span>Monte Carlo simulation target parameters and ranges for provided California data.
 </caption>
 <thead>
 <tr>
@@ -820,53 +821,31 @@ Yes
     if 0 &lt; U &lt; F(c)       &amp; a + \sqrt{U(b-a)(c-a)}\\
     else  &amp; b - \sqrt{(1-U)(b-a)(c-a)}
   \end{cases} \]</span></p>
-<p>In this equation <span class="math inline">\(TRV\)</span> is the triangular random variable, <span class="math inline">\(U\)</span> is the random uniform variable (the LHS draw), <span class="math inline">\(F(c)=(c-a)/(b-a), a\)</span> is the minimum value for the triangle, <span class="math inline">\(b\)</span> is the maximum value, and <span class="math inline">\(c\)</span> is the midpoint. Note that the specifications require confidence intervals for the variables and do not state what the endpoints for the triangular distributions should be. We derived the endpoints that corresponded with the desired confidence intervals (Table <a href="model.html#tab:triang-tab">6.2</a>) using an optimization algorithm.</p>
+<p>In this equation <span class="math inline">\(TRV\)</span> is the triangular random variable, <span class="math inline">\(U\)</span> is the random uniform variable (the LHS draw), <span class="math inline">\(F(c)=(c-a)/(b-a), a\)</span> is the minimum value for the triangle, <span class="math inline">\(b\)</span> is the maximum value, and <span class="math inline">\(c\)</span> is the midpoint. Note that the specifications require confidence intervals for the variables and do not state what the endpoints for the triangular distributions should be. We derived the endpoints that corresponded with the desired confidence intervals (Table <a href="model.html#tab:triang-tab">6.3</a>) using an optimization algorithm.</p>
 <table>
-<caption>
-<span id="tab:triang-tab">Table 6.2: </span>Translation of Variable 90% Confidence Intervals to endpoints for triangular distributions.
-</caption>
+<caption><span id="tab:triang-tab">Table 6.3: </span>Translation of Variable 90% Confidence Intervals to endpoints for triangular distributions.</caption>
 <thead>
-<tr>
-<th style="text-align:center;">
-90% Confidence Interval Range
-</th>
-<th style="text-align:center;">
-Endpoints Used
-</th>
+<tr class="header">
+<th align="center">90% Confidence Interval Range</th>
+<th align="center">Endpoints Used</th>
 </tr>
 </thead>
 <tbody>
-<tr>
-<td style="text-align:center;">
-0.7, 1.3
-</td>
-<td style="text-align:center;">
-0.57, 1.43
-</td>
+<tr class="odd">
+<td align="center">0.7, 1.3</td>
+<td align="center">0.57, 1.43</td>
 </tr>
-<tr>
-<td style="text-align:center;">
-0.8, 1.2
-</td>
-<td style="text-align:center;">
-0.71, 1.29
-</td>
+<tr class="even">
+<td align="center">0.8, 1.2</td>
+<td align="center">0.71, 1.29</td>
 </tr>
-<tr>
-<td style="text-align:center;">
-0.85, 1.15
-</td>
-<td style="text-align:center;">
-0.78, 1.22
-</td>
+<tr class="odd">
+<td align="center">0.85, 1.15</td>
+<td align="center">0.78, 1.22</td>
 </tr>
-<tr>
-<td style="text-align:center;">
-0.95, 1.05
-</td>
-<td style="text-align:center;">
-0.93, 1.07
-</td>
+<tr class="even">
+<td align="center">0.95, 1.05</td>
+<td align="center">0.93, 1.07</td>
 </tr>
 </tbody>
 </table>
@@ -923,69 +902,35 @@ Figure 6.1: Monte Carlo convergence assessment for the upper and lower limits of
 </p>
 </div>
 <p>The Monte Carlo outputs are summarized in Figures <a href="model.html#fig:mc-all4-fig">6.2</a> and <a href="model.html#fig:mc-piu-swds-fig">6.3</a>. In Figure <a href="model.html#fig:mc-all4-fig">6.2</a> we see the mean Tg C value for emissions (Emitted with Energy Capture, Emitted Without Energy Capture) and pools (Products in Use, SWDS) along with the empirical 90% confidence intervals. Figure <a href="model.html#fig:mc-piu-swds-fig">6.3</a> combines Products in Use and SWDS into a single carbon pool. The four carbon fates in Figure <a href="model.html#fig:mc-all4-fig">6.2</a> were obtained by calculating, for each iteration, the cumulative sum of carbon for each fate across all years. Each fate has 2000 MC iterations for each year. In Figure <a href="model.html#fig:mc-piu-swds-fig">6.3</a>, it is difficult to tell, but the confidence interval range between 1906 and 1920 are between -37% and + 42% of the mean. In 2017 the range is between -17% and +17% of the mean.</p>
-<p>The correlation procedure described above appeared to work. Table <a href="model.html#tab:ppr-cor-tab">6.3</a> contains the estimated correlation coefficients for the three triangular distribution random variables used for Primary Products Ratios. The target correlation coefficient was 0.5.</p>
+<p>The correlation procedure described above appeared to work. Table <a href="model.html#tab:ppr-cor-tab">6.4</a> contains the estimated correlation coefficients for the three triangular distribution random variables used for Primary Products Ratios. The target correlation coefficient was 0.5.</p>
 <table>
-<caption>
-<span id="tab:ppr-cor-tab">Table 6.3: </span>Correlation matrix for Primary Products Ratios random variables, 2000 draws.
-</caption>
+<caption><span id="tab:ppr-cor-tab">Table 6.4: </span>Correlation matrix for Primary Products Ratios random variables, 2000 draws.</caption>
 <thead>
-<tr>
-<th style="text-align:center;">
-Variables
-</th>
-<th style="text-align:center;">
-Variable 1
-</th>
-<th style="text-align:center;">
-Variable 2
-</th>
-<th style="text-align:center;">
-Variable 3
-</th>
+<tr class="header">
+<th align="center">Variables</th>
+<th align="center">Variable 1</th>
+<th align="center">Variable 2</th>
+<th align="center">Variable 3</th>
 </tr>
 </thead>
 <tbody>
-<tr>
-<td style="text-align:center;">
-Variable 1
-</td>
-<td style="text-align:center;">
-1.000
-</td>
-<td style="text-align:center;">
-0.505
-</td>
-<td style="text-align:center;">
-0.508
-</td>
+<tr class="odd">
+<td align="center">Variable 1</td>
+<td align="center">1.000</td>
+<td align="center">0.505</td>
+<td align="center">0.508</td>
 </tr>
-<tr>
-<td style="text-align:center;">
-Variable 2
-</td>
-<td style="text-align:center;">
-0.505
-</td>
-<td style="text-align:center;">
-1.000
-</td>
-<td style="text-align:center;">
-0.521
-</td>
+<tr class="even">
+<td align="center">Variable 2</td>
+<td align="center">0.505</td>
+<td align="center">1.000</td>
+<td align="center">0.521</td>
 </tr>
-<tr>
-<td style="text-align:center;">
-Variable 3
-</td>
-<td style="text-align:center;">
-0.508
-</td>
-<td style="text-align:center;">
-0.521
-</td>
-<td style="text-align:center;">
-1.000
-</td>
+<tr class="odd">
+<td align="center">Variable 3</td>
+<td align="center">0.508</td>
+<td align="center">0.521</td>
+<td align="center">1.000</td>
 </tr>
 </tbody>
 </table>
@@ -1001,7 +946,7 @@ Figure 6.2: Monte Carlo simulation mean (yellow) and 90% confidence interval ran
 Figure 6.3: Monte Carlo simulation mean (yellow) and 90% confidence interval ranges for the total Tg C value for SWDS and Products in Use.
 </p>
 </div>
-<p>Histograms of the three vectors of Primary Products Ratios triangular random variables are presented in Figure <a href="model.html#fig:mc-tri1-fig">6.4</a>. The values are correlated (Table <a href="model.html#tab:ppr-cor-tab">6.3</a>) and the histogram distributions correspond to 90% confidence intervals and endpoints (see Table <a href="model.html#tab:triang-tab">6.2</a> for triangular distribution endpoints for 0.7-1.3, 0.8-1.2, and 0.85-1.15 90% confidence intervals). Although Variables 2 and 3 do not evidence as tight a triangular distribution as Variable 1, their distributions appear approximately triangular and do not appear skewed.</p>
+<p>Histograms of the three vectors of Primary Products Ratios triangular random variables are presented in Figure <a href="model.html#fig:mc-tri1-fig">6.4</a>. The values are correlated (Table <a href="model.html#tab:ppr-cor-tab">6.4</a>) and the histogram distributions correspond to 90% confidence intervals and endpoints (see Table <a href="model.html#tab:triang-tab">6.3</a> for triangular distribution endpoints for 0.7-1.3, 0.8-1.2, and 0.85-1.15 90% confidence intervals). Although Variables 2 and 3 do not evidence as tight a triangular distribution as Variable 1, their distributions appear approximately triangular and do not appear skewed.</p>
 <p>Figures <a href="model.html#fig:mc-tri2-fig">6.5</a> and <a href="model.html#fig:mc-tri3-fig">6.6</a> examine triangular distribution changes on sum-to-one ratio sets. In Figure <a href="model.html#fig:mc-tri2-fig">6.5</a>, PPR.21 is the largest proportion in its sum-to-one group of proportions and was directly adjusted by the random triangular variable draws. PPR.17 was adjusted to ensure that it and the other variables in the group still summed to one. Note that although PPR.21 was the only one directly altered, PPR.17 evidences a triangular distribution as well. The percentage range of PPR.17 values was broader, however, than the percentage range of values for PPR.21.</p>
 <p>Figure <a href="model.html#fig:mc-tri3-fig">6.6</a> shows the consequences of altering a sum-to-one ratio beyond 1.0, in this case using TPR.2 during the year 2002. The code truncates the value at 1.0, forcing TPR.1 to become zero. The two ratio sets appear to otherwise conform to triangular distributions.</p>
 <div class="figure"><span style="display:block;" id="fig:mc-tri1-fig"></span>
@@ -1058,7 +1003,7 @@ Figure 6.10: Monte Carlo simulation outputs for Products in Use for different Mo
 </div>
 </div>
 <h3>References<a href="references.html#references" class="anchor-section" aria-label="Anchor link to header"></a></h3>
-<div id="refs" class="references csl-bib-body hanging-indent">
+<div id="refs" class="references csl-bib-body hanging-indent" entry-spacing="0">
 <div id="ref-anderson2013" class="csl-entry">
 Anderson, Nathaniel, Jesse Young, Keith D. Stockmann, Kenneth Skog, Sean Healey, Daniel R. Loeffler, J. Greg Jones, and James Morrison. 2013. <span>“Regional and Forest-Level Estimates of Carbon Stored in Harvested Wood Products from the United States Forest Service Northern Region, 1906-2010.”</span> <em>Gen. Tech. Rep. RMRS-GTR-311. Fort Collins, CO: US Department of Agriculture, Forest Service, Rocky Mountain Research Station.</em>, 114 pp.
 </div>

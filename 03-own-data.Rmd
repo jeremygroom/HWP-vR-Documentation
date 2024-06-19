@@ -371,7 +371,8 @@ From the Shiny app, click on the Upload Data button.
 * Run the Monte Carlo simulation for the Washington data. 
 * To see what happens when there is no ownership data, navigate to `HWP Data\ModelExploration\OR_no-owner.xlsx` and select the file.  Run the QA and then the HWP model.   
 * To see how the Sankey diagram and other figures change if discarded products *were* burned for energy capture (DEC), navigate to the altered file 
-`HWP Data\ModelExploration\CA_DiscardEnergyCapture_Test.xlsx` and select.  
+`HWP Data\ModelExploration\CA_DiscardEnergyCapture_Test.xlsx` and select.
+* To see an earlier version of California's data, 1952 - 2019, navigate to `HWP Data\ModelExploration\CA_Inputs_1952_2019.xlsx` and select. 
 
 :::::
 ::::::
