@@ -8,7 +8,7 @@
   <meta name="description" content="This HWP vR documentation was written in bookdown.<br />
 The HTML output format for this document is bookdown::gitbook,
 set in the _output.yml file.</p>" />
-  <meta name="generator" content="bookdown 0.39 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.40 and GitBook 2.6.7" />
 
   <meta property="og:title" content="Chapter 4 Option 2: Upload and run your own data in the web application | Harvested Wood Products Carbon Model, Version R Documentation" />
   <meta property="og:type" content="book" />
@@ -56,8 +56,6 @@ set in the _output.yml file.</p>" />
 <link href="libs/anchor-sections-1.1.0/anchor-sections.css" rel="stylesheet" />
 <link href="libs/anchor-sections-1.1.0/anchor-sections-hash.css" rel="stylesheet" />
 <script src="libs/anchor-sections-1.1.0/anchor-sections.js"></script>
-<script src="libs/kePrint-0.0.1/kePrint.js"></script>
-<link href="libs/lightable-0.0.1/lightable.css" rel="stylesheet" />
 
 
 
@@ -186,7 +184,8 @@ div.csl-indent {
 </ul></li>
 <li class="chapter" data-level="8" data-path="vc.html"><a href="vc.html"><i class="fa fa-check"></i><b>8</b> Version Changes</a>
 <ul>
-<li class="chapter" data-level="8.1" data-path="vc.html"><a href="vc.html#vc-v1.1.0"><i class="fa fa-check"></i><b>8.1</b> Version 1.1.0: Major and Minor Changes</a></li>
+<li class="chapter" data-level="8.1" data-path="vc.html"><a href="vc.html#vc-v1-1-1"><i class="fa fa-check"></i><b>8.1</b> Version 1.1.1: Minor Changes</a></li>
+<li class="chapter" data-level="8.2" data-path="vc.html"><a href="vc.html#vc-v1-1-0"><i class="fa fa-check"></i><b>8.2</b> Version 1.1.0: Major and Minor Changes</a></li>
 </ul></li>
 <li class="chapter" data-level="" data-path="references.html"><a href="references.html"><i class="fa fa-check"></i>References</a></li>
 <li class="divider"></li>
@@ -508,13 +507,13 @@ Figure 4.1: Definition of regions: Pacific Northwest, West (PWW); Pacific Northw
 <li><p>The user then runs the QA procedure by clicking on the button "Run data file quality assurance".</p></li>
 <li><p>A button appears that allows the user to "Download the QA output table" and see what issues were found for the data set. If no errors are found, the user can move to the next step.</p></li>
 <li><p>The user then clicks on the button "Run HWP Model". If the QA test failed, an error message will appear to that effect. We recommend that the user download the QA output table to determine where the error occurred. If the QA test was passed, the button should instead take a moment to process the data through the model, announce in Model Status that the model run was a success, and change the selected data set under the "Select a data set" option in the sidebar to the user’s uploaded data name.</p></li>
-<li><p>At this point the user can visit all figures in the Shiny application and view their data displayed in the figures. They can also download tables summarizing the model run outputs by clicking on the now-appearing button "Download HWP Tables" on the right of the window.</p></li>
+<li><p>At this point the user can visit all figures in the Shiny application and view their data displayed in the figures. They can also download tables summarizing the model run outputs by clicking on the button "Download ______ HWP Tables" on the right of the window. The button states which data set it will provide data for (see Section <a href="vc.html#vc-v1-1-1">8.1</a>).</p></li>
 </ol>
 <p>If the user only has Total harvest data (no ownership information) then certain figures will either not attempt to display ownership information or will provide pretty pictures instead. Other figures will be unaffected.</p>
 <ol start="7" style="list-style-type: decimal">
 <li>If the user wishes to run the Monte Carlo simulation, then once the HWP model has been run they click the "Run Monte Carlo" button. A busy icon appears, letting the user know that the simulation is in progress. The user is also informed of how long the simulation may take. The Model Status box then has a message appear, "Monte Carlo is complete!". At that point the user may download summary tables for the Monte Carlo. The Monte Carlo Estimates tab under Carbon Storage and Emissions can now display the new simulation results.</li>
 </ol>
-<p>Note: If the user tried to view Monte Carlo simulation results after running the HWP model but before actually running the Monte Carlo simulation, they are presented with an image that explains that the Monte Carlo simulation data are not available. If the user then runs the Monte Carlo simulation and returns to the Monte Carlo Estimates, the no-data image will remain until they switch to a previous data set (California or Oregon) and then back to their own data set. At that time their Monte Carlo results should appear. This feature may be improved in the future.</p>
+<p>Note: If the user tried to view Monte Carlo simulation results after running the HWP model but before actually running the Monte Carlo simulation, they are presented with an image that explains that the Monte Carlo simulation data are not available. If they then run the Monte Carlo for their data, the image should be replaced with figures of the Monte Carlo output.</p>
 <div class="greybox">
 <div class="minipage">
 <div class="center">

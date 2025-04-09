@@ -1,6 +1,19 @@
 # Version Changes   {#vc}
 
-## Version 1.1.0: Major and Minor Changes         {#vc-v1.1.0}
+## Version 1.1.1: Minor Changes         {#vc-v1-1-1}
+
+*Version 1.1.1 released 9 April 2025*
+
+**Minor changes in Version 1.1.1**
+
+Table download button: Users who want to download the tables behind the plotted HWP outputs for Oregon and California base datasets can do so.  The **Upload Data** tab now has a permanent button that enables download of the active HWP data set's output tables.  The "Download _______ HWP Tables" button will name which data set is currently loaded. If a user loads a new dataset and it passes the QA check and the model is run, the name of that data set will appear on the button.    
+
+Monte Carlo fix: Previously, if users uploaded their own data and performed a Monte Carlo analysis of those data, they would not immediately see the results of the Monte Carlo when they navigated to the **Monte Carlo Estimates** tab.  They would need to switch data sets (e.g., select "California" and then re-select their data set) while at the **Monte Carlo Estimates** tab, after which the proper figures would appear.  This has now been fixed.  The Shiny reactivity timing has been updated, and after running the Monte Carlo users should immediately see their own data plotted in the **Monte Carlo Estimates** tab.  
+
+**Carbon Storage by Ownership**: They y-axis of this plot now adjusts to the selected input, matching the behavior of the figures in the Carbon Storage and Emissions tab.
+
+
+## Version 1.1.0: Major and Minor Changes         {#vc-v1-1-0}
 
 *Version 1.1.0 released 5 May 2024*
 

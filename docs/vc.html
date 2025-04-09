@@ -8,7 +8,7 @@
   <meta name="description" content="This HWP vR documentation was written in bookdown.<br />
 The HTML output format for this document is bookdown::gitbook,
 set in the _output.yml file.</p>" />
-  <meta name="generator" content="bookdown 0.39 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.40 and GitBook 2.6.7" />
 
   <meta property="og:title" content="Chapter 8 Version Changes | Harvested Wood Products Carbon Model, Version R Documentation" />
   <meta property="og:type" content="book" />
@@ -56,37 +56,12 @@ set in the _output.yml file.</p>" />
 <link href="libs/anchor-sections-1.1.0/anchor-sections.css" rel="stylesheet" />
 <link href="libs/anchor-sections-1.1.0/anchor-sections-hash.css" rel="stylesheet" />
 <script src="libs/anchor-sections-1.1.0/anchor-sections.js"></script>
-<script src="libs/kePrint-0.0.1/kePrint.js"></script>
-<link href="libs/lightable-0.0.1/lightable.css" rel="stylesheet" />
 
 
 
 <style type="text/css">
   
   div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
-</style>
-<style type="text/css">
-/* Used with Pandoc 2.11+ new --citeproc when CSL is used */
-div.csl-bib-body { }
-div.csl-entry {
-  clear: both;
-  margin-bottom: 0em;
-}
-.hanging div.csl-entry {
-  margin-left:2em;
-  text-indent:-2em;
-}
-div.csl-left-margin {
-  min-width:2em;
-  float:left;
-}
-div.csl-right-inline {
-  margin-left:2em;
-  padding-left:1em;
-}
-div.csl-indent {
-  margin-left: 2em;
-}
 </style>
 
 <link rel="stylesheet" href="style.css" type="text/css" />
@@ -186,7 +161,8 @@ div.csl-indent {
 </ul></li>
 <li class="chapter" data-level="8" data-path="vc.html"><a href="vc.html"><i class="fa fa-check"></i><b>8</b> Version Changes</a>
 <ul>
-<li class="chapter" data-level="8.1" data-path="vc.html"><a href="vc.html#vc-v1.1.0"><i class="fa fa-check"></i><b>8.1</b> Version 1.1.0: Major and Minor Changes</a></li>
+<li class="chapter" data-level="8.1" data-path="vc.html"><a href="vc.html#vc-v1-1-1"><i class="fa fa-check"></i><b>8.1</b> Version 1.1.1: Minor Changes</a></li>
+<li class="chapter" data-level="8.2" data-path="vc.html"><a href="vc.html#vc-v1-1-0"><i class="fa fa-check"></i><b>8.2</b> Version 1.1.0: Major and Minor Changes</a></li>
 </ul></li>
 <li class="chapter" data-level="" data-path="references.html"><a href="references.html"><i class="fa fa-check"></i>References</a></li>
 <li class="divider"></li>
@@ -211,8 +187,16 @@ div.csl-indent {
             <section class="normal" id="section-">
 <div id="vc" class="section level1 hasAnchor" number="8">
 <h1><span class="header-section-number">Chapter 8</span> Version Changes<a href="vc.html#vc" class="anchor-section" aria-label="Anchor link to header"></a></h1>
-<div id="vc-v1.1.0" class="section level2 hasAnchor" number="8.1">
-<h2><span class="header-section-number">8.1</span> Version 1.1.0: Major and Minor Changes<a href="vc.html#vc-v1.1.0" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div id="vc-v1-1-1" class="section level2 hasAnchor" number="8.1">
+<h2><span class="header-section-number">8.1</span> Version 1.1.1: Minor Changes<a href="vc.html#vc-v1-1-1" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p><em>Version 1.1.1 released 9 April 2025</em></p>
+<p><strong>Minor changes in Version 1.1.1</strong></p>
+<p>Table download button: Users who want to download the tables behind the plotted HWP outputs for Oregon and California base datasets can do so. The <strong>Upload Data</strong> tab now has a permanent button that enables download of the active HWP data set’s output tables. The “Download _______ HWP Tables” button will name which data set is currently loaded. If a user loads a new dataset and it passes the QA check and the model is run, the name of that data set will appear on the button.</p>
+<p>Monte Carlo fix: Previously, if users uploaded their own data and performed a Monte Carlo analysis of those data, they would not immediately see the results of the Monte Carlo when they navigated to the <strong>Monte Carlo Estimates</strong> tab. They would need to switch data sets (e.g., select “California” and then re-select their data set) while at the <strong>Monte Carlo Estimates</strong> tab, after which the proper figures would appear. This has now been fixed. The Shiny reactivity timing has been updated, and after running the Monte Carlo users should immediately see their own data plotted in the <strong>Monte Carlo Estimates</strong> tab.</p>
+<p><strong>Carbon Storage by Ownership</strong>: They y-axis of this plot now adjusts to the selected input, matching the behavior of the figures in the Carbon Storage and Emissions tab.</p>
+</div>
+<div id="vc-v1-1-0" class="section level2 hasAnchor" number="8.2">
+<h2><span class="header-section-number">8.2</span> Version 1.1.0: Major and Minor Changes<a href="vc.html#vc-v1-1-0" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p><em>Version 1.1.0 released 5 May 2024</em></p>
 <p><strong>Major changes in Version 1.1.0</strong></p>
 <p>Version 1.1.0 allows users to more easily change the displayed Monte Carlo confidence intervals. To change the confidence intervals, a new column, MC.CI.REPORT, has been added to the HWP_TOOL_OPTIONS worksheet for all templates and provided data sets (See Section <a href="own.html#own-prov-input-options">4.2.2.1</a>). Of note, users do not change the confidence intervals by altering the “MinCI”, “MaxCI” or “CI” values of the MonteCarloValues worksheet (See Sections <a href="own.html#own-prov-input-mc">4.2.2.12</a>, <a href="model.html#model-mc-spec">6.2.1</a>, and <a href="model.html#model-mc-samp">6.2.2</a>); instead, these values change the dimensions of the triangular distributions from which the Monte Carlo draws values. What these changes mean for the user:</p>
@@ -298,20 +282,6 @@ gitbook.start({
 });
 </script>
 
-<!-- dynamically load mathjax for compatibility with self-contained -->
-<script>
-  (function () {
-    var script = document.createElement("script");
-    script.type = "text/javascript";
-    var src = "true";
-    if (src === "" || src === "true") src = "https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.9/latest.js?config=TeX-MML-AM_CHTML";
-    if (location.protocol !== "file:")
-      if (/^https?:/.test(src))
-        src = src.replace(/^https?:/, '');
-    script.src = src;
-    document.getElementsByTagName("head")[0].appendChild(script);
-  })();
-</script>
 </body>
 
 </html>

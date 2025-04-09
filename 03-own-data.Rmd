@@ -349,14 +349,14 @@ The Quality Assurance (QA) step is mandatory for data brought into the Shiny web
 
 5. The user then clicks on the button \"Run HWP Model\".  If the QA test failed, an error message will appear to that effect.  We recommend that the user download the QA output table to determine where the error occurred.  If the QA test was passed, the button should instead take a moment to process the data through the model, announce in Model Status that the model run was a success, and change the selected data set under the \"Select a data set\" option in the sidebar to the user’s uploaded data name.    
 
-6. At this point the user can visit all figures in the Shiny application and view their data displayed in the figures.  They can also download tables summarizing the model run outputs by clicking on the now-appearing button \"Download HWP Tables\" on the right of the window.  
+6. At this point the user can visit all figures in the Shiny application and view their data displayed in the figures.  They can also download tables summarizing the model run outputs by clicking on the button \"Download ______ HWP Tables\" on the right of the window. The button states which data set it will provide data for (see Section \@ref(vc-v1-1-1)).  
 
 
 If the user only has Total harvest data (no ownership information) then certain figures will either not attempt to display ownership information or will provide pretty pictures instead.  Other figures will be unaffected.    
 
 7. If the user wishes to run the Monte Carlo simulation, then once the HWP model has been run they click the \"Run Monte Carlo\" button.  A busy icon appears, letting the user know that the simulation is in progress.  The user is also informed of how long the simulation may take.  The Model Status box then has a message appear, \"Monte Carlo is complete!\".  At that point the user may download summary tables for the Monte Carlo.  The Monte Carlo Estimates tab under Carbon Storage and Emissions can now display the new simulation results.    
 
-Note: If the user tried to view Monte Carlo simulation results after running the HWP model but before actually running the Monte Carlo simulation, they are presented with an image that explains that the Monte Carlo simulation data are not available.  If the user then runs the Monte Carlo simulation and returns to the Monte Carlo Estimates, the no-data image will remain until they switch to a previous data set (California or Oregon) and then back to their own data set.  At that time their Monte Carlo results should appear.  This feature may be improved in the future.
+Note: If the user tried to view Monte Carlo simulation results after running the HWP model but before actually running the Monte Carlo simulation, they are presented with an image that explains that the Monte Carlo simulation data are not available.  If they then run the Monte Carlo for their data, the image should be replaced with figures of the Monte Carlo output.  
 
 :::::: {.greybox data-latex=""}
 ::::: {.minipage data-latex="{.85\linewidth}"}

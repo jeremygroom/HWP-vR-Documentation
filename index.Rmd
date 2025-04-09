@@ -1,6 +1,6 @@
 --- 
 title: "Harvested Wood Products Carbon Model, Version R Documentation"
-author: "| Jeremy Groom, Ph.D.\n| Groom Analytics, LLC \n| \n| Nadia Tase\n| California Department of Forestry and Fire Protection \n| \n| Version 1.1.0\n"
+author: "| Jeremy Groom, Ph.D.\n| Groom Analytics, LLC \n| \n| Nadia Tase\n| California Department of Forestry and Fire Protection \n| \n| Version 1.1.1\n"
 date: "`r paste('Date:',format(Sys.Date(), '%B %d, %Y'))`"
 output: pdf_document
 site: bookdown::bookdown_site
