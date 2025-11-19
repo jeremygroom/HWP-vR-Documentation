@@ -1,5 +1,14 @@
 # Version Changes   {#vc}
 
+
+## Version 1.1.2: Minor Changes         {#vc-v1-1-2}
+*Version 1.1.2 released 19 November 2025*
+
+**Minor changes in Version 1.1.2**
+
+Packages were updated and the code was adjusted to accommodate package changes. The R environment was saved and changes were pushed to GitHub.
+
+
 ## Version 1.1.1: Minor Changes         {#vc-v1-1-1}
 
 *Version 1.1.1 released 9 April 2025*
