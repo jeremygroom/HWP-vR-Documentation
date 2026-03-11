@@ -22,6 +22,17 @@ Monte Carlo fix: Previously, if users uploaded their own data and performed a Mo
 **Carbon Storage by Ownership**: They y-axis of this plot now adjusts to the selected input, matching the behavior of the figures in the Carbon Storage and Emissions tab.
 
 
+
+## Version 1.1.0.5: Minor Changes         {#vc-v1-1-0-5}
+
+*Version 1.1.0.5 released June 19, 2024*
+
+**Minor changes in version 1.1.0.5**
+
+**Updated default California data:** California HWP data now spans from 1904 to 2021 with ownership information appearing from 1952 onward.  The new input file can be found under **HWP Data/ExistingData/** on the GitHub site, while the previous input file (*CA_Inputs_1952_2019.xlsx*) can be found under **HWP Data/ModelExploration/**.  Other changes to the input file include refining the board foot – cubic foot conversion rate for 2013 onward (BFCF), discard ratio updates (DiscardFates), and updates to the discard category half lives (Discard_HalfLives).  For discard ratio updates the changes include 0% of material being composted, 0% of material going to dumps after 2000, and a gradual shift of material going to landfills.  A substantially larger proportion of wood and paper material is recovered than in the previous data version.  The proportion of waste material entering the non-decomposing ‘fixed’ category was increased for discard category half lives.  
+
+
+
 ## Version 1.1.0: Major and Minor Changes         {#vc-v1-1-0}
 
 *Version 1.1.0 released 5 May 2024*
